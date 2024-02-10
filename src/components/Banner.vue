@@ -5,7 +5,7 @@
         src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
         alt="Logo"
         style="float: left; margin-right: 10px"
-      />aaaaaaaaa
+      />
       <div>
         <h1>สมาคมศิษย์เก่าคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร (ศวศ.)</h1>
         <p style="color: #ffd500">
