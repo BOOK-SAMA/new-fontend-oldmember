@@ -6,7 +6,7 @@ import admin from '/src/views/loginadmin.vue'
 import NotFound from '/src/views/notFound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
-import updateadminfrom from '/src/views/updatefrom.vue'
+import updateadminfrom from '/src/views/adminupload.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,7 +49,7 @@ const router = createRouter({
     },
     {
       path: '/update/:id/edit',
-      name: 'test',
+      name: 'update',
       component: updateadminfrom
     },
     {
