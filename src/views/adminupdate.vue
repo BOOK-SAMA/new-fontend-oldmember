@@ -35,11 +35,7 @@
                   <h6 class="mb-0">ชื่อภาษาไทย</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    v-model="THAIname"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                  />
+                  <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -49,11 +45,7 @@
                   <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    v-model="ENGname"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                  />
+                  <input v-model="ENGname" class="form-control form-control-lg" placeholder="" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -63,12 +55,7 @@
                   <h6 class="mb-0">ชื่อเล่น</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="nickname"
-                    class="form-control"
-                    rows="3"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="nickname" class="form-control" rows="3" placeholder=""></textarea>
                 </div>
               </div>
 
@@ -106,11 +93,7 @@
                   <h6 class="mb-0">สถานะของผู้สมัคร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <select
-                    v-model="status"
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                  >
+                  <select v-model="status" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                     <option selected disabled>
                       เคยเป็นนักศึกษา/เป็นผู้สำเร็จการศึกษา/เป็นนักศึกษา...
                     </option>
@@ -131,24 +114,33 @@
                   <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="academicstatus"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
+                  <textarea v-model="academicstatus" class="form-control" rows="1"></textarea>
                 </div>
               </div>
 
               <hr class="mx-n3" />
+              <img v-if="profileimage" :src="profileimage" alt="Preview" class="rounded-circle p-1" width="110" />
+              <!-- Display a default image if previewFile is not available -->
+              <p v-else>
+                <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+                  class="rounded-circle p-1" width="110" />
+              </p>
+
+              <hr class="mx-n3" />
+
+              <img v-if="payimage" :src="payimage" alt="Preview" class="rounded-circle p-1" width="110" />
+              <!-- Display a default image if previewFile is not available -->
+              <p v-else>
+                <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+                  class="rounded-circle p-1" width="110" />
+              </p>
+
 
 
               <hr class="mx-n3" />
+
               <div class="px-5 py-4">
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-lg"
-                  @click="updateSubmit(this.$route.params.id)"
-                >
+                <button type="submit" class="btn btn-primary btn-lg" @click="updateSubmit(this.$route.params.id)">
                   Submit
                 </button>
               </div>
@@ -206,17 +198,23 @@ export default {
         { length: 100 },
         (_, i) => new Date().getFullYear() - i
       ),
+      profileimage: null,
+      payimage: null,
+
+
     };
   },
   computed: {
     // ใช้ computed property เพื่อ return ค่าที่ได้จาก formatdate ที่มีการรับ dateofbirth เป็นพารามิเตอร์
   },
-  mounted() {
+  async mounted() {
     console.log(this.$route.params.id);
-    this.getuserdata(this.$route.params.id);
+    await this.getuserdata(this.$route.params.id);
+    await this.downloadImageAndDisplay(localStorage.getItem("uuidprofile"))
+    await this.downloadpayImageAndDisplay(localStorage.getItem("uuidpayimage"))
   },
   methods: {
-    getuserdata(id) {
+    async getuserdata(id) {
       axios
         .get(`${import.meta.env.VITE_API2}admin/showperson/${id}`, {
           headers: {
@@ -243,8 +241,8 @@ export default {
           this.masterdegreenumber = res.data.thing.Masterdegreenumber;
           this.doctordegree = res.data.thing.Doctoraldegree;
           this.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
-          
-          
+          localStorage.setItem("uuidprofile", res.data.thing.Image)
+          localStorage.setItem("uuidpayimage", res.data.thing.Payimage)
         })
         .catch();
     },
@@ -255,36 +253,76 @@ export default {
           password: this.Password,
 
           thainame: this.THAIname,
-          // engname: this.ENGname,
-          // nickname: this.nickname,
-          // dateofbirth: this.Date_of_birth,
-
-          // status: this.status,
-          // academicstatus: this.academicstatus,
-          // academicnumber: this.academicnumber,
-          // masterdegree: this.masterdegree,
-          // masterdegreenumber: this.masterdegreenumber,
-          // doctordegree: this.doctordegree,
-          // doctordegreenumber: this.doctordegreenumber,
-          // address: this.address,
-          // phonenumber: this.phonenumber,
-          // idline: this.idline,
-          // email: this.email,
-          // job: this.job,
-          // jobposition: this.jobposition,
-
-          // levelmember: this.levelmember,
-          // levelmemberthing: this.levelmemberthing,
-          // statusinfo: this.statusinfo,
-          // pnstatus: this.pnstatus,
-          // role: this.role,
-          // paystatus: this.paystatus,
         })
         .then((res) => {
           console.log(res);
         })
         .catch();
     },
+    async downloadImageAndDisplay(uuid) {
+      try {
+        // Fetch the image content from the server
+        const response = await axios.get(
+          `${import.meta.env.VITE_API2}admin/preview/${uuid}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "application/json",
+            },
+            responseType: 'arraybuffer', // Set the responseType to 'arraybuffer' to handle binary data
+          }
+        );
+
+        // Convert the binary data to a data URL
+        const imageSrc = `data:${response.headers['content-type']};base64,${btoa(new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`;
+
+        // Display the image using the data URL
+        const imgElement = document.getElementById('your-image-id'); // Replace 'your-image-id' with the actual ID of your image element
+        if (imgElement) {
+          imgElement.src = imageSrc;
+        }
+        this.profileimage = imageSrc;
+        console.log('Image downloaded and displayed.');
+      } catch (error) {
+        console.error("Error downloading image:", error);
+        localStorage.removeItem("userid");
+        localStorage.removeItem("tokenstring");
+        localStorage.removeItem("uuid");
+        router.push({ path: "/login" });
+      }
+    },
+    async downloadpayImageAndDisplay(uuid) {
+      try {
+        // Fetch the image content from the server
+        const response = await axios.get(
+          `${import.meta.env.VITE_API2}admin/preview/${uuid}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "application/json",
+            },
+            responseType: 'arraybuffer', // Set the responseType to 'arraybuffer' to handle binary data
+          }
+        );
+
+        // Convert the binary data to a data URL
+        const imageSrc = `data:${response.headers['content-type']};base64,${btoa(new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`;
+
+        // Display the image using the data URL
+        const imgElement = document.getElementById('your-image-id'); // Replace 'your-image-id' with the actual ID of your image element
+        if (imgElement) {
+          imgElement.src = imageSrc;
+        }
+        this.payimage = imageSrc;
+        console.log('Image downloaded and displayed.');
+      } catch (error) {
+        console.error("Error downloading image:", error);
+        localStorage.removeItem("userid");
+        localStorage.removeItem("tokenstring");
+        localStorage.removeItem("uuid");
+        router.push({ path: "/login" });
+      }
+    }
   },
 };
 </script>
