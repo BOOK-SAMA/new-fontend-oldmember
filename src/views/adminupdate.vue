@@ -124,6 +124,23 @@
                   </select>
                 </div>
               </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <textarea
+                    v-model="academicstatus"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
+                </div>
+              </div>
+
+              <hr class="mx-n3" />
+
 
               <hr class="mx-n3" />
               <div class="px-5 py-4">
@@ -218,30 +235,16 @@ export default {
           this.nickname = res.data.thing.Nickname;
           const dateString = res.data.thing.Dateofbirth;
           [this.day, this.month, this.year] = dateString.split("/");
-          this.status = res.data.thing.Status;
 
-          // this.ENGname = res.data.thing.ENGname;
-          // this.nickname = res.data.thing.Nickname;
-          // this.Date_of_birth = res.data.thing.DateOfBirth;
-          // this.status = res.data.thing.Status;
-          // this.academicstatus = res.data.thing.AcademicStatus;
-          // this.academicnumber = res.data.thing.AcademicNumber;
-          // this.masterdegree = res.data.thing.MasterDegree;
-          // this.masterdegreenumber = res.data.thing.MasterDegreeNumber;
-          // this.doctordegree = res.data.thing.DoctoralDegree;
-          // this.doctordegreenumber = res.data.thing.DoctoralDegreeNumber;
-          // this.address = res.data.thing.Address;
-          // this.phonenumber = res.data.thing.PhoneNumber;
-          // this.idline = res.data.thing.IDLine;
-          // this.email = res.data.thing.Email;
-          // this.job = res.data.thing.Job;
-          // this.jobposition = res.data.thing.Jobposition;
-          // this.levelmember = res.data.thing.Levelmember;
-          // this.levelmemberthing = res.data.thing.Levelmemberthing;
-          // this.statusinfo = res.data.thing.Statusinfo;
-          // this.pnstatus = res.data.thing.PNstatus;
-          // this.role = res.data.thing.Role;
-          // this.paystatus = res.data.thing.Paystatus;
+          this.status = res.data.thing.Status;
+          this.academicstatus = res.data.thing.Academicstatus;
+          this.academicnumber = res.data.thing.Academicnumber;
+          this.masterdegree = res.data.thing.Masterdegree;
+          this.masterdegreenumber = res.data.thing.Masterdegreenumber;
+          this.doctordegree = res.data.thing.Doctoraldegree;
+          this.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+          
+          
         })
         .catch();
     },
