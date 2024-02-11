@@ -6,7 +6,7 @@ import admin from '/src/views/loginadmin.vue'
 import NotFound from '/src/views/notFound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
-import updateadminfrom from '/src/views/adminupload.vue'
+import updateadminfrom from '/src/views/adminupdate.vue'
 
 const router = createRouter({
   history: createWebHistory(),
