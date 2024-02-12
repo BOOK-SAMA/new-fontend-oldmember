@@ -246,7 +246,7 @@
                   </h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="jobposition" />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Jobposition" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -258,7 +258,7 @@
                   </h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="jobadress" />
+                  <input type="text" class="form-control form-control-lg" v-model="Jobaddress" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -269,7 +269,7 @@
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmember">
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Levelmember">
                     <option selected disabled>เลือก 1 อย่าง</option>
                     <option value="สมาชิกสามัญ ">
                       สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
@@ -294,11 +294,7 @@
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="levelmemberthing"
-                  >
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Levelmemberthing">
                     <option selected disabled>เลือก 1 อย่าง</option>
                     <option value="กระเป๋าผ้าและแมส SCSU ">
                       กระเป๋าผ้าและแมส SCSU
@@ -314,7 +310,7 @@
                 </div>
               </div>
               <hr class="mx-n3" />
-              
+
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
@@ -352,6 +348,53 @@
               </div>
 
               <hr class="mx-n3" />
+
+              <div class="row align-items-center py-3">
+                <div class="col-md-6 ps-5">
+                  <h6 class="mb-0">
+                    สถานะการชำระเงิน
+                  </h6>
+                </div>
+                <div class="col-md-5 pe-5">
+                  <div>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="paystatus">
+                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
+                      <!-- Display Selected Option Text Conditionally -->
+                      <option value="already">
+                        ตรวจสอบการชำระเงินแล้ว
+                      </option>
+                      <option value="none">
+                        ยังไม่ได้ตรวจสอบการชำระเงิน
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    สถานะการเข้าถึงของผู้ใช้
+                  </h6>
+                </div>
+                <div class="col-md-5 pe-5">
+                  <div>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="role">
+                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
+                      <!-- Display Selected Option Text Conditionally -->
+                      <option value="user">
+                       ระดับ user
+                      </option>
+                      <option value="admin">
+                        ระดับ admin
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
 
               <div class="px-5 py-4">
                 <button type="submit" class="btn btn-primary btn-lg" @click="updateSubmit(this.$route.params.id)">
@@ -400,11 +443,13 @@ export default {
       Idline: "",
       Email: "",
       job: "",
+      Jobposition: "",
+      Jobaddress: "",
       Levelmember: "",
       Levelmemberthing: "",
 
-      statusinfo: "",
-      pnstatus: "",
+      paystatus: "",
+      paystatustext: "",
       role: "",
       paystatus: "",
       submitt: "",
@@ -469,7 +514,9 @@ export default {
           this.Levelmember = res.data.thing.Levelmember;
           this.Levelmemberthing = res.data.thing.Levelmemberthing;
 
-
+          this.paystatus = res.data.thing.Paystatus;
+          this.role = res.data.thing.Role;
+          
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
         })
@@ -602,6 +649,7 @@ export default {
     handleprofile(event) {
       this.file = event.target.files[0];
     },
+
   },
 };
 </script>

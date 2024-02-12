@@ -86,7 +86,7 @@
             :to="{ path: '/admintoo' }"
             class="btn btn-success btn-sm"
             @click="asdasd()"
-            >ประวัติการสั่งซื้อ
+            >แก้ไขรหัสผ่าน
           </router-link>
         </td>
       </tr>
