@@ -639,15 +639,14 @@ export default {
       const URL = `${import.meta.env.VITE_API2}register2`;
       let data = new FormData();
 
-      data.append("username", this.username);
-      data.append("password", this.password);
+      
 
 
-      data.append("thainame", this.thainame);
-      data.append("engname", this.engname);
-      data.append("oldname", this.oldname);
+      data.append("thainame", this.THAIname);
+      data.append("engname", this.ENGname);
+      data.append("oldname", this.Oldname);
       data.append("nickname", this.nickname);
-      data.append("dateofbirth", this.date);
+      data.append("dateofbirth", this.days + "/"+this.months+"/"+this.years);
 
       data.append("status", this.status);
       data.append("academicstatus", this.academicstatus);
