@@ -170,7 +170,66 @@
                 </div>
               </div>
               <hr class="mx-n3" />
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="address"
+                  />
+                </div>
+              </div>
+              <hr class="mx-n3" />
 
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonenumber"
+                  />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">เบอร์โทรสาร</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonemail"
+                  />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    ID Line หรือ ช่องทางการติดต่อโซเชียลแอพพลิเคชั่นอื่นๆ
+                  </h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                    v-model="Idline"
+                  />
+                </div>
+              </div>
+              <hr class="mx-n3" />
 
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
@@ -251,6 +310,13 @@ export default {
       doctordegree: "",
       doctordegreenumber: "",
 
+      address:"",
+      Phonenumber:"",
+      Phonemail:"",
+      Idline:"",
+      job:"",
+      Levelmember:"",
+      Levelmemberthing:"",
 
       statusinfo: "",
       pnstatus: "",
@@ -306,6 +372,17 @@ export default {
           this.masterdegreenumber = res.data.thing.Masterdegreenumber;
           this.doctordegree = res.data.thing.Doctoraldegree;
           this.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+
+          this.address = res.data.thing.Address;
+          this.phonenumber = res.data.thing.Phonenumber;
+          this.phonemail = res.data.thing.Phonemail;
+          this.Idline = res.data.thing.Idline;
+          this.job = res.data.thing.Job;
+          this.Jobposition = res.data.thing.Jobposition;
+          this.Jobaddress = res.data.thing.Jobaddress;
+          this.Levelmember = res.data.thing.Levelmember;
+          this.Levelmemberthing = res.data.thing.Levelmemberthing ; 
+
           
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
