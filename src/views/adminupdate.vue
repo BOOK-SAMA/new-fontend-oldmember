@@ -316,13 +316,13 @@
                   <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database </h6>
-                  หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
-                  <img v-if="profileimage" :src="profileimage" alt="Preview" class="rounded-circle p-1" width="200" />
+                  <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database  </h6>
+                  <h6 class="mb-0" >หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง</h6>
+                  <img v-if="profileimage" :src="profileimage" alt="Preview" class=" p-1" width="200" />
                   <!-- Display a default image if previewFile is not available -->
                   <p v-else>
                     <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-                      class="rounded-circle p-1" width="200" />
+                      class=" p-1" width="200" />
                   </p>
                   <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
                     @change="handleprofile" />
@@ -433,7 +433,7 @@
 
 
               <div class="px-5 py-4">
-                <button type="submit" class="btn btn-primary btn-lg" @click="updateSubmit(this.$route.params.id)">
+                <button type="submit" class="btn btn-primary btn-lg" @click="submitUpdate">
                   Submit
                 </button>
               </div>
@@ -455,7 +455,9 @@ export default {
   name: "Updateuser",
 
   data() {
+
     return {
+      data: ref(new FormData()),
       dateText: "",
       Username: "",
       Password: "",
@@ -488,7 +490,11 @@ export default {
       paystatustext: "",
       role: "",
       paystatus: "",
-      submitt: "",
+      day: "",
+      month: "",
+      year: "",
+      dateString: "",
+   
       Accessstatus: "",
       days: Array.from({ length: 31 }, (_, i) => i + 1),
       months: Array.from({ length: 12 }, (_, i) => i + 1),
@@ -496,14 +502,11 @@ export default {
         { length: 100 },
         (_, i) => new Date().getFullYear() - i
       ),
-
+      router: useRouter(),
       file: null,
       profileimage: null,
       payimage: null,
     };
-  },
-  computed: {
-    // ใช้ computed property เพื่อ return ค่าที่ได้จาก formatdate ที่มีการรับ dateofbirth เป็นพารามิเตอร์
   },
   async mounted() {
     console.log(this.$route.params.id);
@@ -513,6 +516,7 @@ export default {
   },
   methods: {
     async getuserdata(id) {
+
       axios
         .get(`${import.meta.env.VITE_API2}admin/showperson/${id}`, {
           headers: {
@@ -560,6 +564,7 @@ export default {
         .catch();
     },
     async downloadImageAndDisplay(uuid) {
+
       try {
         // Fetch the image content from the server
         const response = await axios.get(
@@ -590,14 +595,15 @@ export default {
         this.profileimage = imageSrc;
         console.log("Image downloaded and displayed.");
       } catch (error) {
-        console.error("Error downloading image:", error);
-        localStorage.removeItem("userid");
-        localStorage.removeItem("tokenstring");
-        localStorage.removeItem("uuid");
-        router.push({ path: "/login" });
+        // console.error("Error downloading image:", error);
+        // localStorage.removeItem("userid");
+        // localStorage.removeItem("tokenstring");
+        // localStorage.removeItem("uuid");
+        // this.router.push({ path: "/login" });
       }
     },
     async downloadpayImageAndDisplay(uuid) {
+
       try {
         // Fetch the image content from the server
         const response = await axios.get(
@@ -628,68 +634,41 @@ export default {
         this.payimage = imageSrc;
         console.log("Image downloaded and displayed.");
       } catch (error) {
-        console.error("Error downloading image:", error);
-        localStorage.removeItem("userid");
-        localStorage.removeItem("tokenstring");
-        localStorage.removeItem("uuid");
-        router.push({ path: "/login" });
+        // console.error("Error downloading image:", error);
+        // localStorage.removeItem("userid");
+        // localStorage.removeItem("tokenstring");
+        // localStorage.removeItem("uuid");
+        // this.router.push({ path: "/login" });
       }
-    },
-    updateSubmit(id) {
-      const URL = `${import.meta.env.VITE_API2}admin/update/${id}`;
-      let data = new FormData();
-
-
-
-
-      data.append("thainame", this.THAIname);
-      data.append("engname", this.ENGname);
-      data.append("oldname", this.Oldname);
-      data.append("nickname", this.nickname);
-      data.append("dateofbirth", this.days + "/" + this.months + "/" + this.years);
-
-      data.append("status", this.status);
-      data.append("academicstatus", this.academicstatus);
-      data.append("academicnumber", this.academicnumber);
-      data.append("masterdegree", this.masterdegree);
-      data.append("masterdegreenumber", this.masterdegreenumber);
-      data.append("doctordegree", this.doctordegree);
-      data.append("doctordegreenumber", this.doctordegreenumber);
-
-      data.append("address", this.address);
-      data.append("phonenumber", this.phonenumber);
-      data.append("phonemail", this.phonemail);
-      data.append("idline", this.Idline);
-      data.append("email", this.Email);
-      data.append("job", this.Job);
-      data.append("jobposition", this.Jobposition);
-      data.append("jobaddress", this.Jobadress);
-      data.append("levelmember", this.Levelmember);
-      data.append("levelmemberthing", this.Levelmemberthing);
-
-      data.append("file", this.file);
-      data.append("role", this.role);
-      data.append("paystatus", this.paystatus);
-      data.append("accessstatus", this.Accessstatus);
-      
-      let config = {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-          "Content-Type": "application/json",
-        },
-      };
-
-      axios.post(URL, data, config).then((response) => {
-        console.log("this is res => ", this.days + "/" + this.months + "/" + this.years);
-        console.log("this is res => ", response);
-        id = localStorage.getItem("tokenstring")
-        router.push({ path: `/admintoo/${id}` });
-      });
     },
     handleprofile(event) {
       this.file = event.target.files[0];
+      console.log(this.file)
     },
+    submitUpdate() {
+      // Assuming you want to use $route.params.id
+      const id = this.$route.params.id;
 
+      let data = new FormData();
+      data.append("thainame", this.THAIname);
+      data.append("dateofbirth", `${this.day}/${this.month}/${this.year}`);
+      data.append("file", this.file);
+      axios
+        .post(`${import.meta.env.VITE_API2}admin/update/${id}`, data, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          console.log(data);
+          console.log("this is file =>" + this.file);
+        })
+        .catch((error) => {
+          console.error("Error updating:", error);
+        });
+    },
   },
 };
 </script>

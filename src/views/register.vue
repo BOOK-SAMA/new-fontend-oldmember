@@ -1,4 +1,4 @@
-<template>
+<template >
   <section
     class="vh-200"
     style="
