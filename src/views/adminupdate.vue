@@ -350,24 +350,24 @@
               <hr class="mx-n3" />
 
               <div class="row align-items-center py-3">
-                <div class="col-md-6 ps-5">
+                <div class="col-md-3 ps-5">
                   <h6 class="mb-0">
                     สถานะการชำระเงิน
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <div>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="paystatus">
-                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
-                      <!-- Display Selected Option Text Conditionally -->
-                      <option value="already">
-                        ตรวจสอบการชำระเงินแล้ว
-                      </option>
-                      <option value="none">
-                        ยังไม่ได้ตรวจสอบการชำระเงิน
-                      </option>
-                    </select>
-                  </div>
+
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="paystatus">
+                    <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
+                    <!-- Display Selected Option Text Conditionally -->
+                    <option value="already">
+                      ตรวจสอบการชำระเงินแล้ว
+                    </option>
+                    <option value="none">
+                      ยังไม่ได้ตรวจสอบการชำระเงิน
+                    </option>
+                  </select>
+
                 </div>
               </div>
 
@@ -385,7 +385,7 @@
                       <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
                       <!-- Display Selected Option Text Conditionally -->
                       <option value="user">
-                       ระดับ user
+                        ระดับ user
                       </option>
                       <option value="admin">
                         ระดับ admin
@@ -516,7 +516,7 @@ export default {
 
           this.paystatus = res.data.thing.Paystatus;
           this.role = res.data.thing.Role;
-          
+
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
         })
