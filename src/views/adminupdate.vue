@@ -175,12 +175,8 @@
                   <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="address"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="address" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -190,12 +186,8 @@
                   <h6 class="mb-0">เบอร์โทรศัพท์</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonenumber"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonenumber" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -205,15 +197,12 @@
                   <h6 class="mb-0">เบอร์โทรสาร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonemail"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonemail" />
                 </div>
               </div>
               <hr class="mx-n3" />
+
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">
@@ -221,16 +210,111 @@
                   </h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="Idline"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Idline" />
                 </div>
               </div>
               <hr class="mx-n3" />
 
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    Email
+                  </h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Email" />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    อาชีพ
+                  </h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="job" />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    ตำแหน่ง
+                  </h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="jobposition" />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    ชื่อและที่อยู่ของสถานที่ทำงาน
+                  </h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="jobadress" />
+                </div>
+              </div>
+              <hr class="mx-n3" />
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    ระดับสมาชิก
+                  </h6>
+                </div>
+                <div class="col-md-5 pe-5">
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmember">
+                    <option selected disabled>เลือก 1 อย่าง</option>
+                    <option value="สมาชิกสามัญ ">
+                      สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
+                      500 บาท)
+                    </option>
+                    <option value="สมาชิกวิสามัญ">
+                      สมาชิกวิสามัญ (ผู้สนใจทั่วไปชำระค่าบำรุงสมาคมตลอดชีพ 500
+                      บาท)
+                    </option>
+                    <option value="ยุวสมาชิก">
+                      ยุวสมาชิก (นักศึกษา SCSU ปัจจุบันไม่ต้องชำระค่าบำรุงสมาคม)
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center py-3">
+                <div class="col-md-6 ps-5">
+                  <h6 class="mb-0">
+                    กรณีสมัครสมาชิกสามัญและ วิสามัญกรุณาเลือกของชำร่วย (1 อย่าง)
+                  </h6>
+                </div>
+                <div class="col-md-5 pe-5">
+                  <select
+                    class="custom-select my-1 mr-sm-2"
+                    id="inlineFormCustomSelectPref"
+                    v-model="levelmemberthing"
+                  >
+                    <option selected disabled>เลือก 1 อย่าง</option>
+                    <option value="กระเป๋าผ้าและแมส SCSU ">
+                      กระเป๋าผ้าและแมส SCSU
+                    </option>
+                    <option value="เหรียญ อ.ศิลป ทอง">เหรียญ อ.ศิลป ทอง</option>
+                    <option value="เหรียญ อ.ศิลป เงิน">
+                      เหรียญ อ.ศิลป เงิน
+                    </option>
+                    <option value="เหรียญ อ.ศิลป ทองแดง">
+                      เหรียญ อ.ศิลป ทองแดง
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <hr class="mx-n3" />
+              
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
@@ -310,13 +394,14 @@ export default {
       doctordegree: "",
       doctordegreenumber: "",
 
-      address:"",
-      Phonenumber:"",
-      Phonemail:"",
-      Idline:"",
-      job:"",
-      Levelmember:"",
-      Levelmemberthing:"",
+      address: "",
+      Phonenumber: "",
+      Phonemail: "",
+      Idline: "",
+      Email: "",
+      job: "",
+      Levelmember: "",
+      Levelmemberthing: "",
 
       statusinfo: "",
       pnstatus: "",
@@ -377,13 +462,14 @@ export default {
           this.phonenumber = res.data.thing.Phonenumber;
           this.phonemail = res.data.thing.Phonemail;
           this.Idline = res.data.thing.Idline;
+          this.Email = res.data.thing.Email;
           this.job = res.data.thing.Job;
           this.Jobposition = res.data.thing.Jobposition;
           this.Jobaddress = res.data.thing.Jobaddress;
           this.Levelmember = res.data.thing.Levelmember;
-          this.Levelmemberthing = res.data.thing.Levelmemberthing ; 
+          this.Levelmemberthing = res.data.thing.Levelmemberthing;
 
-          
+
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
         })
