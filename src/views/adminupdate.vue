@@ -394,6 +394,42 @@
                   </div>
                 </div>
               </div>
+              <hr class="mx-n3" />
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">
+                    ให้ user สามารถแก้ไขข้อมูลของตนเองได้หรือไม่
+                  </h6>
+                </div>
+                <div class="col-md-5 pe-5">
+                  <div>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Accessstatus">
+                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
+                      <!-- Display Selected Option Text Conditionally -->
+                      <option value="enable">
+                        อนุญาต
+                      </option>
+                      <option value="disenable">
+                        ไม่อนุญาต
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <hr class="mx-n3" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
               <div class="px-5 py-4">
@@ -453,6 +489,7 @@ export default {
       role: "",
       paystatus: "",
       submitt: "",
+      Accessstatus:"",
       days: Array.from({ length: 31 }, (_, i) => i + 1),
       months: Array.from({ length: 12 }, (_, i) => i + 1),
       years: Array.from(
@@ -516,7 +553,7 @@ export default {
 
           this.paystatus = res.data.thing.Paystatus;
           this.role = res.data.thing.Role;
-
+          this.Accessstatus = res.data.thing.Accessstatus ;
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
         })
