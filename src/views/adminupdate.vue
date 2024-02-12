@@ -489,7 +489,7 @@ export default {
       role: "",
       paystatus: "",
       submitt: "",
-      Accessstatus:"",
+      Accessstatus: "",
       days: Array.from({ length: 31 }, (_, i) => i + 1),
       months: Array.from({ length: 12 }, (_, i) => i + 1),
       years: Array.from(
@@ -553,7 +553,7 @@ export default {
 
           this.paystatus = res.data.thing.Paystatus;
           this.role = res.data.thing.Role;
-          this.Accessstatus = res.data.thing.Accessstatus ;
+          this.Accessstatus = res.data.thing.Accessstatus;
           localStorage.setItem("uuidprofile", res.data.thing.Image);
           localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
         })
@@ -636,17 +636,17 @@ export default {
       }
     },
     updateSubmit(id) {
-      const URL = `${import.meta.env.VITE_API2}register2`;
+      const URL = `${import.meta.env.VITE_API2}admin/update/${id}`;
       let data = new FormData();
 
-      
+
 
 
       data.append("thainame", this.THAIname);
       data.append("engname", this.ENGname);
       data.append("oldname", this.Oldname);
       data.append("nickname", this.nickname);
-      data.append("dateofbirth", this.days + "/"+this.months+"/"+this.years);
+      data.append("dateofbirth", this.days + "/" + this.months + "/" + this.years);
 
       data.append("status", this.status);
       data.append("academicstatus", this.academicstatus);
@@ -660,26 +660,30 @@ export default {
       data.append("phonenumber", this.phonenumber);
       data.append("phonemail", this.phonemail);
       data.append("idline", this.Idline);
-      data.append("email", this.email);
-      data.append("job", this.job);
-      data.append("jobposition", this.jobposition);
-      data.append("jobaddress", this.jobadress);
-      data.append("levelmember", this.levelmember);
-      data.append("levelmemberthing", this.levelmemberthing);
-      data.append("statusinfo", this.statusinfo);
+      data.append("email", this.Email);
+      data.append("job", this.Job);
+      data.append("jobposition", this.Jobposition);
+      data.append("jobaddress", this.Jobadress);
+      data.append("levelmember", this.Levelmember);
+      data.append("levelmemberthing", this.Levelmemberthing);
+
       data.append("file", this.file);
-      data.append("payimage", this.payimage);
-      data.append("PNstatus", this.pnstatus);
+      data.append("role", this.role);
+      data.append("paystatus", this.paystatus);
+      data.append("accessstatus", this.Accessstatus);
+      
       let config = {
-        header: {
-          "Content-Type": "multipart/form-data",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+          "Content-Type": "application/json",
         },
       };
 
       axios.post(URL, data, config).then((response) => {
-        // console.log("this is res => ", this.date);
+        console.log("this is res => ", this.days + "/" + this.months + "/" + this.years);
         console.log("this is res => ", response);
-        router.push({ path: "/" });
+        id = localStorage.getItem("tokenstring")
+        router.push({ path: `/admintoo/${id}` });
       });
     },
     handleprofile(event) {
