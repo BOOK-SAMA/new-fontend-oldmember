@@ -651,8 +651,38 @@ export default {
 
       let data = new FormData();
       data.append("thainame", this.THAIname);
+      data.append("engname", this.ENGname);
+      data.append("oldname", this.Oldname);
+      data.append("nickname", this.nickname);
       data.append("dateofbirth", `${this.day}/${this.month}/${this.year}`);
+
+      data.append("status", this.status);
+      data.append("academicstatus", this.academicstatus);
+      data.append("academicnumber", this.academicnumber);
+      data.append("masterdegree", this.masterdegree);
+      data.append("masterdegreenumber", this.masterdegreenumber);
+      data.append("doctordegree", this.doctordegree);
+      data.append("Doctoraldegreenumber", this.doctordegreenumber);
+
+      data.append("address", this.address);
+      data.append("phonenumber", this.Phonenumber);
+      data.append("phonemail", this.Phonemail);
+      data.append("idline", this.Idline);
+      data.append("email", this.Email);
+      data.append("job", this.job);
+      data.append("jobposition", this.Jobposition);
+      data.append("jobaddress", this.Jobaddress);
+      data.append("levelmember", this.Levelmember);
+      data.append("levelmemberthing", this.Levelmemberthing);
+
+      data.append("role", this.role);
+      data.append("paystatus", this.paystatus);
+      data.append("accessstatus", this.Accessstatus);
+
       data.append("file", this.file);
+
+
+
       axios
         .post(`${import.meta.env.VITE_API2}admin/update/${id}`, data, {
           headers: {
