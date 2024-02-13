@@ -462,23 +462,7 @@
                             </h6>
                             <hr class="mx-n2" />
                             <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!username ||
-                                !password ||
-                                !email ||
-                                !confirmpassword ||
-                                !thainame ||
-                                !status ||
-                                !academicstatus ||
-                                !academicnumber ||
-                                !address ||
-                                !phonenumber ||
-                                !idline ||
-                                !levelmember ||
-                                !statusinfo ||
-                                !pnstatus ||
-                                !file ||
-                                !payimage ||
-                                !role ||
-                                !accessstatus
+                                !password
                                 ">
                                 Submit
                             </button>

@@ -28,6 +28,87 @@
                   <p>{{ Password }}</p>
                 </div>
               </div>
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0"></h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    
+                  >
+                    แก้ไขรหัสผ่าน
+                  </button>
+                </div>
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          แก้ไขรหัสผ่าน
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label for="newpassword" class="mr-2"
+                          >New Password:</label
+                        >
+                        <input
+                          type="password"
+                          v-model="newpassword"
+                          @input="comparePasswords"
+                        />
+                        <hr class="mx-n3" />
+                        <label for="comfirepassword" class="mr-2"
+                          >Confirm Password:</label
+                        >
+                        <input
+                          type="password"
+                          v-model="comfirepassword"
+                          @input="comparePasswords"
+                        />
+                        <hr class="mx-n3" />
+                        <p v-if="passwordsMatch">Passwords match!</p>
+                        <p v-else>Passwords do not match!</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          :disabled="!passwordsMatch"
+                          @click="Changepassword"
+                        >
+                          บันทึกรหัสผ่าน
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          ปิด
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <hr class="mx-n3" />
 
               <div class="row align-items-center py-3">
@@ -35,7 +116,11 @@
                   <h6 class="mb-0">ชื่อภาษาไทย</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                  <input
+                    v-model="THAIname"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -45,7 +130,11 @@
                   <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input v-model="ENGname" class="form-control form-control-lg" placeholder="" />
+                  <input
+                    v-model="ENGname"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -55,7 +144,12 @@
                   <h6 class="mb-0">ชื่อเล่น</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="nickname" class="form-control" rows="3" placeholder=""></textarea>
+                  <textarea
+                    v-model="nickname"
+                    class="form-control"
+                    rows="3"
+                    placeholder=""
+                  ></textarea>
                 </div>
               </div>
 
@@ -93,7 +187,11 @@
                   <h6 class="mb-0">สถานะของผู้สมัคร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <select v-model="status" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                  <select
+                    v-model="status"
+                    class="custom-select my-1 mr-sm-2"
+                    id="inlineFormCustomSelectPref"
+                  >
                     <option selected disabled>
                       เคยเป็นนักศึกษา/เป็นผู้สำเร็จการศึกษา/เป็นนักศึกษา...
                     </option>
@@ -114,19 +212,26 @@
                   <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="academicstatus" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="academicstatus"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
 
               <hr class="mx-n3" />
-
 
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="academicnumber" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="academicnumber"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -136,7 +241,11 @@
                   <h6 class="mb-0">ปริญญาโท สาขาวิชาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="masterdegree" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="masterdegree"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -146,7 +255,11 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาโท</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="masterdegreenumber" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="masterdegreenumber"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -156,7 +269,11 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="doctordegree" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="doctordegree"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -166,7 +283,11 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea v-model="doctordegreenumber" class="form-control" rows="1"></textarea>
+                  <textarea
+                    v-model="doctordegreenumber"
+                    class="form-control"
+                    rows="1"
+                  ></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -175,8 +296,12 @@
                   <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="address" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="address"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -186,8 +311,12 @@
                   <h6 class="mb-0">เบอร์โทรศัพท์</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonenumber" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonenumber"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -197,8 +326,12 @@
                   <h6 class="mb-0">เบอร์โทรสาร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonemail" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="phonemail"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -210,66 +343,84 @@
                   </h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Idline" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                    v-model="Idline"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
 
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    Email
-                  </h6>
+                  <h6 class="mb-0">Email</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Email" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                    v-model="Email"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
 
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    อาชีพ
-                  </h6>
+                  <h6 class="mb-0">อาชีพ</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="job" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                    v-model="job"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
 
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    ตำแหน่ง
-                  </h6>
+                  <h6 class="mb-0">ตำแหน่ง</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Jobposition" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder=""
+                    v-model="Jobposition"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
 
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    ชื่อและที่อยู่ของสถานที่ทำงาน
-                  </h6>
+                  <h6 class="mb-0">ชื่อและที่อยู่ของสถานที่ทำงาน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" v-model="Jobaddress" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    v-model="Jobaddress"
+                  />
                 </div>
               </div>
               <hr class="mx-n3" />
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    ระดับสมาชิก
-                  </h6>
+                  <h6 class="mb-0">ระดับสมาชิก</h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Levelmember">
+                  <select
+                    class="custom-select my-1 mr-sm-2"
+                    id="inlineFormCustomSelectPref"
+                    v-model="Levelmember"
+                  >
                     <option selected disabled>เลือก 1 อย่าง</option>
                     <option value="สมาชิกสามัญ ">
                       สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
@@ -294,7 +445,11 @@
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Levelmemberthing">
+                  <select
+                    class="custom-select my-1 mr-sm-2"
+                    id="inlineFormCustomSelectPref"
+                    v-model="Levelmemberthing"
+                  >
                     <option selected disabled>เลือก 1 อย่าง</option>
                     <option value="กระเป๋าผ้าและแมส SCSU ">
                       กระเป๋าผ้าและแมส SCSU
@@ -316,16 +471,33 @@
                   <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database  </h6>
-                  <h6 class="mb-0" >หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง</h6>
-                  <img v-if="profileimage" :src="profileimage" alt="Preview" class=" p-1" width="200" />
+                  <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database</h6>
+                  <h6 class="mb-0">
+                    หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
+                  </h6>
+                  <img
+                    v-if="profileimage"
+                    :src="profileimage"
+                    alt="Preview"
+                    class="p-1"
+                    width="200"
+                  />
                   <!-- Display a default image if previewFile is not available -->
                   <p v-else>
-                    <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-                      class=" p-1" width="200" />
+                    <img
+                      src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+                      alt="Admin"
+                      class="p-1"
+                      width="200"
+                    />
                   </p>
-                  <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
-                    @change="handleprofile" />
+                  <input
+                    ref="fileInput"
+                    class="form-control form-control-lg"
+                    id="formFileLg"
+                    type="file"
+                    @change="handleprofile"
+                  />
                   <div class="small text-muted mt-2">
                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                   </div>
@@ -338,11 +510,21 @@
                   <h6 class="mb-0">ใบเสร็จชำระเงินสมาชิกลำดับต่างๆ</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <img v-if="payimage" :src="payimage" alt="Preview" class="" width="400" />
+                  <img
+                    v-if="payimage"
+                    :src="payimage"
+                    alt="Preview"
+                    class=""
+                    width="400"
+                  />
                   <!-- Display a default image if previewFile is not available -->
                   <p v-else>
-                    <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-                      class="rounded-circle p-1" width="400" />
+                    <img
+                      src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+                      alt="Admin"
+                      class="rounded-circle p-1"
+                      width="400"
+                    />
                   </p>
                 </div>
               </div>
@@ -351,23 +533,19 @@
 
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    สถานะการชำระเงิน
-                  </h6>
+                  <h6 class="mb-0">สถานะการชำระเงิน</h6>
                 </div>
                 <div class="col-md-5 pe-5">
-
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="paystatus">
+                  <select
+                    class="custom-select my-1 mr-sm-2"
+                    id="inlineFormCustomSelectPref"
+                    v-model="paystatus"
+                  >
                     <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
                     <!-- Display Selected Option Text Conditionally -->
-                    <option value="already">
-                      ตรวจสอบการชำระเงินแล้ว
-                    </option>
-                    <option value="none">
-                      ยังไม่ได้ตรวจสอบการชำระเงิน
-                    </option>
+                    <option value="already">ตรวจสอบการชำระเงินแล้ว</option>
+                    <option value="none">ยังไม่ได้ตรวจสอบการชำระเงิน</option>
                   </select>
-
                 </div>
               </div>
 
@@ -375,21 +553,19 @@
 
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    สถานะการเข้าถึงของผู้ใช้
-                  </h6>
+                  <h6 class="mb-0">สถานะการเข้าถึงของผู้ใช้</h6>
                 </div>
                 <div class="col-md-5 pe-5">
                   <div>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="role">
+                    <select
+                      class="custom-select my-1 mr-sm-2"
+                      id="inlineFormCustomSelectPref"
+                      v-model="role"
+                    >
                       <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
                       <!-- Display Selected Option Text Conditionally -->
-                      <option value="user">
-                        ระดับ user
-                      </option>
-                      <option value="admin">
-                        ระดับ admin
-                      </option>
+                      <option value="user">ระดับ user</option>
+                      <option value="admin">ระดับ admin</option>
                     </select>
                   </div>
                 </div>
@@ -404,36 +580,27 @@
                 </div>
                 <div class="col-md-5 pe-5">
                   <div>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="Accessstatus">
+                    <select
+                      class="custom-select my-1 mr-sm-2"
+                      id="inlineFormCustomSelectPref"
+                      v-model="Accessstatus"
+                    >
                       <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
                       <!-- Display Selected Option Text Conditionally -->
-                      <option value="enable">
-                        อนุญาต
-                      </option>
-                      <option value="disenable">
-                        ไม่อนุญาต
-                      </option>
+                      <option value="enable">อนุญาต</option>
+                      <option value="disenable">ไม่อนุญาต</option>
                     </select>
                   </div>
                 </div>
               </div>
               <hr class="mx-n3" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
               <div class="px-5 py-4">
-                <button type="submit" class="btn btn-primary btn-lg" @click="submitUpdate">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  @click="submitUpdate"
+                >
                   Submit
                 </button>
               </div>
@@ -455,8 +622,10 @@ export default {
   name: "Updateuser",
 
   data() {
-
     return {
+      newpassword: "",
+      comfirepassword: "",
+      passwordsMatch: false,
       data: ref(new FormData()),
       dateText: "",
       Username: "",
@@ -494,7 +663,7 @@ export default {
       month: "",
       year: "",
       dateString: "",
-   
+
       Accessstatus: "",
       days: Array.from({ length: 31 }, (_, i) => i + 1),
       months: Array.from({ length: 12 }, (_, i) => i + 1),
@@ -516,7 +685,6 @@ export default {
   },
   methods: {
     async getuserdata(id) {
-
       axios
         .get(`${import.meta.env.VITE_API2}admin/showperson/${id}`, {
           headers: {
@@ -564,7 +732,6 @@ export default {
         .catch();
     },
     async downloadImageAndDisplay(uuid) {
-
       try {
         // Fetch the image content from the server
         const response = await axios.get(
@@ -579,13 +746,14 @@ export default {
         );
 
         // Convert the binary data to a data URL
-        const imageSrc = `data:${response.headers["content-type"]
-          };base64,${btoa(
-            new Uint8Array(response.data).reduce(
-              (data, byte) => data + String.fromCharCode(byte),
-              ""
-            )
-          )}`;
+        const imageSrc = `data:${
+          response.headers["content-type"]
+        };base64,${btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        )}`;
 
         // Display the image using the data URL
         const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
@@ -603,7 +771,6 @@ export default {
       }
     },
     async downloadpayImageAndDisplay(uuid) {
-
       try {
         // Fetch the image content from the server
         const response = await axios.get(
@@ -618,13 +785,14 @@ export default {
         );
 
         // Convert the binary data to a data URL
-        const imageSrc = `data:${response.headers["content-type"]
-          };base64,${btoa(
-            new Uint8Array(response.data).reduce(
-              (data, byte) => data + String.fromCharCode(byte),
-              ""
-            )
-          )}`;
+        const imageSrc = `data:${
+          response.headers["content-type"]
+        };base64,${btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        )}`;
 
         // Display the image using the data URL
         const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
@@ -643,7 +811,7 @@ export default {
     },
     handleprofile(event) {
       this.file = event.target.files[0];
-      console.log(this.file)
+      console.log(this.file);
     },
     submitUpdate() {
       // Assuming you want to use $route.params.id
@@ -681,8 +849,6 @@ export default {
 
       data.append("file", this.file);
 
-
-
       axios
         .post(`${import.meta.env.VITE_API2}admin/update/${id}`, data, {
           headers: {
@@ -691,13 +857,37 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
-          console.log(data);
-          console.log("this is file =>" + this.file);
+          const idnew = localStorage.getItem("userid");
+          router.push({ path: `admintoo/${idnew}` });
         })
         .catch((error) => {
           console.error("Error updating:", error);
         });
+    },
+    Changepassword() {
+      // Assuming you want to use $route.params.id
+      const id = this.$route.params.id;
+
+      let data = new FormData();
+      data.append("password", this.newpassword);
+      data.append("confirmpassword", this.comfirepassword);
+      axios
+        .post(`${import.meta.env.VITE_API2}admin/resetpassword/${id}`, data, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          const idnew = localStorage.getItem("userid");
+          this.router.push({ path: `/admintoo/${idnew}` });
+        })
+        .catch((error) => {
+          console.error("Error updating:", error);
+        });
+    },
+    comparePasswords() {
+      this.passwordsMatch = this.newpassword === this.comfirepassword;
     },
   },
 };

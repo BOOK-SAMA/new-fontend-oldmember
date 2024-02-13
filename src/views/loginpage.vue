@@ -21,12 +21,6 @@
           <router-link to="/register"> สมัครสมาชิก </router-link>
         </div>
       </div>
-      <div class="row mb-4">
-        <div class="col">
-          <!-- Simple link -->
-          <a href="#!">Forgot password?</a>
-        </div>
-      </div>
       <!-- Submit button -->
       <button
         type="button"
