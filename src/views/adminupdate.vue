@@ -600,12 +600,7 @@
                   type="submit"
                   class="btn btn-primary btn-lg"
                   @click="submitUpdate"
-                  :disabled=" !this.thainame || !this.engname
-                  || !this.email || !this.phonenumber || !this.address
-                  || !this.statusinfo || !this.pnstatus 
-                  || !this.file       || !this.payimage
-                  || !this.levelmember || !this.levelmemberthing
-                  "
+                  
                 >
                   Submit
                 </button>
@@ -864,7 +859,7 @@ export default {
         })
         .then((res) => {
           const idnew = localStorage.getItem("userid");
-          router.push({ path: `admintoo/${idnew}` });
+          this.router.push({ path: '/admintoo/' + idnew });
         })
         .catch((error) => {
           console.error("Error updating:", error);

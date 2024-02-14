@@ -461,8 +461,11 @@
                                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
                             </h6>
                             <hr class="mx-n2" />
-                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!username ||
-                                !password
+                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.thainame || !this.engname
+                                || !this.email || !this.phonenumber || !this.address
+                                || !this.statusinfo || !this.pnstatus
+                                || !this.file || !this.payimage
+                                || !this.levelmember || !this.levelmemberthing
                                 ">
                                 Submit
                             </button>

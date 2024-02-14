@@ -27,7 +27,7 @@
         class="btn btn-primary btn-block mb-4"
         @click="handleSubmit"
       >
-        Login in
+        Login 
       </button>
     </form>
   </div>
