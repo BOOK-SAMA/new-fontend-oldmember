@@ -1,37 +1,24 @@
 <template >
-  <section
-    class="vh-200"
-    style="
+  <section class="vh-200" style="
       background-image: url(https://v3i.rweb-images.com/www.scsualumni.net/images/background/main/crop-1702428316.jpg?1702428316);
       background-repeat: no-repeat;
-    "
-  >
+    ">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xxl">
           <banner />
-          <h1
-            class="text-white mb-4 mt-2"
-            style="background-color: rgb(171, 171, 171)"
-          >
+          <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
             สมัครสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร (ศวศ.)
           </h1>
 
-          <div
-            class="card"
-            style="border-radius: 15px; background-color: rgb(171, 171, 171)"
-          >
+          <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
             <div class="card-body">
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
                   <h6 class="mb-0">Username</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    v-model="username"
-                  />
+                  <input type="text" class="form-control form-control-lg" v-model="username" />
                 </div>
               </div>
 
@@ -41,12 +28,7 @@
                   <h6 class="mb-0">รหัสผ่าน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    :type="inputType"
-                    id="myInput"
-                    v-model="password"
-                    class="form-control form-control-lg"
-                  />
+                  <input :type="inputType" id="myInput" v-model="password" class="form-control form-control-lg" />
                   <button @click="togglePassword" class="mt-2">
                     Toggle Password
                   </button>
@@ -60,12 +42,7 @@
                   <h6 class="mb-0">ยืนยันรหัสผ่าน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    :type="inputType"
-                    id="myInput"
-                    v-model="confirmpassword"
-                    class="form-control form-control-lg"
-                  />
+                  <input :type="inputType" id="myInput" v-model="confirmpassword" class="form-control form-control-lg" />
                 </div>
               </div>
 
@@ -76,12 +53,8 @@
                   <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาไทย"
-                    v-model="thainame"
-                  />
+                  <input type="text" class="form-control form-control-lg"
+                    placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาไทย" v-model="thainame" />
                 </div>
               </div>
               <!-- คำนำหน้าชื่อ - ชื่อ - นามสกุล ไทย @-->
@@ -91,12 +64,8 @@
                   <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาอังกฤษ"
-                    v-model="engname"
-                  />
+                  <input type="text" class="form-control form-control-lg"
+                    placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาอังกฤษ" v-model="engname" />
                 </div>
               </div>
               <!-- คำนำหน้าชื่อ - ชื่อ - นามสกุล อังกฤษ  @-->
@@ -107,12 +76,8 @@
                   <h6 class="mb-0">ชื่อ - นามสกุลเดิม (ถ้ามี)</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล)"
-                    v-model="oldname"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล)"
+                    v-model="oldname" />
                 </div>
               </div>
               <!-- ช่องชื่อนามสกุลเดิม @-->
@@ -122,12 +87,7 @@
                   <h6 class="mb-0">ชื่อเล่น</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="nickname"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="nickname" />
                 </div>
               </div>
               <!-- ช่องชื่อเล่น @-->
@@ -138,11 +98,8 @@
                   <h6 class="mb-0">วันเกิด</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <VueDatePicker
-                    v-model="dateofbirth"
-                    :enable-time-picker="false"
-                    :format="formatdate(dateofbirth)"
-                  ></VueDatePicker>
+                  <VueDatePicker v-model="dateofbirth" :enable-time-picker="false" :format="formatdate(dateofbirth)" >
+                  </VueDatePicker>
                 </div>
               </div>
               <!-- ช่องวันเกิด ใช้ date แทน @-->
@@ -153,11 +110,7 @@
                   <h6 class="mb-0">สถานะของผู้สมัคร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <select
-                    v-model="status"
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                  >
+                  <select v-model="status" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                     <option selected disabled>
                       เคยเป็นนักศึกษา/เป็นผู้สำเร็จการศึกษา/เป็นนักศึกษา...
                     </option>
@@ -178,11 +131,7 @@
                   <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="academicstatus"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
+                  <textarea v-model="academicstatus" class="form-control" rows="1"></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีตรี @-->
@@ -192,12 +141,7 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="academicnumber"
-                    class="form-control"
-                    rows="1"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="academicnumber" class="form-control" rows="1" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีตรี รหัส @-->
@@ -207,12 +151,7 @@
                   <h6 class="mb-0">ปริญญาโท สาขาวิชาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="masterdegree"
-                    class="form-control"
-                    rows="1"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="masterdegree" class="form-control" rows="1" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีโท @-->
@@ -222,12 +161,7 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาโท</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="masterdegreenumber"
-                    class="form-control"
-                    rows="1"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="masterdegreenumber" class="form-control" rows="1" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีโท รหัส @-->
@@ -237,12 +171,7 @@
                   <h6 class="mb-0">ระดับปริญญาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="doctordegree"
-                    class="form-control"
-                    rows="ๅ"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="doctordegree" class="form-control" rows="ๅ" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีเอก @-->
@@ -252,12 +181,7 @@
                   <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="doctordegreenumber"
-                    class="form-control"
-                    rows="1"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="doctordegreenumber" class="form-control" rows="1" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องสาขาปีเอก รหัส @-->
@@ -267,12 +191,8 @@
                   <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="address"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
+                    v-model="address" />
                 </div>
               </div>
               <!-- ช่องที่อยู่ @-->
@@ -282,12 +202,7 @@
                   <h6 class="mb-0">หมายเลขโทรศัพท์</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="phonenumber"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="phonenumber" />
                 </div>
               </div>
               <!-- ช่องหมายเลขโทรศัพท์ @-->
@@ -297,12 +212,7 @@
                   <h6 class="mb-0">โทรสาร</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="phonemail"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="phonemail" />
                 </div>
               </div>
               <!-- ช่องโทรสาร @-->
@@ -314,12 +224,7 @@
                   </h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="Idline"
-                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="" v-model="Idline" />
                 </div>
               </div>
               <!-- ช่องIDline @ -->
@@ -329,12 +234,8 @@
                   <h6 class="mb-0">Email address</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    placeholder="example@example.com"
-                    v-model="email"
-                  />
+                  <input type="email" class="form-control form-control-lg" placeholder="example@example.com"
+                    v-model="email" />
                 </div>
               </div>
               <!-- ช่องEmail @-->
@@ -344,12 +245,7 @@
                   <h6 class="mb-0">อาชีพ</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="job"
-                  />
+                  <input type="email" class="form-control form-control-lg" placeholder="" v-model="job" />
                 </div>
               </div>
               <!-- ช่องอาชีพ @-->
@@ -359,12 +255,7 @@
                   <h6 class="mb-0">ตำแหน่ง</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="jobposition"
-                    class="form-control"
-                    rows="1"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="jobposition" class="form-control" rows="1" placeholder=""></textarea>
                 </div>
               </div>
               <!-- ช่องตำแหน่ง @-->
@@ -374,12 +265,7 @@
                   <h6 class="mb-0">ชื่อและที่อยู่ของสถานที่ทำงาน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="jobadress"
-                    class="form-control"
-                    rows="2"
-                    placeholder=""
-                  ></textarea>
+                  <textarea v-model="jobadress" class="form-control" rows="2" placeholder=""></textarea>
                 </div>
 
                 <!-- ช่องชื่อและที่อยู่ของสถานที่ทำงาน-->
@@ -396,11 +282,7 @@
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="levelmember"
-                  >
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmember">
                     <option selected disabled>เลือก 1 อย่าง</option>
                     <option value="สมาชิกสามัญ ">
                       สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
@@ -426,12 +308,11 @@
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="levelmemberthing"
-                  >
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmemberthing">
                     <option selected disabled>เลือก 1 อย่าง</option>
+                    <option value="">
+                      ไม่รับของชำร่วย(เป็นยุวสมาชิก)
+                    </option>
                     <option value="กระเป๋าผ้าและแมส SCSU ">
                       กระเป๋าผ้าและแมส SCSU
                     </option>
@@ -458,16 +339,9 @@
                 </div>
                 <div class="col-md-5 pe-5">
                   <div class="form-check form-check-inline">
-                    <input
-                      v-model="statusinfo"
-                      class="form-check-input"
-                      type="checkbox"
-                      id="inlineCheckbox1"
-                      value="ยืนยัน"
-                    />
-                    <label class="form-check-label" for="inlineCheckbox1"
-                      >ยืนยัน</label
-                    >
+                    <input v-model="statusinfo" class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                      value="ยืนยัน" />
+                    <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
                   </div>
                 </div>
 
@@ -481,13 +355,8 @@
                   <h6 class="mb-0">รูปถ่าย</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    ref="fileInput"
-                    class="form-control form-control-lg"
-                    id="formFileLg"
-                    type="file"
-                    @change="handleprofile"
-                  />
+                  <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
+                    @change="handleprofile" />
                   <div class="small text-muted mt-2">
                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                   </div>
@@ -506,9 +375,7 @@
                   <div class="form-check form-check-inline">
                     <img
                       src="https://lh4.googleusercontent.com/RMQziLQRistxbkv9ZX30hyx1zWSyZ9RgZPISwbahv0IqBa9JJ9T_f6AFLXuj7cM_m8uARSm5GPfGCkZy-EqTlXjXccfTjl60r4mD5h5X1OdYf5bwxO7Jbf-wb3sOaHmO3g=w584"
-                      alt="image"
-                      class="img-thumbnail"
-                    />
+                      alt="image" class="img-thumbnail" />
                   </div>
                 </div>
               </div>
@@ -521,25 +388,15 @@
                     มีนโยบายคุ้มครองข้อมูลส่วนบุคคลของสมาคม
                     ซึ่งมีข้อกำหนดการปฏิบัติ ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล
                     ซึ่งมีรายละเอียดในเวปไซด์ของสมาคมตามลิ้งค์ดังนี้
-                    <a
-                      href="http://www.scsualumni.net/attachments/view/?attach_id=268068"
-                      class="badge badge-primary"
-                      >นโยบายคุ้มครองข้อมูลส่วนบุคคล สำหรับสมาชิกสมาคม</a
-                    >
+                    <a href="http://www.scsualumni.net/attachments/view/?attach_id=268068"
+                      class="badge badge-primary">นโยบายคุ้มครองข้อมูลส่วนบุคคล สำหรับสมาชิกสมาคม</a>
                   </h6>
                 </div>
                 <div class="col-md-5 pe-5">
                   <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="inlineCheckbox2"
-                      value="ยืนยัน"
-                      v-model="pnstatus"
-                    />
-                    <label class="form-check-label" for="inlineCheckbox1"
-                      >ยืนยัน</label
-                    >
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ยืนยัน"
+                      v-model="pnstatus" />
+                    <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
                   </div>
                 </div>
               </div>
@@ -550,12 +407,7 @@
                   <h6 class="mb-0">สลิปการโอนเงิน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input
-                    class="form-control form-control-lg"
-                    id="formFileLg"
-                    type="file"
-                    @change="handlepaycheck"
-                  />
+                  <input class="form-control form-control-lg" id="formFileLg" type="file" @change="handlepaycheck" />
                   <div class="small text-muted mt-2">
                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                   </div>
@@ -569,41 +421,54 @@
                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
               </h6>
               <hr class="mx-n2" />
-              <button
-                type="submit"
-                class="btn btn-primary btn-lg"
-                @click="submit()"
-                :disabled="!username || !password 
-                || !email || !confirmpassword || !thainame || !status 
-                || !academicstatus || !academicnumber || !address || !phonenumber || !idline
-                || !levelmember || !statusinfo || !pnstatus || !file || !payimage"
-              >
+
+
+              <!-- <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
+                || !this.email || !this.confirmpassword || !this.thainame || !this.statusinfo || !this.pnstatus
+                ">
                 Submit
-              </button>
+              </button> -->
+
+
+              <div class="col-md-9 pe-5">
+                <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
+                  || !this.confirmpassword || !this.thainame || !this.engname
+                  || !this.email || !this.phonenumber || !this.address
+                  || !this.statusinfo || !this.pnstatus 
+                  || !this.file       || !this.payimage
+                  || !this.levelmember || !this.levelmemberthing
+                  ">
+                  Submit
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
-<script setup>
-import banner from "/src/components/banner.vue";
-import { ref } from "vue";
-import axios from "axios";
+<!-- <script setup>
+
+
 // In case of a range picker, you'll receive [Date, Date]
-</script>
+</script> -->
 
 <script>
+import router from "@/router";
+import { ref } from "vue";
 import axios from "axios";
+
 export default {
   data() {
     return {
       username: "",
       password: "",
       confirmpassword: "",
-
+      responseStatus: null,
       thainame: "",
       engname: "",
       oldname: "",
@@ -625,19 +490,21 @@ export default {
       email: "",
       job: "",
       jobposition: "",
-      jobaddress:"",
+      jobaddress: "",
       levelmember: "",
       levelmemberthing: "",
 
-      statusinfo: "",
-      pnstatus: "",
+      statusinfo: false,
+      pnstatus: false,
       file: null,
       payimage: null,
       inputType: "password",
       date: "",
     };
   },
+  onMounted() {
 
+  },
   methods: {
     handleprofile(event) {
       this.file = event.target.files[0];
@@ -658,6 +525,7 @@ export default {
     submit() {
       const URL = `${import.meta.env.VITE_API2}register2`;
       let data = new FormData();
+
 
       data.append("username", this.username);
       data.append("password", this.password);
@@ -699,8 +567,13 @@ export default {
 
       axios.post(URL, data, config).then((response) => {
         // console.log("this is res => ", this.date);
+        this.responseStatus = response.status
         console.log("this is res => ", response);
         router.push({ path: "/" });
+
+      }).catch((error) => {
+        console.log("this is error => ", error);
+        router.push({ path: "/:notfound" });
       });
     },
   },
