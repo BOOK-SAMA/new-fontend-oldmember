@@ -435,7 +435,7 @@
                   || !this.confirmpassword || !this.thainame || !this.engname
                   || !this.email || !this.phonenumber || !this.address
                   || !this.statusinfo || !this.pnstatus 
-                  || !this.file       || !this.payimage
+                  || !this.file       
                   || !this.levelmember || !this.levelmemberthing
                   ">
                   Submit
