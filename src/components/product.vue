@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar bg-body-tertiary fixed-top bg-dark">
+  <nav class="navbar bg-body-tertiary  bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#">สินค้าที่ระลึก</a>
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -21,20 +21,15 @@
         </div>
 
         <div class="offcanvas-body ">
-            <Cart v-if="isCartVisible" :cart="cart" />
+            <Cart  :cart="cart" />
         </div>
       </div>
 
     </div>
 
   </nav>
-
-  <hr class="mx-n2" />
-
-
-
-  <div>
-    <div class="backg mt-0">
+ 
+    <div class="backg  " style="margin-top: 0px;">
       <div class="container-fluid ">
         <div class="row mt-2 ">
           <div class="col my-maincontent bg-light ml-2 g-0 ">
@@ -59,7 +54,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
@@ -75,6 +69,11 @@ export default {
         { id: 4, name: "Product 4", price: 20 },
         { id: 5, name: "Product 5", price: 20 },
         { id: 6, name: "Product 6", price: 20 },
+        { id: 6, name: "Product 6", price: 20 },
+        { id: 6, name: "Product 6", price: 20 },
+        { id: 6, name: "Product 6", price: 20 },
+        { id: 6, name: "Product 6", price: 20 },
+        
         // Add more products as needed
       ],
       cart: [],
@@ -86,18 +85,12 @@ export default {
       this.$emit("add-to-cart", product);
       this.cart.push(product);
     },
-    toggleCart() {
-      this.isCartVisible = !this.isCartVisible;
-    },
+    
   },
 
 };
 </script>
-
-
-
 <script setup>
-
 import Cart from "/src/components/cart.vue";
 </script>
 
