@@ -1,23 +1,44 @@
 <template>
+  <nav class="navbar bg-body-tertiary fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#">สินค้าที่ระลึก</a>
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+        aria-controls="offcanvasExample" @click="toggleCart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+        </svg>
+        ตะกร้า
+      </button>
+
+      <div class="offcanvas offcanvas-end  " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style=" width: 1000px;">
+
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">สินค้าที่ระลึก</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+          </button>
+        </div>
+
+        <div class="offcanvas-body ">
+            <Cart v-if="isCartVisible" :cart="cart" />
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+
+  <hr class="mx-n2" />
+
+
+
   <div>
     <div class="backg mt-0">
-      <div class="container-fluid">
-        <div class="row mt-2">
-          <div class="col my-maincontent bg-light ml-2 g-0">
-            <div class="row">
-              <h2 class="row">
-                รายการสินค้า
-                <div class="col" style=" z-index: 2; ">
-                  <a @click="toggleCart" style="cursor: pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                    </svg>
-                  </a>
-                  <Cart v-if="isCartVisible" :cart="cart"/>
-                </div>
-              </h2>
+      <div class="container-fluid ">
+        <div class="row mt-2 ">
+          <div class="col my-maincontent bg-light ml-2 g-0 ">
+            <div class="row ">
               <div v-for="product in products" :key="product.id" class="col-md-4 mb-3"
                 style="position: relative; z-index: 1;">
                 <div class="card mb-4 rounded-3 shadow-sm">
@@ -41,7 +62,8 @@
   </div>
 </template>
 
-  
+
+
 <script>
 export default {
   data() {
@@ -62,25 +84,20 @@ export default {
   methods: {
     addToCart(product) {
       this.$emit("add-to-cart", product);
-    },
-    addToCart(product) {
       this.cart.push(product);
     },
     toggleCart() {
       this.isCartVisible = !this.isCartVisible;
     },
   },
+
 };
 </script>
 
 
 
 <script setup>
-import Banner from "/src/components/Banner.vue";
-import NavBar from "/src/components/Test.vue";
-import sidebar from "/src/components/sidebar.vue";
-import maincontent from "/src/components/maincontent.vue";
-import footerkub from "/src/components/footer.vue";
+
 import Cart from "/src/components/cart.vue";
 </script>
 
@@ -109,6 +126,20 @@ import Cart from "/src/components/cart.vue";
       </div>
     </li>
   </ul>
+
+<div class="col" style=" z-index: 4; ">
+                  <a @click="toggleCart" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                    </svg>
+                  </a>
+                  <Cart v-if="isCartVisible" :cart="cart"/>
+                </div>
+
+
+
 </div> --> 
 
 
