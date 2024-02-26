@@ -71,14 +71,12 @@
 
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      products: [
-
-
-        // Add more products as needed
-      ],
+      products: [],
       cart: [],
       isCartVisible: false,
       currentPage: 1,
@@ -86,13 +84,7 @@ export default {
     };
   },
   async mounted() {
-
-
-    // Ensure user is authenticated and authorized
     await this.getproduct();
-
-
-
   },
   methods: {
     addToCart(product) {
@@ -112,20 +104,19 @@ export default {
     },
     async getproduct() {
       try {
-        // Make a second API call or perform additional actions here
-        // Example:
-        const secondApiResponse = await axios.get(
+        const response = await axios.get(
           `${import.meta.env.VITE_API2}getallproduct`,
+          null,
+          {
+          }
         );
-        products = secondApiResponse.data.product;
-        console.log("Product name:", product[0].name);
-        // Process the response from the second API as needed
-
+        console.log(response.data.product)
+        this.products = response.data.product
+        console.log("this is product ")
+        console.log(this.products[0].name)
       } catch (error) {
-        localStorage.removeItem("userid");
-        localStorage.removeItem("tokenstring");
-        localStorage.removeItem("uuid");
-        router.push({ path: "/login" });
+
+
       }
     },
   },
@@ -139,6 +130,7 @@ export default {
 
 };
 </script>
+
 <script setup>
 import Cart from "/src/components/cart.vue";
 </script>
