@@ -39,7 +39,8 @@
               :style="{ 'position': 'relative', 'z-index': '1', 'clear': index % 3 === 0 ? 'both' : 'none' }">
               <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="img-thumbnail" >
+                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+                    class="img-thumbnail">
                   <h4 class="my-0 fw-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
@@ -56,12 +57,12 @@
       </div>
     </div>
     <div class="pagination justify-content-center">
-      
-      
+
+
       <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
-      
-      <li class="page-item ml-2 mr-2"><a class="page-link" ><span>{{ currentPage }}</span></a></li>
-      
+
+      <li class="page-item ml-2 mr-2"><a class="page-link"><span>{{ currentPage }}</span></a></li>
+
       <button @click="nextPage" :disabled="currentPage * itemsPerPage >= products.length">Next</button>
     </div>
   </div>
@@ -74,24 +75,24 @@ export default {
   data() {
     return {
       products: [
-        { id: 1, name: "Product 1", price: 20 },
-        { id: 2, name: "Product 2", price: 30 },
-        { id: 3, name: "Product 3", price: 20 },
-        { id: 4, name: "Product 4", price: 20 },
-        { id: 5, name: "Product 5", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 7", price: 20 },
+
 
         // Add more products as needed
       ],
       cart: [],
       isCartVisible: false,
       currentPage: 1,
-      itemsPerPage: 5, 
+      itemsPerPage: 5,
     };
+  },
+  async mounted() {
+
+
+    // Ensure user is authenticated and authorized
+    await this.getproduct();
+
+
+
   },
   methods: {
     addToCart(product) {
@@ -99,16 +100,34 @@ export default {
       this.cart.push(product);
     },
     prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  },
-  nextPage() {
-    const lastPage = Math.ceil(this.products.length / this.itemsPerPage);
-    if (this.currentPage < lastPage) {
-      this.currentPage++;
-    }
-  },
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      const lastPage = Math.ceil(this.products.length / this.itemsPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
+    async getproduct() {
+      try {
+        // Make a second API call or perform additional actions here
+        // Example:
+        const secondApiResponse = await axios.get(
+          `${import.meta.env.VITE_API2}getallproduct`,
+        );
+        products = secondApiResponse.data.product;
+        console.log("Product name:", product[0].name);
+        // Process the response from the second API as needed
+
+      } catch (error) {
+        localStorage.removeItem("userid");
+        localStorage.removeItem("tokenstring");
+        localStorage.removeItem("uuid");
+        router.push({ path: "/login" });
+      }
+    },
   },
   computed: {
     paginatedProducts() {

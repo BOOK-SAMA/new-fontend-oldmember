@@ -62,24 +62,20 @@
 export default {
   data() {
     return {
-      products: [
-        { id: 1, name: "Product 1", price: 20 },
-        { id: 2, name: "Product 2", price: 30 },
-        { id: 3, name: "Product 3", price: 20 },
-        { id: 4, name: "Product 4", price: 20 },
-        { id: 5, name: "Product 5", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
-        
-        // Add more products as needed
-      ],
+      products: [],
       cart: [],
       isCartVisible: false,
     };
   },
+  async mounted() {
+		
+
+		// Ensure user is authenticated and authorized
+		await this.getproduct();
+
+		
+
+	},
   methods: {
     addToCart(product) {
       this.$emit("add-to-cart", product);
@@ -87,9 +83,28 @@ export default {
     },
     
   },
-
+  async getproduct() {
+			try {
+				// Make a second API call or perform additional actions here
+				// Example:
+				const secondApiResponse = await axios.get(
+					`${import.meta.env.VITE_API2}getallproduct`,
+				);
+        products = secondApiResponse.data.product;
+        console.log("Product name:", product[0].name);
+				// Process the response from the second API as needed
+				
+			} catch (error) {
+				localStorage.removeItem("userid");
+				localStorage.removeItem("tokenstring");
+				localStorage.removeItem("uuid");
+				router.push({ path: "/login" });
+			}
+		},
 };
+
 </script>
+
 <script setup>
 import Cart from "/src/components/cart.vue";
 </script>
