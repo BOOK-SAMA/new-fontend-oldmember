@@ -32,13 +32,14 @@
 
   <div class="backg  " style="margin-top: 0px;">
     <div class="container-fluid ">
-      <div class="row mt-2 ">
+      <div class="row mt-4 ">
         <div class="col my-maincontent bg-light ml-2 g-0 ">
           <div class="row ">
             <div v-for="(product, index) in paginatedProducts" :key="product.id" class="col-md-4 mb-3"
               :style="{ 'position': 'relative', 'z-index': '1', 'clear': index % 3 === 0 ? 'both' : 'none' }">
               <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
+                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="img-thumbnail" >
                   <h4 class="my-0 fw-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
@@ -54,9 +55,13 @@
         </div>
       </div>
     </div>
-    <div class="pagination">
+    <div class="pagination justify-content-center">
+      
+      
       <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
-      <span>Page {{ currentPage }}</span>
+      
+      <li class="page-item ml-2 mr-2"><a class="page-link" ><span>{{ currentPage }}</span></a></li>
+      
       <button @click="nextPage" :disabled="currentPage * itemsPerPage >= products.length">Next</button>
     </div>
   </div>
@@ -78,12 +83,14 @@ export default {
         { id: 6, name: "Product 6", price: 20 },
         { id: 6, name: "Product 6", price: 20 },
         { id: 6, name: "Product 6", price: 20 },
-        { id: 6, name: "Product 6", price: 20 },
+        { id: 6, name: "Product 7", price: 20 },
 
         // Add more products as needed
       ],
       cart: [],
       isCartVisible: false,
+      currentPage: 1,
+      itemsPerPage: 5, 
     };
   },
   methods: {
@@ -102,6 +109,13 @@ export default {
       this.currentPage++;
     }
   },
+  },
+  computed: {
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.products.slice(start, end);
+    },
   },
 
 };
