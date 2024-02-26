@@ -25,7 +25,7 @@
 
 
 <script setup>
-import ProductList from "/src/components/product.vue";
+import ProductList from "/src/components/product_copy.vue";
 import Cart from "/src/components/cart.vue";
 import Banner from "/src/components/Banner.vue";
 import NavBar from "/src/components/Test.vue";
