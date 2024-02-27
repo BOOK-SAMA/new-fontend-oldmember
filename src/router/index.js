@@ -7,7 +7,12 @@ import NotFound from '/src/views/notFound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
-import shopping from '/src/views/shoppingpage.vue'
+import catalog from '/src/views/home_product.vue'
+//หน้ารายละเอียดสินค้า
+import product_detail from '../views/product_detail.vue'
+//หน้าตะกร้าสินค้า
+import cart_cart from '../views/cart.vue'
+import mainshopping from '../views/mainshopping.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -59,8 +64,18 @@ const router = createRouter({
     },
     {
       path: '/test',
-      name: 'shopping',
-      component: shopping
+      name: 'catalog',
+      component: mainshopping
+    },
+    {
+      path: '/product_detail/:id',
+      name: 'product_detail',
+      component: product_detail
+    },
+    {
+      path: '/cart',
+      name: 'cart_cart',
+      component: cart_cart
     },
   ]
 })
