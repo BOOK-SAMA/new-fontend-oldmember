@@ -39,8 +39,7 @@
               :style="{ 'position': 'relative', 'z-index': '1', 'clear': index % 3 === 0 ? 'both' : 'none' }">
               <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="img-thumbnail">
+                  <img :src="product.image" class="img-thumbnail">
                   <h4 class="my-0 fw-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
@@ -107,18 +106,46 @@ export default {
         const response = await axios.get(
           `${import.meta.env.VITE_API2}getallproduct`,
           null,
-          {
-          }
+          {}
         );
-        console.log(response.data.product)
-        this.products = response.data.product
-        console.log("this is product ")
-        console.log(this.products[0].name)
+        console.log(response.data.product);
+        this.products = response.data.product;
+
+        for (let i = 0; i < this.products.length; i++) {
+          try {
+            const imageSrc = await this.downloadImageAndDisplay(this.products[i].image);
+            this.products[i].image = imageSrc;
+            console.log(imageSrc);
+          } catch (error) {
+            console.error("Error downloading image for product:", this.products[i].image, error);
+          }
+        }
       } catch (error) {
-
-
+        console.error("Error getting products:", error);
       }
     },
+    async downloadImageAndDisplay(uuid) {
+      try {
+        // Fetch the image content from the server
+        const response = await axios.get(
+          `${import.meta.env.VITE_API2}preview/${uuid}`,
+          {
+            responseType: 'arraybuffer',
+          }
+        );
+
+        // Convert the binary data to a data URL
+        const imageSrc = `data:${response.headers['content-type']};base64,${btoa(new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`;
+
+        // Return the image source
+        return imageSrc;
+      } catch (error) {
+        console.error("Error downloading image:", error);
+        // Propagate the error to the calling function
+        throw error;
+      }
+    }
+
   },
   computed: {
     paginatedProducts() {
