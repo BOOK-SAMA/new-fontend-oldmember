@@ -9,10 +9,10 @@ import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
 import catalog from '/src/views/home_product.vue'
 //หน้ารายละเอียดสินค้า
-import product_detail from '../views/product_detail.vue'
+import product_detail from '/src/views/product_detail.vue'
 //หน้าตะกร้าสินค้า
-import cart_cart from '../views/cart.vue'
-import mainshopping from '../views/mainshopping.vue'
+import cart_cart from '/src/views/cart.vue'
+import mainshopping from '/src/views/mainshopping.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [

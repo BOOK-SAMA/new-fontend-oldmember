@@ -17,7 +17,7 @@
             <tr v-for="(cart, index) in carts" :key="index">
                 <td>
                     <img :src="cart.product.image" alt="" class="img-thumbnail" width="100">
-                    {{ cart.product.title }}
+                    {{ cart.product.name }}
                 </td>
                 <td>{{ currencyTHB(cart.product.price) }} บาท</td>
                 <td>

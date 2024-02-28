@@ -18,7 +18,10 @@ export const useProductStore = defineStore('useProductStore', () => {
             .then(async (response) => {
                
                 products.value = response.data.product
-                // console.log(products[0].value )
+              
+                console.log(products.value)
+                
+                
 
                 for (let i = 0; i < products.value.length; i++) {
                     try {
@@ -26,7 +29,8 @@ export const useProductStore = defineStore('useProductStore', () => {
                         // เข้าถึงค่า image ของแต่ละสินค้า
                         const productImage = imageSrc;
                         products.value[i].image = productImage
-                        console.log(productImage);
+                        
+                       
                     } catch (error) {
                         console.error("Error downloading image for product:", products.value[i].image, error);
                     }

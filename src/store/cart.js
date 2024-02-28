@@ -12,11 +12,12 @@ import { useProductStore } from './product'
 export const useCartStore = defineStore('useCartStore', () => {
     const cart = ref([])
 
-    const add_cart = (id, price, quantity = 1) => {
+    const add_cart = (id, price, image ,quantity = 1) => {
         const data = {
             id,
             price,
-            quantity
+            quantity,
+            image
         }
 
         const findId = cart.value.find(e => e.id === data.id)
@@ -37,7 +38,8 @@ export const useCartStore = defineStore('useCartStore', () => {
         const data = {
             id,
             price,
-            quantity
+            quantity,
+            image
         }
 
         const findId = cart.value.find(e => e.id == data.id)
@@ -68,9 +70,10 @@ export const useCartStore = defineStore('useCartStore', () => {
         const product_store = useProductStore()
 
        return cart.value.map((prd, i) => {
-            const findIndexProduct = product_store.products.findIndex(e => e.id == prd.id)
+            const findIndexProduct = product_store.products.findIndex(e => e.id == prd.ID)
 
           return  {
+                
                 product : product_store.products[findIndexProduct],
                 quantity : cart.value[i].quantity,
                 total_product : product_store.products[findIndexProduct].price * cart.value[i].quantity

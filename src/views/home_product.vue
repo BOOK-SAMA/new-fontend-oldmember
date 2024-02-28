@@ -8,11 +8,10 @@
                 <img :src="product.image" class="card-img-top mx-auto" alt="" style="width: 12rem; height: 12rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.title }}</h5>
-                    <p class="card-text">หมวดหมู่ {{ product.category }}</p>
                     <p class="card-text">ราคา {{ product.price }} บาท</p>
-                    <routerLink :to="`/product_detail/${product.id}`" class="btn btn-primary mx-2">รายละเอียด</routerLink>
+                    <routerLink :to="`/product_detail/${product.ID} `" class="btn btn-primary mx-2">รายละเอียด</routerLink>
                     <button class="btn btn-success"
-                        @click="cart_store.add_cart(product.id, product.price)">เพิ่มลงตะกร้า</button>
+                        @click="cart_store.add_cart(product.ID, product.price,product.image)">เพิ่มลงตะกร้า</button>
                 </div>
             </div>
         </div>
@@ -23,10 +22,10 @@
 import { computed } from 'vue'
 
 //currencyTHB
-import { currencyTHB } from '../shared/currency';
+import { currencyTHB } from '/src/shared/currency';
 
 //useProductStore
-import { useProductStore } from '../store/product';
+import { useProductStore } from '/src/store/product';
 const product_store = useProductStore()
 
 const list = computed(() => product_store.list_products)
@@ -34,7 +33,7 @@ const list = computed(() => product_store.list_products)
 const search_products = computed(() => product_store.search_products)
 
 //useCartStore
-import { useCartStore } from '../store/cart'
+import { useCartStore } from '/src/store/cart'
 const cart_store = useCartStore()
 
 
