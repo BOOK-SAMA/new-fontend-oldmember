@@ -12,7 +12,7 @@ import { useProductStore } from './product'
 export const useCartStore = defineStore('useCartStore', () => {
     const cart = ref([])
 
-    const add_cart = (id, price, image ,quantity = 1) => {
+    const add_cart = (id, price, image, quantity = 1) => {
         const data = {
             id,
             price,
@@ -22,7 +22,7 @@ export const useCartStore = defineStore('useCartStore', () => {
 
         const findId = cart.value.find(e => e.id === data.id)
 
-        if(findId) {
+        if (findId) {
             alert_add_cart_failed()
         } else {
             cart.value.push(data)
@@ -30,7 +30,7 @@ export const useCartStore = defineStore('useCartStore', () => {
             alert_add_cart()
         }
 
-        
+
         console.log(cart.value)
     }
 
@@ -44,7 +44,7 @@ export const useCartStore = defineStore('useCartStore', () => {
 
         const findId = cart.value.find(e => e.id == data.id)
 
-        if(findId) {
+        if (findId) {
             const findIndexProduct = cart.value.findIndex(e => e.id == data.id)
             cart.value[findIndexProduct].quantity = cart.value[findIndexProduct].quantity + quantity
             saveToLocalStorage()
@@ -61,28 +61,33 @@ export const useCartStore = defineStore('useCartStore', () => {
     }
 
     const loadFromLocalStorage = () => {
-        if(localStorage.getItem('cart')) {
+        if (localStorage.getItem('cart')) {
             cart.value = JSON.parse(localStorage.getItem('cart'))
         }
     }
 
     const cart_previews = computed(() => {
         const product_store = useProductStore()
+        // console.log(product_store.products.findIndex(e => e.ID == 4))
+        //การใช้ findIndex เพื่อค้นหาดัชนีขององค์ประกอบใน product_store.products ที่มีค่า ID เท่ากับ 4 จะมีลักษณะดังนี้:
+        //ในกรณีที่มีองค์ประกอบที่มี ID เท่ากับ 4 ใน product_store.products:
 
-       return cart.value.map((prd, i) => {
-            const findIndexProduct = product_store.products.findIndex(e => e.id == prd.ID)
+        //้  าพบองค์ประกอบที่ตรงกับเงื่อนไข จะคืนค่าดัชนี (index) แรกที่พบ
+        //  ถ้าไม่พบจะคืนค่า -1
+        
+        return cart.value.map((prd, i) => {
+            const findIndexProduct = product_store.products.findIndex(e => e.ID == prd.id)
 
-          return  {
-                
-                product : product_store.products[findIndexProduct],
-                quantity : cart.value[i].quantity,
-                total_product : product_store.products[findIndexProduct].price * cart.value[i].quantity
+            return {
+                product: product_store.products[findIndexProduct],
+                quantity: cart.value[i].quantity,
+                total_product: product_store.products[findIndexProduct].price * cart.value[i].quantity
             }
         })
-    })
+    }) // product_store.products[findIndexProduct].price * cart.value[i].quantity
 
     const total = computed(() => {
-        return cart.value.reduce((sum, prd) => sum + prd.price * prd.quantity ,0)
+        return cart.value.reduce((sum, prd) => sum + prd.price * prd.quantity, 0)
     })
 
     const alert_add_cart = () => {
@@ -92,7 +97,7 @@ export const useCartStore = defineStore('useCartStore', () => {
             title: 'เพิ่มสินค้าเรียบร้อยแล้ว',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
     }
 
     const alert_add_cart_failed = () => {
@@ -102,7 +107,7 @@ export const useCartStore = defineStore('useCartStore', () => {
             title: 'คุณได้เพิ่มสินค้าไปแล้ว',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
     }
 
     const increment_quantity = (i) => {
@@ -114,7 +119,7 @@ export const useCartStore = defineStore('useCartStore', () => {
         cart.value[i].quantity -= 1
         saveToLocalStorage()
 
-        if(cart.value[i].quantity == 0) {
+        if (cart.value[i].quantity == 0) {
             cart.value.splice(i, 1)
             saveToLocalStorage()
         }

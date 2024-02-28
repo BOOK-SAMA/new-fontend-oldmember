@@ -12,34 +12,33 @@ export const useProductStore = defineStore('useProductStore', () => {
     const list_products = computed(() => products.value)
 
     const load_products = computed(() => products.value.length > 0)
-
+    
     const fetch_products = async () => {
         await axios.get(`${import.meta.env.VITE_API2}getallproduct`)
-            .then(async (response) => {
-               
-                products.value = response.data.product
-              
-                console.log(products.value)
-                
-                
+        .then( async (response) => {
+            // console.log(response.data)
+            products.value = response.data.product
+            
+            
 
-                for (let i = 0; i < products.value.length; i++) {
-                    try {
-                        const imageSrc = await downloadImageAndDisplay(products.value[i].image);
-                        // เข้าถึงค่า image ของแต่ละสินค้า
-                        const productImage = imageSrc;
-                        products.value[i].image = productImage
-                        
-                       
-                    } catch (error) {
-                        console.error("Error downloading image for product:", products.value[i].image, error);
-                    }
+            for (let i = 0; i < products.value.length; i++) {
+                try {
+                    const imageSrc = await downloadImageAndDisplay(products.value[i].image);
+                    const productImage = imageSrc;
+                    products.value[i].image = productImage;
+    
+                    // Convert price to integer
+                    products.value[i].price = parseInt(products.value[i].price);
+                } catch (error) {
+                    console.error("Error downloading image for product:", products.value[i].image, error);
                 }
+            }
 
-            }).catch((err) => {
-                console.log(err)
-            })
+        }).catch((err) => {
+            console.log(err)
+        })
     }
+    
 
     const downloadImageAndDisplay = async (uuid) => {
         try {
