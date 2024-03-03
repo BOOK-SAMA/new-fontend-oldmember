@@ -7,13 +7,7 @@ import NotFound from '/src/views/notFound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
-import catalog from '/src/views/home_product.vue'
-//หน้ารายละเอียดสินค้า
-import product_detail from '/src/views/product_detail.vue'
-//หน้าตะกร้าสินค้า
-import cart_cart from '/src/views/cart.vue'
-import mainshopping from '/src/views/mainshopping.vue'
-import checkout from '/src/views/checkout.vue'
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -60,7 +54,7 @@ const router = createRouter({
     },
     {
       path: '/profile/:id',
-      component: () => import('../views/Profile.vue'),
+      component: () => import('../views/profile.vue'),
       meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
@@ -68,21 +62,7 @@ const router = createRouter({
       name: 'catalog',
       component: mainshopping
     },
-    {
-      path: '/product_detail/:id',
-      name: 'product_detail',
-      component: product_detail
-    },
-    {
-      path: '/cart',
-      name: 'cart_cart',
-      component: cart_cart
-    },
-    {
-      path: '/testnet',
-      name: 'checkout',
-      component: checkout
-    },
+   
   ]
 })
 router.beforeEach((to, from, next) => {
