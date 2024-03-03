@@ -36,10 +36,10 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 
 //currencyTHB
-import { currencyTHB } from '../shared/currency'
+import { currencyTHB } from '../../shared/not-use/currency'
 
 //useCartStore
-import { useCartStore } from '../store/cart'
+import { useCartStore } from '../../store/not-use/cart'
 const cart_store = useCartStore()
 
 const product = ref({})
