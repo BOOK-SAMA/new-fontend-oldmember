@@ -21,7 +21,7 @@
 
 <script>
   import { defineComponent } from "vue";
-  import ProductItem from "@/components/ProductItem.vue";
+  import ProductItem from "@/components/not-use/ProductItem.vue";
   export default defineComponent({
     name: 'CatalogView',
     components: {
