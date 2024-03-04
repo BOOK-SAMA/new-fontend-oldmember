@@ -59,12 +59,13 @@ const router = createRouter({
     },
     {
       path: '/test',
-      component: () => import('../views/catalog.vue'),
+      component: () => import('../shopping/catalog.vue'),
+      name:'catalog'
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/testinfo/:id',
-      component: () => import('../views/productdetail.vue'),
+      component: () => import('../shopping/productdetail.vue'),
       name: 'productdetail',
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },

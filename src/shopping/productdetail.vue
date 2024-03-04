@@ -1,6 +1,9 @@
 <!-- 23.31 -->
 
 <template>
+    <button @click="router.push({name:'catalog' })" class="btn btn-secondary">
+        back to catalog
+    </button>
     <h1>product detail </h1>
     <div class="product">
     <div >
@@ -11,11 +14,11 @@
             <p>ชื่อสินค้า: {{ selectedproduct.name }}  </p>
             <p>ราคาสินค้า:{{ selectedproduct.price }} </p>
             <p>จำนวนสินค้า:{{  }} </p>
+            <button class="btn btn-secondary" @click="addtocart"> เพิ่มใส่ตะกร้า </button>
         </div>
-        
-        
     </div>
   </div>
+  
 </template>
 
 
@@ -37,9 +40,12 @@ onMounted(async () => {
   productstore.fetchProductsFromDB();
 });
 
-const productstore = productsStore();
+const productstore = productsStore()
+const router = useRouter()
 const route = useRoute()
+const addtocart = () => {
 
+}
 
 
 const selectedproduct = computed(() => {
@@ -58,3 +64,14 @@ const selectedproduct = computed(() => {
 
 
 </script>
+
+<style scoped>
+.product {
+  display: flex;
+  margin-top: 50px;
+}
+
+.product-image {
+  margin-right: 24px;
+}
+</style>

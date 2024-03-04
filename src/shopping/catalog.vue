@@ -9,6 +9,7 @@
       <h2>{{ product.name }}</h2>
       <p> {{ product.producttext }}</p>
       <p> {{ product.price  }} บาท </p>
+      <button class="btn btn-secondary" @click="addtocart"> เพิ่มใส่ตะกร้า </button>
     </div>
   </div>
 </template>
@@ -33,12 +34,21 @@ const productstore = productsStore();
 const gotoproductdetail = (id) => {
   router.push({name: 'productdetail' , params:{ id } })
 }
+
+const addtocart = () => {
+
+}
+
+
+
 onMounted(async () => {
   productstore.fetchProductsFromDB();
 });
 </script>
 
 
-<style>
+
+<style scoped>
+
 
 </style>
