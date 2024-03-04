@@ -44,7 +44,7 @@ const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
 const addtocart = () => {
-
+  router.push({ name: 'cart' })
 }
 
 

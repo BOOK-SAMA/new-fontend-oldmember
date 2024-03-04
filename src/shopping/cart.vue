@@ -4,7 +4,10 @@
 
 
 <script>
-export default {
-    
-}
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "cart",
+});
+//27.43
 </script>
