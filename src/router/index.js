@@ -57,8 +57,17 @@ const router = createRouter({
       component: () => import('../views/profile.vue'),
       meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
-   
-   
+    {
+      path: '/test',
+      component: () => import('../views/catalog.vue'),
+     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
+    {
+      path: '/testinfo/:id',
+      component: () => import('../views/productdetail.vue'),
+      name: 'productdetail',
+     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
