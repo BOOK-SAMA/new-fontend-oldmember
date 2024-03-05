@@ -59,7 +59,7 @@ const router = createRouter({
     },
     {
       path: '/test',
-      component: () => import('../shopping/catalog.vue'),
+      component: () => import('../shopping/mainshopping.vue'),
       name:'catalog'
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
