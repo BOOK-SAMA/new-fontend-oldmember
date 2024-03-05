@@ -14,7 +14,7 @@
             <p>ชื่อสินค้า: {{ selectedproduct.name }}  </p>
             <p>ราคาสินค้า:{{ selectedproduct.price }} </p>
             <p>จำนวนสินค้า:{{  }} </p>
-            <button class="btn btn-secondary" @click="addtocart"> เพิ่มใส่ตะกร้า </button>
+            <button class="btn btn-secondary" @click="addtocart()"> เพิ่มใส่ตะกร้า </button>
         </div>
     </div>
   </div>
@@ -43,9 +43,7 @@ onMounted(async () => {
 const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
-const addtocart = () => {
-  router.push({ name: 'cart' })
-}
+
 
 
 const selectedproduct = computed(() => {
@@ -62,7 +60,10 @@ const selectedproduct = computed(() => {
 
 )
 
-
+const addtocart = () => {
+  productstore.addToCart(selectedproduct.value)
+  router.push({ name: 'cart' })
+}
 </script>
 
 <style scoped>
