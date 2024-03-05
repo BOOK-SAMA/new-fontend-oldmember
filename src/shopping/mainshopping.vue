@@ -1,12 +1,15 @@
-
-
 <template>
-    <div class="cart-items" @click="router.push({ name: 'cart' })">
-        <p>
-            Item in Cart: {{ productstore.cart.length}}
-        </p>
-    </div>
-    <catalog />
+    <header>
+        <div class="cart-items" @click="router.push({ name: 'cart' })">
+            <p>
+                Item in Cart: {{ productstore.cart.length }}
+            </p>
+        </div>
+    </header>
+    <main>
+        <catalog />
+    </main>
+    
 </template>
 
 
