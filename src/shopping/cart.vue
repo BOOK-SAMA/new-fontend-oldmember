@@ -18,6 +18,9 @@
         <div class="product-details">
             <p>ชื่อสินค้า: {{ item.name }}  </p>
             <p>ราคาสินค้า:{{ item.price }} </p>
+            <button class="btn btn-sm btn-secondary" @click="decrement_quantity(item.ID)">-</button>
+            <span class="mx-2">{{ item.quantity }}</span>
+            <button class="btn btn-sm btn-secondary" @click="increment_quantity(item.ID)">+</button>
             <button class="btn btn-secondary" @click="removeformcart(item.ID)"></button>
         </div>
     </div>
@@ -42,11 +45,18 @@ import catalog from "/src/shopping/catalog.vue";
 import { computed, onMounted } from "vue";
 import { productsStore } from "/src/store/productnew.js";
 import { useRoute, useRouter } from "vue-router";
-
+const quantity = 0 
 const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
 const removeformcart = (id) => {
   productstore.removeFromCart(id)
 }
+const decrement_quantity = (id) => {
+  productstore.decrement_quantity(id)
+}
+const increment_quantity = (id) => {
+  productstore.increment_quantity(id)
+}
+
 </script>

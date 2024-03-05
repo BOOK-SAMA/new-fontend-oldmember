@@ -4,7 +4,9 @@ import axios from 'axios'
 export const productsStore = defineStore('products', {
     state: () => ({
         products: [],
-        cart: []
+        cart: [],
+        
+
     }),
 
     actions: {
@@ -18,13 +20,20 @@ export const productsStore = defineStore('products', {
                     product.image = await this.downloadImageAndDisplay(product.image);
                 }));
 
+                await Promise.all(this.products.map(async (product) => {
+                    product.quantity = 0
+                }));
+
             } catch (error) {
                 console.log("Error fetching products:", error);
             }
         },
 
         addToCart(product) {
+            console.log('this come form addToCart func' , product.quantity);
             this.cart.push(product);
+            console.log('this come form addToCart func' , this.cart);
+            
         },
 
         removeFromCart(id) {
@@ -46,6 +55,43 @@ export const productsStore = defineStore('products', {
                 console.error("Error downloading image:", error);
                 throw error;
             }
+        },
+
+
+        increment_quantity(i) {
+            const foundItem = this.cart.find((item) => {
+                console.log(item);
+                console.log(item.ID); // Log the current item being checked
+                return item.ID === i;
+            });
+        
+            console.log('This comes from foundItem', foundItem);
+        
+            if (foundItem) {
+                foundItem.quantity += 1;
+                console.log('Updated quantity:', foundItem.quantity);
+            } else {
+                console.log('Item not found in the cart.');
+            }
+        },
+        
+    
+        decrement_quantity(i) {
+            const foundItem = this.cart.find((item) => {
+                console.log(item);
+                console.log(item.ID); // Log the current item being checked
+                return item.ID === i;
+            });
+        
+            console.log('This comes from foundItem', foundItem);
+        
+            if (foundItem &&  foundItem.quantity > 0 ) {
+                foundItem.quantity -= 1;
+                console.log('Updated quantity:', foundItem.quantity);
+            } 
         }
+        
+
     }
+   
 });
