@@ -23,6 +23,7 @@
             <button class="btn btn-sm btn-secondary" @click="increment_quantity(item.ID)">+</button>
             <button class="btn btn-secondary" @click="removeformcart(item.ID)"></button>
         </div>
+        <router-link to="/checkout"> ยืนยัน </router-link>
     </div>
       </div>
 

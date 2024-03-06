@@ -75,6 +75,12 @@ const router = createRouter({
       name: 'cart',
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
+    {
+      path: '/checkout',
+      component: () => import('../shopping/checkout.vue'),
+      name: 'checkout',
+     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
