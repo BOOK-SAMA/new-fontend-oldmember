@@ -29,17 +29,26 @@ const showrequest = async () => {
     const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
     // Log the details of the request before making the API call
-    
-    console.log("Body:", JSON.stringify({ cart }));
+    const totalCartPrice = cart.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+    console.log("Totalprice:", JSON.stringify(totalCartPrice));
+   
 
+    const requestBody = {
+      cart: cart.map(item => ({ ID: item.ID, name: item.name, price: item.price, quantity: item.quantity })),
+      totalCartPrice
+    }
+    console.log("Body:", JSON.stringify(requestBody));
+    
     // Make the actual API call
     const response = await fetch(apiEndpoint, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         // Add any additional headers if needed
       },
-      body: JSON.stringify({ cart }),
+      body: JSON.stringify(requestBody),
     });
 
     if (response.ok) {
