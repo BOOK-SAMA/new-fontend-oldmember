@@ -99,9 +99,7 @@ router.beforeEach((to, from, next) => {
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
       next('/:notfound');
-    } else {
-      next();
-    }
+    } 
 
   } else {
     // หน้าที่ไม่ต้องการ authentication, ไปต่อไป
