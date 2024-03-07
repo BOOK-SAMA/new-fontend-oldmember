@@ -36,10 +36,6 @@ const gotoproductdetail = (id) => {
   router.push({name: 'productdetail' , params:{ id } })
 }
 
-
-
-
-
 onMounted(async () => {
   productstore.fetchProductsFromDB();
 });
