@@ -43,7 +43,13 @@ onMounted(async () => {
 const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
-
+const userId = localStorage.getItem("userid");
+if(userId == ""){
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      router.push({ path: "/login" });
+}
 
 
 const selectedproduct = computed(() => {

@@ -60,5 +60,11 @@ const decrement_quantity = (id) => {
 const increment_quantity = (id) => {
   productstore.increment_quantity(id)
 }
-
+const userId = localStorage.getItem("userid");
+if(userId == ""){
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      router.push({ path: "/login" });
+}
 </script>

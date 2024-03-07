@@ -60,13 +60,21 @@ const phonenumber = ref("");
 const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
+const userId = localStorage.getItem("userid");
 const showrequest = async () => {
   try {
+    if(userId == ""){
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      router.push({ path: "/login" });
+    }
     // Assuming you have a cart object that represents the items in the cart
     const cart = productstore.cart;
 
     // Assuming you have an API endpoint for submitting the cart
-    const apiEndpoint = "http://localhost:4444/echo";
+    // http://localhost:4444/echo
+    const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
     // Log the details of the request before making the API call
     const totalCartPrice = cart.reduce((total, item) => {
@@ -76,6 +84,7 @@ const showrequest = async () => {
 
 
     const requestBody = {
+      userId,
       thainame,
       address,
       phonenumber,
