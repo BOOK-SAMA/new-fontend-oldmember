@@ -61,14 +61,10 @@ const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
 const userId = localStorage.getItem("userid");
+
 const showrequest = async () => {
   try {
-    if(userId == ""){
-      localStorage.removeItem("userid");
-      localStorage.removeItem("tokenstring");
-      localStorage.removeItem("uuid");
-      router.push({ path: "/login" });
-    }
+    
     // Assuming you have a cart object that represents the items in the cart
     const cart = productstore.cart;
 

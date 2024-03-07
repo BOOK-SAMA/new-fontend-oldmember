@@ -60,25 +60,29 @@ const router = createRouter({
     {
       path: '/test',
       component: () => import('../shopping/mainshopping.vue'),
-      name:'catalog'
+      name:'catalog',
+      meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/testinfo/:id',
       component: () => import('../shopping/productdetail.vue'),
       name: 'productdetail',
+      meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/cart',
       component: () => import('../shopping/cart.vue'),
       name: 'cart',
+      meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/checkout',
       component: () => import('../shopping/checkout.vue'),
       name: 'checkout',
+      meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
   ]

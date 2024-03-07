@@ -30,6 +30,7 @@ import { useRouter } from "vue-router" ;
 
 const router = useRouter()
 const productstore = productsStore();
+const userId = localStorage.getItem("userid");
 
 const gotoproductdetail = (id) => {
   router.push({name: 'productdetail' , params:{ id } })
