@@ -479,10 +479,10 @@ export default {
 				console.log('Image downloaded and displayed.');
 			} catch (error) {
 				console.error("Error downloading image:", error);
-				localStorage.removeItem("userid");
-				localStorage.removeItem("tokenstring");
-				localStorage.removeItem("uuid");
-				router.push({ path: "/login" });
+				// localStorage.removeItem("userid");
+				// localStorage.removeItem("tokenstring");
+				// localStorage.removeItem("uuid");
+				// router.push({ path: "/login" });
 			}
 		}
 
