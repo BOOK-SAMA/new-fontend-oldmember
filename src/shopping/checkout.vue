@@ -74,7 +74,7 @@ const showrequest = async () => {
 
     // Assuming you have an API endpoint for submitting the cart
     // http://localhost:4444/echo
-    const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
+    const apiEndpoint = "http://localhost:4444/echo";
 
     // Log the details of the request before making the API call
     const totalCartPrice = cart.reduce((total, item) => {
