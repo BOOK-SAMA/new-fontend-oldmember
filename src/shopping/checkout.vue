@@ -61,7 +61,7 @@ const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
 const userId = localStorage.getItem("userid");
-
+var uid = (new Date().getTime()).toString(36)
 const showrequest = async () => {
   try {
     
@@ -84,7 +84,8 @@ const showrequest = async () => {
       thainame,
       address,
       phonenumber,
-      cart: cart.map(item => ({ ID: item.ID, name: item.name, price: item.price, quantity: item.quantity })),
+      uid,
+      cart: cart.map(item => ({ orderid: uid,    ID: item.ID, name: item.name, price: item.price, quantity: item.quantity })),
       totalCartPrice
     }
     console.log("Body:", JSON.stringify(requestBody));

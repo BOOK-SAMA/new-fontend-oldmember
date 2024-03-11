@@ -92,13 +92,17 @@ router.beforeEach((to, from, next) => {
     // ตรวจสอบว่ามีข้อมูลผู้ใช้ใน localStorage หรือไม่
     const userId = localStorage.getItem('userid');
     const tokenString = localStorage.getItem('tokenstring');
+    console.log(userId)
+    console.log(tokenString)
 
-    if (!userId || !tokenString) {
+
+
+    if ( userId  == null || tokenString == null) {
       // ถ้าไม่มีข้อมูลผู้ใช้, ทำการ redirect ไปยังหน้า home
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      next('/:notfound');
+      next('/:notFound');
     }else{
       next();
     }
