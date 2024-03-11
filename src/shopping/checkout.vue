@@ -70,7 +70,7 @@ const showrequest = async () => {
 
     // Assuming you have an API endpoint for submitting the cart
     // http://localhost:4444/echo
-    const apiEndpoint = "http://localhost:4444/echo";
+    const apiEndpoint = "http://localhost:5555/echo";
 
     // Log the details of the request before making the API call
     const totalCartPrice = cart.reduce((total, item) => {
@@ -80,13 +80,13 @@ const showrequest = async () => {
 
 
     const requestBody = {
-      userId,
+      userId: String(userId),
       thainame,
       address,
       phonenumber,
-      uid,
-      cart: cart.map(item => ({ orderid: uid,    ID: item.ID, name: item.name, price: item.price, quantity: item.quantity })),
-      totalCartPrice
+      uid: uid, 
+      cart: cart.map(item => ({ orderitemid: uid,    itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
+      totalCartPrice: String(totalCartPrice) 
     }
     console.log("Body:", JSON.stringify(requestBody));
 
@@ -106,7 +106,7 @@ const showrequest = async () => {
       // You can handle the response data here if needed
     } else {
       // Handle errors
-      console.error("Error submitting cart:", response.statusText);
+      console.error("Error submitting cart:", response);
     }
   } catch (error) {
     console.error("An error occurred:", error);
