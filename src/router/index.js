@@ -85,6 +85,11 @@ const router = createRouter({
       meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
+    {
+      path: '/checkorder/:id',
+      component: () => import('../shopping/user-order.vue'),
+      name: 'checkorder',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

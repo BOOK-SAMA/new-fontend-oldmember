@@ -61,7 +61,7 @@ const productstore = productsStore()
 const router = useRouter()
 const route = useRoute()
 const userId = localStorage.getItem("userid");
-var uid = (new Date().getTime()).toString(36)
+
 const showrequest = async () => {
   try {
     
@@ -70,7 +70,7 @@ const showrequest = async () => {
 
     // Assuming you have an API endpoint for submitting the cart
     // http://localhost:4444/echo
-    const apiEndpoint = "http://localhost:5555/echo";
+    const apiEndpoint = "http://localhost:5555/Createdata";
 
     // Log the details of the request before making the API call
     const totalCartPrice = cart.reduce((total, item) => {
@@ -84,7 +84,7 @@ const showrequest = async () => {
       thainame,
       address,
       phonenumber,
-      uid: uid, 
+      
       cart: cart.map(item => ({ orderitemid: uid,    itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
       totalCartPrice: String(totalCartPrice) 
     }

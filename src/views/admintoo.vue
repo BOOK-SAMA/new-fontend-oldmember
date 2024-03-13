@@ -188,7 +188,7 @@ export default {
   name: "Updateuser",
   data() {
     return {
-      users: "",
+      users: [],
       newpassword: '',
       comfirepassword: '',
       passwordsMatch: false
