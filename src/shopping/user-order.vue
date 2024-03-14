@@ -40,7 +40,7 @@
                 <td v-text="order.state"></td>
                 <td v-text="order.totalCartPrice"></td>
                 <td class="p-1">
-                    <router-link :to="{ path: '/update/'  }"
+                    <router-link :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
                         class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                     <div class="b-example-divider p-1"></div>
                 </td>

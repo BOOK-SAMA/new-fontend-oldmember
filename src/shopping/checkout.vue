@@ -85,7 +85,7 @@ const showrequest = async () => {
       address,
       phonenumber,
       
-      cart: cart.map(item => ({ orderitemid: uid,    itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
+      cart: cart.map(item => ({     itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
       totalCartPrice: String(totalCartPrice) 
     }
     console.log("Body:", JSON.stringify(requestBody));

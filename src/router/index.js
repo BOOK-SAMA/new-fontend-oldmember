@@ -90,6 +90,11 @@ const router = createRouter({
       component: () => import('../shopping/user-order.vue'),
       name: 'checkorder',
     },
+    {
+      path: '/orderdetail/:id/:ordernumber' ,
+      component: () =>import('../shopping/userorder-detail.vue'),
+      name: 'checkorder',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
