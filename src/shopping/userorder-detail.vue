@@ -21,52 +21,51 @@
 
     <div id="pagecontent">
         <div class="clearcontainer">
+
             <div id="myaccount" class="floatleft">
                 <div class="container">
-                    <h1>View orders</h1>
+                    <h1> <p>Order number : <span class="texthighlight"><td v-text="ordernumber"></td></span></p></h1>
                 </div>
                 <div class="container">
-                    <table cellspacing="0" cellpadding="0" width="100%">
-                        <tbody>
+                    <table class="table mt-4 ml-2 mr-2">
+                        <thead>
                             <tr>
-                                <th align="left">
-                                    <p><strong>สินค้า</strong></p>
-                                </th>
-                                <th>
-                                    <p><strong>สถานะ</strong></p>
-                                </th>
-                                <th>
-                                    <p><strong>จำนวน</strong></p>
-                                </th>
-                                <th align="right">
-                                    <p><strong>ราคา</strong></p>
-                                </th>
-                                <th align="right">
-                                    <p><strong>ราคารวม</strong></p>
-                                </th>
+                                <th scope="col">Ordernumber</th>
+                                <th scope="col ">itemID</th>
+                                <th scope="col">ราคา</th>
+                                <th scope="col">จำนวน</th>
+                                <th scope="col">ราคารวมแต่ละชิ้น</th>
+                                <th scope="col">สถานะการจัดส่ง</th>
                             </tr>
-
-
-
-
+                        </thead>
+                        <tbody>
+                            <tr v-for="(order, index) in Ordersdetail" :key="index">
+                                <td v-text="order.itemID"></td>
+                                <td v-text="order.itemname"></td>
+                                <td v-text="order.price"></td>
+                                <td v-text="order.quantity"></td>
+                                <td v-text="order.price * order.quantity"></td>
+                                <td v-text="statue"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+
 
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
                             <p><strong>Order details</strong></p><br>
-                            <p>Order number : <span class="texthighlight">ีๆรืำืีฟหก</span></p>
-                            <p>Order date : <span class="texthighlight">15/ฟหกดฟหกดฟหกด/2023</span></p>
+                            <p>Order number : <span class="texthighlight"><td v-text="ordernumber"></td></span></p>
+                            <p>Order date : <span class="texthighlight"><td v-text="orderdate"></td></span></p>
                         </div>
                     </div>
                     <div class="myaccounthalfcolumn">
                         <div class="container">
                             <p align="right"><strong>ราคาทั้งหมด</strong></p><br>
-                            <p align="right">ราคาสินค้า : £10.98 บาท</p>
+                            <div align="right">ราคาสินค้า : {{totalcost}} </div>
                             <p align="right">ราคาค่าส่ง : 100 บาท</p>
-                            <p align="right">ราคารวม : £10.98</p>
+                            <p align="right">ราคารวม : <span>{{ parseInt(totalcost) + sentcost }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -74,17 +73,13 @@
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
-                            <p><strong>ที่อยู่ของผู้สั่งช์้อสินค้า</strong></p><br>
-                            <p>Sanhanut Sakulma</p><br>
+                            <p><strong>ที่อยู่ของผู้สั่งซื้อสินค้า</strong></p><br>
+                            <p>{{username}}</p><br>
                             <p></p><br>
-                            <p>394 Prachathipatai Road Tha Phi Liang Subdistrict</p>
-                            <p>378 Prachathipatai Road Tha Phi Liang Subdistrict</p>
+                            <p>{{useraddress}}</p>
                             <p></p>
-                            <p>Suphan Buri city</p>
-                            <p>Thailand</p>
-                            <p>72000</p>
-                            <p>Thailand</p><br>
-                            <p>0863320696</p><br>
+                            <p>{{userphonenumber}}</p>
+                            <p>ประเทศ : ประเทศไทย</p><br>
                         </div>
                     </div>
                 </div>
@@ -114,6 +109,14 @@ export default {
         return {
             Orders: [],
             Ordersdetail: [],
+            statue : "",
+            ordernumber:"",
+            orderdate:"",
+            totalcost:"",
+            sentcost : 100,
+            username : "" ,
+            useraddress: "" ,
+            userphonenumber: "" ,
         };
     },
     async mounted() {
@@ -147,7 +150,15 @@ export default {
                 this.Orders = response.data.Order;
                 this.Orders.forEach(order => {
                     this.Ordersdetail = this.Ordersdetail.concat(order.Orderitem);
+                    this.statue = this.statue.concat(order.state);
+                    this.ordernumber = this.ordernumber.concat(order.uniqueorder);
+                    this.orderdate = this.orderdate.concat(order.Orderdate);
+                    this.totalcost = this.totalcost.concat(order.totalCartPrice);
+                    this.username = this.username.concat(order.thainame)
+                    this.useraddress = this.useraddress.concat(order.address)
+                    this.userphonenumber = this.userphonenumber.concat(order.phonenumber)
                 });
+
                 console.log(this.Orders);
                 console.log(this.Ordersdetail);
             } catch (error) {
