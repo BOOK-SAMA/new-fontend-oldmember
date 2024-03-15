@@ -45,9 +45,9 @@
                                     <p><strong>ราคารวม</strong></p>
                                 </th>
                             </tr>
-                           
 
-                            
+
+
 
                         </tbody>
                     </table>
@@ -119,7 +119,7 @@ export default {
     async mounted() {
         const id = this.$route.params.id;
         const ordernumber = this.$route.params.ordernumber;
-        // await this.Getorderdetail(id, ordernumber);
+        await this.Getorderdetail(id, ordernumber);
 
         // http://localhost:5555/Getorderbyid/8/407789695275
     },
@@ -145,7 +145,11 @@ export default {
                     }
                 );
                 this.Orders = response.data.Order;
-                this.Ordersdetail = response.data.Order.Orderitem;
+                this.Orders.forEach(order => {
+                    this.Ordersdetail = this.Ordersdetail.concat(order.Orderitem);
+                });
+                console.log(this.Orders);
+                console.log(this.Ordersdetail);
             } catch (error) {
                 console.log(error);
             }
