@@ -2,7 +2,7 @@
   <button @click="router.push({ name: 'catalog' })" class="btn btn-secondary">
     back to catalog
   </button>
-  <div class="row align-items-center pt-4 pb-3">
+  <!-- <div class="row align-items-center pt-4 pb-3">
     <div class="col-md ps-5">
       <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
     </div>
@@ -20,7 +20,6 @@
         v-model="address" />
     </div>
   </div>
-  <!-- ช่องที่อยู่ @-->
   
   <div class="row align-items-center pt-4 pb-3">
     <div class="col-md-3 ps-5">
@@ -31,10 +30,33 @@
         v-model="phonenumber" />
     </div>
   </div>
-  <!-- ช่องเบอร์โทรศัพท์ @-->
-  <hr class="mx-n3" />
+  <hr class="mx-n3" /> -->
   
-  <button class="btn btn-secondary" @click="showrequest()"> ลองยิงapiดู request </button>
+  <!-- <button class="btn btn-secondary" @click="showrequest()"> ลองยิงapiดู request </button> -->
+
+  <div class="col-sm-12 col-md-12">
+  <h1>Form</h1>
+</div>
+<div class="col-sm-12 col-md-4"></div>
+<div class="col-sm-12 col-md-4 col-md-offset-0">
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">คำนำหน้าชื่อ - ชื่อ - นามสกุล</label>
+    <input type="text" class="form-control" id="name"  placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาไทย"  v-model="thainame">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">ข้อมูลที่อยู่ปัจจุบัน</label>
+    <textarea type="text" class="form-control" id="address" v-model="address">
+      </textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" placeholder="กรอกเบอร์โทรศัพท์" v-model="phonenumber">
+  </div>
+  <button type="submit" class="btn btn-success"  @click="showrequest()">Submit</button>
+</form>
+</div>
+<div class="col-sm-12 col-md-4"></div>
 </template>
 
 <script>
