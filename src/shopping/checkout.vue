@@ -2,38 +2,6 @@
   <button @click="router.push({ name: 'catalog' })" class="btn btn-secondary">
     back to catalog
   </button>
-  <!-- <div class="row align-items-center pt-4 pb-3">
-    <div class="col-md ps-5">
-      <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
-    </div>
-    <div class="col-md-9 pe-5">
-      <input type="text" class="form-control form-control-lg" placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาไทย"
-        v-model="thainame" />
-    </div>
-  </div>
-  <div class="row align-items-center pt-4 pb-3">
-    <div class="col-md-3 ps-5">
-      <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
-    </div>
-    <div class="col-md-9 pe-5">
-      <input type="text" class="form-control form-control-lg" placeholder=" (อย่าลืมใส่ที่อยู่นะครับ)"
-        v-model="address" />
-    </div>
-  </div>
-  
-  <div class="row align-items-center pt-4 pb-3">
-    <div class="col-md-3 ps-5">
-      <h6 class="mb-0">เบอร์โทรศัพท์</h6>
-    </div>
-    <div class="col-md-9 pe-5">
-      <input type="text" class="form-control form-control-lg" placeholder=" (อย่าลืมใส่เบอร์โทรศัพท์)"
-        v-model="phonenumber" />
-    </div>
-  </div>
-  <hr class="mx-n3" /> -->
-  
-  <!-- <button class="btn btn-secondary" @click="showrequest()"> ลองยิงapiดู request </button> -->
-
   <div class="col-sm-12 col-md-12">
   <h1>Form</h1>
 </div>

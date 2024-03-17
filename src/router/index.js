@@ -82,17 +82,17 @@ const router = createRouter({
       path: '/checkout',
       component: () => import('../shopping/checkout.vue'),
       name: 'checkout',
-      meta: { requiresAuth: true }
-     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
-    },
-    {
-      path: '/checkorder/:id',
-      component: () => import('../shopping/user-order.vue'),
-      name: 'checkorder',
+      // meta: { requiresAuth: true }
+     
     },
     {
       path: '/orderdetail/:id/:ordernumber' ,
       component: () =>import('../shopping/userorder-detail.vue'),
+      name: 'checkorder',
+    },
+    {
+      path: '/orderhistory/:id',
+      component: () => import('/src/shopping/user-order.vue'),
       name: 'checkorder',
     },
   ]
