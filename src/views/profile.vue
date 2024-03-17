@@ -12,14 +12,14 @@
 					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
+					<a class="nav-link" :class="{ 'disabled': state }" href="#" >แก้ไขข้อมูลส่วนตัว</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Dropdown</a>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Dropdown</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
 						<a class="dropdown-item" href="#">Action</a>
 						<a class="dropdown-item" href="#">Another action</a>
@@ -49,8 +49,8 @@
 
 								<!-- Display a default image if previewFile is not available -->
 								<p v-else>
-									<img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-										class="rounded-circle p-1" width="110" />
+									<img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+										alt="Admin" class="rounded-circle p-1" width="110" />
 								</p>
 
 								<div class="mt-3">
@@ -326,6 +326,8 @@ export default {
 	name: "Updateuser",
 	data() {
 		return {
+			Text: "",
+			Accessstatus: false,
 			Username: "",
 
 			Thainame: "",
@@ -446,6 +448,12 @@ export default {
 				this.Levelmember = secondApiResponse.data.thing.Levelmember;
 				this.Levelmemberthing = secondApiResponse.data.thing.Levelmemberthing;
 				localStorage.setItem('uuid', secondApiResponse.data.thing.Image)
+				this.Text = secondApiResponse.data.thing.Accessstatus;
+				if (this.Text == "enable"){
+
+					this.Accessstatus = true ; 
+					console.log(this.Accessstatus)
+				}
 			} catch (error) {
 				localStorage.removeItem("userid");
 				localStorage.removeItem("tokenstring");
@@ -484,8 +492,8 @@ export default {
 				// localStorage.removeItem("uuid");
 				// router.push({ path: "/login" });
 			}
-		}
-
+		},
+	
 	},
 };
 </script>
