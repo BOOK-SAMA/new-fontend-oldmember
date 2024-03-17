@@ -12,7 +12,7 @@
 					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :class="{ 'disabled': state }" href="#" >แก้ไขข้อมูลส่วนตัว</a>
+					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -326,6 +326,7 @@ export default {
 	name: "Updateuser",
 	data() {
 		return {
+			id:"",
 			Text: "",
 			Accessstatus: false,
 			Username: "",
@@ -359,7 +360,7 @@ export default {
 	},
 
 	async mounted() {
-		const id = this.$route.params.id;
+		 this.id = this.$route.params.id;
 
 		// Ensure user is authenticated and authorized
 		await this.checkuser(id);
