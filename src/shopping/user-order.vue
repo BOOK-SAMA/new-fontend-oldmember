@@ -1,6 +1,6 @@
 <template>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top p-4">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -14,11 +14,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" :class="{ 'disabled': state }"
-                        :href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
+                        :href="state ? '#' : `/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/orderhistory/${id}`">ดูรายการสั่งซื้อ</a>
+                    <a class="nav-link" :href="state ? '#' : `/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
                 </li>
+                <li class="nav-item">
+					<a class="nav-link"  :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
+				</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -36,39 +39,45 @@
             </form>
         </div>
     </nav>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th scope="col ">#</th>
-                <th scope="col">Ordernumber</th>
-                <th scope="col">Orderdate</th>
-                <th scope="col">uniqueorder</th>
-                <th scope="col">thainame</th>
-                <th scope="col">state</th>
-                <th scope="col">totalCartPrice</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(order, index) in Orders" :key="index">
-                <td v-text="order.ID"></td>
-                <td v-text="order.Ordernumber"></td>
-                <td v-text="order.Orderdate"></td>
-                <td v-text="order.uniqueorder"></td>
-                <td v-text="order.thainame"></td>
-                <td v-text="order.state"></td>
-                <td v-text="order.totalCartPrice"></td>
-                <td class="p-1">
-                    <router-link :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
-                        class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
-                    <div class="b-example-divider p-1"></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+    <div style="margin-top: 100px;"> <!-- Add this to create space below navbar -->
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ordernumber</th>
+                    <th scope="col">Orderdate</th>
+                    <th scope="col">uniqueorder</th>
+                    <th scope="col">thainame</th>
+                    <th scope="col">state</th>
+                    <th scope="col">totalCartPrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(order, index) in Orders" :key="index">
+                    <td v-text="order.ID"></td>
+                    <td v-text="order.Ordernumber"></td>
+                    <td v-text="order.Orderdate"></td>
+                    <td v-text="order.uniqueorder"></td>
+                    <td v-text="order.thainame"></td>
+                    <td v-text="order.state"></td>
+                    <td v-text="order.totalCartPrice"></td>
+                    <td class="p-1">
+                        <router-link :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
+                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
+                        <div class="b-example-divider p-1">
+                           
 
 
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </template>
+
 
 
 <script>
@@ -90,7 +99,7 @@ export default {
             localStorage.removeItem("userid");
             localStorage.removeItem("tokenstring");
             localStorage.removeItem("uuid");
-            router.push({ path: "/loginadmin" });
+            router.push({ path: "/login" });
         },
         async Getorder(id) {
 

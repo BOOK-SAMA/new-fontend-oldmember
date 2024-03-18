@@ -16,7 +16,10 @@
 					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+					<a class="nav-link"  :href="state ? '#' : `/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
@@ -36,7 +39,7 @@
 		</div>
 	</nav>
 	<!-- แถว link 	-->
-	<div class="container ">
+	<div class="container " style="margin-top: 100px;">
 		<div class="main-body mt-6">
 			<div class="row">
 				<div class="col-lg-4 mt-6">

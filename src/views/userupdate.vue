@@ -677,52 +677,10 @@ export default {
         this.profileimage = imageSrc;
         console.log("Image downloaded and displayed.");
       } catch (error) {
-        // console.error("Error downloading image:", error);
-        // localStorage.removeItem("userid");
-        // localStorage.removeItem("tokenstring");
-        // localStorage.removeItem("uuid");
-        // this.router.push({ path: "/login" });
+        
       }
     },
-    async downloadpayImageAndDisplay(uuid) {
-      try {
-        // Fetch the image content from the server
-        const response = await axios.get(
-          `${import.meta.env.VITE_API2}admin/previewpayimage/${uuid}`,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "application/json",
-            },
-            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
-          }
-        );
-
-        // Convert the binary data to a data URL
-        const imageSrc = `data:${
-          response.headers["content-type"]
-        };base64,${btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        )}`;
-
-        // Display the image using the data URL
-        const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
-        if (imgElement) {
-          imgElement.src = imageSrc;
-        }
-        this.payimage = imageSrc;
-        console.log("Image downloaded and displayed.");
-      } catch (error) {
-        // console.error("Error downloading image:", error);
-        // localStorage.removeItem("userid");
-        // localStorage.removeItem("tokenstring");
-        // localStorage.removeItem("uuid");
-        // this.router.push({ path: "/login" });
-      }
-    },
+   
     handleprofile(event) {
       this.file = event.target.files[0];
       console.log(this.file);

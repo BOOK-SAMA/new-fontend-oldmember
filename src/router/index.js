@@ -58,14 +58,14 @@ const router = createRouter({
       meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
-      path: '/test',
+      path: '/catalog',
       component: () => import('../shopping/mainshopping.vue'),
       name:'catalog',
       meta: { requiresAuth: true }
      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
-      path: '/testinfo/:id',
+      path: '/productdetail/:id',
       component: () => import('../shopping/productdetail.vue'),
       name: 'productdetail',
       meta: { requiresAuth: true }
@@ -88,7 +88,7 @@ const router = createRouter({
     {
       path: '/orderdetail/:id/:ordernumber' ,
       component: () =>import('../shopping/userorder-detail.vue'),
-      name: 'checkorder',
+      name: 'checkorderdetail',
     },
     {
       path: '/orderhistory/:id',
