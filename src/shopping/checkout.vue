@@ -3,7 +3,7 @@
     back to catalog
   </button>
   <div class="col-sm-12 col-md-12">
-  <h1>Form</h1>
+  <h1>กรุณากรอกข้อมูลต่อไปนี้</h1>
 </div>
 <div class="col-sm-12 col-md-4"></div>
 <div class="col-sm-12 col-md-4 col-md-offset-0">
@@ -19,7 +19,7 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" placeholder="กรอกเบอร์โทรศัพท์" v-model="phonenumber">
+    <input type="tel" id="phone" name="phone"  class="form-control" placeholder="กรอกเบอร์โทรศัพท์" v-model="phonenumber">
   </div>
   <button type="submit" class="btn btn-success"  @click="showrequest()">Submit</button>
 </form>
@@ -94,6 +94,7 @@ const showrequest = async () => {
       // API call was successful
       console.log("Cart submitted successfully!");
       // You can handle the response data here if needed
+      router.push({ path: "/" });
     } else {
       // Handle errors
       console.error("Error submitting cart:", response);

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-        class="rounded-circle p-1" width="40" /></a>
+    <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+        alt="Admin" class="rounded-circle p-1" width="40" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,8 @@
           <a class="nav-link" href="/admincreate">สร้าง User</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/wordpress/wp-login.php?redirect_to=http%3A%2F%2Flocalhost%2Fwordpress%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
+          <a class="nav-link"
+            href="http://localhost/wordpress/wp-login.php?redirect_to=http%3A%2F%2Flocalhost%2Fwordpress%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -50,16 +51,17 @@
         <td v-text="users.Paystatus"></td>
         <td v-text="users.Accessstatus"></td>
         <td class="p-1">
-          <router-link :to="{ path: '/update/' + users.ID + '/edit' }" class="btn btn-success btn-sm">แก้ไข</router-link>
+          <router-link :to="{ path: '/update/' + users.ID + '/edit' }"
+            class="btn btn-success btn-sm">แก้ไข</router-link>
           <div class="b-example-divider p-1"></div>
 
           <router-link :to="{ path: '/admintoo/' + this.$route.params.id }" class="btn btn-success btn-sm"
             @click="dodelete(users.ID)">ลบ
           </router-link>
           <div class="b-example-divider p-1"></div>
-          <!-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
-            แก้ไขรหัสผ่าน
-          </button> -->
+          
+            <a class="btn btn-success btn-sm" :href="state ? '#' : `/orderhistory/${users.ID}`">ดูประวัติการสั่งซื้อ</a>
+          
         </td>
       </tr>
     </tbody>
@@ -263,7 +265,7 @@ export default {
       let data = new FormData();
       data.append("password", this.newpassword);
       data.append("confirmpassword", this.comfirepassword);
-      
+
 
 
 
@@ -295,7 +297,7 @@ export default {
 
 
 
- <!-- <div class="">
+<!-- <div class="">
     <tr v-for="(users, index) in users" :key="index">
       <td v-text="users.ID"></td>
       <td v-text="users.Username"></td>
