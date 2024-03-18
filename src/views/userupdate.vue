@@ -596,13 +596,16 @@ export default {
   },
   methods: {
     async getuserdata(id) {
-      axios
-        .get(`${import.meta.env.VITE_API2}admin/showperson/${id}`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "application/json",
-          },
-        })
+        await axios.post(
+					`${import.meta.env.VITE_API2}users/profile/` + id,
+					null,
+					{
+						headers: {
+							Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+							"Content-Type": "application/json",
+						},
+					}
+				)
         .then((res) => {
           console.log(res);
           this.Username = res.data.thing.Username;
@@ -769,7 +772,7 @@ export default {
         })
         .then((res) => {
           const idnew = localStorage.getItem("userid");
-          this.router.push({ path: '/admintoo/' + idnew });
+          this.router.push({ path: '/profile/' + idnew });
         })
         .catch((error) => {
           console.error("Error updating:", error);
@@ -791,7 +794,7 @@ export default {
         })
         .then((res) => {
           const idnew = localStorage.getItem("userid");
-          this.router.push({ path: `/admintoo/${idnew}` });
+          this.router.push({ path: '/profile/' + idnew });
         })
         .catch((error) => {
           console.error("Error updating:", error);

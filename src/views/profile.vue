@@ -1,5 +1,6 @@
 <template>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	
+	<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
 		<a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
 				alt="Admin" class="rounded-circle p-1" width="40" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -35,13 +36,13 @@
 		</div>
 	</nav>
 	<!-- แถว link 	-->
-	<div class="container">
-		<div class="main-body">
+	<div class="container ">
+		<div class="main-body mt-6">
 			<div class="row">
-				<div class="col-lg-4 mt-5">
-					<div class="card">
+				<div class="col-lg-4 mt-6">
+					<div class="card mt-6 ">
 						<!--แถวรูปกับข้อมูลส่วนตัว  -->
-						<div class="card-body">
+						<div class="card-body mt-6">
 							<div class="d-flex flex-column align-items-center text-center">
 								<!-- Display the file content as an image if available -->
 								<img v-if="previewFile" :src="previewFile" alt="Preview" class="rounded-circle p-1"
@@ -90,7 +91,7 @@
 				<div class="col-lg-8 mt-5">
 					<!--แถวข้อมูลส่วนตัว เช่นรูป  -->
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body mt-6">
 							<div class="row mb-3">
 								<div class="col-sm-3">
 									<h6 class="mb-0">username</h6>
