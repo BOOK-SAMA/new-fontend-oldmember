@@ -95,6 +95,12 @@ const router = createRouter({
       component: () => import('/src/shopping/user-order.vue'),
       name: 'checkorder',
     },
+    {
+      path: `/updateuser/:id/edit`,
+      component: () => import('/src/views/userupdate.vue'),
+      name: 'userupdate',
+      meta: { requiresAuth: true }
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

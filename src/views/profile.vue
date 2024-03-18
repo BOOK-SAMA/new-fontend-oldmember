@@ -363,7 +363,7 @@ export default {
 		 this.id = this.$route.params.id;
 
 		// Ensure user is authenticated and authorized
-		await this.checkuser(id);
+		await this.checkuser(this.id);
 
 		const uuid = localStorage.getItem("uuid");
 		await this.downloadImageAndDisplay(uuid)
