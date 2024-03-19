@@ -18,6 +18,10 @@
           <a class="nav-link"
             href="http://localhost/wordpress/wp-login.php?redirect_to=http%3A%2F%2Flocalhost%2Fwordpress%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link"
+            href="">จัดการสินค้า</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
