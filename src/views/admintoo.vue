@@ -19,8 +19,7 @@
             href="http://localhost/wordpress/wp-login.php?redirect_to=http%3A%2F%2Flocalhost%2Fwordpress%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"
-            href="">จัดการสินค้า</a>
+          <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -63,9 +62,9 @@
             @click="dodelete(users.ID)">ลบ
           </router-link>
           <div class="b-example-divider p-1"></div>
-          
-            <a class="btn btn-success btn-sm" :href="state ? '#' : `/orderhistory/${users.ID}`">ดูประวัติการสั่งซื้อ</a>
-          
+
+          <a class="btn btn-success btn-sm" :href="state ? '#' : `/orderhistory/${users.ID}`">ดูประวัติการสั่งซื้อ</a>
+
         </td>
       </tr>
     </tbody>
@@ -103,89 +102,7 @@
 </template>
 
 
-<!-- <script >
-import { onMounted, ref } from "vue";
-import axios from "axios";
 
-export default {
-  name: "admintoo",
-  data() {
-    return {
-      users: "",
-    };
-  },
-  async mounted() {
-		// Ensure user is authenticated and authorized
-		await this.getMessage();
-  },
-  methods: {
-    handlelogout() {
-      localStorage.removeItem("userid");
-      localStorage.removeItem("tokenstring");
-      localStorage.removeItem("uuid");
-      router.push({ path: "/loginadmin" });
-    },
-    async getMessage() {
-      const response = await axios
-        .post(
-          `${import.meta.env.VITE_API2}admin/readall/` + userId,
-          null,
-          {
-            headers: {
-              // ตัวอย่าง Header (แก้ตามความเหมาะสม)
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          this.users = response.data.thing;
-          console.log(this.users);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
-    dodelete(id) {
-      axios
-        .post(`${import.meta.env.VITE_API}delete/${id}`, {})
-        .then((res) => {
-          console.log(res);
-        })
-        .catch();
-    },
-  },
-  created() {
-    this.getMessage();
-  },
-};
-
-// export default {
-
-//   methods: {
-//     async handleView() {
-//       try {
-//         const res = await axios.post("http://localhost:3333/readall");
-
-//         console.log(res.data.thing);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     },
-//   },
-// };
-
-// export default {
-//   setup() {
-//     const res = ref(null);
-//     axios
-//       .post("http://localhost:3333/readall")
-//       .then((data) => (res.value = data));
-//     console.log(res);
-//     return { res };
-//   },
-// };
-</script> -->
 
 <script>
 import router from "@/router";

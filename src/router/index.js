@@ -60,34 +60,34 @@ const router = createRouter({
     {
       path: '/catalog',
       component: () => import('../shopping/mainshopping.vue'),
-      name:'catalog',
+      name: 'catalog',
       meta: { requiresAuth: true }
-     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/productdetail/:id',
       component: () => import('../shopping/productdetail.vue'),
       name: 'productdetail',
       meta: { requiresAuth: true }
-     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/cart',
       component: () => import('../shopping/cart.vue'),
       name: 'cart',
       meta: { requiresAuth: true }
-     // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+      // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       path: '/checkout',
       component: () => import('../shopping/checkout.vue'),
       name: 'checkout',
       // meta: { requiresAuth: true }
-     
+
     },
     {
-      path: '/orderdetail/:id/:ordernumber' ,
-      component: () =>import('../shopping/userorder-detail.vue'),
+      path: '/orderdetail/:id/:ordernumber',
+      component: () => import('../shopping/userorder-detail.vue'),
       name: 'checkorderdetail',
     },
     {
@@ -101,6 +101,16 @@ const router = createRouter({
       name: 'userupdate',
       meta: { requiresAuth: true }
     },
+    {
+      path: `/seeallproduct/:id/`,
+      component: () => import('/src/product/producttool.vue'),
+      name: 'seeallproduct',
+    },
+    {
+      path: `/:id/updateproduct/:itemid/edit`,
+      component: () => import('/src/product/updateproduct.vue'),
+      name: 'productupdate',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
@@ -113,13 +123,13 @@ router.beforeEach((to, from, next) => {
 
 
 
-    if ( userId  == null || tokenString == null) {
+    if (userId == null || tokenString == null) {
       // ถ้าไม่มีข้อมูลผู้ใช้, ทำการ redirect ไปยังหน้า home
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
       next('/:notFound');
-    }else{
+    } else {
       next();
     }
 
