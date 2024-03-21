@@ -111,6 +111,11 @@ const router = createRouter({
       component: () => import('/src/product/updateproduct.vue'),
       name: 'productupdate',
     },
+    {
+      path: `/addproduct`,
+      component: () => import('/src/product/addproduct.vue'),
+      name: 'addproduct',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

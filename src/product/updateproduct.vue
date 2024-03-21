@@ -4,7 +4,7 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-9">
           <h1 class="text-white mb-4">
-            แก้ไขข้อมูลสมาชิกสมาคมศิษย์เก่า มหาลัยศิลปากร
+            แก้ไขข้อมูลสินค้า
           </h1>
 
           <div class="card" style="border-radius: 15px">
