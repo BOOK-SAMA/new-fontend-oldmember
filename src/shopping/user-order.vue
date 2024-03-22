@@ -47,7 +47,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Ordernumber</th>
                     <th scope="col">Orderdate</th>
-                    <th scope="col">uniqueorder</th>
+                    <th scope="col">เลขที่คำสั่งซื้อ</th>
                     <th scope="col">thainame</th>
                     <th scope="col">state</th>
                     <th scope="col">totalCartPrice</th>
