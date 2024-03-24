@@ -88,11 +88,18 @@
                                 </div>
                             </div>
 
-
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">ข้อมูลเพิ่มเติม</h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <input type="text" class="form-control form-control-lg" v-model="text" />
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-9 pe-5">
                             <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
-                                        || !this.thainame
+                                        || !this.thainame || !this.text
                                         || !this.email || !this.phonenumber
                                         || !this.ordernumber || !this.pricevalue
                                         || !this.file
@@ -117,6 +124,7 @@ import axios from "axios";
 export default {
     data() {
         return {
+            text: "",
             thainame: "",
             email: "",
             phonenumber: "",
