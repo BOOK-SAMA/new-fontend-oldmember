@@ -478,7 +478,7 @@
 </template>
   
 <script setup>
-import banner from "/src/components/banner.vue";
+import banner from "/src/components/Banner.vue";
 import { ref } from "vue";
 import axios from "axios";
 // In case of a range picker, you'll receive [Date, Date]
