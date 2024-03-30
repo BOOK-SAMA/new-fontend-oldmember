@@ -7,7 +7,7 @@ import NotFound from '/src/views/notFound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
-
+import emailform    from '/src/views/sentemail.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -15,6 +15,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/emailform',
+      name: 'emailform',
+      component: emailform
     },
     {
       path: '/register',
