@@ -53,9 +53,9 @@
             class="btn btn-success btn-sm">แก้ไข</router-link>
           <div class="b-example-divider p-1"></div>
 
-          <router-link :to="{ path: '/admintoo/' + this.$route.params.id }" class="btn btn-success btn-sm"
+          <div class="btn btn-success btn-sm"
             @click="dodelete(product.ID)">ลบ
-          </router-link>
+          </div>
           <div class="b-example-divider p-1"></div>
 
 
@@ -105,7 +105,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             console.log(res);
-            router.push({ path: "/admintoo/" + this.$route.params.id });
+            // router.push({ path: "/admintoo/" + this.$route.params.id });
           }
         })
         .catch();

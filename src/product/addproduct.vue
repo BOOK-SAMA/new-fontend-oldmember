@@ -116,7 +116,7 @@ export default {
             quantity: "",
             price: "",
             producttext: "",
-
+            router: useRouter(),
         };
     },
     async mounted() {
@@ -151,12 +151,13 @@ export default {
                 .then((res) => {
                     console.log(data)
                     console.log(res)
+                    this.router.push({ path: 'https://mytestsilpakorn.azurewebsites.net/'  });
                 })
                 .catch((error) => {
                     console.error("Error updating:", error);
                 });
         },
-
+       
 
     },
 };
