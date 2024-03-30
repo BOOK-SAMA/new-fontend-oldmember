@@ -568,7 +568,7 @@ export default {
         // console.log("this is res => ", this.date);
         this.responseStatus = response.status
         console.log("this is res => ", response);
-        router.push({ path: "/" });
+        router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
 
       }).catch((error) => {
         console.log("this is error => ", error);

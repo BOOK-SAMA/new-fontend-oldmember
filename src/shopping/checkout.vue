@@ -95,7 +95,7 @@ const showrequest = async () => {
       // API call was successful
       console.log("Cart submitted successfully!");
       // You can handle the response data here if needed
-      router.push({ path: "/" });
+      router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
     } else {
       // Handle errors
       console.error("Error submitting cart:", response);
