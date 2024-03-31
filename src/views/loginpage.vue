@@ -17,9 +17,11 @@
       <!-- 2 column grid layout for inline styling -->
       <div class="row mb-4">
         <div class="col">
-          <!-- Simple link -->
           <router-link to="/register"> สมัครสมาชิก </router-link>
         </div>
+        <li class="nav-item active">
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก</a>
+        </li>
       </div>
       <!-- Submit button -->
       <button
