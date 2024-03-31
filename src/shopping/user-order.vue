@@ -1,5 +1,4 @@
 <template>
-
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top p-4">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
@@ -10,26 +9,17 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+					<a class="nav-link"  :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
+				</li>
                 <li class="nav-item">
                     <a class="nav-link" :class="{ 'disabled': state }"
                         :href="state ? '#' : `/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" :href="state ? '#' : `/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
-                </li>
-                <li class="nav-item">
-					<a class="nav-link"  :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
-				</li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

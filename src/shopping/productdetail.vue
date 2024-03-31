@@ -5,19 +5,7 @@
         back to catalog
     </button>
     
-    <!-- <div class="product">
-    <div >
-        <div class="product-image">
-           <img :src="selectedproduct.image" alt=""> 
-        </div>
-        <div class="product-details">
-            <p>ชื่อสินค้า: {{ selectedproduct.name }}  </p>
-            <p>ราคาสินค้า:{{ selectedproduct.price }} </p>
-            <p>จำนวนสินค้า:{{  }} </p>
-            <button class="btn btn-secondary" @click="addtocart()"> เพิ่มใส่ตะกร้า </button>
-        </div>
-    </div>
-  </div> -->
+    
 
   <div class="container my-5">
         <div class="row">
