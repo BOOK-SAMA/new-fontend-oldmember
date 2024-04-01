@@ -310,7 +310,7 @@
                 <div class="col-md-5 pe-5">
                   <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmemberthing">
                     <option selected disabled>เลือก 1 อย่าง</option>
-                    <option value="">
+                    <option value="ไม่รับของชำร่วย">
                       ไม่รับของชำร่วย(เป็นยุวสมาชิก)
                     </option>
                     <option value="กระเป๋าผ้าและแมส SCSU ">
@@ -568,8 +568,7 @@ export default {
         // console.log("this is res => ", this.date);
         this.responseStatus = response.status
         console.log("this is res => ", response);
-        router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
-
+        window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
       }).catch((error) => {
         console.log("this is error => ", error);
         router.push({ path: "/:notfound" });

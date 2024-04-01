@@ -138,7 +138,7 @@ router.beforeEach((to, from, next) => {
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      next('/:notFound');
+      window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
     } else {
       next();
     }
