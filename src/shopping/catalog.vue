@@ -61,6 +61,14 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "CatalogView",
+  methods: {
+    handlelogout() {
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      router.push({ path: "/login" });
+    },
+  }
 });
 </script>
 
