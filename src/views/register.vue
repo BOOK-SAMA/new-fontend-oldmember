@@ -528,7 +528,7 @@ export default {
         // console.log("this is res => ", this.date);
         this.responseStatus = response.status
         console.log("this is res => ", response);
-        // window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+        window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
         
       }).catch((error) => {
         console.log("this is error => ", error);
