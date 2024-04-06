@@ -143,7 +143,7 @@ export default {
             localStorage.removeItem("userid");
             localStorage.removeItem("tokenstring");
             localStorage.removeItem("uuid");
-            router.push({ path: "/loginadmin" });
+            router.push({ path: "/login" });
         },
         async Getorderdetail(id, ordernumber) {
 
