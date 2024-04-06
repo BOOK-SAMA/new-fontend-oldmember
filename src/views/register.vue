@@ -364,23 +364,6 @@
               </div>
               <!-- ช่องรูปถ่าย-->
               <hr class="mx-n3" />
-              <div class="col align-items-center py-3">
-                <div class="col-md-5 ps-5">
-                  <h6 class="mb-0">
-                    ช่องทางการชำระเงิน ธนาคารกรุงไทย สาขาสำนักนานาเหนือ เลขที่
-                    000-0-35556-9
-                  </h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <div class="form-check form-check-inline">
-                    <img
-                      src="https://lh4.googleusercontent.com/RMQziLQRistxbkv9ZX30hyx1zWSyZ9RgZPISwbahv0IqBa9JJ9T_f6AFLXuj7cM_m8uARSm5GPfGCkZy-EqTlXjXccfTjl60r4mD5h5X1OdYf5bwxO7Jbf-wb3sOaHmO3g=w584"
-                      alt="image" class="img-thumbnail" />
-                  </div>
-                </div>
-              </div>
-              <!-- รูปจ่ายเงิน-->
-              <hr class="mx-n3" />
               <div class="row align-items-center py-3">
                 <div class="col-md-5 ps-5">
                   <h6 class="mb-0">
@@ -402,36 +385,15 @@
               </div>
               <!-- ช่องยืนยันกดหมาย-->
               <hr class="mx-n3" />
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">สลิปการโอนเงิน</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input class="form-control form-control-lg" id="formFileLg" type="file" @change="handlepaycheck" />
-                  <div class="small text-muted mt-2">
-                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-                  </div>
-                </div>
-              </div>
-              <!-- ช่องสลิปจ่ายเงิน-->
-              <hr class="mx-n3" />
             </div>
             <div class="px-5 py-4">
               <h6 class="mb-0">
                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
               </h6>
               <hr class="mx-n2" />
-
-
-              <!-- <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
-                || !this.email || !this.confirmpassword || !this.thainame || !this.statusinfo || !this.pnstatus
-                ">
-                Submit
-              </button> -->
-
-
-              <div class="col-md-9 pe-5">
-                <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
+             <div class="col-md-9 pe-5">
+                <button type="submit" class="btn btn-primary btn-lg" @click="submit()" 
+                :disabled=" !this.username || !this.password
                   || !this.confirmpassword || !this.thainame || !this.engname
                   || !this.email || !this.phonenumber || !this.address
                   || !this.statusinfo || !this.pnstatus 
@@ -496,7 +458,6 @@ export default {
       statusinfo: false,
       pnstatus: false,
       file: null,
-      payimage: null,
       inputType: "password",
       date: "",
     };
@@ -556,7 +517,6 @@ export default {
       data.append("levelmemberthing", this.levelmemberthing);
       data.append("statusinfo", this.statusinfo);
       data.append("file", this.file);
-      data.append("payimage", this.payimage);
       data.append("PNstatus", this.pnstatus);
       let config = {
         header: {
@@ -584,130 +544,3 @@ export default {
 
 
 
-
-<!--
-   axios({
-//         method: "post",
-//         url: "http://localhost:4444/register",
-//         data: {
-//           username: this.Username,
-//           password: this.Password,
-//           confirmpassword: this.CPassword,
-//           file: this.$refs.fileInput.files[0]
-//           // thainame: this.THAIname,
-//           // engname: this.ENGname,
-//           // oldname: this.oldname,
-//           // nickname: this.nickname,
-//           // dateofbirth: this.date,
-
-//           // status: this.status,
-//           // academicstatus: this.academicstatus,
-//           // academicnumber: this.academicnumber,
-//           // masterdegree: this.masterdegree,
-//           // masterdegreenumber: this.masterdegreenumber,
-//           // doctordegree: this.doctordegree,
-//           // doctordegreenumber: this.doctordegreenumber,
-
-//           // address: this.address,
-//           // phonenumber: this.phonenumber,
-//           // phonemail: this.phonemail,
-//           // idline: this.idline,
-//           // email: this.email,
-//           // job: this.job,
-//           // jobposition: this.jobposition,
-//           // jobaddress: this.jobadress,
-
-//           // levelmember: this.levelmember,
-//           // levelmemberthing: this.levelmemberthing,
-//           // statusinfo: this.statusinfo,
-
-//           // pnstatus: this.pnstatus,
-//         },
-//       })
-//         .then((res) => {
-//           console.log(this.submit);
-//           console.log(res);
-//         })
-//         .catch();
-//     },
-//  <div class="row align-items-center py-3">
-//                 <div class="col-md-3 ps-5">
-//                   <h6 class="mb-0">สลิปการโอนเงิน</h6>
-//                 </div>
-//                 <div class="col-md-9 pe-5">
-//                   <input
-//                     class="form-control form-control-lg"
-//                     id="formFileLg"
-//                     type="file"
-//                   />
-//                   <div class="small text-muted mt-2">
-//                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-//                   </div>
-//                 </div>
-//               </div>
-
-
-
-// <div class="row align-items-center py-3">
-//                 <div class="col-md-3 ps-5">
-//                   <h6 class="mb-0">รูปถ่าย</h6>
-//                 </div>
-//                 <div class="col-md-9 pe-5">
-//                   <input
-//                     @change="handleFileChange"
-//                     class="form-control form-control-lg"
-//                     id="formFileLg"
-//                     type="file"
-//                   />
-//                   <div class="small text-muted mt-2">
-//                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-//                   </div>
-//                   <p>
-//                     ไฟล์ที่เลือก:
-//                     {{
-//                       selectedFile ? selectedFile.name : "ยังไม่ได้เลือกไฟล์"
-//                     }}
-//                   </p>
-//                 </div>
-//               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-// <script>
-// export default {
-//   data() {
-//     return {
-//       selectedFile: null,
-//     };
-//   },
-//   methods: {
-//     handleFileChange(event) {
-//       this.selectedFile = event.target.files[0];
-//     },
-//   },
-// };
-//
-</script>
-
-// ในตัวอย่างนี้:
-
-// เพิ่ม @change event handler ใน input element โดยให้มีการเรียกฟังก์ชัน handleFileChange เมื่อมีการเปลี่ยนแปลง (ไฟล์ถูกเลือก).
-
-// สร้างตัวแปร selectedFile ใน data ของ Vue instance เพื่อเก็บข้อมูลไฟล์ที่ถูกเลือก.
-
-// สร้าง method ที่ชื่อ handleFileChange ซึ่งจะถูกเรียกเมื่อไฟล์ถูกเลือก และจะเก็บข้อมูลไฟล์ที่ถูกเลือกในตัวแปร selectedFile.
-
-// แสดงผลข้อมูลไฟล์ที่ถูกเลือกด้วย {{ selectedFile ? selectedFile.name : 'ยังไม่ได้เลือกไฟล์' }}.
-
-// คำทำนาย: หากโค้ดด้านบนยังไม่ทำงานได้หรือมีปัญหาเฉพาะกับเว็บบราวเซอร์บางประการ, คุณอาจต้องปรับปรุงโค้ดบางส่วนเพื่อให้ทำงานได้ถูกต้อง.
--->
