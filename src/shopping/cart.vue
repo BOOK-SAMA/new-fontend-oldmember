@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
         alt="Admin" class="rounded-circle p-1" width="40" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -13,10 +13,12 @@
               class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/cart">ตะกร้า</a>
+          <a @click="router.push({ name: 'catalog' })" class="nav-link">
+            ดูหน้ารายการสินค้า
+          </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/checkout">ใส่ข้อมูลยืนยันการสั่งซื้อ</a>
+          <a class="nav-link" @click="router.push({ name: 'checkout' })">ใส่ข้อมูลยืนยันการสั่งซื้อ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -26,9 +28,6 @@
       </form>
     </div>
   </nav>
-  <button @click="router.push({ name: 'catalog' })" class="btn btn-secondary">
-    back to catalog
-  </button>
   <div class="cart-items" @click="router.push({ name: 'catalog' })">
     <p>
       Item in Cart: {{ productstore.cart.length }}
