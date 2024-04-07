@@ -40,7 +40,7 @@
                     <th scope="col">เลขที่คำสั่งซื้อ</th>
                     <th scope="col">thainame</th>
                     <th scope="col">state</th>
-                    <th scope="col">totalCartPrice</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -51,8 +51,7 @@
                     <td v-text="order.uniqueorder"></td>
                     <td v-text="order.thainame"></td>
                     <td v-text="order.state"></td>
-                    <td v-text="order.totalCartPrice"></td>
-                    <td class="p-1">
+                     <td class="p-1">
                         <router-link :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1">
@@ -61,6 +60,7 @@
 
                         </div>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>
