@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-md-9 pe-5">
                                     <input type="text" class="form-control form-control-lg" v-model="ordernumber" />
-                                    <h6 class="mb-0">กรณีจะแจ้งชำระเงินค่าสมาชิก ให้กรอกเป็น ชำระเงินค่าสมัครสมาชิก นะครับ</h6>
+                                    <h3 class="mb-0">กรณีจะแจ้งชำระเงินค่าสมาชิก ให้กรอกเป็น ชำระเงินค่าสมัครสมาชิก นะครับ</h3>
                                 </div>
                             </div>
 
