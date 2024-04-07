@@ -13,13 +13,15 @@
 
 
       <div class="row">
-        <button type="button" class="btn btn-primary btn-block mb-4" href="https://mytestsilpakorn.azurewebsites.net/">
+        <a href="https://mytestsilpakorn.azurewebsites.net/" class="btn btn-primary btn-block mb-4">
           กลับหน้าหลัก
-        </button>
-        <button type="button" class="btn btn-primary btn-block mb-4" href="https://mytestsilpakorn.azurewebsites.net/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2/">
+        </a>
+        <a href="https://mytestsilpakorn.azurewebsites.net/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2/"
+          class="btn btn-primary btn-block mb-4">
           ติดต่อเรา
-        </button>
+        </a>
       </div>
+
 
     </form>
   </div>
