@@ -12,12 +12,9 @@
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admincreate">สร้าง User</a>
+          <a class="nav-link" href="/addproduct">เพิ่ม products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"
-            href="https://mytestsilpakorn.azurewebsites.net/wp-login.php?redirect_to=https%3A%2F%2Fmytestsilpakorn.azurewebsites.net%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>

@@ -17,9 +17,7 @@
             </div>
             <div class="col-md-7">
                 <div class="main-description px-2">
-                    <div class="category text-bold">
-                        Category: Book
-                    </div>
+                    
                     <div class="product-title text-bold my-3">
                       {{ selectedproduct.name }}
                     </div>
