@@ -18,7 +18,10 @@
                   <h6 class="mb-0">Username</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" v-model="username" />
+                  <input type="text" class="form-control form-control-lg" v-model="state.username" />
+                  <span v-if="v$.username.$error">
+                    {{ v$.username.$errors[0].$message }}
+                  </span>
                 </div>
               </div>
 
@@ -420,13 +423,35 @@
 
 <script>
 import router from "@/router";
-import { ref } from "vue";
+import { ref ,reactive,computed } from "vue";
 import axios from "axios";
+import { useVuelidate } from '@vuelidate/core'
+import { required, minLength } from '@vuelidate/validators'
 
 export default {
+  setup(){
+    const state = reactive({
+      username: "",
+    })
+
+    const rule = computed(() => {
+      return {
+        username: { required , minLength: minLength(4)}
+      }
+    })
+
+    const v$ = useVuelidate(rule , state)
+
+    return {
+      state ,
+      v$
+    }
+  },
+
   data() {
     return {
-      username: "",
+      v$ : useVuelidate(),
+      
       password: "",
       confirmpassword: "",
       responseStatus: null,
@@ -462,10 +487,8 @@ export default {
       date: "",
     };
   },
-  onMounted() {
 
-  },
-  methods: {
+   methods: {
     handleprofile(event) {
       this.file = event.target.files[0];
     },
@@ -483,57 +506,64 @@ export default {
       return `คุณเกิดวันที่ ${day}/${month}/${year}`;
     },
     submit() {
-      const URL = `${import.meta.env.VITE_API2}register2`;
-      let data = new FormData();
+      this.v$.$validate()
+      if (!this.v$.error){
+        alert("สมัครได้")
+      }else{
+        alert("สมัครไม่ได้")
+      }
+      // const URL = `${import.meta.env.VITE_API2}register2`;
+      // let data = new FormData();
 
 
-      data.append("username", this.username);
-      data.append("password", this.password);
-      data.append("confirmpassword", this.confirmpassword);
+      // data.append("username", this.username);
+      // data.append("password", this.password);
+      // data.append("confirmpassword", this.confirmpassword);
 
-      data.append("thainame", this.thainame);
-      data.append("engname", this.engname);
-      data.append("oldname", this.oldname);
-      data.append("nickname", this.nickname);
-      data.append("dateofbirth", this.date);
+      // data.append("thainame", this.thainame);
+      // data.append("engname", this.engname);
+      // data.append("oldname", this.oldname);
+      // data.append("nickname", this.nickname);
+      // data.append("dateofbirth", this.date);
 
-      data.append("status", this.status);
-      data.append("academicstatus", this.academicstatus);
-      data.append("academicnumber", this.academicnumber);
-      data.append("masterdegree", this.masterdegree);
-      data.append("masterdegreenumber", this.masterdegreenumber);
-      data.append("doctordegree", this.doctordegree);
-      data.append("doctordegreenumber", this.doctordegreenumber);
+      // data.append("status", this.status);
+      // data.append("academicstatus", this.academicstatus);
+      // data.append("academicnumber", this.academicnumber);
+      // data.append("masterdegree", this.masterdegree);
+      // data.append("masterdegreenumber", this.masterdegreenumber);
+      // data.append("doctordegree", this.doctordegree);
+      // data.append("doctordegreenumber", this.doctordegreenumber);
 
-      data.append("address", this.address);
-      data.append("phonenumber", this.phonenumber);
-      data.append("phonemail", this.phonemail);
-      data.append("idline", this.Idline);
-      data.append("email", this.email);
-      data.append("job", this.job);
-      data.append("jobposition", this.jobposition);
-      data.append("jobaddress", this.jobadress);
-      data.append("levelmember", this.levelmember);
-      data.append("levelmemberthing", this.levelmemberthing);
-      data.append("statusinfo", this.statusinfo);
-      data.append("file", this.file);
-      data.append("PNstatus", this.pnstatus);
-      let config = {
-        header: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
+      // data.append("address", this.address);
+      // data.append("phonenumber", this.phonenumber);
+      // data.append("phonemail", this.phonemail);
+      // data.append("idline", this.Idline);
+      // data.append("email", this.email);
+      // data.append("job", this.job);
+      // data.append("jobposition", this.jobposition);
+      // data.append("jobaddress", this.jobadress);
+      // data.append("levelmember", this.levelmember);
+      // data.append("levelmemberthing", this.levelmemberthing);
+      // data.append("statusinfo", this.statusinfo);
+      // data.append("file", this.file);
+      // data.append("PNstatus", this.pnstatus);
+      // let config = {
+      //   header: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // };
 
-      axios.post(URL, data, config).then((response) => {
-        // console.log("this is res => ", this.date);
-        this.responseStatus = response.status
-        console.log("this is res => ", response);
-        window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+      // axios.post(URL, data, config).then((response) => {
+      //   // console.log("this is res => ", this.date);
+      //   this.responseStatus = response.status
+      //   console.log("this is res => ", response);
+      //   alert("การสมัครสมาชิกสำเร็จแล้ว")
+      //   window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
         
-      }).catch((error) => {
-        console.log("this is error => ", error);
-        router.push({ path: "/:notfound" });
-      });
+      // }).catch((error) => {
+      //   alert("this is error => ", error);
+      //   router.push({ path: "/:notfound" });
+      // });
     },
   },
 };
