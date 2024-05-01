@@ -10,25 +10,16 @@
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link"  :href="state ? '#' : `/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link"  :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -60,14 +51,7 @@
 								<div class="mt-3">
 									<h4>ชื่อภาษาไทย</h4>
 									<h4>{{ Thainame }}</h4>
-									<h6>อาชีพ</h6>
-									<p class="text-secondary mb-1">{{ Job }}</p>
-									<h6>ตำแหน่งในอาชีพการงาน</h6>
-									<p class="text-secondary mb-1">{{ Jobposition }}</p>
-									<h6>ที่ตั้งของที่ทำงาน</h6>
-									<p class="text-muted font-size-sm">
-										{{ Jobaddress }}
-									</p>
+									
 
 								</div>
 							</div>
@@ -81,9 +65,9 @@
 										</p>
 									</h6>
 									<h6 class="mb-0">
-										เลขโทรสาร
+										Idline
 										<p class="text-muted font-size-sm">
-											{{ Phonemail }}
+											{{ Idline }}
 										</p>
 									</h6>
 								</li>
@@ -444,7 +428,7 @@ export default {
 					secondApiResponse.data.thing.Doctoraldegreenumber;
 				this.Jobposition = secondApiResponse.data.thing.Jobposition;
 				this.Address = secondApiResponse.data.thing.Address;
-				this.Phonenumber = secondApiResponse.data.thing.Doctoraldegreenumber;
+				this.Phonenumber = secondApiResponse.data.thing.Phonenumber;
 				this.Phonemail = secondApiResponse.data.thing.Phonemail;
 				this.Idline = secondApiResponse.data.thing.Idline;
 				this.Email = secondApiResponse.data.thing.Email;

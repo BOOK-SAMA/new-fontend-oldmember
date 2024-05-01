@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import home from '/src/views/HomePage.vue'
-import register from '/src/views/register.vue'
+import register from '/src/views/testvalidate.vue'
 import loginUser from '/src/views/loginpage.vue'
 import admin from '/src/views/loginadmin.vue'
 import NotFound from '/src/views/notfound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
-
+import emailform    from '/src/views/sentemail.vue'
+import notpay from '/src/views/notpay.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/emailform',
+      name: 'emailform',
+      component: emailform
     },
     {
       path: '/register',
@@ -29,6 +35,10 @@ const router = createRouter({
     {
       path: "/:notFound",
       component: NotFound,
+    },
+    {
+      path: "/:notpay",
+      component: notpay,
     },
     {
       path: '/admintoo/:id',
@@ -133,7 +143,7 @@ router.beforeEach((to, from, next) => {
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      next('/:notFound');
+      window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
     } else {
       next();
     }

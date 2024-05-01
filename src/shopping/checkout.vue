@@ -59,8 +59,9 @@ const showrequest = async () => {
     const cart = productstore.cart;
 
     // Assuming you have an API endpoint for submitting the cart
+    // "${import.meta.env.VITE_API2}/Createdata"
     // http://localhost:4444/echo
-    const apiEndpoint = "http://localhost:5555/Createdata";
+    const apiEndpoint = `${import.meta.env.VITE_API2}Createdata` ;
 
     // Log the details of the request before making the API call
     const totalCartPrice = cart.reduce((total, item) => {
@@ -94,7 +95,7 @@ const showrequest = async () => {
       // API call was successful
       console.log("Cart submitted successfully!");
       // You can handle the response data here if needed
-      router.push({ path: "/" });
+      router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
     } else {
       // Handle errors
       console.error("Error submitting cart:", response);

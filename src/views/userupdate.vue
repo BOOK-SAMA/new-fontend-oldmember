@@ -10,8 +10,16 @@
 
           <div class="card" style="border-radius: 15px">
             <div class="card-body">
+               <a :href="state ? '#' : `/profile/${this.$route.params.id}`" >
+                     <button
+                          type="button"
+                          class="btn btn-secondary text-white"
+                        >
+                          กลับไปหน้าหลัก
+                        </button>
+                        </a>
               <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <div class="col-md-3 ps-5"> 
                   <h6 class="mb-0">Username หรือ ID</h6>
                 </div>
                 <div class="col-md-9 pe-5">
@@ -25,7 +33,7 @@
                   <h6 class="mb-0">รหัสผ่าน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <p>{{ Password }}</p>
+                   <p>*********</p>
                 </div>
               </div>
               <div class="row align-items-center pt-4 pb-3">
@@ -35,7 +43,7 @@
                 <div class="col-md-9 pe-5">
                   <button
                     type="button"
-                    class="btn btn-success btn-sm"
+                    class="btn btn-success btn-sm  text-white"
                     data-toggle="modal"
                     data-target="#exampleModal"
                     
@@ -67,12 +75,15 @@
                         </button>
                       </div>
                       <div class="modal-body">
+                       <p v-if="passwordsMatch" class="text-success fw-bold">Passwords match!</p>
+                        <p v-else class="text-danger fw-bold">Passwords do not match!</p>
                         <label for="newpassword" class="mr-2"
                           >New Password:</label
                         >
                         <input
                           type="password"
                           v-model="newpassword"
+                          class="form-control"
                           @input="comparePasswords"
                         />
                         <hr class="mx-n3" />
@@ -82,16 +93,15 @@
                         <input
                           type="password"
                           v-model="comfirepassword"
+                          class="form-control"
                           @input="comparePasswords"
                         />
-                        <hr class="mx-n3" />
-                        <p v-if="passwordsMatch">Passwords match!</p>
-                        <p v-else>Passwords do not match!</p>
+                      
                       </div>
                       <div class="modal-footer">
                         <button
                           type="button"
-                          class="btn btn-primary"
+                          class="btn btn-primary text-white"
                           :disabled="!passwordsMatch"
                           @click="Changepassword"
                         >
@@ -99,7 +109,7 @@
                         </button>
                         <button
                           type="button"
-                          class="btn btn-secondary"
+                          class="btn btn-secondary text-white"
                           data-dismiss="modal"
                         >
                           ปิด
@@ -508,7 +518,7 @@
               <div class="px-5 py-4">
                 <button
                   type="submit"
-                  class="btn btn-primary btn-lg"
+                  class="btn btn-primary btn-lg text-white"
                   @click="submitUpdate"
                   
                 >
@@ -534,6 +544,7 @@ export default {
 
   data() {
     return {
+      iduser: "",
       newpassword: "",
       comfirepassword: "",
       passwordsMatch: false,
@@ -590,6 +601,8 @@ export default {
   },
   async mounted() {
     console.log(this.$route.params.id);
+    this.iduser = this.$route.params.id;
+     console.log(this.iduser);
     await this.getuserdata(this.$route.params.id);
     await this.downloadImageAndDisplay(localStorage.getItem("uuidprofile"));
     await this.downloadpayImageAndDisplay(localStorage.getItem("uuidpayimage"));
@@ -759,6 +772,9 @@ export default {
         });
     },
     comparePasswords() {
+       if(this.newpassword == "" && this.comfirepassword == ""){
+        this.passwordsMatch = false;
+       }
       this.passwordsMatch = this.newpassword === this.comfirepassword;
     },
   },

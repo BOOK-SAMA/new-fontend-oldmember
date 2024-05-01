@@ -9,14 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">หน้าแรก <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admincreate">สร้าง User</a>
         </li>
         <li class="nav-item">
           <a class="nav-link"
-            href="http://localhost/wordpress/wp-login.php?redirect_to=http%3A%2F%2Flocalhost%2Fwordpress%2Fwp-admin%2F&reauth=1">แก้ไขหน้าเว็บ</a>
+            href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
@@ -76,7 +76,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">แก้ไขรหัสผ่าน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -91,7 +91,7 @@
           <p v-else>Passwords do not match!</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" :disabled="!passwordsMatch">บันทึกรหัสผ่าน</button>
+          <button type="button" class="btn btn-primary text-white" :disabled="!passwordsMatch">บันทึกรหัสผ่าน</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             ปิด
           </button>

@@ -29,7 +29,7 @@
                   <h6 class="mb-0">รหัสผ่าน</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <p>{{ Password }}</p>
+                  <p>*********</p>
                 </div>
               </div>
               <hr class="mx-n3" />

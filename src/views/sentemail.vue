@@ -15,10 +15,11 @@
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">เลขที่คำสั่งซื้อ </h6>
+                                    <h6 class="mb-0">เลขที่คำสั่งซื้อ</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
                                     <input type="text" class="form-control form-control-lg" v-model="ordernumber" />
+                                    <h3 class="mb-0">กรณีจะแจ้งชำระเงินค่าสมาชิก ให้กรอกเป็น ชำระเงินค่าสมัครสมาชิก นะครับ</h3>
                                 </div>
                             </div>
 
@@ -80,8 +81,8 @@
                                     <h6 class="mb-0">สำเนาใบโอนเงิน</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input ref="fileInput" class="form-control form-control-lg" id="formFileLg"
-                                        type="file" @change="handleprofile" />
+                                    <input type="file" @change="handleprofile">
+
                                     <div class="small text-muted mt-2">
                                         (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                                     </div>
@@ -98,13 +99,7 @@
                             </div>
                         </div>
                         <div class="col-md-9 pe-5">
-                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
-                                        || !this.thainame || !this.text
-                                        || !this.email || !this.phonenumber
-                                        || !this.ordernumber || !this.pricevalue
-                                        || !this.file
-
-                                        ">
+                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
                                 Submit
                             </button>
                         </div>
@@ -133,13 +128,19 @@ export default {
         };
     },
     methods: {
+        handleprofile(event) {
+            this.file = event.target.files[0];
+            console.log(this.file)
+        },
         submit() {
             const URL = `${import.meta.env.VITE_API2}sentemail`;
             let data = new FormData();
-            data.append("thainame", this.thainame);
+            data.append("name", this.thainame);
             data.append("email", this.email);
+            data.append("from", this.email);
+            data.append("body", this.text);
             data.append("phonenumber", this.phonenumber);
-            data.append("pricevalue", this.thainame);
+            data.append("ordernumber", this.ordernumber);          
             data.append("file", this.file);
             let config = {
                 header: {
@@ -150,11 +151,12 @@ export default {
                 // console.log("this is res => ", this.date);
                 this.responseStatus = response.status
                 console.log("this is res => ", response);
-                router.push({ path: "/" });
+                console.log("this is data => ", data);
+                router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
 
             }).catch((error) => {
                 console.log("this is error => ", error);
-                router.push({ path: "/:notfound" });
+                
             });
         },
     },
