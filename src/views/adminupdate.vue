@@ -516,29 +516,7 @@
               </div>
               <hr class="mx-n3" />
 
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ใบเสร็จชำระเงินสมาชิกลำดับต่างๆ</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <img
-                    v-if="payimage"
-                    :src="payimage"
-                    alt="Preview"
-                    class=""
-                    width="400"
-                  />
-                  <!-- Display a default image if previewFile is not available -->
-                  <p v-else>
-                    <img
-                      src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
-                      alt="Admin"
-                      class="rounded-circle p-1"
-                      width="400"
-                    />
-                  </p>
-                </div>
-              </div>
+            
 
               <hr class="mx-n3" />
 
