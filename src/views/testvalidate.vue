@@ -662,8 +662,8 @@ export default {
                     window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
 
                 }).catch((error) => {
-                    alert("this is error => ", error);
-                    router.push({ path: "/:notfound" });
+                    alert(error.response.data.Text);
+                    
                 });
             }
         },
