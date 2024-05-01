@@ -27,14 +27,17 @@
     </div>
   </nav>
 
-  <table class="table mt-4">
-    <thead>
+
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
       <tr>
         <th scope="col ">#</th>
         <th scope="col ">ItemID</th>
         <th scope="col ">ItemName</th>
         <th scope="col ">ItemQuantity</th>
         <th scope="col ">ItemPrice</th>
+            <th scope="col ">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -61,6 +64,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
 
 </template>
 

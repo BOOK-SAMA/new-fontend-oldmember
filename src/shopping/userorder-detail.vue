@@ -39,8 +39,10 @@
                     <h1> <p>Order number : <span class="texthighlight"><td v-text="ordernumber"></td></span></p></h1>
                 </div>
                 <div class="container">
-                    <table class="table mt-4 ml-2 mr-2">
-                        <thead>
+                <div class="container table-responsive py-5"> 
+                <table class="table table-bordered table-hover">
+                 <thead class="thead-dark">
+
                             <tr>
                                 <th scope="col">Ordernumber</th>
                                 <th scope="col ">itemID</th>
@@ -62,7 +64,7 @@
                         </tbody>
                     </table>
                 </div>
-
+ </div>
 
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">

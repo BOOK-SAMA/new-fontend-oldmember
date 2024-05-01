@@ -30,8 +30,9 @@
     </div>
   </nav>
 
-  <table class="table mt-4">
-    <thead>
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
       <tr>
         <th scope="col ">#</th>
         <th scope="col">Username</th>
@@ -41,6 +42,7 @@
         <th scope="col">Role</th>
         <th scope="col">Paystatus</th>
         <th scope="col">Accressstatus</th>
+    <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -69,6 +71,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
   <!-- Modal -->
   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

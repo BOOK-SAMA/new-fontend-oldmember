@@ -69,29 +69,29 @@
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">Username</h6>
+                                    <h6 class="mb-0">Username<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="state.username" />
-                                    <span v-if="v$.username.$error">
+                                                              <span v-if="v$.username.$error" class="text-danger fw-bold">
                                         {{ v$.username.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.username" />
                                 </div>
                             </div>
 
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">รหัสผ่าน</h6>
+                                    <h6 class="mb-0">รหัสผ่าน<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input :type="inputType" id="myInput" v-model="state.password"
-                                        class="form-control form-control-lg" />
-                                    <span v-if="v$.password.$error">
+                                    <span v-if="v$.password.$error" class="text-danger fw-bold">
                                         {{ v$.password.$errors[0].$message }}
                                     </span>
+                                    <input :type="inputType" id="myInput" v-model="state.password"
+                                        class="form-control form-control-lg" />
                                 </div>
-                                <button @click="togglePassword" class="mt-2 ">
+                                <button @click="togglePassword" class="mt-2">
                                     Toggle Password
                                 </button>
                             </div>
@@ -100,40 +100,40 @@
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ยืนยันรหัสผ่าน</h6>
+                                    <h6 class="mb-0">ยืนยันรหัสผ่าน<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input :type="inputType" id="myInput" v-model="state.confirmpassword"
-                                        class="form-control form-control-lg" />
-                                    <span v-if="v$.confirmpassword.$error">
+                                    <span v-if="v$.confirmpassword.$error" class="text-danger fw-bold">
                                         {{ v$.confirmpassword.$errors[0].$message }}
                                     </span>
+                                    <input :type="inputType" id="myInput" v-model="state.confirmpassword"
+                                        class="form-control form-control-lg" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
-                                    <h6 class="mb-0">ชื่อภาษาไทย</h6>
+                                    <h6 class="mb-0">ชื่อภาษาไทย<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="state.thainame" />
-                                    <span v-if="v$.thainame.$error">
+                                                                    <span v-if="v$.thainame.$error" class="text-danger fw-bold">
                                         {{ v$.thainame.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.thainame" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
-                                    <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
+                                    <h6 class="mb-0">ชื่อภาษาอังกฤษ<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="state.engname" />
-                                    <span v-if="v$.engname.$error">
+                                 <span v-if="v$.engname.$error" class="text-danger fw-bold">
                                         {{ v$.engname.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.engname" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -274,28 +274,28 @@
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
-                                    <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน (เพื่อการจัดส่งของที่ระลึก)</h6>
+                                    <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน (เพื่อการจัดส่งของที่ระลึก)<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="state.address" />
-                                    <span v-if="v$.address.$error">
+                                        <span v-if="v$.address.$error" class="text-danger fw-bold">
                                         {{ v$.address.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" placeholder=""
+                                        v-model="state.address" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
-                                    <h6 class="mb-0">หมายเลขโทรศัพท์</h6>
+                                    <h6 class="mb-0">หมายเลขโทรศัพท์<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="state.phonenumber" />
-                                    <span v-if="v$.phonenumber.$error">
+                                                                    <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
                                         {{ v$.phonenumber.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" placeholder=""
+                                        v-model="state.phonenumber" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -324,14 +324,14 @@
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
-                                    <h6 class="mb-0">อีเมล</h6>
+                                    <h6 class="mb-0">อีเมล<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="state.email" />
-                                    <span v-if="v$.email.$error">
+                                                                    <span v-if="v$.email.$error" class="fw-bold text-danger">
                                         {{ v$.email.$errors[0].$message }}
                                     </span>
+                                    <input type="text" class="form-control form-control-lg" placeholder=""
+                                        v-model="state.email" />
                                 </div>
                             </div>
                             <div class="row align-items-center py-3">
@@ -483,7 +483,7 @@
                                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
                             </h6>
                             <div class="col-md-9 pe-5">
-                                <button type="submit" class="btn btn-primary btn-lg" @click="submit()"
+                                <button type="submit" class="btn btn-primary btn-lg text-white" @click="submit()"
                                     :disabled="!this.statusinfo || !this.pnstatus">
                                     Submit
                                 </button>

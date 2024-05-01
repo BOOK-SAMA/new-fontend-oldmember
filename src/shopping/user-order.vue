@@ -31,16 +31,17 @@
     </nav>
 
     <div style="margin-top: 100px;"> <!-- Add this to create space below navbar -->
-        <table class="table mt-4">
-            <thead>
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Ordernumber</th>
                     <th scope="col">Orderdate</th>
                     <th scope="col">เลขที่คำสั่งซื้อ</th>
-                    <th scope="col">thainame</th>
-                    <th scope="col">state</th>
-                    
+                    <th scope="col">Thainame</th>
+                    <th scope="col">State</th>
+                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +66,7 @@
             </tbody>
         </table>
     </div>
-
+    </div>
 </template>
 
 
