@@ -20,9 +20,7 @@ export const productsStore = defineStore('products', {
                     product.image = await this.downloadImageAndDisplay(product.image);
                 }));
 
-                await Promise.all(this.products.map(async (product) => {
-                    product.quantity = 0
-                }));
+               
 
             } catch (error) {
                 console.log("Error fetching products:", error);
@@ -31,6 +29,7 @@ export const productsStore = defineStore('products', {
 
         addToCart(product) {
             console.log('this come form addToCart func' , product.quantity);
+            product.quantity = 1 ;
             this.cart.push(product);
             console.log('this come form addToCart func' , this.cart);
             

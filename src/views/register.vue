@@ -18,7 +18,10 @@
                   <h6 class="mb-0">Username</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" v-model="username" />
+                  <input type="text" class="form-control form-control-lg" v-model="state.username" />
+                  <span v-if="v$.username.$error">
+                    {{ v$.username.$errors[0].$message }}
+                  </span>
                 </div>
               </div>
 
@@ -310,7 +313,7 @@
                 <div class="col-md-5 pe-5">
                   <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="levelmemberthing">
                     <option selected disabled>เลือก 1 อย่าง</option>
-                    <option value="">
+                    <option value="ไม่รับของชำร่วย">
                       ไม่รับของชำร่วย(เป็นยุวสมาชิก)
                     </option>
                     <option value="กระเป๋าผ้าและแมส SCSU ">
@@ -364,23 +367,6 @@
               </div>
               <!-- ช่องรูปถ่าย-->
               <hr class="mx-n3" />
-              <div class="col align-items-center py-3">
-                <div class="col-md-5 ps-5">
-                  <h6 class="mb-0">
-                    ช่องทางการชำระเงิน ธนาคารกรุงไทย สาขาสำนักนานาเหนือ เลขที่
-                    000-0-35556-9
-                  </h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <div class="form-check form-check-inline">
-                    <img
-                      src="https://lh4.googleusercontent.com/RMQziLQRistxbkv9ZX30hyx1zWSyZ9RgZPISwbahv0IqBa9JJ9T_f6AFLXuj7cM_m8uARSm5GPfGCkZy-EqTlXjXccfTjl60r4mD5h5X1OdYf5bwxO7Jbf-wb3sOaHmO3g=w584"
-                      alt="image" class="img-thumbnail" />
-                  </div>
-                </div>
-              </div>
-              <!-- รูปจ่ายเงิน-->
-              <hr class="mx-n3" />
               <div class="row align-items-center py-3">
                 <div class="col-md-5 ps-5">
                   <h6 class="mb-0">
@@ -402,36 +388,15 @@
               </div>
               <!-- ช่องยืนยันกดหมาย-->
               <hr class="mx-n3" />
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">สลิปการโอนเงิน</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input class="form-control form-control-lg" id="formFileLg" type="file" @change="handlepaycheck" />
-                  <div class="small text-muted mt-2">
-                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-                  </div>
-                </div>
-              </div>
-              <!-- ช่องสลิปจ่ายเงิน-->
-              <hr class="mx-n3" />
             </div>
             <div class="px-5 py-4">
               <h6 class="mb-0">
                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
               </h6>
               <hr class="mx-n2" />
-
-
-              <!-- <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
-                || !this.email || !this.confirmpassword || !this.thainame || !this.statusinfo || !this.pnstatus
-                ">
-                Submit
-              </button> -->
-
-
-              <div class="col-md-9 pe-5">
-                <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.username || !this.password
+             <div class="col-md-9 pe-5">
+                <button type="submit" class="btn btn-primary btn-lg" @click="submit()" 
+                :disabled=" !this.username || !this.password
                   || !this.confirmpassword || !this.thainame || !this.engname
                   || !this.email || !this.phonenumber || !this.address
                   || !this.statusinfo || !this.pnstatus 
@@ -458,13 +423,35 @@
 
 <script>
 import router from "@/router";
-import { ref } from "vue";
+import { ref ,reactive,computed } from "vue";
 import axios from "axios";
+import { useVuelidate } from '@vuelidate/core'
+import { required, minLength } from '@vuelidate/validators'
 
 export default {
+  setup(){
+    const state = reactive({
+      username: "",
+    })
+
+    const rule = computed(() => {
+      return {
+        username: { required , minLength: minLength(4)}
+      }
+    })
+
+    const v$ = useVuelidate(rule , state)
+
+    return {
+      state ,
+      v$
+    }
+  },
+
   data() {
     return {
-      username: "",
+      v$ : useVuelidate(),
+      
       password: "",
       confirmpassword: "",
       responseStatus: null,
@@ -496,15 +483,12 @@ export default {
       statusinfo: false,
       pnstatus: false,
       file: null,
-      payimage: null,
       inputType: "password",
       date: "",
     };
   },
-  onMounted() {
 
-  },
-  methods: {
+   methods: {
     handleprofile(event) {
       this.file = event.target.files[0];
     },
@@ -522,58 +506,64 @@ export default {
       return `คุณเกิดวันที่ ${day}/${month}/${year}`;
     },
     submit() {
-      const URL = `${import.meta.env.VITE_API2}register2`;
-      let data = new FormData();
+      this.v$.$validate()
+      if (!this.v$.error){
+        alert("สมัครได้")
+      }else{
+        alert("สมัครไม่ได้")
+      }
+      // const URL = `${import.meta.env.VITE_API2}register2`;
+      // let data = new FormData();
 
 
-      data.append("username", this.username);
-      data.append("password", this.password);
-      data.append("confirmpassword", this.confirmpassword);
+      // data.append("username", this.username);
+      // data.append("password", this.password);
+      // data.append("confirmpassword", this.confirmpassword);
 
-      data.append("thainame", this.thainame);
-      data.append("engname", this.engname);
-      data.append("oldname", this.oldname);
-      data.append("nickname", this.nickname);
-      data.append("dateofbirth", this.date);
+      // data.append("thainame", this.thainame);
+      // data.append("engname", this.engname);
+      // data.append("oldname", this.oldname);
+      // data.append("nickname", this.nickname);
+      // data.append("dateofbirth", this.date);
 
-      data.append("status", this.status);
-      data.append("academicstatus", this.academicstatus);
-      data.append("academicnumber", this.academicnumber);
-      data.append("masterdegree", this.masterdegree);
-      data.append("masterdegreenumber", this.masterdegreenumber);
-      data.append("doctordegree", this.doctordegree);
-      data.append("doctordegreenumber", this.doctordegreenumber);
+      // data.append("status", this.status);
+      // data.append("academicstatus", this.academicstatus);
+      // data.append("academicnumber", this.academicnumber);
+      // data.append("masterdegree", this.masterdegree);
+      // data.append("masterdegreenumber", this.masterdegreenumber);
+      // data.append("doctordegree", this.doctordegree);
+      // data.append("doctordegreenumber", this.doctordegreenumber);
 
-      data.append("address", this.address);
-      data.append("phonenumber", this.phonenumber);
-      data.append("phonemail", this.phonemail);
-      data.append("idline", this.Idline);
-      data.append("email", this.email);
-      data.append("job", this.job);
-      data.append("jobposition", this.jobposition);
-      data.append("jobaddress", this.jobadress);
-      data.append("levelmember", this.levelmember);
-      data.append("levelmemberthing", this.levelmemberthing);
-      data.append("statusinfo", this.statusinfo);
-      data.append("file", this.file);
-      data.append("payimage", this.payimage);
-      data.append("PNstatus", this.pnstatus);
-      let config = {
-        header: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
+      // data.append("address", this.address);
+      // data.append("phonenumber", this.phonenumber);
+      // data.append("phonemail", this.phonemail);
+      // data.append("idline", this.Idline);
+      // data.append("email", this.email);
+      // data.append("job", this.job);
+      // data.append("jobposition", this.jobposition);
+      // data.append("jobaddress", this.jobadress);
+      // data.append("levelmember", this.levelmember);
+      // data.append("levelmemberthing", this.levelmemberthing);
+      // data.append("statusinfo", this.statusinfo);
+      // data.append("file", this.file);
+      // data.append("PNstatus", this.pnstatus);
+      // let config = {
+      //   header: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // };
 
-      axios.post(URL, data, config).then((response) => {
-        // console.log("this is res => ", this.date);
-        this.responseStatus = response.status
-        console.log("this is res => ", response);
-        router.push({ path: "/" });
-
-      }).catch((error) => {
-        console.log("this is error => ", error);
-        router.push({ path: "/:notfound" });
-      });
+      // axios.post(URL, data, config).then((response) => {
+      //   // console.log("this is res => ", this.date);
+      //   this.responseStatus = response.status
+      //   console.log("this is res => ", response);
+      //   alert("การสมัครสมาชิกสำเร็จแล้ว")
+      //   window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+        
+      // }).catch((error) => {
+      //   alert("this is error => ", error);
+      //   router.push({ path: "/:notfound" });
+      // });
     },
   },
 };
@@ -585,130 +575,3 @@ export default {
 
 
 
-
-<!--
-   axios({
-//         method: "post",
-//         url: "http://localhost:4444/register",
-//         data: {
-//           username: this.Username,
-//           password: this.Password,
-//           confirmpassword: this.CPassword,
-//           file: this.$refs.fileInput.files[0]
-//           // thainame: this.THAIname,
-//           // engname: this.ENGname,
-//           // oldname: this.oldname,
-//           // nickname: this.nickname,
-//           // dateofbirth: this.date,
-
-//           // status: this.status,
-//           // academicstatus: this.academicstatus,
-//           // academicnumber: this.academicnumber,
-//           // masterdegree: this.masterdegree,
-//           // masterdegreenumber: this.masterdegreenumber,
-//           // doctordegree: this.doctordegree,
-//           // doctordegreenumber: this.doctordegreenumber,
-
-//           // address: this.address,
-//           // phonenumber: this.phonenumber,
-//           // phonemail: this.phonemail,
-//           // idline: this.idline,
-//           // email: this.email,
-//           // job: this.job,
-//           // jobposition: this.jobposition,
-//           // jobaddress: this.jobadress,
-
-//           // levelmember: this.levelmember,
-//           // levelmemberthing: this.levelmemberthing,
-//           // statusinfo: this.statusinfo,
-
-//           // pnstatus: this.pnstatus,
-//         },
-//       })
-//         .then((res) => {
-//           console.log(this.submit);
-//           console.log(res);
-//         })
-//         .catch();
-//     },
-//  <div class="row align-items-center py-3">
-//                 <div class="col-md-3 ps-5">
-//                   <h6 class="mb-0">สลิปการโอนเงิน</h6>
-//                 </div>
-//                 <div class="col-md-9 pe-5">
-//                   <input
-//                     class="form-control form-control-lg"
-//                     id="formFileLg"
-//                     type="file"
-//                   />
-//                   <div class="small text-muted mt-2">
-//                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-//                   </div>
-//                 </div>
-//               </div>
-
-
-
-// <div class="row align-items-center py-3">
-//                 <div class="col-md-3 ps-5">
-//                   <h6 class="mb-0">รูปถ่าย</h6>
-//                 </div>
-//                 <div class="col-md-9 pe-5">
-//                   <input
-//                     @change="handleFileChange"
-//                     class="form-control form-control-lg"
-//                     id="formFileLg"
-//                     type="file"
-//                   />
-//                   <div class="small text-muted mt-2">
-//                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-//                   </div>
-//                   <p>
-//                     ไฟล์ที่เลือก:
-//                     {{
-//                       selectedFile ? selectedFile.name : "ยังไม่ได้เลือกไฟล์"
-//                     }}
-//                   </p>
-//                 </div>
-//               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-// <script>
-// export default {
-//   data() {
-//     return {
-//       selectedFile: null,
-//     };
-//   },
-//   methods: {
-//     handleFileChange(event) {
-//       this.selectedFile = event.target.files[0];
-//     },
-//   },
-// };
-//
-</script>
-
-// ในตัวอย่างนี้:
-
-// เพิ่ม @change event handler ใน input element โดยให้มีการเรียกฟังก์ชัน handleFileChange เมื่อมีการเปลี่ยนแปลง (ไฟล์ถูกเลือก).
-
-// สร้างตัวแปร selectedFile ใน data ของ Vue instance เพื่อเก็บข้อมูลไฟล์ที่ถูกเลือก.
-
-// สร้าง method ที่ชื่อ handleFileChange ซึ่งจะถูกเรียกเมื่อไฟล์ถูกเลือก และจะเก็บข้อมูลไฟล์ที่ถูกเลือกในตัวแปร selectedFile.
-
-// แสดงผลข้อมูลไฟล์ที่ถูกเลือกด้วย {{ selectedFile ? selectedFile.name : 'ยังไม่ได้เลือกไฟล์' }}.
-
-// คำทำนาย: หากโค้ดด้านบนยังไม่ทำงานได้หรือมีปัญหาเฉพาะกับเว็บบราวเซอร์บางประการ, คุณอาจต้องปรับปรุงโค้ดบางส่วนเพื่อให้ทำงานได้ถูกต้อง.
--->
