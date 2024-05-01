@@ -69,7 +69,7 @@ const handleSubmit = async () => {
     });
 
     if (response.status !== 200) {
-      router.push({ path: "/:notFound" });
+      alert(response.Text)
       // throw new Error("Failed to authenticate");
     } else {
       const responseData = response.data;
@@ -80,15 +80,12 @@ const handleSubmit = async () => {
 
       // Continue with other actions based on the API response
       console.log("API Response:", response.data);
-
+      alert("เข้าสู่ระบบ เรียบร้อยแล้ว")
       // Redirect to profile page
       router.push({ path: "/admintoo/" + responseData.userid });
     }
   } catch (error) {
-    localStorage.removeItem("userid");
-    localStorage.removeItem("tokenstring");
-    localStorage.removeItem("uuid");
-    router.push({ path: "/:notFound" });
+    alert("กรุณากรอก username และ password ให้ถูกต้อง")
   }
 };
 </script>

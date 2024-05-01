@@ -30,21 +30,7 @@
   </div>
 </template>
 
-<!-- <script >
 
-// import axios from 'axios'
-// import { onMounted } from 'vue';
-// const test = async () => {
-//   await axios.get(`${import.meta.env.VITE_API}`)
-//   .then((response) => {
-//       console.log(response)
-//   }).catch((err)=>{
-//     console.log(err)
-//   })
-// }
-
-// onMounted(() => test)
-</script> -->
 
 
 
@@ -66,12 +52,8 @@ const handleSubmit = async () => {
       password,
     });
 
-    if (response.status == 201) {
-      router.push({ path: "/:notpay" });
-    } else
       if (response.status !== 200) {
-        router.push({ path: "/:notFound" });
-        // throw new Error("Failed to authenticate");
+          alert(response.Text)
       } else {
         const responseData = response.data;
 
@@ -81,15 +63,12 @@ const handleSubmit = async () => {
 
         // Continue with other actions based on the API response
         console.log("API Response:", response.data);
-
+        alert("เข้าสู่ระบบ เรียบร้อยแล้ว")
         // Redirect to profile page
         router.push({ path: "/profile/" + responseData.userid });
       }
   } catch (error) {
-    localStorage.removeItem("userid");
-    localStorage.removeItem("tokenstring");
-    localStorage.removeItem("uuid");
-    router.push({ path: "/:notFound" });
+    alert("กรุณากรอก username และ password ให้ถูกต้อง")
   }
 };
 </script>
