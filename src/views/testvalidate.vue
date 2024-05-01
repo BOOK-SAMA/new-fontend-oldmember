@@ -450,6 +450,7 @@
                                             id="inlineCheckbox1" value="ยืนยัน" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
                                     </div>
+                                    <h6 class="mb-0"># ถ้าไม่กด ยืนยัน จะกดปุ่น Submit ไม่ได้นะครับ #</h6>
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -470,7 +471,9 @@
                                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
                                             value="ยืนยัน" v-model="pnstatus" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
+
                                     </div>
+                                    <h6 class="mb-0"># ถ้าไม่กด ยืนยัน จะกดปุ่น Submit ไม่ได้นะครับ #</h6>
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -552,6 +555,7 @@ export default {
 
     data() {
         return {
+            date: "",
             inputType: "password",
             oldname: "",
             nickname: "",
@@ -609,61 +613,59 @@ export default {
                 alert('Form failed validation')
 
             } else {
-                alert('Form successfully submitted.')
+                const URL = `${import.meta.env.VITE_API}register2`;
+                let data = new FormData();
+
+
+                data.append("username", this.state.username);
+                data.append("password", this.state.password);
+                data.append("confirmpassword", this.state.confirmpassword);
+
+                data.append("thainame", this.state.thainame);
+                data.append("engname", this.state.engname);
+                data.append("oldname", this.oldname);
+                data.append("nickname", this.nickname);
+                data.append("dateofbirth", `${this.day}/${this.month}/${this.year}`);
+
+                data.append("status", this.status);
+                data.append("academicstatus", this.academicstatus);
+                data.append("academicnumber", this.academicnumber);
+                data.append("masterdegree", this.masterdegree);
+                data.append("masterdegreenumber", this.masterdegreenumber);
+                data.append("doctordegree", this.doctordegree);
+                data.append("doctordegreenumber", this.doctordegreenumber);
+
+                data.append("address", this.state.address);
+                data.append("phonenumber", this.state.phonenumber);
+                data.append("phonemail", this.phonemail);
+                data.append("idline", this.Idline);
+                data.append("email", this.state.email);
+                data.append("job", this.job);
+                data.append("jobposition", this.jobposition);
+                data.append("jobaddress", this.jobaddress);
+                data.append("levelmember", this.levelmember);
+                data.append("levelmemberthing", this.levelmemberthing);
+                data.append("statusinfo", this.statusinfo);
+                data.append("file", this.file);
+                data.append("PNstatus", this.pnstatus);
+                let config = {
+                    header: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                };
+
+                axios.post(URL, data, config).then((response) => {
+                    // console.log("this is res => ", this.date);
+                    this.responseStatus = response.status
+                    console.log("this is res => ", response);
+                    alert("การสมัครสมาชิกสำเร็จแล้ว")
+                    window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+
+                }).catch((error) => {
+                    alert("this is error => ", error);
+                    router.push({ path: "/:notfound" });
+                });
             }
-
-            // const URL = `${import.meta.env.VITE_API2}register2`;
-            // let data = new FormData();
-
-
-            // data.append("username", this.username);
-            // data.append("password", this.password);
-            // data.append("confirmpassword", this.confirmpassword);
-
-            // data.append("thainame", this.thainame);
-            // data.append("engname", this.engname);
-            // data.append("oldname", this.oldname);
-            // data.append("nickname", this.nickname);
-            // data.append("dateofbirth", this.date);
-
-            // data.append("status", this.status);
-            // data.append("academicstatus", this.academicstatus);
-            // data.append("academicnumber", this.academicnumber);
-            // data.append("masterdegree", this.masterdegree);
-            // data.append("masterdegreenumber", this.masterdegreenumber);
-            // data.append("doctordegree", this.doctordegree);
-            // data.append("doctordegreenumber", this.doctordegreenumber);
-
-            // data.append("address", this.address);
-            // data.append("phonenumber", this.phonenumber);
-            // data.append("phonemail", this.phonemail);
-            // data.append("idline", this.Idline);
-            // data.append("email", this.email);
-            // data.append("job", this.job);
-            // data.append("jobposition", this.jobposition);
-            // data.append("jobaddress", this.jobadress);
-            // data.append("levelmember", this.levelmember);
-            // data.append("levelmemberthing", this.levelmemberthing);
-            // data.append("statusinfo", this.statusinfo);
-            // data.append("file", this.file);
-            // data.append("PNstatus", this.pnstatus);
-            // let config = {
-            //   header: {
-            //     "Content-Type": "multipart/form-data",
-            //   },
-            // };
-
-            // axios.post(URL, data, config).then((response) => {
-            //   // console.log("this is res => ", this.date);
-            //   this.responseStatus = response.status
-            //   console.log("this is res => ", response);
-            //   alert("การสมัครสมาชิกสำเร็จแล้ว")
-            //   window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
-
-            // }).catch((error) => {
-            //   alert("this is error => ", error);
-            //   router.push({ path: "/:notfound" });
-            // });
         },
     },
 };
