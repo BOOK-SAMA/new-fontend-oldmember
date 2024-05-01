@@ -46,14 +46,19 @@ let password = "";
 const router = useRouter();
 
 const handleSubmit = async () => {
+  if (!username.trim() || !password.trim()) {
+    alert("กรุณากรอก username และ password");
+    return;
+  }
+
   try {
     const response = await axios.post(`${import.meta.env.VITE_API2}login`, {
       username,
       password,
     });
-
-      if (response.status !== 200) {
-          alert(response.Text)
+      
+      if (response.status != 200) {
+          alert(response.data.message);
       } else {
         const responseData = response.data;
 
@@ -68,7 +73,7 @@ const handleSubmit = async () => {
         router.push({ path: "/profile/" + responseData.userid });
       }
   } catch (error) {
-    alert("กรุณากรอก username และ password ให้ถูกต้อง")
+    alert(error.response.data.Text)
   }
 };
 </script>

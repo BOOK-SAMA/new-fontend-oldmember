@@ -62,6 +62,11 @@ let password = "";
 const router = useRouter();
 
 const handleSubmit = async () => {
+  if (!username.trim() || !password.trim()) {
+    alert("กรุณากรอก username และ password");
+    return;
+  }
+
   try {
     const response = await axios.post(`${import.meta.env.VITE_API}loginadmin`, {
       username,
@@ -85,7 +90,7 @@ const handleSubmit = async () => {
       router.push({ path: "/admintoo/" + responseData.userid });
     }
   } catch (error) {
-    alert("กรุณากรอก username และ password ให้ถูกต้อง")
+    alert(error.response.data.Text)
   }
 };
 </script>
