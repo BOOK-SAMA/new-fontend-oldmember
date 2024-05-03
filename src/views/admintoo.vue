@@ -21,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">

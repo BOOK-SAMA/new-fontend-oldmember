@@ -126,6 +126,11 @@ const router = createRouter({
       component: () => import('/src/product/addproduct.vue'),
       name: 'addproduct',
     },
+    {
+      path: `/seeallorder`,
+      component: () => import('/src/views/allorder.vue'),
+      name: 'seeallorder',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

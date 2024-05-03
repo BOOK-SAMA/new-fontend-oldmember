@@ -662,7 +662,7 @@ export default {
       try {
         // Fetch the image content from the server
         const response = await axios.get(
-          `${import.meta.env.VITE_API2}admin/preview/${uuid}`,
+          `${import.meta.env.VITE_API2}users/preview/${uuid}`,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("tokenstring"),
