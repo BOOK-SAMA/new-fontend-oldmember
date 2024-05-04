@@ -62,8 +62,8 @@
                     <td>{{ order.state }}</td>
                     <td>{{ order.totalCartPrice }}</td>
                     <td class="p-1">
-                        <a class="btn btn-success btn-sm"
-                            :href="state ? '#' : `/orderhistory/${order.Uniqueorder}`">ดูประวัติการสั่งซื้อ</a>
+                        <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/'}"
+                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
                         <a class="btn btn-warning btn-sm" :href="state ? '#' : ``">แก้ไขคำสั่งซื้อ</a>
                         <div class="b-example-divider p-1"></div>
@@ -92,7 +92,7 @@ export default {
 
     async mounted() {
         // Ensure user is authenticated and authorized
-        const id = this.$route.params.id;
+        
         await this.Getorder();
     },
     methods: {

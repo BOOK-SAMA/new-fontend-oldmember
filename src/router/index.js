@@ -131,6 +131,11 @@ const router = createRouter({
       component: () => import('/src/views/allorder.vue'),
       name: 'seeallorder',
     },
+    {
+      path: `/seeoneorder/:uniqueorder/`,
+      component: () => import('/src/views/vieworder.vue'),
+      name: 'seeoneorder',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
