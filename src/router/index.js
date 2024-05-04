@@ -136,6 +136,11 @@ const router = createRouter({
       component: () => import('/src/views/vieworder.vue'),
       name: 'seeoneorder',
     },
+    {
+      path: `/editorder/:uniqueorder/`,
+      component: () => import('/src/views/updateorder.vue'),
+      name: 'editorder',
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

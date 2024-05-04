@@ -62,12 +62,15 @@
                     <td>{{ order.state }}</td>
                     <td>{{ order.totalCartPrice }}</td>
                     <td class="p-1">
-                        <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/'}"
+                        <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/' }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
-                        <a class="btn btn-warning btn-sm" :href="state ? '#' : ``">แก้ไขคำสั่งซื้อ</a>
+                        <router-link :to="{ path: '/editorder/' + order.uniqueorder + '/' }"
+                            class="btn btn-success btn-sm">แก้ไขสถานะคำสั่งซื้อ</router-link>
                         <div class="b-example-divider p-1"></div>
-                        <a class="btn btn-danger btn-sm" :href="state ? '#' : ``">ลบคำสั่งซื้อ</a>
+                        <router-link :to="{ path: '/seeallorder/' }" class="btn btn-danger btn-sm"
+                            @click="dodelete(order.uniqueorder)">ลบ
+                        </router-link>
                         <div class="b-example-divider p-1"></div>
                     </td>
                 </tr>
@@ -92,7 +95,7 @@ export default {
 
     async mounted() {
         // Ensure user is authenticated and authorized
-        
+
         await this.Getorder();
     },
     methods: {
@@ -123,6 +126,23 @@ export default {
                 router.push({ path: "/loginadmin" });
             }
         },
+        async dodelete(uniqueorder){
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API2}deleteorder/${uniqueorder}`,
+                    {
+                        headers: {
+                            // ตัวอย่าง Header (แก้ตามความเหมาะสม)
+                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                console.log(response.data);
+            } catch (error) {
+                alert("ไม่สามารถลบคำสั่งซื้อได้")
+            }
+        }
     },
 };
 </script>
