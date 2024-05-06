@@ -36,7 +36,7 @@
 
             <div id="myaccount" class="floatleft">
                 <div class="container">
-                    <h1> <p>Order number : <span class="texthighlight"><td v-text="ordernumber"></td></span></p></h1>
+                    <h1> <p>เลขที่คำสั่งซื้อ : <span class="texthighlight"><td v-text="ordernumber"></td></span></p></h1>
                 </div>
                 <div class="container">
                 <div class="container table-responsive py-5"> 
@@ -70,7 +70,7 @@
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
                             <p><strong>Order details</strong></p><br>
-                            <p>Order number : <span class="texthighlight"><td v-text="ordernumber"></td></span></p>
+                            <p>เลขที่คำสั่งซื้อ : <span class="texthighlight"><td v-text="ordernumber"></td></span></p>
                             <p>Order date : <span class="texthighlight"><td v-text="orderdate"></td></span></p>
                         </div>
                     </div>

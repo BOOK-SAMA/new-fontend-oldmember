@@ -35,45 +35,36 @@
             </form>
         </div>
     </nav>
-
-
-
-
-
     <div class="container table-responsive py-5">
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Uniqueorder</th>
-                    <th scope="col">Thainame</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phonenumber</th>
-                    <th scope="col">Orderdate</th>
-                    <th scope="col">State</th>
-                    <th scope="col">TotalCartPrice</th>
+                    <th scope="col">รูปแบบฟอร์ม</th>
+                    <th scope="col">รหัสคำสั่งซื้อ</th>
+                    <th scope="col">ชื่อภาษาไทย</th>
+                    <th scope="col">อีเมล</th>
+                    <th scope="col">เบอร์โทรศัพท์</th>
+                    <th scope="col">จำนวนเงิน</th>
+                    <th scope="col">สถานะ</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(order, index) in orders" :key="index">
+                <tr v-for="(from, index) in paymentfroms" :key="index">
                     <th scope="row">{{ index + 1 }}</th>
-                    <td>{{ order.uniqueorder }}</td>
-                    <td>{{ order.thainame }}</td>
-                    <td>{{ order.address }}</td>
-                    <td>{{ order.phonenumber }}</td>
-                    <td>{{ order.Orderdate }}</td>
-                    <td>{{ order.state }}</td>
-                    <td>{{ order.totalCartPrice }}</td>
+                    <td>{{ from.type }}</td>
+                    <td>{{ from.uniqueorder }}</td>
+                    <td>{{ from.thainame }}</td>
+                    <td>{{ from.email }}</td>
+                    <td>{{ from.phonenumber }}</td>
+                    <td>{{ from.pricevalue }}</td>
+                    <td>{{ from.status }}</td>
                     <td class="p-1">
                         <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/' }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
                         <router-link :to="{ path: '/editorder/' + order.uniqueorder + '/' }"
                             class="btn btn-success btn-sm">แก้ไขสถานะคำสั่งซื้อ</router-link>
-                        <div class="b-example-divider p-1"></div>
-                        <router-link :to="{ path: '/seeallorder/' }" class="btn btn-danger btn-sm"
-                            @click="dodelete(order.uniqueorder)">ลบ
-                        </router-link>
                         <div class="b-example-divider p-1"></div>
                     </td>
                 </tr>
@@ -89,17 +80,17 @@
 import router from "@/router";
 import axios from "axios";
 export default {
-    name: "allorder",
+    name: "allpaymentfrom",
     data() {
         return {
-            orders: [],
+            paymentfroms: [],
         };
     },
 
     async mounted() {
         // Ensure user is authenticated and authorized
 
-        await this.Getorder();
+        await this.Getpaymentfrom();
     },
     methods: {
         async handlelogout() {
@@ -108,31 +99,10 @@ export default {
             localStorage.removeItem("uuid");
             router.push({ path: "/loginadmin" });
         },
-        async Getorder() {
-            try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API2}Getallorderadmin`,
-                    {
-                        headers: {
-                            // ตัวอย่าง Header (แก้ตามความเหมาะสม)
-                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                this.orders = response.data;
-                console.log(response.data);
-            } catch (error) {
-                localStorage.removeItem("userid");
-                localStorage.removeItem("tokenstring");
-                localStorage.removeItem("uuid");
-                router.push({ path: "/loginadmin" });
-            }
-        },
-        async dodelete(uniqueorder) {
+        async Getpaymentfrom() {
             try {
                 const response = await axios.post(
-                    `${import.meta.env.VITE_API2}deleteorder/${uniqueorder}`,
+                    `${import.meta.env.VITE_API2}viewpaymentfrom`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
@@ -141,11 +111,12 @@ export default {
                         },
                     }
                 );
+                this.paymentfrom = response.data;
                 console.log(response.data);
             } catch (error) {
-                alert("ไม่สามารถลบคำสั่งซื้อได้")
+                alert("ไม่สามารถเรียกดูแบบฟอร์มข้อมูลได้")
             }
-        }
+        },
     },
 };
 </script>

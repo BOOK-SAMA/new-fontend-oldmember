@@ -18,6 +18,11 @@ const router = createRouter({
       component: home
     },
     {
+      path: '/seeallfrom',
+      component: () => import('../views/allpaymentfrom.vue'),
+      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
+    {
       path: '/emailform',
       name: 'emailform',
       component: emailform

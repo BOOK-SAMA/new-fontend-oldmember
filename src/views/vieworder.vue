@@ -5,7 +5,7 @@
             <div id="myaccount" class="floatleft">
                 <div class="container">
                     <h1>
-                        <p>Order number : <span class="texthighlight">
+                        <p>เลขที่คำสั่งซื้อ : <span class="texthighlight">
                                 <td v-text="orders.uniqueorder"></td>
                             </span></p>
                     </h1>

@@ -15,13 +15,34 @@
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">เลขที่คำสั่งซื้อ</h6>
+                                    <h6 class="mb-0">หมวดหมู่แจ้งชำระเงิน</h6>
                                 </div>
+
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="ordernumber" />
-                                    <h3 class="mb-0">กรณีจะแจ้งชำระเงินค่าสมาชิก ให้กรอกเป็น ชำระเงินค่าสมัครสมาชิก นะครับ</h3>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" v-model="type" id="exampleRadios1"
+                                            value="ชำระเงินค่าสมัครสมาชิก" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            ชำระเงินค่าสมัครสมาชิก
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" v-model="type" id="exampleRadios2"
+                                            value="ชำระเงินค่าสินค้าที่ระลึก">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            ชำระเงินค่าสินค้าที่ระลึก
+                                        </label>
+                                    </div>
+
+                                    <div id="orderNumberInput"
+                                        :style="{ display: type === 'ชำระเงินค่าสินค้าที่ระลึก' ? 'block' : 'none' }">
+                                        <label for="orderNumber">เลขที่คำสั่งซื้อ:</label>
+                                        <input type="text" class="form-control form-control-lg" id="orderNumber"
+                                            v-model="uniqueorder">
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
@@ -107,7 +128,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 </template>
 
@@ -119,12 +139,14 @@ import axios from "axios";
 export default {
     data() {
         return {
-            text: "",
+            type: "",
+            uniqueorder: "",
             thainame: "",
             email: "",
             phonenumber: "",
             pricevalue: "",
             file: null,
+            text: "",
         };
     },
     methods: {
@@ -133,32 +155,45 @@ export default {
             console.log(this.file)
         },
         submit() {
-            const URL = `${import.meta.env.VITE_API2}sentemail`;
+            const URL = `${import.meta.env.VITE_API2}createpaymentfrom`;
             let data = new FormData();
-            data.append("name", this.thainame);
+            data.append("type", this.type);
+            data.append("uniqueorder", this.uniqueorder);
+            data.append("thainame", this.thainame);
             data.append("email", this.email);
-            data.append("from", this.email);
-            data.append("body", this.text);
+            data.append("text", this.text);
             data.append("phonenumber", this.phonenumber);
-            data.append("ordernumber", this.ordernumber);          
+            data.append("pricevalue", this.pricevalue);
             data.append("file", this.file);
+
             let config = {
                 header: {
                     "Content-Type": "multipart/form-data",
                 },
             };
             axios.post(URL, data, config).then((response) => {
-                // console.log("this is res => ", this.date);
                 this.responseStatus = response.status
                 console.log("this is res => ", response);
                 console.log("this is data => ", data);
-                router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
-
+                alert("กรอกแบบฟอร์มสำเร็จแล้ว")
             }).catch((error) => {
-                console.log("this is error => ", error);
-                
+                alert("this is error => ", error);
             });
         },
     },
+    mounted() {
+        // Add event listener for radio button change
+        document.querySelectorAll('input[name="exampleRadios"]').forEach((elem) => {
+            elem.addEventListener('change', () => {
+                // ถ้าเลือกชำระเงินค่าสมัครสมาชิก
+                if (elem.value === 'option1') {
+                    document.getElementById('orderNumberInput').style.display = 'none'; // ซ่อน input เลขที่คำสั่งซื้อ
+                } else {
+                    document.getElementById('orderNumberInput').style.display = 'block'; // แสดง input เลขที่คำสั่งซื้อ
+                }
+            });
+        });
+    }
 };
+
 </script>
