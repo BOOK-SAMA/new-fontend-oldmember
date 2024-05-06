@@ -50,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(from, index) in paymentfroms" :key="index">
+                <tr v-for="(from, index) in paymentfroms.Frompayment" :key="index">
                     <th scope="row">{{ index + 1 }}</th>
                     <td>{{ from.type }}</td>
                     <td>{{ from.uniqueorder }}</td>
@@ -60,12 +60,7 @@
                     <td>{{ from.pricevalue }}</td>
                     <td>{{ from.status }}</td>
                     <td class="p-1">
-                        <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/' }"
-                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
-                        <div class="b-example-divider p-1"></div>
-                        <router-link :to="{ path: '/editorder/' + order.uniqueorder + '/' }"
-                            class="btn btn-success btn-sm">แก้ไขสถานะคำสั่งซื้อ</router-link>
-                        <div class="b-example-divider p-1"></div>
+                       
                     </td>
                 </tr>
             </tbody>
@@ -111,8 +106,8 @@ export default {
                         },
                     }
                 );
-                this.paymentfrom = response.data;
-                console.log(response.data);
+                this.paymentfroms = response.data;
+                console.log(this.paymentfroms);
             } catch (error) {
                 alert("ไม่สามารถเรียกดูแบบฟอร์มข้อมูลได้")
             }
