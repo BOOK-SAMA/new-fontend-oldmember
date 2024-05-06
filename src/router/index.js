@@ -97,7 +97,7 @@ const router = createRouter({
       path: '/checkout',
       component: () => import('../shopping/checkout.vue'),
       name: 'checkout',
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
 
     },
     {
@@ -120,31 +120,37 @@ const router = createRouter({
       path: `/seeallproduct/:id/`,
       component: () => import('/src/product/producttool.vue'),
       name: 'seeallproduct',
+      meta: { requiresAuth: true }
     },
     {
       path: `/:id/updateproduct/:itemid/edit`,
       component: () => import('/src/product/updateproduct.vue'),
       name: 'productupdate',
+      meta: { requiresAuth: true }
     },
     {
       path: `/addproduct`,
       component: () => import('/src/product/addproduct.vue'),
       name: 'addproduct',
+      meta: { requiresAuth: true }
     },
     {
       path: `/seeallorder`,
       component: () => import('/src/views/allorder.vue'),
       name: 'seeallorder',
+      meta: { requiresAuth: true }
     },
     {
       path: `/seeoneorder/:uniqueorder/`,
       component: () => import('/src/views/vieworder.vue'),
       name: 'seeoneorder',
+      meta: { requiresAuth: true }
     },
     {
       path: `/editorder/:uniqueorder/`,
       component: () => import('/src/views/updateorder.vue'),
       name: 'editorder',
+      meta: { requiresAuth: true }
     },
   ]
 })
