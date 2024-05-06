@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import home from '/src/views/HomePage.vue'
-import register from '/src/views/testvalidate.vue'
+import register from '/src/views/registerpage.vue'
 import loginUser from '/src/views/loginpage.vue'
 import admin from '/src/views/loginadmin.vue'
 import NotFound from '/src/views/notfound.vue'
@@ -169,6 +169,7 @@ router.beforeEach((to, from, next) => {
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
+      alert("คุณยังไม่ได้เข้าสู่ระบบ รบกวนเข้าสู่ระบบก่อนนะครับ")
       window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
     } else {
       next();

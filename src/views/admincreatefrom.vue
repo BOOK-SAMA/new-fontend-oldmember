@@ -595,7 +595,8 @@ export default {
 
             axios.post(URL, data, config).then((response) => {
                 // console.log("this is res => ", this.date);
-                console.log("this is res => ", response);
+                alert("ทำการสร้างผู้ใช้สำเร็จแล้ว")
+
                 router.push({ path: '/admintoo/' + this.$route.params.id });
             });
         },

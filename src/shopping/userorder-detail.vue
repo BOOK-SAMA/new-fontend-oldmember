@@ -176,7 +176,7 @@ export default {
                 console.log(this.Orders);
                 console.log(this.Ordersdetail);
             } catch (error) {
-                console.log(error);
+                alert("ไม่สามารถดูรายละเอียดดคำสั่งซื้อได้")
             }
         },
 

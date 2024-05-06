@@ -151,6 +151,7 @@ export default {
                 .then((res) => {
                     console.log(data)
                     console.log(res)
+                    alert("ทำการเพิ่มสินค้าสำเร็จแล้ว")
                     this.router.push({ path: 'https://mytestsilpakorn.azurewebsites.net/'  });
                 })
                 .catch((error) => {

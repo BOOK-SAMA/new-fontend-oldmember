@@ -17,9 +17,6 @@
             ดูหน้ารายการสินค้า
           </a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" @click="router.push({ name: 'checkout' })">ใส่ข้อมูลยืนยันการสั่งซื้อ</a>
-        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">

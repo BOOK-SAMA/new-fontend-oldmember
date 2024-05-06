@@ -109,7 +109,7 @@ export default {
                 this.Orders = response.data.Order;
                 console.log(response.data.Order);
             } catch (error) {
-                console.log(error);
+                alert("ไม่สามารถดูคำสั่งซื้อได้")
             }
         },
     }

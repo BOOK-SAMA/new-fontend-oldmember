@@ -126,6 +126,7 @@ export default {
                 localStorage.removeItem("userid");
                 localStorage.removeItem("tokenstring");
                 localStorage.removeItem("uuid");
+                alert("เกิดข้อผิดพลาดในการดึงข้อมูล")
                 router.push({ path: "/loginadmin" });
             }
         },

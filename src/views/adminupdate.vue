@@ -848,10 +848,11 @@ export default {
         })
         .then((res) => {
           const idnew = localStorage.getItem("userid");
+          alert("ทำการแก้ไขข้อมูลเรียบร้อยแล้ว");
           this.router.push({ path: '/admintoo/' + idnew });
         })
         .catch((error) => {
-          console.error("Error updating:", error);
+          alert("มีข้อผิดพลาดในการทำงาน :", error);
         });
     },
     Changepassword() {
@@ -870,10 +871,11 @@ export default {
         })
         .then((res) => {
           const idnew = localStorage.getItem("userid");
+          alert("ทำการแก้ไขรหัสผ่านเรียบร้อยแล้ว");
           this.router.push({ path: `/admintoo/${idnew}` });
         })
         .catch((error) => {
-          console.error("Error updating:", error);
+          alert("มีข้อผิดพลาดในการทำงาน :", error);
         });
     },
     comparePasswords() {

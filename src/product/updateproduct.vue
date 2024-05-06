@@ -223,6 +223,7 @@ export default {
         .then((res) => {
           console.log(data)
           console.log(res)
+          alert("ทำการ update ข้อมูลสินค้าสำเร็จแล้ว")
         })
         .catch((error) => {
           console.error("Error updating:", error);

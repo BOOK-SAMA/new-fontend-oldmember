@@ -389,6 +389,7 @@ export default {
 				localStorage.removeItem("userid");
 				localStorage.removeItem("tokenstring");
 				localStorage.removeItem("uuid");
+				alert("การเรียกดูข้อมูลบุคคลผิดพลาด กรุณา login อีกครั้ง หรือ ติดต่อเจ้าหน้าที่")
 				router.push({ path: "/login" });
 			}
 		},
@@ -447,6 +448,7 @@ export default {
 				localStorage.removeItem("userid");
 				localStorage.removeItem("tokenstring");
 				localStorage.removeItem("uuid");
+				alert("การเรียกดูข้อมูลบุคคลผิดพลาด กรุณา login อีกครั้ง หรือ ติดต่อเจ้าหน้าที่")
 				router.push({ path: "/login" });
 			}
 		},
