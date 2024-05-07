@@ -26,6 +26,7 @@
                                             ชำระเงินค่าสมัครสมาชิก
                                         </label>
                                     </div>
+
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" v-model="type" id="exampleRadios2"
                                             value="ชำระเงินค่าสินค้าที่ระลึก">
@@ -137,9 +138,10 @@ import { ref } from "vue";
 import axios from "axios";
 
 export default {
+    
     data() {
         return {
-            type: "",
+            type: "ชำระเงินค่าสมัครสมาชิก",
             uniqueorder: "",
             thainame: "",
             email: "",
@@ -155,6 +157,7 @@ export default {
             console.log(this.file)
         },
         submit() {
+            console.log(this.type)
             const URL = `${import.meta.env.VITE_API2}createpaymentfrom`;
             let data = new FormData();
             data.append("type", this.type);
@@ -182,10 +185,11 @@ export default {
         },
     },
     mounted() {
-        // Add event listener for radio button change
+        
         document.querySelectorAll('input[name="exampleRadios"]').forEach((elem) => {
+           
             elem.addEventListener('change', () => {
-                // ถ้าเลือกชำระเงินค่าสมัครสมาชิก
+                
                 if (elem.value === 'option1') {
                     document.getElementById('orderNumberInput').style.display = 'none'; // ซ่อน input เลขที่คำสั่งซื้อ
                 } else {

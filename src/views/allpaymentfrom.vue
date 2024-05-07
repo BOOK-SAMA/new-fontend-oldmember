@@ -50,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(from, index) in paymentfroms.Frompayment" :key="index">
+                <tr v-for="(from, index) in paymentfroms" :key="index">
                     <th scope="row">{{ index + 1 }}</th>
                     <td>{{ from.type }}</td>
                     <td>{{ from.uniqueorder }}</td>
@@ -60,7 +60,7 @@
                     <td>{{ from.pricevalue }}</td>
                     <td>{{ from.status }}</td>
                     <td class="p-1">
-                        <router-link :to="{ path: '/editpaymentfrom/' + from.id + '/' }"
+                        <router-link :to="{ path: '/editpaymentfrom/' + from.ID  }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
                     </td>
@@ -83,9 +83,7 @@ export default {
             paymentfroms: [],
         };
     },
-
     async mounted() {
-        // Ensure user is authenticated and authorized
         await this.Getpaymentfrom();
     },
     methods: {
@@ -96,23 +94,21 @@ export default {
             router.push({ path: "/loginadmin" });
         },
         async Getpaymentfrom() {
-            try {
-                const response = await axios.post(
-                    `${import.meta.env.VITE_API2}admin/viewpaymentfrom`,
-                    {
-                        headers: {
-                            // ตัวอย่าง Header (แก้ตามความเหมาะสม)
-                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                this.paymentfroms = response.data;
-                console.log(localStorage.getItem("tokenstring"))
-                console.log(this.paymentfroms);
-            } catch (error) {
-                alert("ไม่สามารถเรียกดูแบบฟอร์มข้อมูลได้")
-            }
+            const URL = `${import.meta.env.VITE_API2}viewpaymentfrom`;
+            let config = {
+                header: {
+                    Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                    "Content-Type": "application/json",
+                },
+            };
+            axios.post(URL, config).then((res) => {
+                console.log(res.data)
+                this.paymentfroms = res.data.Frompayment
+                console.log(this.paymentfroms)
+                
+            }).catch((error) => {
+                alert("this is error => ", error);
+            });
         },
     },
 };

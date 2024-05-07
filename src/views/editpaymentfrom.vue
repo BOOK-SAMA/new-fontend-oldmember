@@ -1,70 +1,46 @@
 <template>
-    <section class="vh-200" style="
-        background-image: url(https://v3i.rweb-images.com/www.scsualumni.net/images/background/main/crop-1702428316.jpg?1702428316);
-        background-repeat: no-repeat;
-      ">
-        <div class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xxl">
-                    <banner />
-                    <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
-                        แบบฟอร์มแจ้งชำระเงิน
-                    </h1>
+    <div>
+        <img :src="file" alt="Payment Image" class="payment-image" width="200" />
+        <div class="row align-items-center pt-4 pb-3">
+            <div class="col-md-3 ps-5">
+                <h6 class="mb-0">หมวดหมู่แจ้งชำระเงิน</h6>
+            </div>
 
-                    <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
-                        <div class="card-body">
-                        </div>
-                        <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
-                            <div class="card-body">
-                                <div class="row align-items-center pt-4 pb-3">
-                                    <div class="col-md-3 ps-5">
-                                        <h6 class="mb-0">สถานะของแบบฟอร์มแจ้งชำระเงิน</h6>
-                                    </div>
-
-                                    <div class="col-md-9 pe-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" v-model="status"
-                                                id="exampleRadios1" value="ยังไม่ได้ตรวจสอบ" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                ยังไม่ได้ตรวจสอบ
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" v-model="status"
-                                                id="exampleRadios2" value="ตรวจสอบแล้ว">
-                                            <label class="form-check-label" for="exampleRadios2">
-                                                ตรวจสอบแล้ว
-                                            </label>
-                                        </div>
-
-                                        <div id="orderNumberInput"
-                                            :style="{ display: type === 'ตรวจสอบแล้ว' ? 'block' : 'none' }">
-                                            <label for="orderNumber">ชื่อผู้ตรวจสอบ:</label>
-                                            <input type="text" class="form-control form-control-lg" id="orderNumber"
-                                                v-model="staffname">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-9 pe-5">
-                                    <!-- <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
-                                        Submit
-                                    </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-md-9 pe-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" v-model="status" id="exampleRadios1"
+                        value="ยังไม่ได้ตรวจสอบ" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        ยังไม่ได้ตรวจสอบ
+                    </label>
                 </div>
-    </section>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" v-model="status" id="exampleRadios2"
+                        value="ตรวจสอบแล้ว">
+                    <label class="form-check-label" for="exampleRadios2">
+                        ตรวจสอบแล้ว
+                    </label>
+                </div>
+
+                <div id="orderNumberInput" :style="{ display: status === 'ตรวจสอบแล้ว' ? 'block' : 'none' }">
+                    <label for="orderNumber">ชื่อผู้ตรวจสอบ:</label>
+                    <input type="text" class="form-control form-control-lg" id="orderNumber" v-model="staffname">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 pe-5">
+        <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
+            Submit
+        </button>
+    </div>
 </template>
 
 
 
 <script>
-import router from "@/router";
-import { ref } from "vue";
 import axios from "axios";
-
 export default {
     data() {
         return {
@@ -83,7 +59,7 @@ export default {
     },
     methods: {
         async getpaymentinfo(id) {
-            const URL = `${import.meta.env.VITE_API2}admin/getonepaymentfrom/${id}`;
+            const URL = `${import.meta.env.VITE_API2}getonepaymentfrom/${id}`;
             let config = {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("tokenstring"),
@@ -91,15 +67,16 @@ export default {
                 },
             };
             axios.post(URL, config).then((response) => {
-                console.log(response.data)
-            }).catch(error){
-                alert("ไม่สามารถรับข้อมูลแบบฟอร์มของผู้ใช้ได้");
-            }
+                this.uuid = response.data.file
+                this.getpaymentimage(response.data.file)
+                console.log(response.data);
+            })
         },
         async getpaymentimage(uuid) {
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API2}admin/getpaymentimage/${uuid}`,
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API2}getpaymentimage/${uuid}`,
+                    null,
                     {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
@@ -108,25 +85,21 @@ export default {
                         responseType: "arraybuffer",
                     }
                 );
-                const imageSrc = `data:${response.headers["content-type"]
-                    };base64,${btoa(
-                        new Uint8Array(response.data).reduce(
-                            (data, byte) => data + String.fromCharCode(byte),
-                            ""
-                        )
-                    )}`;
-                const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
-                if (imgElement) {
-                    imgElement.src = imageSrc;
-                }
+                const imageSrc = `data:${response.headers["content-type"]};base64,${btoa(
+                    new Uint8Array(response.data).reduce(
+                        (data, byte) => data + String.fromCharCode(byte),
+                        ""
+                    )
+                )}`;
                 this.file = imageSrc;
                 console.log("Image downloaded and displayed.");
             } catch (error) {
-                alert(error)
-
+                console.error("Error fetching payment image:", error);
             }
         },
         submit() {
+            console.log(this.status)
+            console.log(this.staffname)
             const URL = `${import.meta.env.VITE_API2}admin/`;
             let data = new FormData();
             data.append("status", this.status);
@@ -156,10 +129,8 @@ export default {
                 }
             });
         });
-        await this.getpaymentinfo(this.$route.params.id);
-        await this.getpaymentimage(this.uuid);
-
+        this.getpaymentinfo(this.$route.params.id);
     }
 };
-
 </script>
+v
