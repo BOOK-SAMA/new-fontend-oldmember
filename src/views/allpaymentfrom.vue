@@ -60,7 +60,9 @@
                     <td>{{ from.pricevalue }}</td>
                     <td>{{ from.status }}</td>
                     <td class="p-1">
-                       
+                        <router-link :to="{ path: '/editpaymentfrom/' + from.id + '/' }"
+                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
+                        <div class="b-example-divider p-1"></div>
                     </td>
                 </tr>
             </tbody>
@@ -84,7 +86,6 @@ export default {
 
     async mounted() {
         // Ensure user is authenticated and authorized
-
         await this.Getpaymentfrom();
     },
     methods: {
@@ -97,7 +98,7 @@ export default {
         async Getpaymentfrom() {
             try {
                 const response = await axios.post(
-                    `${import.meta.env.VITE_API2}viewpaymentfrom`,
+                    `${import.meta.env.VITE_API2}admin/viewpaymentfrom`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
@@ -107,6 +108,7 @@ export default {
                     }
                 );
                 this.paymentfroms = response.data;
+                console.log(localStorage.getItem("tokenstring"))
                 console.log(this.paymentfroms);
             } catch (error) {
                 alert("ไม่สามารถเรียกดูแบบฟอร์มข้อมูลได้")

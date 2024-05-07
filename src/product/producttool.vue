@@ -96,7 +96,7 @@ export default {
     },
     dodelete(id) {
       axios
-        .post(`${import.meta.env.VITE_API2}deleteproduct/${id}`, null, {
+        .post(`${import.meta.env.VITE_API2}admin/deleteproduct/${id}`, null, {
           headers: {
             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),

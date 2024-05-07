@@ -111,7 +111,7 @@ export default {
         async Getorder() {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API2}Getallorderadmin`,
+                    `${import.meta.env.VITE_API2}admin/Getallorderadmin`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)

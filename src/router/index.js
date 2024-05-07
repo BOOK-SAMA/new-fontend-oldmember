@@ -23,6 +23,11 @@ const router = createRouter({
       meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
+      path: '/editpaymentfrom/:id',
+      component: () => import('../views/editpaymentfrom.vue'),
+      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
+    {
       path: '/emailform',
       name: 'emailform',
       component: emailform

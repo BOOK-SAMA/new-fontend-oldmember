@@ -119,7 +119,7 @@ export default {
         async Getorder(uniqueorder) {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API2}getoneorder/${uniqueorder}`,
+                    `${import.meta.env.VITE_API2}admin/getoneorder/${uniqueorder}`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
