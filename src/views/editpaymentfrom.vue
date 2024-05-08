@@ -1,41 +1,96 @@
 <template>
-    <div>
-        <img :src="file" alt="Payment Image" class="payment-image" width="200" />
-        <div class="row align-items-center pt-4 pb-3">
-            <div class="col-md-3 ps-5">
-                <h6 class="mb-0">หมวดหมู่แจ้งชำระเงิน</h6>
-            </div>
+    <div class="root vh-200">
+        <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
+            แบบฟอร์มการแจ้งชำระเงิน
+        </h1>
+        <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
+            <div class="card-body">
+                <div class="row align-items-center pt-4 pb-3">
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">หมวดหมู่การแจ้งชำระเงิน</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            {{ type }}
+                        </div>
+                    </div>
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">รหัสคำสั่งซื้อ</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            {{ uniqueorder }}
+                        </div>
+                    </div>
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            {{ phonenumber }}
+                        </div>
+                    </div>
 
-            <div class="col-md-9 pe-5">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" v-model="status" id="exampleRadios1"
-                        value="ยังไม่ได้ตรวจสอบ" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        ยังไม่ได้ตรวจสอบ
-                    </label>
-                </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" v-model="status" id="exampleRadios2"
-                        value="ตรวจสอบแล้ว">
-                    <label class="form-check-label" for="exampleRadios2">
-                        ตรวจสอบแล้ว
-                    </label>
-                </div>
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">ชื่อ</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            {{ thainame }}
+                        </div>
+                    </div>
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            {{ email }}
+                        </div>
+                    </div>
 
-                <div id="orderNumberInput" :style="{ display: status === 'ตรวจสอบแล้ว' ? 'block' : 'none' }">
-                    <label for="orderNumber">ชื่อผู้ตรวจสอบ:</label>
-                    <input type="text" class="form-control form-control-lg" id="orderNumber" v-model="staffname">
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">สถานะการตรวจสอบ</h6>
+                        </div>
+
+                        <div class="col-md-9 pe-5">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" v-model="status" id="exampleRadios1"
+                                    value="ยังไม่ได้ตรวจสอบ" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    ยังไม่ได้ตรวจสอบ
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" v-model="status" id="exampleRadios2"
+                                    value="ตรวจสอบแล้ว">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    ตรวจสอบแล้ว
+                                </label>
+                            </div>
+
+                            <div :style="{ display: status === 'ตรวจสอบแล้ว' ? 'block' : 'none' }">
+                                <label>ชื่อผู้ตรวจสอบ:</label>
+                                <input type="text" class="form-control form-control-lg" v-model="staffname">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img :src="file" alt="Payment Image" class="payment-image" width="500" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-9 pe-5">
-        <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
+        <button type="submit" class="btn btn-primary btn-lg" @click="submit">
             Submit
         </button>
     </div>
 </template>
+
 
 
 
@@ -58,19 +113,27 @@ export default {
         };
     },
     methods: {
-        async getpaymentinfo(id) {
-            const URL = `${import.meta.env.VITE_API2}getonepaymentfrom/${id}`;
-            let config = {
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-                    "Content-Type": "application/json",
-                },
-            };
-            axios.post(URL, config).then((response) => {
-                this.uuid = response.data.file
-                this.getpaymentimage(response.data.file)
+        async getPaymentInfo(id) {
+            try {
+                const response = await axios.post(`${import.meta.env.VITE_API2}getonepaymentfrom/${id}`, {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                        "Content-Type": "application/json",
+                    },
+                });
+                this.uuid = response.data.file;
+                this.getpaymentimage(response.data.file);
+                this.thainame = response.data.thainame;
+                this.type = response.data.type;
+                this.email = response.data.email;
+                this.phonenumber = response.data.phonenumber;
+                this.uniqueorder = response.data.uniqueorder;
+                this.status = response.data.status;
+                this.staffname = response.data.staffname;
                 console.log(response.data);
-            })
+            } catch (error) {
+                console.error("Error fetching payment information:", error);
+            }
         },
         async getpaymentimage(uuid) {
             try {
@@ -100,7 +163,7 @@ export default {
         submit() {
             console.log(this.status)
             console.log(this.staffname)
-            const URL = `${import.meta.env.VITE_API2}admin/`;
+            const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
             let data = new FormData();
             data.append("status", this.status);
             data.append("staffname", this.staffname);
@@ -109,8 +172,10 @@ export default {
                     "Content-Type": "multipart/form-data",
                 },
             };
-            axios.post(URL, data, config).then(() => {
+            axios.post(URL, data, config).then((res) => {
+                console.log(res)
                 alert("ปรับแบบฟอร์มสำเร็จแล้ว")
+                
             }).catch((error) => {
                 alert("this is error => ", error);
             });
@@ -129,8 +194,8 @@ export default {
                 }
             });
         });
-        this.getpaymentinfo(this.$route.params.id);
+        this.getPaymentInfo(this.$route.params.id);
+
     }
 };
 </script>
-v
