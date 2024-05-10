@@ -375,6 +375,9 @@
                                     </h6>
                                 </div>
                                 <div class="col-md-5 pe-5">
+                                    <span v-if="v$.username.$error" class="text-danger">
+                                            {{ v$.levelmember.$errors[0].$message }}
+                                     </span>
                                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
                                         v-model="levelmember">
                                         <option selected disabled>เลือก 1 อย่าง</option>
@@ -502,7 +505,7 @@ import router from "@/router";
 import { ref, reactive, computed } from "vue";
 import axios from "axios";
 import useValidate from '@vuelidate/core'
-import { required, email, minLength, helpers, sameAs } from '@vuelidate/validators'
+import { required, email, minLength, helpers, sameAs , numeric } from '@vuelidate/validators'
 
 
 export default {
@@ -529,6 +532,7 @@ export default {
             engname: '',
             address: '',
             phonenumber: '',
+            levelmember: "",
 
         })
         const rules = computed(() => {
@@ -539,9 +543,9 @@ export default {
                 thainame: { required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required) },
                 engname: { required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required), isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai) },
                 address: { required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required) },
-                phonenumber: { required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required) },
+                phonenumber: { required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required) , numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric)},
                 email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
-
+                levelmember: { required: helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', required) },
             }
         })
 
@@ -581,7 +585,7 @@ export default {
             job: "",
             jobposition: "",
             jobaddress: "",
-            levelmember: "",
+            
             levelmemberthing: "",
             file: null,
             statusinfo: false,
