@@ -44,8 +44,8 @@
                  <thead class="thead-dark">
 
                             <tr>
-                                <th scope="col">Ordernumber</th>
-                                <th scope="col ">itemID</th>
+                                <th scope="col">itemID</th>
+                                <th scope="col ">ชื่อสินค้า</th>
                                 <th scope="col">ราคา</th>
                                 <th scope="col">จำนวน</th>
                                 <th scope="col">ราคารวมแต่ละชิ้น</th>
@@ -148,7 +148,6 @@ export default {
             router.push({ path: "/login" });
         },
         async Getorderdetail(id, ordernumber) {
-
             try {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API2}Getorderbyid/${id}/${ordernumber}`,

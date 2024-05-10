@@ -130,7 +130,7 @@ export default {
         async Getorder(uniqueorder) {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API2}admin/getoneorder/${uniqueorder}`,
+                    `${import.meta.env.VITE_API2}getoneorder/${uniqueorder}`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
@@ -153,7 +153,7 @@ export default {
                 data.append("status", this.status);
 
                 const response = await axios.post(
-                    `${import.meta.env.VITE_API2}admin/updatestatusorder/${this.$route.params.uniqueorder}`, data);
+                    `${import.meta.env.VITE_API2}updatestatusorder/${this.$route.params.uniqueorder}`, data);
                 console.log(data)
 
 

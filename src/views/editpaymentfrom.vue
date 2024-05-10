@@ -163,22 +163,26 @@ export default {
         submit() {
             console.log(this.status)
             console.log(this.staffname)
-            const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
-            let data = new FormData();
-            data.append("status", this.status);
-            data.append("staffname", this.staffname);
-            let config = {
-                header: {
-                    "Content-Type": "multipart/form-data",
-                },
-            };
-            axios.post(URL, data, config).then((res) => {
-                console.log(res)
-                alert("ปรับแบบฟอร์มสำเร็จแล้ว")
-                
-            }).catch((error) => {
-                alert("this is error => ", error);
-            });
+            if (this.staffname == "") {
+                alert("กรุณาใส่ชื่อของผู้ตรวจสอบด้วย")
+            } else {
+                const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
+                let data = new FormData();
+                data.append("status", this.status);
+                data.append("staffname", this.staffname);
+                let config = {
+                    header: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                };
+                axios.post(URL, data, config).then((res) => {
+                    console.log(res)
+                    alert("ปรับแบบฟอร์มสำเร็จแล้ว")
+
+                }).catch((error) => {
+                    alert("this is error => ", error);
+                });
+            }
         },
     },
     mounted() {
