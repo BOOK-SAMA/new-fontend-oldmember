@@ -257,7 +257,8 @@
                                     <h6 class="mb-0">อาชีพ</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="email" class="form-control form-control-lg" placeholder="" v-model="job" />
+                                    <input type="email" class="form-control form-control-lg" placeholder=""
+                                        v-model="job" />
                                 </div>
                             </div>
                             <!-- ช่องอาชีพ @-->
@@ -267,7 +268,8 @@
                                     <h6 class="mb-0">ตำแหน่ง</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <textarea v-model="jobposition" class="form-control" rows="1" placeholder=""></textarea>
+                                    <textarea v-model="jobposition" class="form-control" rows="1"
+                                        placeholder=""></textarea>
                                 </div>
                             </div>
                             <!-- ช่องตำแหน่ง @-->
@@ -277,7 +279,8 @@
                                     <h6 class="mb-0">ชื่อและที่อยู่ของสถานที่ทำงาน</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <textarea v-model="jobadress" class="form-control" rows="2" placeholder=""></textarea>
+                                    <textarea v-model="jobadress" class="form-control" rows="2"
+                                        placeholder=""></textarea>
                                 </div>
 
                                 <!-- ช่องชื่อและที่อยู่ของสถานที่ทำงาน-->
@@ -366,8 +369,8 @@
                                     <h6 class="mb-0">รูปถ่าย</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
-                                        @change="handleprofile" />
+                                    <input ref="fileInput" class="form-control form-control-lg" id="formFileLg"
+                                        type="file" @change="handleprofile" />
                                     <div class="small text-muted mt-2">
                                         (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                                     </div>
@@ -375,22 +378,8 @@
                             </div>
                             <!-- ช่องรูปถ่าย-->
                             <hr class="mx-n3" />
-                            <div class="col align-items-center py-3">
-                                <div class="col-md-5 ps-5">
-                                    <h6 class="mb-0">
-                                        ช่องทางการชำระเงิน ธนาคารกรุงไทย สาขาสำนักนานาเหนือ เลขที่
-                                        000-0-35556-9
-                                    </h6>
-                                </div>
-                                <div class="col-md-5 pe-5">
-                                    <div class="form-check form-check-inline">
-                                        <img src="https://lh4.googleusercontent.com/RMQziLQRistxbkv9ZX30hyx1zWSyZ9RgZPISwbahv0IqBa9JJ9T_f6AFLXuj7cM_m8uARSm5GPfGCkZy-EqTlXjXccfTjl60r4mD5h5X1OdYf5bwxO7Jbf-wb3sOaHmO3g=w584"
-                                            alt="image" class="img-thumbnail" />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- รูปจ่ายเงิน-->
-                            <hr class="mx-n3" />
+
+
                             <div class="row align-items-center py-3">
                                 <div class="col-md-5 ps-5">
                                     <h6 class="mb-0">
@@ -399,33 +388,22 @@
                                         ซึ่งมีข้อกำหนดการปฏิบัติ ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล
                                         ซึ่งมีรายละเอียดในเวปไซด์ของสมาคมตามลิ้งค์ดังนี้
                                         <a href="http://www.scsualumni.net/attachments/view/?attach_id=268068"
-                                            class="badge badge-primary">นโยบายคุ้มครองข้อมูลส่วนบุคคล สำหรับสมาชิกสมาคม</a>
+                                            class="badge badge-primary">นโยบายคุ้มครองข้อมูลส่วนบุคคล
+                                            สำหรับสมาชิกสมาคม</a>
                                     </h6>
                                 </div>
                                 <div class="col-md-5 pe-5">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ยืนยัน"
-                                            v-model="pnstatus" />
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                            value="ยืนยัน" v-model="pnstatus" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
                                     </div>
                                 </div>
                             </div>
                             <!-- ช่องยืนยันกดหมาย-->
                             <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">สลิปการโอนเงิน</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input class="form-control form-control-lg" id="formFileLg" type="file"
-                                        @change="handlepaycheck" />
-                                    <div class="small text-muted mt-2">
-                                        (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ช่องสลิปจ่ายเงิน-->
-                            <hr class="mx-n3" />
+
+
                             <div class="row align-items-center py-3">
                                 <div class="col-md-6 ps-5">
                                     <h6 class="mb-0">ระดับของ User หรือ Role</h6>
@@ -461,12 +439,7 @@
                                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
                             </h6>
                             <hr class="mx-n2" />
-                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" :disabled="!this.thainame || !this.engname
-                                || !this.email || !this.phonenumber || !this.address
-                                || !this.statusinfo || !this.pnstatus
-                                || !this.file 
-                                || !this.levelmember || !this.levelmemberthing
-                                ">
+                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" >
                                 Submit
                             </button>
                         </div>
@@ -476,14 +449,14 @@
         </div>
     </section>
 </template>
-  
+
 <script setup>
 import banner from "/src/components/Banner.vue";
 import { ref } from "vue";
 import axios from "axios";
 // In case of a range picker, you'll receive [Date, Date]
 </script>
-  
+
 <script>
 import axios from "axios";
 export default {
@@ -547,6 +520,29 @@ export default {
             return `คุณเกิดวันที่ ${day}/${month}/${year}`;
         },
         submit() {
+            if (this.username === '') {
+                alert("กรุณาใส่ชื่อด้วยนะครับ");
+                return;
+            }
+            if (this.thainame === '') {
+                alert("กรุณาใส่ชื่อด้วยนะครับ");
+                return;
+            }
+            if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(this.email) || this.email == '') {
+                alert("กรุณากรอกอีเมลให้ถูกต้อง");
+                return;
+            }
+            if (!/^\d+$/.test(this.phonenumber) || this.phonenumber == '' ) {
+                alert("กรุณากรอกเบอร์โทรศัพท์เป็นตัวเลขเท่านั้น");
+                return;
+            }
+            if(this.statusinfo =='' || this.pnstatus ==''){
+                alert("กรุณากดยืนยันด้วยนะครับ");
+                return;
+            }
+          
+            
+
             const URL = `${import.meta.env.VITE_API2}admin/create`;
             let data = new FormData();
 
@@ -603,15 +599,15 @@ export default {
     },
 };
 </script>
-  
-  
-  
-  
-  
-  
-  
-  
-  <!--
+
+
+
+
+
+
+
+
+<!--
      axios({
   //         method: "post",
   //         url: "http://localhost:4444/register",
@@ -737,4 +733,3 @@ export default {
   
   // คำทำนาย: หากโค้ดด้านบนยังไม่ทำงานได้หรือมีปัญหาเฉพาะกับเว็บบราวเซอร์บางประการ, คุณอาจต้องปรับปรุงโค้ดบางส่วนเพื่อให้ทำงานได้ถูกต้อง.
   -->
-  
