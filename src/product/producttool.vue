@@ -106,7 +106,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             console.log(res);
-            // router.push({ path: "/admintoo/" + this.$route.params.id });
+            alert("ทำการลบ สินค้า เรียบร้อยแล้ว")
           }
         })
         .catch();

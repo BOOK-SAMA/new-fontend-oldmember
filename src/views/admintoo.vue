@@ -151,6 +151,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             console.log(res);
+            alert("ทำการลบ ผู้ใช้งาน เรียบร้อยแล้ว")
             router.push({ path: "/admintoo/" + responseData.userid });
           }
         })
@@ -195,10 +196,6 @@ export default {
       let data = new FormData();
       data.append("password", this.newpassword);
       data.append("confirmpassword", this.comfirepassword);
-
-
-
-
       axios
         .post(`${import.meta.env.VITE_API2}admin/resetpassword/${id}`, data, {
           headers: {
