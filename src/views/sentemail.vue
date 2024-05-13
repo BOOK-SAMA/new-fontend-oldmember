@@ -56,8 +56,8 @@
                                     <div class="col-md-9 pe-5">
                                         <input type="text" class="form-control form-control-lg is-invalid"
                                             v-model="thainame" required />
-                                        <div class="invalid-feedback">ใส่ชื่อที่ได้ทำการลงทะเบียนไว้กับเราด้วยนะครับ
-                                        </div>
+                                        <!-- <div class="invalid-feedback">ใส่ชื่อที่ได้ทำการลงทะเบียนไว้กับเราด้วยนะครับ
+                                        </div> -->
                                     </div>
 
                                 </div>
@@ -69,7 +69,7 @@
                                     <div class="col-md-9 pe-5">
                                         <input type="text" class="form-control form-control-lg is-invalid"
                                             v-model="email" required />
-                                        <div class="invalid-feedback">กรุณา Email ด้วยนะครับ</div>
+                                        <!-- <div class="invalid-feedback">กรุณา Email ด้วยนะครับ</div> -->
                                     </div>
                                 </div>
 
@@ -80,7 +80,7 @@
                                     <div class="col-md-9 pe-5">
                                         <input type="text" class="form-control form-control-lg is-invalid"
                                             v-model="phonenumber" required />
-                                        <div class="invalid-feedback">กรุณา เบอร์โทรศัพท์ ด้วยนะครับ</div>
+                                        <!-- <div class="invalid-feedback">กรุณา เบอร์โทรศัพท์ ด้วยนะครับ</div> -->
                                     </div>
                                 </div>
 
@@ -106,7 +106,7 @@
                                     <div class="col-md-9 pe-5">
                                         <input type="text" class="form-control form-control-lg" v-model="pricevalue"
                                             required />
-                                        <div class="invalid-feedback">กรุณาใส่จำนวนเงินด้วยนะครับ</div>
+                                        <!-- <div class="invalid-feedback">กรุณาใส่จำนวนเงินด้วยนะครับ</div> -->
                                     </div>
                                 </div>
 
