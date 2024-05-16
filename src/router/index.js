@@ -17,25 +17,18 @@ const router = createRouter({
       name: 'home',
       component: home
     },
-    {
-      path: '/seeallfrom',
-      component: () => import('../views/allpaymentfrom.vue'),
-      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
-    },
-    {
-      path: '/editpaymentfrom/:id',
-      component: () => import('../views/editpaymentfrom.vue'),
-      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
-    },
-    {
-      path: '/emailform',
-      name: 'emailform',
-      component: emailform
-    },
+    // ========== สำหรับไม่ login
     {
       path: '/register',
       name: 'register',
       component: register
+      // ต้องทำการแก้ไข
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: loginUser
+      // ต้องทำการแก้ไข
     },
     {
       path: '/loginadmin',
@@ -43,39 +36,27 @@ const router = createRouter({
       component: admin,
     },
     {
+      path: '/emailform',
+      name: 'emailform',
+      component: emailform
+      // ต้องทำการแก้ไข
+    }, 
+    {
       path: "/:notFound",
       component: NotFound,
     },
+    // ========== สำหรับใช้ได้ก็ต่อเมื่อ user login เท่านั่น 
     {
-      path: "/:notpay",
-      component: notpay,
-    },
-    {
-      path: '/admintoo/:id',
-      name: 'admintoo',
-      component: admintoo,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: loginUser
-    },
-    {
-      path: '/admincreate',
-      name: 'admincreate',
-      component: admincreatefrom,
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/update/:id/edit',
-      name: 'update',
-      component: updateadminfrom
-    },
-    {
+      // ต้องทำการแก้ไข
       path: '/profile/:id',
       component: () => import('../views/profile.vue'),
       meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
+    {
+      path: `/updateuser/:id/edit`,
+      component: () => import('/src/views/userupdate.vue'),
+      name: 'userupdate',
+      meta: { requiresAuth: true }
     },
     {
       path: '/catalog',
@@ -92,6 +73,7 @@ const router = createRouter({
       // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
+      // ต้องทำการแก้ไข
       path: '/cart',
       component: () => import('../shopping/cart.vue'),
       name: 'cart',
@@ -99,6 +81,7 @@ const router = createRouter({
       // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
+      // ต้องทำการแก้ไข
       path: '/checkout',
       component: () => import('../shopping/checkout.vue'),
       name: 'checkout',
@@ -109,17 +92,33 @@ const router = createRouter({
       path: '/orderdetail/:id/:ordernumber',
       component: () => import('../shopping/userorder-detail.vue'),
       name: 'checkorderdetail',
+      meta: { requiresAuth: true }
     },
     {
       path: '/orderhistory/:id',
       component: () => import('/src/shopping/user-order.vue'),
       name: 'checkorder',
+      meta: { requiresAuth: true }
+    },
+    // ========== สำหรับใช้ได้ก็ต่อเมื่อ admin login เท่านั่น 
+    {
+      path: '/admintoo/:id',
+      name: 'admintoo',
+      component: admintoo,
+      meta: { requiresAuth: true }
     },
     {
-      path: `/updateuser/:id/edit`,
-      component: () => import('/src/views/userupdate.vue'),
-      name: 'userupdate',
-      meta: { requiresAuth: true }
+      path: '/admincreate',
+      name: 'admincreate',
+      component: admincreatefrom,
+      meta: { requiresAuth: true },
+      // ต้องทำการแก้ไข
+    },
+    {
+      path: '/update/:id/edit',
+      name: 'update',
+      component: updateadminfrom
+      // ต้องทำการแก้ไข
     },
     {
       path: `/seeallproduct/:id/`,
@@ -128,15 +127,15 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: `/:id/updateproduct/:itemid/edit`,
-      component: () => import('/src/product/updateproduct.vue'),
-      name: 'productupdate',
-      meta: { requiresAuth: true }
-    },
-    {
       path: `/addproduct`,
       component: () => import('/src/product/addproduct.vue'),
       name: 'addproduct',
+      meta: { requiresAuth: true }
+    },
+    {
+      path: `/:id/updateproduct/:itemid/edit`,
+      component: () => import('/src/product/updateproduct.vue'),
+      name: 'productupdate',
       meta: { requiresAuth: true }
     },
     {
@@ -156,6 +155,16 @@ const router = createRouter({
       component: () => import('/src/views/updateorder.vue'),
       name: 'editorder',
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/seeallfrom',
+      component: () => import('../views/allpaymentfrom.vue'),
+      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+    },
+    {
+      path: '/editpaymentfrom/:id',
+      component: () => import('../views/editpaymentfrom.vue'),
+      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
   ]
 })
