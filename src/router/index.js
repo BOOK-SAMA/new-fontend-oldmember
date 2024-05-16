@@ -8,7 +8,6 @@ import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
 import updateadminfrom from '/src/views/adminupdate.vue'
 import emailform    from '/src/views/sentemail.vue'
-import notpay from '/src/views/notpay.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
