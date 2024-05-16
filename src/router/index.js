@@ -95,6 +95,7 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      // ต้องทำการแก้ไข
       path: '/orderhistory/:id',
       component: () => import('/src/shopping/user-order.vue'),
       name: 'checkorder',
