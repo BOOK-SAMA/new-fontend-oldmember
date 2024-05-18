@@ -19,8 +19,8 @@
         <div class="col">
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก</a>
           <router-link to="/register" class="nav-link"> สมัครสมาชิก </router-link>
-         
         </div>
+        
       </div>
       <!-- Submit button -->
       <button type="button" class="btn btn-primary btn-block mb-4" @click="handleSubmit">
