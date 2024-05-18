@@ -1,0 +1,30 @@
+ใน HTML และ CSS, การระบุว่าหนึ่ง element เป็น descendant (ลูกหลาน) ของอีก element หนึ่งสามารถทำได้โดยดูจากโครงสร้าง DOM (Document Object Model) ของเอกสาร HTML นั้นๆ โดย descendant หมายถึง element ใด ๆ ที่อยู่ภายใน (ในลำดับชั้น) ของ element อื่น ๆ ไม่ว่าจะเป็นลูกโดยตรงหรือหลายชั้นลึกลงไปก็ตาม
+
+การทำความเข้าใจความเป็น descendant
+1. ตัวอย่างโครงสร้าง DOM:
+พิจารณาโครงสร้าง HTML ด้านล่าง:
+
+html
+
+<div class="parent">
+  <div class="child">
+    <span class="grandchild">Content</span>
+  </div>
+</div>
+ในโครงสร้างนี้:
+
+.parent เป็น ancestor (บรรพบุรุษ) ของ .child และ .grandchild
+.child เป็น descendant (ลูกหลาน) ของ .parent และเป็น ancestor ของ .grandchild
+.grandchild เป็น descendant ของทั้ง .child และ .parent
+2. การใช้ CSS Selector เพื่อเลือก descendant:
+CSS Selector สามารถใช้เลือก descendant ได้ด้วยการระบุ selector ของ ancestor ตามด้วย selector ของ descendant โดยแยกด้วยช่องว่าง
+
+css
+
+.parent .child {
+  /* สไตล์นี้จะนำไปใช้กับองค์ประกอบที่มีคลาส "child" ที่อยู่ภายในองค์ประกอบที่มีคลาส "parent" */
+}
+
+.parent .grandchild {
+  /* สไตล์นี้จะนำไปใช้กับองค์ประกอบที่มีคลาส "grandchild" ที่อยู่ภายในองค์ประกอบที่มีคลาส "parent" */
+}
