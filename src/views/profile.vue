@@ -3,7 +3,6 @@
 
 	<nav class="sidebar">
 		<a href="#" class="logo">SUSAA</a>
-
 		<div class="menu-content">
 			<ul class="menu-item">
 				<div class="menu-title">
@@ -75,31 +74,9 @@
 
 					</ul>
 				</li>
-
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-				<li class="item">
-					<a href="#">second link</a>
-				</li>
-
-
 			</ul>
 		</div>
 	</nav>
-
 	<nav class="navbar navbar-expand  fixed-top">
 		<i class="bi bi-toggles" id="sidebar-close"></i>
 		<ul class="navbar-nav mr-auto p-2">
@@ -188,14 +165,46 @@
 								class="rounded-circle p-1" width="200" />
 						</p>
 					</div>
-					<div class="header-profile-username">
+					<div class="header-profile-username-thai">
 						<div class="body-profile-username">
-							Yuki Hayashi
+							ชื่อภาษาไทย
+						</div>
+					</div>
+					<div class="header-profile-username-eng">
+						<div class="body-profile-username">
+							english name
 						</div>
 					</div>
 					<div class="header-profile-email">
 						<div class="body-profile-email">
-							yuki@Maxwell.com
+							<ul class="list-group list-group-flush">
+								<li
+									class="list-group-item no-background d-flex justify-content-between align-items-center flex-wrap">
+									<h6 class="mb-0">
+										<i class="bi bi-tags-fill feather feather-globe me-2 icon-inline" width="24"
+											height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></i>
+										อีเมล
+									</h6>
+									<span class="text-dark">yuki@Maxwell.com</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="header-profile-phonenumber">
+						<div class="body-profile-phonenumber">
+							<ul class="list-group list-group-flush">
+								<li
+									class="list-group-item no-background d-flex justify-content-between align-items-center flex-wrap">
+									<h6 class="mb-0">
+										<i class="bi bi-phone-vibrate feather feather-globe me-2 icon-inline" width="24"
+											height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></i>
+										เบอร์โทรศัพท์
+									</h6>
+									<span class="text-dark">0987654321</span>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -359,6 +368,7 @@
 	left: 0;
 	width: 100%;
 }
+/* เอาถึงตรงนี้ไป */
 
 .profile-card {
 	width: 600px;
@@ -423,21 +433,23 @@
 	padding: 10px;
 	/* เพิ่ม padding ตามต้องการ */
 }
-.profile-image{
+
+.profile-image {
 	position: absolute;
-	margin: 60px;
+	margin: 75px;
 	left: 250px;
 	transform: translateX(-50%);
 }
 
-.header-profile-username{
+.header-profile-username-thai {
 	/* border: 3px solid #73AD21; */
 	position: absolute;
 	width: 500px;
 	bottom: 270px;
 	left: 65px;
 }
-.body-profile-username{
+
+.body-profile-username {
 	font-size: 20px;
 	text-align: center;
 	height: 100%;
@@ -445,14 +457,17 @@
 	padding: 10px;
 
 }
-.header-profile-email{
+
+
+.header-profile-username-eng {
 	/* border: 3px solid #73AD21; */
 	position: absolute;
 	width: 500px;
 	bottom: 240px;
 	left: 65px;
 }
-.body-profile-email{
+
+.body-profile-username {
 	font-size: 20px;
 	text-align: center;
 	height: 100%;
@@ -461,6 +476,55 @@
 
 }
 
+
+.header-profile-email i {
+	font-size: 25px;
+	padding: 10px;
+}
+
+.header-profile-email {
+	/* border: 3px solid #73AD21; */
+	position: absolute;
+	width: 500px;
+	bottom: 100px;
+	left: 65px;
+}
+
+.body-profile-email {
+	font-size: 20px;
+	text-align: center;
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+}
+
+.header-profile-phonenumber {
+	/* border: 3px solid #73AD21; */
+	position: absolute;
+	width: 500px;
+	bottom: 60px;
+	left: 65px;
+}
+
+.header-profile-phonenumber i {
+	font-size: 25px;
+	padding: 10px;
+}
+
+.body-profile-phonenumber {
+	font-size: 20px;
+	text-align: center;
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+
+}
+
+.no-background {
+	background-color: transparent;
+	/* หรือใช้ none */
+
+}
 </style>
 
 
@@ -497,5 +561,6 @@ export default {
 			console.log(menuItems, subMenuTitles);
 		});
 	}
+
 }
 </script>
