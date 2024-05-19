@@ -170,21 +170,35 @@
 	</nav>
 
 	<main class="main">
-		<div class="row">
-			<div class="profile-card">
-				<!--แถวรูปกับข้อมูลส่วนตัว  -->
-				<!-- Display the file content as an image if available -->
-				<img v-if="previewFile" :src="previewFile" alt="Preview" class="rounded-circle p-1" width="110" />
-				<!-- Display a default image if previewFile is not available -->
-				<p v-else>
-					<img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-						class="rounded-circle p-1" width="110" />
-				</p>
-				<div class="mt-3">
-					<h4>ชื่อภาษาไทย</h4>
-					<h4>{{ Thainame }}</h4>
-				</div>
+		<div class="profile-card">
+			<div class="row">
+				<div class="col">
+					<div class="profile-header">
+						<div class="body-profile-name">
+							รูปโปรไฟล์
+						</div>
+					</div>
+					<div class="profile-image">
+						<img v-if="previewFile" :src="previewFile" alt="Preview" class="rounded-circle p-1"
+							width="200" />
 
+						<!-- Display a default image if previewFile is not available -->
+						<p v-else>
+							<img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+								class="rounded-circle p-1" width="200" />
+						</p>
+					</div>
+					<div class="header-profile-username">
+						<div class="body-profile-username">
+							Yuki Hayashi
+						</div>
+					</div>
+					<div class="header-profile-email">
+						<div class="body-profile-email">
+							yuki@Maxwell.com
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -347,9 +361,9 @@
 }
 
 .profile-card {
-	width: 400px;
+	width: 600px;
 	/* ตั้งค่าความกว้าง */
-	height: 400px;
+	height: 600px;
 	/* ตั้งค่าความยาวให้เท่ากับความกว้าง */
 	background-color: #e7f2fe;
 	/* สีพื้นหลัง */
@@ -357,15 +371,96 @@
 	/* ขอบมน */
 	display: flex;
 	/* ทำให้สามารถใช้ justify-content และ align-items ได้ */
-	justify-content: center;
+	/* justify-content: center; */
 	/* จัดกึ่งกลางในแนวนอน */
-	align-items: center;
+	/* align-items: center; */
 	/* จัดกึ่งกลางในแนวตั้ง */
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 	/* เงา */
 	margin: 50px;
 	/* ระยะห่างจากองค์ประกอบอื่น */
+	position: relative;
+	/* ตั้งค่าเพื่อใช้งาน position: absolute ภายใน */
 }
+
+.profile-header {
+	width: 550px;
+	/* ตั้งค่าความกว้าง */
+
+	border: 2px solid #F9CC02;
+	/* กำหนดเส้นขอบ */
+	position: absolute;
+	/* กำหนดตำแหน่งเป็น absolute */
+	top: 10px;
+	/* จัดให้อยู่ที่ด้านบนสุด */
+	left: 315px;
+	/* จัดให้อยู่ตรงกลางในแนวนอน */
+	transform: translateX(-50%);
+	/* ปรับตำแหน่งให้อยู่ตรงกลางจริงๆ */
+	margin: 0;
+	/* ลบ margin ออก */
+	/* กำหนด padding */
+	background-color: white;
+	/* สีพื้นหลังของชื่อโปรไฟล์ */
+	border-radius: 5px;
+	/* ขอบมนของชื่อโปรไฟล์ */
+}
+
+.body-profile-name {
+	font-size: 20px;
+	text-align: center;
+	/* จัดข้อความให้อยู่ตรงกลางในแนวนอน */
+	display: flex;
+	/* ใช้ Flexbox เพื่อจัดการตำแหน่งภายใน */
+	justify-content: left;
+	/* จัดกึ่งกลางในแนวนอน */
+	align-items: center;
+	/* จัดกึ่งกลางในแนวตั้ง หากจำเป็น */
+	height: 100%;
+	/* กำหนดความสูงให้เต็มพื้นที่ของ parent เพื่อจัดกึ่งกลางในแนวตั้ง */
+	margin: 0;
+	/* ลบ margin ออกเพื่อป้องกันการเลื่อนของตำแหน่ง */
+	padding: 10px;
+	/* เพิ่ม padding ตามต้องการ */
+}
+.profile-image{
+	position: absolute;
+	margin: 60px;
+	left: 250px;
+	transform: translateX(-50%);
+}
+
+.header-profile-username{
+	/* border: 3px solid #73AD21; */
+	position: absolute;
+	width: 500px;
+	bottom: 270px;
+	left: 65px;
+}
+.body-profile-username{
+	font-size: 20px;
+	text-align: center;
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+
+}
+.header-profile-email{
+	/* border: 3px solid #73AD21; */
+	position: absolute;
+	width: 500px;
+	bottom: 240px;
+	left: 65px;
+}
+.body-profile-email{
+	font-size: 20px;
+	text-align: center;
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+
+}
+
 </style>
 
 
@@ -397,7 +492,7 @@ export default {
 					menu.classList.remove("submenu-active");
 				})
 			})
-			sideBarClose.addEventListener("click", () =>  sideBar.classList.toggle("close"))
+			sideBarClose.addEventListener("click", () => sideBar.classList.toggle("close"))
 
 			console.log(menuItems, subMenuTitles);
 		});
