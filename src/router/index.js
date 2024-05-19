@@ -52,11 +52,10 @@ const router = createRouter({
       //meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
-      // ต้องทำการแก้ไข
+      //ต้องทำการแก้ไข
       path: `/updateuser/:id/edit`,
-      component: () => import('/src/views/userupdate.vue'),
-      name: 'userupdate',
-      meta: { requiresAuth: true }
+      component: () => import('/src/views/usersimpleupdate.vue'),
+      // meta: { requiresAuth: true }
     },
     {
       path: '/catalog',

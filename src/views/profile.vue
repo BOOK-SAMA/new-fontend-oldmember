@@ -9,29 +9,50 @@
 					your name menu (เมนูสำหรับผู้ใช้งาน)
 				</div>
 				<li class="item">
-					<a href="#">first link</a>
+					<a href="/profile/:id">
+						<i class="bi bi-house-fill" style="
+						size-adjust: inherit;
+						margin-right: 10px;
+						"></i>
+						หน้าหลัก
+					</a>
 				</li>
+
+				<!-- <li class="item">
+					<a href="/updateuser/:id/edit">
+						<i class=" bi bi-person-fill" style="
+						size-adjust: inherit;
+						margin-right: 10px;
+						"></i>
+						แก้ไขข้อมูลผู้ใช้
+					</a>
+				</li> -->
 
 				<li class="item">
 					<div class="submenu-item">
-						<span>Your Submenu name </span>
+						<i class=" bi bi-person-fill" style="
+						size-adjust: inherit;
+						margin-right: 2px;
+						"></i>
+						<span>แก้ไขข้อมูลสมาชิก</span>
 						<i class="bi bi-arrow-bar-right"></i>
 					</div>
 
 					<ul class="menu-item submenu">
-
 						<div class="menu-title">
 							<i class="bi bi-arrow-bar-left"></i>
-							your name menu
+							<i class=" bi bi-person-fill" style="
+						size-adjust: inherit;
+						margin-right: 2px;
+						">
+							</i>
+							แก้ไขข้อมูลสมาชิก
 						</div>
 						<li class="item">
-							<a href="#">first sublink</a>
+							<a href="/updateuser/:id/edit">แก้ไขข้อมูลผู้ใช้</a>
 						</li>
 						<li class="item">
-							<a href="#">first sublink</a>
-						</li>
-						<li class="item">
-							<a href="#">first sublink</a>
+							<a href="#">แก้ไขข้อมูลการศึกษา</a>
 						</li>
 					</ul>
 				</li>
@@ -77,6 +98,8 @@
 			</ul>
 		</div>
 	</nav>
+	
+
 	<nav class="navbar navbar-expand  fixed-top">
 		<i class="bi bi-toggles" id="sidebar-close"></i>
 		<ul class="navbar-nav mr-auto p-2">
@@ -219,6 +242,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 
+
 * {
 	margin: 0;
 	padding: 0;
@@ -269,7 +293,7 @@
 	padding: 16px;
 	display: inline-block;
 	width: 100%;
-	border-radius: 12px
+	border-radius: 10px
 }
 
 .item i {
@@ -368,6 +392,7 @@
 	left: 0;
 	width: 100%;
 }
+
 /* เอาถึงตรงนี้ไป */
 
 .profile-card {
@@ -560,6 +585,9 @@ export default {
 
 			console.log(menuItems, subMenuTitles);
 		});
+
+
+
 	}
 
 }
