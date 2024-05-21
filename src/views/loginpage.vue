@@ -61,11 +61,10 @@ const handleSubmit = async () => {
           alert(response.data.message);
       } else {
         const responseData = response.data;
-
         // Save data to localStorage
         localStorage.setItem("userid", responseData.userid);
         localStorage.setItem("tokenstring", responseData.tokenstring);
-
+        localStorage.setItem("role", responseData.role);
         // Continue with other actions based on the API response
         console.log("API Response:", response.data);
         alert("เข้าสู่ระบบ เรียบร้อยแล้ว")
@@ -81,4 +80,3 @@ const handleSubmit = async () => {
   }
 };
 </script>
-<style></style>

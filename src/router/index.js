@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import home from '/src/views/HomePage.vue'
 import register from '/src/views/registerpage.vue'
 import loginUser from '/src/views/loginpage.vue'
-import admin from '/src/views/loginadmin.vue'
+
 import NotFound from '/src/views/notfound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
@@ -49,9 +49,16 @@ const router = createRouter({
     {
       //ต้องทำการแก้ไข
       path: `/updateuser/:id/edit`,
-      component: () => import('/src/views/usersimpleupdate.vue'),
+      component: () => import('/src/views/user-access-required-update.vue'),
       // meta: { requiresAuth: true }
     },
+    {
+      //ต้องทำการแก้ไข
+      path: `/updateuserinfo/:id/edit`,
+      component: () => import('/src/views/user-access-not_required-update.vue'),
+      // meta: { requiresAuth: true }
+    },
+    
     {
       path: '/catalog',
       component: () => import('../shopping/mainshopping.vue'),

@@ -98,7 +98,7 @@
 			</ul>
 		</div>
 	</nav>
-	
+
 
 	<nav class="navbar navbar-expand  fixed-top">
 		<i class="bi bi-toggles" id="sidebar-close"></i>
@@ -179,23 +179,22 @@
 						</div>
 					</div>
 					<div class="profile-image">
-						<img v-if="previewFile" :src="previewFile" alt="Preview" class="rounded-circle p-1"
-							width="200" />
-
+						<img v-if="previewFile" :src="previewFile" alt="Preview" class="p-1"
+							width="200" height="200" />
 						<!-- Display a default image if previewFile is not available -->
 						<p v-else>
 							<img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-								class="rounded-circle p-1" width="200" />
+								class="rounded-circle p-1" width="200" height="200" />
 						</p>
 					</div>
 					<div class="header-profile-username-thai">
 						<div class="body-profile-username">
-							ชื่อภาษาไทย
+							{{ Thainame }}
 						</div>
 					</div>
 					<div class="header-profile-username-eng">
 						<div class="body-profile-username">
-							english name
+							{{ Engname }}
 						</div>
 					</div>
 					<div class="header-profile-email">
@@ -209,7 +208,7 @@
 											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></i>
 										อีเมล
 									</h6>
-									<span class="text-dark">yuki@Maxwell.com</span>
+									<span class="text-dark">{{ Email }}</span>
 								</li>
 							</ul>
 						</div>
@@ -225,7 +224,7 @@
 											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></i>
 										เบอร์โทรศัพท์
 									</h6>
-									<span class="text-dark">0987654321</span>
+									<span class="text-dark">{{ Phonenumber }}</span>
 								</li>
 							</ul>
 						</div>
@@ -555,40 +554,114 @@
 
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import router from "@/router";
+import axios from 'axios';
 
 export default {
 	setup() {
-		onMounted(() => {
-			const menu = document.querySelector(".menu-content");
-			const menuItems = document.querySelectorAll(".submenu-item");
-			const sideBar = document.querySelector(".sidebar");
-			const sideBarClose = document.querySelector("#sidebar-close");
-			const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
-			menuItems.forEach((items, index) => {
-				items.addEventListener("click", () => {
-					menu.classList.add("submenu-active");
-					items.classList.add("show-submenu");
-					menuItems.forEach((item2, index2) => {
-						if (index !== index2) {
-							item2.classList.remove("show-submenu")
+		const previewFile = ref('');
+		const Thainame = ref('');
+		const Engname = ref('');
+		const Phonenumber = ref('');
+		const Email = ref('');
+
+		onMounted(async () => {
+			const menu = document.querySelector('.menu-content');
+			const menuItems = document.querySelectorAll('.submenu-item');
+			const sideBar = document.querySelector('.sidebar');
+			const sideBarCloseButton = document.querySelector('#sidebar-close');
+			const subMenuTitles = document.querySelectorAll('.submenu .menu-title');
+
+			// Add click event listeners to submenu items
+			menuItems.forEach((item, index) => {
+				item.addEventListener('click', () => {
+					menu.classList.add('submenu-active');
+					item.classList.add('show-submenu');
+					menuItems.forEach((otherItem, otherIndex) => {
+						if (index !== otherIndex) {
+							otherItem.classList.remove('show-submenu');
 						}
-					})
-				})
-			})
+					});
+				});
+			});
+			// Add click event listeners to submenu titles
 			subMenuTitles.forEach((title) => {
-				title.addEventListener("click", () => {
-					menu.classList.remove("submenu-active");
-				})
-			})
-			sideBarClose.addEventListener("click", () => sideBar.classList.toggle("close"))
+				title.addEventListener('click', () => {
+					menu.classList.remove('submenu-active');
+				});
+			});
 
+			// Add click event listener to the sidebar close button
+			sideBarCloseButton.addEventListener('click', () => {
+				sideBar.classList.toggle('close');
+			});
+
+			// Optional: Log the menu items and submenu titles for debugging
 			console.log(menuItems, subMenuTitles);
+
+			const userId = localStorage.getItem('userid');
+			try {
+				const profileResponse = await axios.post(
+					`${import.meta.env.VITE_API2}users/profile/` + userId,
+					null,
+					{
+						headers: {
+							Authorization: 'Bearer ' + localStorage.getItem('tokenstring'),
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				console.log(profileResponse);
+				const uuid = profileResponse.data.thing.Image;
+				console.log(uuid);
+				const previewResponse = await axios.get(
+					`${import.meta.env.VITE_API2}users/preview/${uuid}`,
+					{
+						headers: {
+							Authorization: 'Bearer ' + localStorage.getItem('tokenstring'),
+							'Content-Type': 'application/json',
+						},
+						responseType: 'arraybuffer',
+					}
+				);
+
+				const base64String = btoa(
+					new Uint8Array(previewResponse.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+				);
+				console.log(base64String)
+				if(base64String === "IiI="){
+					previewFile.value = "" ;
+				}else{
+					const imageSrc = `data:${previewResponse.headers['content-type']};base64,${base64String}`;
+					previewFile.value = imageSrc ;
+				}
+				console.log(previewFile.value)
+				Thainame.value = profileResponse.data.thing.Thainame;
+				Engname.value = profileResponse.data.thing.Engname;
+				Phonenumber.value = profileResponse.data.thing.Phonenumber;
+				Email.value = profileResponse.data.thing.Email;
+
+			} catch (error) {
+				alert('การเรียกดูข้อมูลบุคคลผิดพลาด กรุณา login อีกครั้ง หรือ ติดต่อเจ้าหน้าที่');
+				// router.push({ path: '/login' });
+			}
 		});
-
-
-
+		return {
+			previewFile,
+			Thainame,
+			Engname,
+			Phonenumber,
+			Email,
+		};
+	},
+	methods: {
+		handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("role");
+			router.push({ path: "/login" });
+		},
 	}
-
-}
+};
 </script>
