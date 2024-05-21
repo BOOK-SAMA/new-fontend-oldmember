@@ -87,7 +87,7 @@ const handleSubmit = async () => {
       console.log("API Response:", response.data);
       alert("เข้าสู่ระบบ เรียบร้อยแล้ว")
       // Redirect to profile page
-      router.push({ path: "/admintoo/" + responseData.userid });
+      
     }
   } catch (error) {
     alert(error.response.data.Text)

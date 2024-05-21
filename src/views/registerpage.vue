@@ -75,7 +75,7 @@
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">Username<span class="text-danger fw-bold">*</span></h6>
+                                    <h6 class="mb-0">ชื่อผุ้ใช้งานในระบบ<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
                                     <span v-if="v$.username.$error" class="text-danger fw-bold">
@@ -89,7 +89,7 @@
                                 <div class="col-md-3 ps-5">
                                     <h6 class="mb-0">รหัสผ่าน<span class="text-danger fw-bold">*</span>
                                     </h6>
-                                    <button @click="togglePassword" class="mt-2 btn btn-success  text-dark " >
+                                    <button @click="togglePassword" class="mt-2 btn btn-success  text-dark ">
                                         ดูรหัสผ่าน
                                     </button>
                                 </div>
@@ -247,7 +247,7 @@
                                         {{ v$.levelmember.$errors[0].$message }}
                                     </span>
                                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="levelmember">
+                                        v-model="state.levelmember">
                                         <option selected disabled>เลือก 1 อย่าง</option>
                                         <option value="สมาชิกสามัญ ">
                                             สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
@@ -276,7 +276,7 @@
                                         {{ v$.levelmemberthing.$errors[0].$message }}
                                     </span>
                                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="levelmemberthing">
+                                        v-model="state.levelmemberthing">
                                         <option selected disabled>เลือก 1 อย่าง</option>
                                         <option value="ไม่รับของชำร่วย">
                                             ไม่รับของชำร่วย(เป็นยุวสมาชิก)
@@ -323,7 +323,7 @@
                                         <span v-if="v$.conditionalField1.$error" class="text-danger fw-bold">
                                             {{ v$.conditionalField1.$errors[0].$message }}
                                         </span>
-                                        <input v-model="statusinfo" class="form-check-input" type="checkbox"
+                                        <input v-model="state.statusinfo" class="form-check-input" type="checkbox"
                                             id="inlineCheckbox1" value="ยืนยัน" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
                                     </div>
@@ -349,7 +349,7 @@
                                             {{ v$.conditionalField2.$errors[0].$message }}
                                         </span>
                                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                            value="ยืนยัน" v-model="pnstatus" />
+                                            value="ยืนยัน" v-model="state.pnstatus" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
 
                                     </div>
@@ -437,11 +437,9 @@ export default {
             const pnstatusRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
                 return state.pnstatus || !!value;
             });
-
-
             return {
-                username: { required: helpers.withMessage('กรุณาใส่ข้อมูล Username', required) },
-                password: { required: helpers.withMessage('กรุณาใส่ข้อมูล Password', required) },
+                username: { required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required) },
+                password: { required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required) },
                 confirmpassword: { required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required), sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)) },
 
                 thainame: { required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required), isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) },
@@ -451,7 +449,7 @@ export default {
                 cityvalue: { required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required) },
                 countryvalue: { required: helpers.withMessage('กรุณาใส่ข้อมูล ประเทศ ด้วยนะครับ', required), isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) },
 
-                pincode: { required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required), numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric), maxLength:helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)) },
+                pincode: { required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required), numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric), maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)) },
                 phonenumber: { required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required), numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric) },
 
                 email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
@@ -503,8 +501,8 @@ export default {
         submit() {
             this.v$.$validate() // checks all inputs
             if (this.v$.$error) {
-                // if ANY fail validation
-                alert('แบบฟอร์มไม่สมบูรณ์ กรุณาตรวจสอบข้อมูล อีกครั้ง')
+                console.log(this.v$)
+                alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
             } else {
                 const URL = `${import.meta.env.VITE_API}register2`;
                 let data = new FormData();

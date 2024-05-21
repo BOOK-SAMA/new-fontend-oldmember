@@ -30,11 +30,6 @@ const router = createRouter({
       // ต้องทำการแก้ไข
     },
     {
-      path: '/loginadmin',
-      name: 'loginadmin',
-      component: admin,
-    },
-    {
       path: '/emailform',
       name: 'emailform',
       component: emailform
@@ -178,25 +173,14 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    // ตรวจสอบว่ามีข้อมูลผู้ใช้ใน localStorage หรือไม่
     const userId = localStorage.getItem('userid');
     const tokenString = localStorage.getItem('tokenstring');
-    console.log(userId)
-    console.log(tokenString)
-
-
-
     if (userId == null || tokenString == null) {
-      // ถ้าไม่มีข้อมูลผู้ใช้, ทำการ redirect ไปยังหน้า home
-      localStorage.removeItem("userid");
-      localStorage.removeItem("tokenstring");
-      localStorage.removeItem("uuid");
       alert("คุณยังไม่ได้เข้าสู่ระบบ รบกวนเข้าสู่ระบบก่อนนะครับ")
       window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
     } else {
       next();
     }
-
   } else {
     // หน้าที่ไม่ต้องการ authentication, ไปต่อไป
     next();

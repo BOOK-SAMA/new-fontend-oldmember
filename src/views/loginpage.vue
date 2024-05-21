@@ -70,30 +70,15 @@ const handleSubmit = async () => {
         console.log("API Response:", response.data);
         alert("เข้าสู่ระบบ เรียบร้อยแล้ว")
         // Redirect to profile page
-        router.push({ path: "/profile/" + responseData.userid });
+        if (responseData.role == "user") {
+            router.push({ path: "/profile/" + responseData.userid });
+        }else{
+            router.push({ path: "/admintoo/" + responseData.userid });
+        }
       }
   } catch (error) {
     alert(error.response.data.Text)
   }
 };
 </script>
-<!-- // ใน component หรือที่คุณทำการ Logout
-store.dispatch('logout'); 
-
-// ใน component
-const token = store.getters.getToken;
-console.log('Token:', token);
-
-// หรือถ้าคุณใช้ Composition API
-import { useStore } from 'vuex';
-const store = useStore();
-const token = store.getters.getToken;
-console.log('Token:', token);
-
-
-
--->
-
-
-
 <style></style>
