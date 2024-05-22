@@ -175,20 +175,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md ps-5">
-                                    <h6 class="mb-0">ประเทศ<span class="text-danger fw-bold">*</span></h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <span v-if="v$.countryvalue.$error" class="fw-bold text-danger">
-                                        {{ v$.countryvalue.$errors[0].$message }}
-                                    </span>
-                                    <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="state.countryvalue" />
-
-                                </div>
-                            </div>
-                            <hr class="mx-n3" />
+                            
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
@@ -425,7 +412,7 @@ export default {
 
             cityvalue: '',
             pincode: '',
-            countryvalue: '',
+          
 
 
         })
@@ -447,7 +434,7 @@ export default {
 
                 address: { required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required), isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) },
                 cityvalue: { required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required) },
-                countryvalue: { required: helpers.withMessage('กรุณาใส่ข้อมูล ประเทศ ด้วยนะครับ', required), isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) },
+               
 
                 pincode: { required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required), numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric), maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)) },
                 phonenumber: { required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required), numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric) },
@@ -513,7 +500,6 @@ export default {
                 data.append("engname", this.state.engname);
                 data.append("address", this.state.address);
                 data.append("city", this.state.cityvalue);
-                data.append("country", this.state.countryvalue);
                 data.append("pincode", this.state.pincode);
                 data.append("phonenumber", this.state.phonenumber);
                 data.append("email", this.state.email);
