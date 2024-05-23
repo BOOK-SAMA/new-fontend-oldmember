@@ -49,16 +49,9 @@ const router = createRouter({
     {
       //ต้องทำการแก้ไข
       path: `/updateuser/:id/edit`,
-      component: () => import('/src/views/user-access-required-update.vue'),
+      component: () => import('/src/views/userupdate_copy.vue'),
       // meta: { requiresAuth: true }
     },
-    {
-      //ต้องทำการแก้ไข
-      path: `/updateuserinfo/:id/edit`,
-      component: () => import('/src/views/user-access-not_required-update.vue'),
-      // meta: { requiresAuth: true }
-    },
-    
     {
       path: '/catalog',
       component: () => import('../shopping/mainshopping.vue'),
