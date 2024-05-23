@@ -1,8 +1,9 @@
 <template>
 
+
 	<nav class="navbar navbar-expand fixed-top" style="background-color: #F9CC02;">
 		<a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
-				alt="Admin" class="rounded-circle p-1" width="40" /></a>
+				alt="Admin" class="rounded-circle p-1" width="80" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
 			aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -24,8 +25,8 @@
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-					LOGOUT
+				<button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()" style="background-color: #F9CC02;">
+					ออกจากระบบ
 				</button>
 			</form>
 		</div>
@@ -33,7 +34,7 @@
 	<!-- แถว link 	-->
 	<div class="container " style="margin-top: 100px;">
 		<div class="main-body mt-6">
-			<div class="row">
+			<div class="row" >
 				<div class="col-lg-4 mt-6">
 					<div class="card mt-6 ">
 						<!--แถวรูปกับข้อมูลส่วนตัว  -->
@@ -73,24 +74,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8 " style="margin-top: 1.3cm;">
+				<div class="col-lg-8" style="margin-top: 1.3cm;">
 					<!--แถวข้อมูลส่วนตัว เช่นรูป  -->
-					<div class="card">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<div class="card " >
+						<ul class="nav nav-tabs" id="myTab" role="tablist" >
 							<li class="nav-item" role="presentation">
 								<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
 									data-bs-target="#userinfo" type="button" role="tab" aria-controls="home"
 									aria-selected="true">รายละเอียดของผู้ใช้</button>
 							</li>
 							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#userinfo-more"
-									type="button" role="tab" aria-controls="profile"
+								<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+									data-bs-target="#userinfo-more" type="button" role="tab" aria-controls="profile"
 									aria-selected="false">รายละเอียดของผู้ใช้เพิ่มเติม</button>
 							</li>
 							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+								<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#study"
 									type="button" role="tab" aria-controls="contact"
 									aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับการศึกษา</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#job"
+									type="button" role="tab" aria-controls="contact"
+									aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับอาชีพ</button>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
@@ -102,7 +108,7 @@
 											<h6 class="mb-0">ชื่อผู้ใช้งานในระบบ</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Username }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Username }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -110,7 +116,7 @@
 											<h6 class="mb-0">ชื่อภาษาไทย</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Thainame }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Thainame }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -118,7 +124,7 @@
 											<h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Engname }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Engname }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -126,7 +132,7 @@
 											<h6 class="mb-0">ที่อยู่</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Address }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -134,7 +140,7 @@
 											<h6 class="mb-0">จังหวัด</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ city }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -142,7 +148,7 @@
 											<h6 class="mb-0">รหัสไปษณีย์</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ pincode }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -150,7 +156,7 @@
 											<h6 class="mb-0">อีเมล</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Email }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -158,34 +164,146 @@
 											<h6 class="mb-0">เบอร์โทรศัพท์</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Phonenumber }}</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="userinfo-more" role="tabpanel" aria-labelledby="profile-tab">...
+							<div class="tab-pane fade" id="userinfo-more" role="tabpanel" aria-labelledby="profile-tab">
+								<div class="card-body mt-6">
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ชื่อเดิมก่อนเปลี่ยนชื่อ</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Oldname }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ชื่อเล่น</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Nickname }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">วันเกิด</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Dateofbirth }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">โทรสาร</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;" >{{ Phonemail }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ไอดีไลน์</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;" >{{ Idline }}</p>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...
+							<div class="tab-pane fade" id="study" role="tabpanel" aria-labelledby="contact-tab">
+								<div class="card-body mt-6">
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Academicstatus }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Academicnumber }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ระดับปริญญาโท สาขาวิชาเอก</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Masterdegree }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">รหัสระดับปริญญาโท</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Masterdegreenumber }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ระดับปริญญาเอก สาขาวิชาเอก</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Doctoraldegree }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">รหัสระดับปริญญาเอก</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Doctoraldegreenumber }}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="job" role="tabpanel" aria-labelledby="contact-tab">
+								<div class="card-body mt-6">
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Job }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Jobposition }}</p>
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<p class="form-control form-control-lg" style="height: max-content;" >{{ Jobaddress }}</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
 </template>
 
 <style>
 .card {
+	
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -243,7 +361,8 @@ export default {
 			Jobaddress: "",
 			Levelmember: "",
 			Levelmemberthing: "",
-
+			city:"",
+			pincode:"",
 			previewFile: null,
 		};
 	},
@@ -328,8 +447,10 @@ export default {
 				this.Jobaddress = secondApiResponse.data.thing.Jobaddress;
 				this.Levelmember = secondApiResponse.data.thing.Levelmember;
 				this.Levelmemberthing = secondApiResponse.data.thing.Levelmemberthing;
+				this.city = secondApiResponse.data.thing.City ; 
 				localStorage.setItem('uuid', secondApiResponse.data.thing.Image)
 				this.Text = secondApiResponse.data.thing.Accessstatus;
+				this.pincode = secondApiResponse.data.thing.Pincode ; 
 				if (this.Text == "enable") {
 
 					this.Accessstatus = true;
@@ -367,7 +488,6 @@ export default {
 
 			}
 		},
-
 	},
 };
 </script>
