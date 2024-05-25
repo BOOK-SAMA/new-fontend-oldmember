@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import home from '/src/views/HomePage.vue'
 import register from '/src/views/registerpage.vue'
 import loginUser from '/src/views/loginpage.vue'
-
+import test from '/src/views/test.vue'
 import NotFound from '/src/views/notfound.vue'
 import admintoo from '/src/views/admintoo.vue'
 import admincreatefrom from '/src/views/admincreatefrom.vue'
@@ -15,6 +15,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     },
     // ========== สำหรับไม่ login
     {

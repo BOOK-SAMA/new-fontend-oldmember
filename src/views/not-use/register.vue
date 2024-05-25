@@ -353,18 +353,7 @@
               <!-- ช่องยืนยัน ๑-->
               <hr class="mx-n3" />
 
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รูปถ่าย</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
-                    @change="handleprofile" />
-                  <div class="small text-muted mt-2">
-                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-                  </div>
-                </div>
-              </div>
+             
               <!-- ช่องรูปถ่าย-->
               <hr class="mx-n3" />
               <div class="row align-items-center py-3">

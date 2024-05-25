@@ -12,6 +12,31 @@ export default {
 </script>
 
 <template>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="backg mt-0">
     <div class="container">
       <div class="BannerContainer">

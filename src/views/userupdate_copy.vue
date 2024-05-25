@@ -43,19 +43,46 @@
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#userinfo"
                     type="button" role="tab" aria-controls="nav-home" aria-selected="true">รายละเอียดของผู้ใช้</button>
-                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#userinfo-more"
                     type="button" role="tab" aria-controls="nav-profile"
                     aria-selected="false">รายละเอียดของผู้ใช้เพิ่มเติม</button>
-                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#userinfo-study"
                     type="button" role="tab" aria-controls="nav-contact"
                     aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับการศึกษา</button>
-                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#userinfo-job"
                     type="button" role="tab" aria-controls="nav-contact"
                     aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับอาชีพ</button>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="userinfo" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row align-items-center pt-4 pb-3">
+                    <hr class="mx-n3" />
+                    <div class="row align-items-center py-3">
+                      <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
+                      </div>
+                      <div class="col-md-9 pe-5">
+                        <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database</h6>
+                        <h6 class="mb-0">
+                          หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
+                        </h6>
+                        <img v-if="profileimage" :src="profileimage" alt="Preview" class="p-1" width="200" />
+                        <!-- Display a default image if previewFile is not available -->
+                        <p v-else>
+                          <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+                            class="p-1" width="200" />
+                        </p>
+                        <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
+                          @change="handleprofile" />
+                        <div class="small text-muted mt-2">
+                          (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+
                   <div class="row align-items-center pt-4 pb-3">
                     <hr class="mx-n3" />
                     <div class="col-md-3 ps-5">
@@ -116,13 +143,12 @@
                     </div>
                   </div>
                   <hr class="mx-n3" />
-
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
                       <h6 class="mb-0">ชื่อภาษาไทย</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder=""/>
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -131,69 +157,193 @@
                       <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="Engname" class="form-control form-control-lg" placeholder=""/>
+                      <input v-model="Engname" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
                   <div class="row mb-3">
-										<div class="col-sm-3">
-											<h6 class="mb-0">ที่อยู่</h6>
-										</div>
-										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Address }}</p>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col-sm-3">
-											<h6 class="mb-0">จังหวัด</h6>
-										</div>
-										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ city }}</p>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col-sm-3">
-											<h6 class="mb-0">รหัสไปษณีย์</h6>
-										</div>
-										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ pincode }}</p>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col-sm-3">
-											<h6 class="mb-0">อีเมล</h6>
-										</div>
-										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Email }}</p>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col-sm-3">
-											<h6 class="mb-0">เบอร์โทรศัพท์</h6>
-										</div>
-										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Phonenumber }}</p>
-										</div>
-									</div>
-
-
-
-
-
-
-
-
-
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">ที่อยู่</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p class="form-control form-control-lg" style="height: max-content;">{{ Address }}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">จังหวัด</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p class="form-control form-control-lg" style="height: max-content;">{{ city }}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">รหัสไปษณีย์</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p class="form-control form-control-lg" style="height: max-content;">{{ pincode }}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">อีเมล</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p class="form-control form-control-lg" style="height: max-content;">{{ Email }}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p class="form-control form-control-lg" style="height: max-content;">{{ Phonenumber }}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-              </div>
+                <div class="tab-pane fade" id="userinfo-more" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อเดิมก่อนเปลี่ยนชื่อ</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="Oldname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อเล่น</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="nickname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">วันเกิด</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
 
-
-              <div class="px-5 py-4">
-                <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate">
-                  Submit
-                </button>
+                      <VDatePicker locale="th-TH" v-model="date" mode="date" :title="formattedTitle" mark />
+                      <p>วันเกิดของผู้ใช้ : {{ formattedDate }}</p>
+                    </div>
+                    <hr class="mx-n3" />
+                    <div class="row align-items-center py-3">
+                      <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">โทรสาร</h6>
+                      </div>
+                      <div class="col-md-9 pe-5">
+                        <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      </div>
+                    </div>
+                    <hr class="mx-n3" />
+                    <div class="row align-items-center py-3">
+                      <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">ไอดีไลน์</h6>
+                      </div>
+                      <div class="col-md-9 pe-5">
+                        <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      </div>
+                    </div>
+                    <hr class="mx-n3" />
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="userinfo-study" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาโท สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสระดับปริญญาโท</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาเอก สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสระดับปริญญาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="tab-pane fade" id="userinfo-job" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="px-5 py-4">
+                  <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate">
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -203,8 +353,278 @@
   </section>
 </template>
 
-<script>
 
+
+<script>
+import router from "@/router";
+import { ref, reactive, computed } from "vue";
+import axios from "axios";
+import useValidate from '@vuelidate/core'
+import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+
+
+
+export default {
+
+  setup() {
+
+
+    const date = ref(new Date());
+
+    const formattedTitle = (date) => {
+      const yearBuddhist = date.getFullYear() + 543;
+      return format(date, 'MMM', { locale: th }) + ' ' + yearBuddhist;
+    };
+    const formattedDate = computed(() => {
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      return date.value ? date.value.toLocaleDateString('th-TH', options) : '';
+    });
+
+    const setDateFromFormattedDate = () => {
+      const dateString = '20/01/2000';
+      // Regex สำหรับตรวจสอบรูปแบบ dd/mm/yyyy
+      const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+      if (!regex.test(dateString)) {
+        const dateString = '20/01/2000';
+      }
+      // สมมุติว่าคุณมีค่าของ formattedDate เป็น '20/01/2000
+      const [day, month, year] = dateString.split('/').map(Number);
+      date.value = new Date(year, month - 1, day);
+    };
+
+
+    const isEnglishOrThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+
+      // Check if the value contains any Thai characters
+      if (thaiRegex.test(value)) {
+        return false; // Return false if Thai characters are found
+      }
+
+      return true; // Return true if the value is in English
+    };
+
+    const isThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+
+      // Check if the value contains any Thai characters
+      if (thaiRegex.test(value)) {
+        return true; // Return false if Thai characters are found
+      }
+
+      return false; // Return true if the value is in English
+    };
+
+
+    const state = reactive({
+      username: '',
+      email: '',
+      password: '',
+      confirmpassword: '',
+      thainame: '',
+      engname: '',
+      address: '',
+      phonenumber: '',
+      levelmember: '',
+      levelmemberthing: '',
+      statusinfo: false,
+      pnstatus: false,
+      cityvalue: '',
+      pincode: '',
+
+    })
+    const rules = computed(() => {
+
+      const statusinfoRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
+        return state.statusinfo || !!value;
+      });
+      const pnstatusRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
+        return state.pnstatus || !!value;
+      });
+      return {
+        username: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required),
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+        },
+        password: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required),
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+        },
+        confirmpassword: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
+          sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+        },
+
+        thainame: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+        },
+        engname: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
+          isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
+        },
+
+        address: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+        },
+        cityvalue: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
+        },
+
+
+        pincode: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required),
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 5 ตัวด้วยครับ', minLength(5))
+        },
+
+        phonenumber: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required),
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 10 ตัวเท่านั่นนะครับ ', maxLength(10)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 10 ตัวด้วยครับ', minLength(10))
+        },
+
+        email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
+
+        levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
+        levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
+
+        conditionalField1: { required: statusinfoRequired },
+        conditionalField2: { required: pnstatusRequired },
+      }
+    })
+
+    const v$ = useValidate(rules, state)
+    return {
+      rules,
+      state,
+      v$,
+
+      date,
+      formattedDate,
+      setDateFromFormattedDate,
+      formattedTitle
+    }
+  },
+
+  data() {
+    return {
+      selectedDate: this.$moment().format("YYYY/MM/DD"),
+      // selectedDate: null,
+      buddhistYear: true,
+      inputType: "password",
+      file: null,
+      district: [],
+      canton: [],
+      // city: [],
+    };
+  },
+  components: { DatePicker },
+  mounted() {
+    this.fetchDistrict();
+    this.fetchCanton();
+    this.setDateFromFormattedDate();
+    // this.fetchCity();
+  },
+  methods: {
+    togglePassword() {
+      this.inputType = this.inputType === "password" ? "text" : "password";
+    },
+    handleprofile(event) {
+      this.file = event.target.files[0];
+    },
+    formatdate(dateofbirth) {
+      const day = dateofbirth.getDate();
+      const month = dateofbirth.getMonth() + 1;
+      const year = dateofbirth.getFullYear();
+      this.date = `${day}/${month}/${year}`;
+      return `คุณเกิดวันที่ ${day}/${month}/${year}`;
+    },
+    submit() {
+
+
+      // this.v$.$validate() // checks all inputs
+      // if (this.v$.$error) {
+      //     console.log(this.v$)
+      //     alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
+      // } else {
+      //     const URL = `${import.meta.env.VITE_API}register2`;
+      //     let data = new FormData();
+      //     data.append("username", this.state.username);
+      //     data.append("password", this.state.password);
+      //     data.append("confirmpassword", this.state.confirmpassword);
+      //     data.append("thainame", this.state.thainame);
+      //     data.append("engname", this.state.engname);
+      //     data.append("address", this.state.address);
+      //     data.append("city", this.state.cityvalue);
+      //     data.append("pincode", this.state.pincode);
+      //     data.append("phonenumber", this.state.phonenumber);
+      //     data.append("email", this.state.email);
+      //     data.append("levelmember", this.state.levelmember);
+      //     data.append("levelmemberthing", this.state.levelmemberthing);
+      //     data.append("statusinfo", this.state.statusinfo);
+      //     data.append("file", this.file);
+      //     data.append("PNstatus", this.state.pnstatus);
+      //     let config = {
+      //         header: {
+      //             "Content-Type": "multipart/form-data",
+      //         },
+      //     };
+
+      //     axios.post(URL, data, config).then((response) => {
+      //         // console.log("this is res => ", this.date);
+      //         this.responseStatus = response.status
+      //         console.log("this is res => ", response);
+      //         alert("การสมัครสมาชิกสำเร็จแล้ว")
+      //         window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+
+      //     }).catch((error) => {
+      //         alert(error.response.data.Text);
+      //     });
+      // }
+    },
+    async fetchDistrict() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json');
+        const data = await response.json();
+        // Assuming the API response is an array of objects with `value` and `text` properties
+        this.district = data;
+        console.log(this.district)
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    },
+    async fetchCanton() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json');
+        const data = await response.json();
+        // Assuming the API response is an array of objects with `value` and `text` properties
+        this.canton = data;
+        console.log(this.district)
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    },
+    async fetchCity() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json');
+        const data = await response.json();
+        // Assuming the API response is an array of objects with `value` and `text` properties
+        this.city = data;
+        console.log(this.district)
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    }
+  },
+};
 </script>
 
 
@@ -267,12 +687,6 @@ export default {
       dateString: "",
 
       Accessstatus: "",
-      days: Array.from({ length: 31 }, (_, i) => i + 1),
-      months: Array.from({ length: 12 }, (_, i) => i + 1),
-      years: Array.from(
-        { length: 100 },
-        (_, i) => new Date().getFullYear() - i
-      ),
       router: useRouter(),
       file: null,
       profileimage: null,
