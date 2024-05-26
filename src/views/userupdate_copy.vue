@@ -491,7 +491,7 @@ export default {
       Phonemail: '',
       Idline: '',
 
-      status: '',
+
       academicstatus: '',
       academicnumber: '',
       masterdegree: '',
@@ -554,12 +554,62 @@ export default {
 
         email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
 
-        levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
-        levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
+        
 
 
+        Oldname: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        nickname: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Phonemail: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 9 ตัวเท่านั่นนะครับ ', maxLength(9)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 9 ตัวด้วยครับ', minLength(9))
+        },
+
+        academicstatus: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        academicnumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        masterdegree: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        masterdegreenumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        doctordegree: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        doctordegreenumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1)),
+        },
+
+      job: {
+        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+      },
+      Jobposition: {
+        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+      },
+      Jobaddress: {
+        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+      },
       }
-    })
+    });
 
     const v$ = useValidate(rules, state)
     return {
