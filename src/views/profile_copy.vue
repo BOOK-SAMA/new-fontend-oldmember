@@ -17,8 +17,10 @@
 					<a class="nav-link" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :class="{ 'disabled': state }"
-						:href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
+					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : getHref()"
+						@click="checkAccountStatus">
+						แก้ไขข้อมูลส่วนตัว
+					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" :href="state ? '#' : `/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
@@ -387,18 +389,16 @@ export default {
 			city: "",
 			pincode: "",
 			previewFile: null,
+			accestatus: 'enabled', 
+			state: false, 
+			
 		};
 	},
 
 	async mounted() {
 		this.id = this.$route.params.id;
-
 		// Ensure user is authenticated and authorized
 		await this.checkuser(this.id);
-
-		const uuid = localStorage.getItem("uuid");
-		await this.downloadImageAndDisplay(uuid)
-
 	},
 	methods: {
 		handlelogout() {
@@ -440,7 +440,6 @@ export default {
 						},
 					}
 				);
-
 				console.log(secondApiResponse);
 				// Process the response from the second API as needed
 				this.Username = secondApiResponse.data.thing.Username;
@@ -471,14 +470,10 @@ export default {
 				this.Levelmember = secondApiResponse.data.thing.Levelmember;
 				this.Levelmemberthing = secondApiResponse.data.thing.Levelmemberthing;
 				this.city = secondApiResponse.data.thing.City;
-				localStorage.setItem('uuid', secondApiResponse.data.thing.Image)
-				this.Text = secondApiResponse.data.thing.Accessstatus;
+				this.downloadImageAndDisplay(secondApiResponse.data.thing.Image)
 				this.pincode = secondApiResponse.data.thing.Pincode;
-				if (this.Text == "enable") {
 
-					this.Accessstatus = true;
-					console.log(this.Accessstatus)
-				}
+				this.accestatus = secondApiResponse.data.thing.Accessstatus
 			} catch (error) {
 
 			}
@@ -504,16 +499,25 @@ export default {
 
 				console.log(base64String);
 				if (base64String === "IiI=") {
-					this.profileimage = null;
+					this.previewFile = null;
 				} else {
 					const imageSrc = `data:${response.headers['content-type']};base64,${base64String}`;
-					this.profileimage = imageSrc;
+					this.previewFile = imageSrc;
 				}
 
 			} catch (error) {
 
 			}
 		},
+		checkAccountStatus(event) {
+			if (this.accestatus === 'disenable') {
+				alert('คุณไม่อนุญาตให้แก้ไขข้อมูลส่วนตัว โปรดติดต่อ staff');
+				event.preventDefault(); // prevent the default action if accestatus is disenable
+			}
+		},
+		getHref() {
+			return `/updateuser/${this.$route.params.id}/edit`;
+		}
 	},
 };
 </script>

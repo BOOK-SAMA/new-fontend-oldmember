@@ -579,7 +579,7 @@ export default {
       file: null,
       district: [],
       canton: [],
-      city:[],
+      city: [],
     };
   },
 
@@ -665,41 +665,41 @@ export default {
             "Content-Type": "application/json",
           },
         }
-      )
-        .then((res) => {
-          console.log(res);
-          this.state.username = res.data.thing.Username;
-          this.state.thainame = res.data.thing.Thainame;
-          this.state.engname = res.data.thing.Engname;
-          this.state.email = res.data.thing.Email;
-          this.state.address = res.data.thing.Address;
-          this.state.cityvalue = res.data.thing.City;
-          this.state.pincode = res.data.thing.Pincode;
-          this.state.phonenumber = res.data.thing.Phonenumber;
+      ).then((res) => {
+        console.log(res);
 
-          this.state.Oldname = res.data.thing.Oldname;
-          this.state.nickname = res.data.thing.Nickname;
-          this.state.Phonemail = res.data.thing.Phonemail;
-          this.state.Idline = res.data.thing.Idline;
-          const dateString = res.data.thing.Dateofbirth;
-          this.setDateFromFormattedDate(dateString);
+        this.state.username = res.data.thing.Username;
+        this.state.thainame = res.data.thing.Thainame;
+        this.state.engname = res.data.thing.Engname;
+        this.state.email = res.data.thing.Email;
+        this.state.address = res.data.thing.Address;
+        this.state.cityvalue = res.data.thing.City;
+        this.state.pincode = res.data.thing.Pincode;
+        this.state.phonenumber = res.data.thing.Phonenumber;
 
-
-          this.state.academicstatus = res.data.thing.Academicstatus;
-          this.state.academicnumber = res.data.thing.Academicnumber;
-          this.state.masterdegree = res.data.thing.Masterdegree;
-          this.state.masterdegreenumber = res.data.thing.Masterdegreenumber;
-          this.state.doctordegree = res.data.thing.Doctoraldegree;
-          this.state.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+        this.state.Oldname = res.data.thing.Oldname;
+        this.state.nickname = res.data.thing.Nickname;
+        this.state.Phonemail = res.data.thing.Phonemail;
+        this.state.Idline = res.data.thing.Idline;
+        const dateString = res.data.thing.Dateofbirth;
+        this.setDateFromFormattedDate(dateString);
 
 
-          this.state.job = res.data.thing.Job;
-          this.state.Jobposition = res.data.thing.Jobposition;
-          this.state.Jobaddress = res.data.thing.Jobaddress;
-          this.state.Levelmember = res.data.thing.Levelmember;
-          this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
-          this.downloadImageAndDisplay(res.data.thing.Image)
-        })
+        this.state.academicstatus = res.data.thing.Academicstatus;
+        this.state.academicnumber = res.data.thing.Academicnumber;
+        this.state.masterdegree = res.data.thing.Masterdegree;
+        this.state.masterdegreenumber = res.data.thing.Masterdegreenumber;
+        this.state.doctordegree = res.data.thing.Doctoraldegree;
+        this.state.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+
+
+        this.state.job = res.data.thing.Job;
+        this.state.Jobposition = res.data.thing.Jobposition;
+        this.state.Jobaddress = res.data.thing.Jobaddress;
+        this.state.Levelmember = res.data.thing.Levelmember;
+        this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
+        this.downloadImageAndDisplay(res.data.thing.Image)
+      })
         .catch();
     },
     Changepassword() {
@@ -756,7 +756,7 @@ export default {
           const imageSrc = `data:${response.headers['content-type']};base64,${base64String}`;
           this.profileimage = imageSrc;
         }
-       
+
       } catch (error) {
 
       }
