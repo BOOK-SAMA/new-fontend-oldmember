@@ -25,7 +25,8 @@
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()" style="background-color: #F9CC02;">
+				<button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()"
+					style="background-color: #F9CC02;">
 					ออกจากระบบ
 				</button>
 			</form>
@@ -34,7 +35,7 @@
 	<!-- แถว link 	-->
 	<div class="container " style="margin-top: 100px;">
 		<div class="main-body mt-6">
-			<div class="row" >
+			<div class="row">
 				<div class="col-lg-4 mt-6">
 					<div class="card mt-6 ">
 						<!--แถวรูปกับข้อมูลส่วนตัว  -->
@@ -76,8 +77,8 @@
 				</div>
 				<div class="col-lg-8" style="margin-top: 1.3cm;">
 					<!--แถวข้อมูลส่วนตัว เช่นรูป  -->
-					<div class="card " >
-						<ul class="nav nav-tabs" id="myTab" role="tablist" >
+					<div class="card ">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item" role="presentation">
 								<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
 									data-bs-target="#userinfo" type="button" role="tab" aria-controls="home"
@@ -108,7 +109,8 @@
 											<h6 class="mb-0">ชื่อผู้ใช้งานในระบบ</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Username }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Username }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -116,7 +118,8 @@
 											<h6 class="mb-0">ชื่อภาษาไทย</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Thainame }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Thainame }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -124,7 +127,8 @@
 											<h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Engname }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Engname }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -132,7 +136,8 @@
 											<h6 class="mb-0">ที่อยู่</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Address }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Address }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -140,7 +145,8 @@
 											<h6 class="mb-0">จังหวัด</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ city }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ city
+												}}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -148,7 +154,8 @@
 											<h6 class="mb-0">รหัสไปษณีย์</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ pincode }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												pincode }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -156,7 +163,8 @@
 											<h6 class="mb-0">อีเมล</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Email }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Email }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -164,7 +172,8 @@
 											<h6 class="mb-0">เบอร์โทรศัพท์</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Phonenumber }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Phonenumber }}</p>
 										</div>
 									</div>
 								</div>
@@ -176,7 +185,8 @@
 											<h6 class="mb-0">ชื่อเดิมก่อนเปลี่ยนชื่อ</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Oldname }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Oldname }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -184,7 +194,8 @@
 											<h6 class="mb-0">ชื่อเล่น</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Nickname }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Nickname }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -192,7 +203,8 @@
 											<h6 class="mb-0">วันเกิด</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Dateofbirth }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Dateofbirth }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -200,7 +212,8 @@
 											<h6 class="mb-0">โทรสาร</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;" >{{ Phonemail }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Phonemail }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -208,7 +221,8 @@
 											<h6 class="mb-0">ไอดีไลน์</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;" >{{ Idline }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Idline }}</p>
 										</div>
 									</div>
 								</div>
@@ -220,7 +234,8 @@
 											<h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Academicstatus }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Academicstatus }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -228,7 +243,8 @@
 											<h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Academicnumber }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Academicnumber }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -236,7 +252,8 @@
 											<h6 class="mb-0">ระดับปริญญาโท สาขาวิชาเอก</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Masterdegree }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Masterdegree }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -244,7 +261,8 @@
 											<h6 class="mb-0">รหัสระดับปริญญาโท</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Masterdegreenumber }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Masterdegreenumber }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -252,7 +270,8 @@
 											<h6 class="mb-0">ระดับปริญญาเอก สาขาวิชาเอก</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Doctoraldegree }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Doctoraldegree }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -260,7 +279,8 @@
 											<h6 class="mb-0">รหัสระดับปริญญาเอก</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Doctoraldegreenumber }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Doctoraldegreenumber }}</p>
 										</div>
 									</div>
 								</div>
@@ -272,7 +292,8 @@
 											<h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Job }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ Job
+												}}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -280,7 +301,8 @@
 											<h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Jobposition }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Jobposition }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -288,7 +310,8 @@
 											<h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;" >{{ Jobaddress }}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Jobaddress }}</p>
 										</div>
 									</div>
 								</div>
@@ -303,7 +326,7 @@
 
 <style>
 .card {
-	
+
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -361,8 +384,8 @@ export default {
 			Jobaddress: "",
 			Levelmember: "",
 			Levelmemberthing: "",
-			city:"",
-			pincode:"",
+			city: "",
+			pincode: "",
 			previewFile: null,
 		};
 	},
@@ -447,10 +470,10 @@ export default {
 				this.Jobaddress = secondApiResponse.data.thing.Jobaddress;
 				this.Levelmember = secondApiResponse.data.thing.Levelmember;
 				this.Levelmemberthing = secondApiResponse.data.thing.Levelmemberthing;
-				this.city = secondApiResponse.data.thing.City ; 
+				this.city = secondApiResponse.data.thing.City;
 				localStorage.setItem('uuid', secondApiResponse.data.thing.Image)
 				this.Text = secondApiResponse.data.thing.Accessstatus;
-				this.pincode = secondApiResponse.data.thing.Pincode ; 
+				this.pincode = secondApiResponse.data.thing.Pincode;
 				if (this.Text == "enable") {
 
 					this.Accessstatus = true;
@@ -462,7 +485,6 @@ export default {
 		},
 		async downloadImageAndDisplay(uuid) {
 			try {
-				// Fetch the image content from the server
 				const response = await axios.get(
 					`${import.meta.env.VITE_API2}users/preview/${uuid}`,
 					{
@@ -470,20 +492,24 @@ export default {
 							Authorization: "Bearer " + localStorage.getItem("tokenstring"),
 							"Content-Type": "application/json",
 						},
-						responseType: 'arraybuffer', // Set the responseType to 'arraybuffer' to handle binary data
+						responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
 					}
 				);
+				const base64String = btoa(
+					new Uint8Array(response.data).reduce(
+						(data, byte) => data + String.fromCharCode(byte),
+						""
+					)
+				)
 
-				// Convert the binary data to a data URL
-				const imageSrc = `data:${response.headers['content-type']};base64,${btoa(new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`;
-
-				// Display the image using the data URL
-				const imgElement = document.getElementById('your-image-id'); // Replace 'your-image-id' with the actual ID of your image element
-				if (imgElement) {
-					imgElement.src = imageSrc;
+				console.log(base64String);
+				if (base64String === "IiI=") {
+					this.profileimage = null;
+				} else {
+					const imageSrc = `data:${response.headers['content-type']};base64,${base64String}`;
+					this.profileimage = imageSrc;
 				}
-				this.previewFile = imageSrc;
-				console.log('Image downloaded and displayed.');
+
 			} catch (error) {
 
 			}

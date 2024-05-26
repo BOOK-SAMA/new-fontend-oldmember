@@ -612,31 +612,7 @@ export default {
 						},
 					}
 				);
-				console.log(profileResponse);
-				const uuid = profileResponse.data.thing.Image;
-				console.log(uuid);
-				const previewResponse = await axios.get(
-					`${import.meta.env.VITE_API2}users/preview/${uuid}`,
-					{
-						headers: {
-							Authorization: 'Bearer ' + localStorage.getItem('tokenstring'),
-							'Content-Type': 'application/json',
-						},
-						responseType: 'arraybuffer',
-					}
-				);
-
-				const base64String = btoa(
-					new Uint8Array(previewResponse.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-				);
-				console.log(base64String)
-				if(base64String === "IiI="){
-					previewFile.value = "" ;
-				}else{
-					const imageSrc = `data:${previewResponse.headers['content-type']};base64,${base64String}`;
-					previewFile.value = imageSrc ;
-				}
-				console.log(previewFile.value)
+				
 				Thainame.value = profileResponse.data.thing.Thainame;
 				Engname.value = profileResponse.data.thing.Engname;
 				Phonenumber.value = profileResponse.data.thing.Phonenumber;

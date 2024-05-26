@@ -6,7 +6,7 @@
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก </a>
@@ -89,7 +89,7 @@
                       <h6 class="mb-0">ชื่อผู้ใช้งานในระบบ</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <p>{{ Username }}</p>
+                      <input v-model="state.username" class="form-control form-control-lg" placeholder="" disabled />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -143,21 +143,29 @@
                     </div>
                   </div>
                   <hr class="mx-n3" />
+
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
                       <h6 class="mb-0">ชื่อภาษาไทย</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.thainame.$error" class="text-danger fw-bold">
+                        {{ v$.thainame.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.thainame" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
+
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
                       <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="Engname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.engname.$error" class="text-danger fw-bold">
+                        {{ v$.engname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.engname" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -166,41 +174,67 @@
                       <h6 class="mb-0">ที่อยู่</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <p class="form-control form-control-lg" style="height: max-content;">{{ Address }}</p>
+                      <span v-if="v$.address.$error" class="text-danger fw-bold">
+                        {{ v$.address.$errors[0].$message }}
+                      </span>
+                      <textarea v-model="state.address" class="form-control form-control-lg" placeholder=""></textarea>
                     </div>
                   </div>
+                  <hr class="mx-n3" />
                   <div class="row mb-3">
                     <div class="col-sm-3">
                       <h6 class="mb-0">จังหวัด</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <p class="form-control form-control-lg" style="height: max-content;">{{ city }}</p>
+                      <span v-if="v$.cityvalue.$error" class="fw-bold text-danger">
+                        {{ v$.cityvalue.$errors[0].$message }}
+                      </span>
+                      <select class="custom-select my-2 mr-sm-2 form-control form-control-lg"
+                        id="inlineFormCustomSelectPref" v-model="state.cityvalue">
+                        <option v-for="item in city" :key="item.name_th" :value="item.name_th"
+                          placeholder="เลือก 1 อย่าง">
+                          {{ item.name_th }}
+                        </option>
+                      </select>
                     </div>
                   </div>
+                  <hr class="mx-n3" />
                   <div class="row mb-3">
                     <div class="col-sm-3">
                       <h6 class="mb-0">รหัสไปษณีย์</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <p class="form-control form-control-lg" style="height: max-content;">{{ pincode }}</p>
+                      <span v-if="v$.pincode.$error" class="text-danger fw-bold">
+                        {{ v$.pincode.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.pincode" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
+                  <hr class="mx-n3" />
                   <div class="row mb-3">
                     <div class="col-sm-3">
                       <h6 class="mb-0">อีเมล</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <p class="form-control form-control-lg" style="height: max-content;">{{ Email }}</p>
+                      <span v-if="v$.email.$error" class="text-danger fw-bold">
+                        {{ v$.email.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.email" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
+                  <hr class="mx-n3" />
                   <div class="row mb-3">
                     <div class="col-sm-3">
                       <h6 class="mb-0">เบอร์โทรศัพท์</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <p class="form-control form-control-lg" style="height: max-content;">{{ Phonenumber }}</p>
+                      <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
+                        {{ v$.phonenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.phonenumber" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
+                  <hr class="mx-n3" />
                 </div>
                 <div class="tab-pane fade" id="userinfo-more" role="tabpanel" aria-labelledby="nav-profile-tab">
                   <hr class="mx-n3" />
@@ -227,11 +261,11 @@
                       <h6 class="mb-0">วันเกิด</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-
                       <VDatePicker locale="th-TH" v-model="date" mode="date" :title="formattedTitle" mark />
                       <p>วันเกิดของผู้ใช้ : {{ formattedDate }}</p>
                     </div>
                     <hr class="mx-n3" />
+
                     <div class="row align-items-center py-3">
                       <div class="col-md-3 ps-5">
                         <h6 class="mb-0">โทรสาร</h6>
@@ -241,6 +275,7 @@
                       </div>
                     </div>
                     <hr class="mx-n3" />
+
                     <div class="row align-items-center py-3">
                       <div class="col-md-3 ps-5">
                         <h6 class="mb-0">ไอดีไลน์</h6>
@@ -250,6 +285,7 @@
                       </div>
                     </div>
                     <hr class="mx-n3" />
+
                   </div>
                 </div>
                 <div class="tab-pane fade" id="userinfo-study" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -308,6 +344,16 @@
                     </div>
                   </div>
                   <hr class="mx-n3" />
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับสมาชิก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
                 </div>
                 <div class="tab-pane fade" id="userinfo-job" role="tabpanel" aria-labelledby="nav-contact-tab">
                   <hr class="mx-n3" />
@@ -331,10 +377,20 @@
                   <hr class="mx-n3" />
                   <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
-                      <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
+                      <h6 class="mb-0">ระดับสมาชิก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <input v-model="Levelmember" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">สินค้าที่ระลึก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="Levelmemberthing" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -371,26 +427,21 @@ export default {
 
     const date = ref(new Date());
 
-    const formattedTitle = (date) => {
-      const yearBuddhist = date.getFullYear() + 543;
-      return format(date, 'MMM', { locale: th }) + ' ' + yearBuddhist;
-    };
+
     const formattedDate = computed(() => {
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       return date.value ? date.value.toLocaleDateString('th-TH', options) : '';
     });
 
-    const setDateFromFormattedDate = () => {
-      const dateString = '20/01/2000';
+    const setDateFromFormattedDate = (dateString) => {
       // Regex สำหรับตรวจสอบรูปแบบ dd/mm/yyyy
       const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-
       if (!regex.test(dateString)) {
-        const dateString = '20/01/2000';
+        dateString = '';
+      } else {
+        const [day, month, year] = dateString.split('/').map(Number);
+        date.value = new Date(year, month - 1, day);
       }
-      // สมมุติว่าคุณมีค่าของ formattedDate เป็น '20/01/2000
-      const [day, month, year] = dateString.split('/').map(Number);
-      date.value = new Date(year, month - 1, day);
     };
 
 
@@ -435,6 +486,26 @@ export default {
       cityvalue: '',
       pincode: '',
 
+      Oldname: '',
+      nickname: '',
+      Phonemail: '',
+      Idline: '',
+
+      status: '',
+      academicstatus: '',
+      academicnumber: '',
+      masterdegree: '',
+      masterdegreenumber: '',
+      doctordegree: '',
+      doctordegreenumber: '',
+
+      job: '',
+      Jobposition: '',
+      Jobaddress: '',
+      Levelmember: '',
+      Levelmemberthing: '',
+
+
     })
     const rules = computed(() => {
 
@@ -444,20 +515,10 @@ export default {
       const pnstatusRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
         return state.pnstatus || !!value;
       });
+
       return {
-        username: {
-          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required),
-          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
-        },
-        password: {
-          required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required),
-          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
-        },
-        confirmpassword: {
-          required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
-          sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
-          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
-        },
+
+
 
         thainame: {
           required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
@@ -496,8 +557,7 @@ export default {
         levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
         levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
 
-        conditionalField1: { required: statusinfoRequired },
-        conditionalField2: { required: pnstatusRequired },
+
       }
     })
 
@@ -506,32 +566,26 @@ export default {
       rules,
       state,
       v$,
-
       date,
       formattedDate,
       setDateFromFormattedDate,
-      formattedTitle
     }
   },
 
   data() {
     return {
-      selectedDate: this.$moment().format("YYYY/MM/DD"),
-      // selectedDate: null,
-      buddhistYear: true,
+      profileimage: null,
       inputType: "password",
       file: null,
       district: [],
       canton: [],
-      // city: [],
+      city:[],
     };
   },
-  components: { DatePicker },
+
   mounted() {
-    this.fetchDistrict();
-    this.fetchCanton();
-    this.setDateFromFormattedDate();
-    // this.fetchCity();
+    this.fetchCity();
+    this.getuserdata(this.$route.params.id);
   },
   methods: {
     togglePassword() {
@@ -547,9 +601,9 @@ export default {
       this.date = `${day}/${month}/${year}`;
       return `คุณเกิดวันที่ ${day}/${month}/${year}`;
     },
-    submit() {
-
-
+    submitUpdate() {
+      this.v$.$validate()
+      alert("กด submit")
       // this.v$.$validate() // checks all inputs
       // if (this.v$.$error) {
       //     console.log(this.v$)
@@ -590,28 +644,6 @@ export default {
       //     });
       // }
     },
-    async fetchDistrict() {
-      try {
-        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json');
-        const data = await response.json();
-        // Assuming the API response is an array of objects with `value` and `text` properties
-        this.district = data;
-        console.log(this.district)
-      } catch (error) {
-        console.error('Error fetching options:', error);
-      }
-    },
-    async fetchCanton() {
-      try {
-        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json');
-        const data = await response.json();
-        // Assuming the API response is an array of objects with `value` and `text` properties
-        this.canton = data;
-        console.log(this.district)
-      } catch (error) {
-        console.error('Error fetching options:', error);
-      }
-    },
     async fetchCity() {
       try {
         const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json');
@@ -622,7 +654,113 @@ export default {
       } catch (error) {
         console.error('Error fetching options:', error);
       }
-    }
+    },
+    async getuserdata(id) {
+      await axios.post(
+        `${import.meta.env.VITE_API2}users/profile/` + id,
+        null,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => {
+          console.log(res);
+          this.state.username = res.data.thing.Username;
+          this.state.thainame = res.data.thing.Thainame;
+          this.state.engname = res.data.thing.Engname;
+          this.state.email = res.data.thing.Email;
+          this.state.address = res.data.thing.Address;
+          this.state.cityvalue = res.data.thing.City;
+          this.state.pincode = res.data.thing.Pincode;
+          this.state.phonenumber = res.data.thing.Phonenumber;
+
+          this.state.Oldname = res.data.thing.Oldname;
+          this.state.nickname = res.data.thing.Nickname;
+          this.state.Phonemail = res.data.thing.Phonemail;
+          this.state.Idline = res.data.thing.Idline;
+          const dateString = res.data.thing.Dateofbirth;
+          this.setDateFromFormattedDate(dateString);
+
+
+          this.state.academicstatus = res.data.thing.Academicstatus;
+          this.state.academicnumber = res.data.thing.Academicnumber;
+          this.state.masterdegree = res.data.thing.Masterdegree;
+          this.state.masterdegreenumber = res.data.thing.Masterdegreenumber;
+          this.state.doctordegree = res.data.thing.Doctoraldegree;
+          this.state.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+
+
+          this.state.job = res.data.thing.Job;
+          this.state.Jobposition = res.data.thing.Jobposition;
+          this.state.Jobaddress = res.data.thing.Jobaddress;
+          this.state.Levelmember = res.data.thing.Levelmember;
+          this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
+          this.downloadImageAndDisplay(res.data.thing.Image)
+        })
+        .catch();
+    },
+    Changepassword() {
+      // Assuming you want to use $route.params.id
+      const id = this.$route.params.id;
+
+      let data = new FormData();
+      data.append("password", this.newpassword);
+      data.append("confirmpassword", this.comfirepassword);
+      axios
+        .post(`${import.meta.env.VITE_API2}users/resetpassword/${id}`, data, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          const idnew = localStorage.getItem("userid");
+          this.router.push({ path: '/profile/' + idnew });
+        })
+        .catch((error) => {
+          console.error("Error updating:", error);
+        });
+    },
+    comparePasswords() {
+      if (this.newpassword == "" && this.comfirepassword == "") {
+        this.passwordsMatch = false;
+      }
+      this.passwordsMatch = this.newpassword === this.comfirepassword;
+    },
+    async downloadImageAndDisplay(uuid) {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API2}users/preview/${uuid}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "application/json",
+            },
+            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
+          }
+        );
+        const base64String = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        )
+
+        console.log(base64String);
+        if (base64String === "IiI=") {
+          this.profileimage = null;
+        } else {
+          const imageSrc = `data:${response.headers['content-type']};base64,${base64String}`;
+          this.profileimage = imageSrc;
+        }
+       
+      } catch (error) {
+
+      }
+    },
   },
 };
 </script>
@@ -655,27 +793,15 @@ export default {
 
       THAIname: "",
       ENGname: "",
-      Oldname: "",
-      nickname: "",
-
-      status: "",
-      academicstatus: "",
-      academicnumber: "",
-      masterdegree: "",
-      masterdegreenumber: "",
-      doctordegree: "",
-      doctordegreenumber: "",
+     
 
       address: "",
       Phonenumber: "",
-      Phonemail: "",
-      Idline: "",
+      
+     
       Email: "",
-      job: "",
-      Jobposition: "",
-      Jobaddress: "",
-      Levelmember: "",
-      Levelmemberthing: "",
+     
+     
 
       paystatus: "",
       paystatustext: "",
@@ -752,41 +878,7 @@ export default {
         })
         .catch();
     },
-    async downloadImageAndDisplay(uuid) {
-      try {
-        // Fetch the image content from the server
-        const response = await axios.get(
-          `${import.meta.env.VITE_API2}users/preview/${uuid}`,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "application/json",
-            },
-            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
-          }
-        );
-
-        // Convert the binary data to a data URL
-        const imageSrc = `data:${
-          response.headers["content-type"]
-        };base64,${btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        )}`;
-
-        // Display the image using the data URL
-        const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
-        if (imgElement) {
-          imgElement.src = imageSrc;
-        }
-        this.profileimage = imageSrc;
-        console.log("Image downloaded and displayed.");
-      } catch (error) {
-        
-      }
-    },
+    
    
     handleprofile(event) {
       this.file = event.target.files[0];
