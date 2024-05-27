@@ -676,45 +676,52 @@ export default {
     submitUpdate() {
       this.v$.$validate()
       alert("กด submit")
-      // this.v$.$validate() // checks all inputs
-      // if (this.v$.$error) {
-      //     console.log(this.v$)
-      //     alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
-      // } else {
-      //     const URL = `${import.meta.env.VITE_API}register2`;
-      //     let data = new FormData();
-      //     data.append("username", this.state.username);
-      //     data.append("password", this.state.password);
-      //     data.append("confirmpassword", this.state.confirmpassword);
-      //     data.append("thainame", this.state.thainame);
-      //     data.append("engname", this.state.engname);
-      //     data.append("address", this.state.address);
-      //     data.append("city", this.state.cityvalue);
-      //     data.append("pincode", this.state.pincode);
-      //     data.append("phonenumber", this.state.phonenumber);
-      //     data.append("email", this.state.email);
-      //     data.append("levelmember", this.state.levelmember);
-      //     data.append("levelmemberthing", this.state.levelmemberthing);
-      //     data.append("statusinfo", this.state.statusinfo);
-      //     data.append("file", this.file);
-      //     data.append("PNstatus", this.state.pnstatus);
-      //     let config = {
-      //         header: {
-      //             "Content-Type": "multipart/form-data",
-      //         },
-      //     };
-
-      //     axios.post(URL, data, config).then((response) => {
-      //         // console.log("this is res => ", this.date);
-      //         this.responseStatus = response.status
-      //         console.log("this is res => ", response);
-      //         alert("การสมัครสมาชิกสำเร็จแล้ว")
-      //         window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
-
-      //     }).catch((error) => {
-      //         alert(error.response.data.Text);
-      //     });
-      // }
+      this.v$.$validate() // checks all inputs
+      if (this.v$.$error) {
+        console.log(this.v$)
+        alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
+      } else {
+        const URL = `${import.meta.env.VITE_API}users/update/` + this.$route.params.id;
+        let data = new FormData();
+        data.append("thainame", this.state.thainame);
+        data.append("engname", this.state.engname);
+        data.append("address", this.state.address);
+        data.append("city", this.state.cityvalue);
+        data.append("pincode", this.state.pincode);
+        data.append("phonenumber", this.state.phonenumber);
+        data.append("email", this.state.email);
+        data.append("file", this.file);
+        data.append("oldname", this.state.Oldname);
+        data.append("nickname", this.state.nickname);
+        data.append("dateofbirth", formattedDate);
+        data.append("academicstatus", this.state.academicstatus);
+        data.append("academicnumber", this.state.academicnumber);
+        data.append("masterdegree", this.state.masterdegree);
+        data.append("masterdegreenumber", this.state.masterdegreenumber);
+        data.append("doctordegree", this.state.doctordegree);
+        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+        data.append("phonemail", this.state.Phonemail);
+        data.append("idline", this.state.Idline);
+        data.append("job", this.job);
+        data.append("jobposition", this.Jobposition);
+        data.append("jobaddress", this.Jobaddress);
+        data.append("file", this.file);
+        let config = {
+          header: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        axios.post(URL, data, config).then((response) => {
+          // console.log("this is res => ", this.date);
+          this.responseStatus = response.status
+          console.log("this is res => ", response);
+          alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว")
+          router.push({ path: "/profile/"+ this.$route.params.id });
+        }).catch((error) => {
+          alert(error.response.data.Text);
+        });
+      }
     },
     async fetchCity() {
       try {
@@ -960,37 +967,7 @@ export default {
       // Assuming you want to use $route.params.id
       const id = this.$route.params.id;
 
-      let data = new FormData();
-      data.append("thainame", this.THAIname);
-      data.append("engname", this.ENGname);
-      data.append("oldname", this.Oldname);
-      data.append("nickname", this.nickname);
-      data.append("dateofbirth", `${this.day}/${this.month}/${this.year}`);
-
-      data.append("status", this.status);
-      data.append("academicstatus", this.academicstatus);
-      data.append("academicnumber", this.academicnumber);
-      data.append("masterdegree", this.masterdegree);
-      data.append("masterdegreenumber", this.masterdegreenumber);
-      data.append("doctordegree", this.doctordegree);
-      data.append("Doctoraldegreenumber", this.doctordegreenumber);
-
-      data.append("address", this.address);
-      data.append("phonenumber", this.Phonenumber);
-      data.append("phonemail", this.Phonemail);
-      data.append("idline", this.Idline);
-      data.append("email", this.Email);
-      data.append("job", this.job);
-      data.append("jobposition", this.Jobposition);
-      data.append("jobaddress", this.Jobaddress);
-      data.append("levelmember", this.Levelmember);
-      data.append("levelmemberthing", this.Levelmemberthing);
-
-      data.append("role", this.role);
-      data.append("paystatus", this.paystatus);
-      data.append("accessstatus", this.Accessstatus);
-
-      data.append("file", this.file);
+      
 
       axios
         .post(`${import.meta.env.VITE_API2}users/update/${id}`, data, {
