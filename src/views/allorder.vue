@@ -65,9 +65,6 @@
                     <td>{{ order.state }}</td>
                     <td>{{ order.totalCartPrice }}</td>
                     <td class="p-1">
-                        <router-link :to="{ path: '/seeoneorder/' + order.uniqueorder + '/' }"
-                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
-                        <div class="b-example-divider p-1"></div>
                         <router-link :to="{ path: '/editorder/' + order.uniqueorder + '/' }"
                             class="btn btn-success btn-sm">แก้ไขสถานะคำสั่งซื้อ</router-link>
                         <div class="b-example-divider p-1"></div>

@@ -1,6 +1,6 @@
 <template>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top p-4">
+<nav class="navbar navbar-expand  fixed-top p-4" style="background-color: #F9CC02;">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
