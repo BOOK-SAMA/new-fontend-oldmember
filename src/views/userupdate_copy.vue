@@ -177,7 +177,7 @@
                       <span v-if="v$.address.$error" class="text-danger fw-bold">
                         {{ v$.address.$errors[0].$message }}
                       </span>
-                      <textarea v-model="state.address" class="form-control form-control-lg" placeholder=""></textarea>
+                      <input v-model="state.address" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -459,16 +459,15 @@ export default {
 
     const isThai = (value) => {
       // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+      const thaiRegex = new RegExp(/^[\u0E00-\u0E7F]+$/);
 
-      // Check if the value contains any Thai characters
+      // Check if the value contains only Thai characters
       if (thaiRegex.test(value)) {
-        return true; // Return false if Thai characters are found
+        return true; // Return true if the value is in Thai
       }
 
-      return false; // Return true if the value is in English
+      return false; // Return false if the value is not in Thai
     };
-
 
     const state = reactive({
       username: '',
@@ -509,12 +508,7 @@ export default {
     })
     const rules = computed(() => {
 
-      const statusinfoRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
-        return state.statusinfo || !!value;
-      });
-      const pnstatusRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
-        return state.pnstatus || !!value;
-      });
+
 
       return {
 
@@ -554,7 +548,7 @@ export default {
 
         email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
 
-        
+
 
 
         Oldname: {
@@ -596,18 +590,18 @@ export default {
           minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1)),
         },
 
-      job: {
-        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
-        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
-      },
-      Jobposition: {
-        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
-        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
-      },
-      Jobaddress: {
-        isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
-        minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
-      },
+        job: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Jobposition: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Jobaddress: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
       }
     });
 
