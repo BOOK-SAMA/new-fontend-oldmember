@@ -177,7 +177,7 @@
                       <span v-if="v$.address.$error" class="text-danger fw-bold">
                         {{ v$.address.$errors[0].$message }}
                       </span>
-                      <input v-model="state.address" class="form-control form-control-lg" placeholder="" />
+                      <textarea v-model="state.address" class="form-control form-control-lg" placeholder=""></textarea>
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -243,7 +243,10 @@
                       <h6 class="mb-0">ชื่อเดิมก่อนเปลี่ยนชื่อ</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="Oldname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.Oldname.$error" class="text-danger fw-bold">
+                        {{ v$.Oldname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Oldname" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -252,7 +255,10 @@
                       <h6 class="mb-0">ชื่อเล่น</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="nickname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.nickname.$error" class="text-danger fw-bold">
+                        {{ v$.nickname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.nickname" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -264,29 +270,32 @@
                       <VDatePicker locale="th-TH" v-model="date" mode="date" :title="formattedTitle" mark />
                       <p>วันเกิดของผู้ใช้ : {{ formattedDate }}</p>
                     </div>
-                    <hr class="mx-n3" />
-
-                    <div class="row align-items-center py-3">
-                      <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">โทรสาร</h6>
-                      </div>
-                      <div class="col-md-9 pe-5">
-                        <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
-                      </div>
-                    </div>
-                    <hr class="mx-n3" />
-
-                    <div class="row align-items-center py-3">
-                      <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">ไอดีไลน์</h6>
-                      </div>
-                      <div class="col-md-9 pe-5">
-                        <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
-                      </div>
-                    </div>
-                    <hr class="mx-n3" />
-
                   </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">โทรสาร</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Phonemail.$error" class="text-danger fw-bold">
+                        {{ v$.Phonemail.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Phonemail" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ไอดีไลน์</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Idline.$error" class="text-danger fw-bold">
+                        {{ v$.Idline.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Idline" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
                 </div>
                 <div class="tab-pane fade" id="userinfo-study" role="tabpanel" aria-labelledby="nav-contact-tab">
                   <hr class="mx-n3" />
@@ -295,7 +304,10 @@
                       <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.academicstatus.$error" class="text-danger fw-bold">
+                        {{ v$.academicstatus.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.academicstatus" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -304,7 +316,10 @@
                       <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.academicnumber.$error" class="text-danger fw-bold">
+                        {{ v$.academicnumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.academicnumber" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -313,7 +328,10 @@
                       <h6 class="mb-0">ระดับปริญญาโท สาขาวิชาเอก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.masterdegree.$error" class="text-danger fw-bold">
+                        {{ v$.masterdegree.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.masterdegree" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -322,7 +340,10 @@
                       <h6 class="mb-0">รหัสระดับปริญญาโท</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.masterdegreenumber.$error" class="text-danger fw-bold">
+                        {{ v$.masterdegreenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.masterdegreenumber" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -331,7 +352,10 @@
                       <h6 class="mb-0">ระดับปริญญาเอก สาขาวิชาเอก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.doctordegree.$error" class="text-danger fw-bold">
+                        {{ v$.doctordegree.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.doctordegree" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -340,17 +364,10 @@
                       <h6 class="mb-0">รหัสระดับปริญญาเอก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
-                    </div>
-                  </div>
-                  <hr class="mx-n3" />
-                  <hr class="mx-n3" />
-                  <div class="row align-items-center py-3">
-                    <div class="col-md-3 ps-5">
-                      <h6 class="mb-0">ระดับสมาชิก</h6>
-                    </div>
-                    <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.doctordegreenumber.$error" class="text-danger fw-bold">
+                        {{ v$.doctordegreenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.doctordegreenumber" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -362,7 +379,10 @@
                       <h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.job.$error" class="text-danger fw-bold">
+                        {{ v$.job.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.job" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -371,7 +391,22 @@
                       <h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="THAIname" class="form-control form-control-lg" placeholder="" />
+                      <span v-if="v$.Jobposition.$error" class="text-danger fw-bold">
+                        {{ v$.Jobposition.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Jobposition" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Jobaddress.$error" class="text-danger fw-bold">
+                        {{ v$.Jobaddress.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Jobaddress" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -380,17 +415,8 @@
                       <h6 class="mb-0">ระดับสมาชิก</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <input v-model="Levelmember" class="form-control form-control-lg" placeholder="" />
-                    </div>
-                  </div>
-                  <hr class="mx-n3" />
-                  <hr class="mx-n3" />
-                  <div class="row align-items-center py-3">
-                    <div class="col-md-3 ps-5">
-                      <h6 class="mb-0">สินค้าที่ระลึก</h6>
-                    </div>
-                    <div class="col-md-9 pe-5">
-                      <input v-model="Levelmemberthing" class="form-control form-control-lg" placeholder="" />
+                      <p class="form-control form-control-lg" style="height: max-content;">
+                        {{ state.Levelmember }}</p>
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -459,7 +485,7 @@ export default {
 
     const isThai = (value) => {
       // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/^[\u0E00-\u0E7F]+$/);
+      const thaiRegex = new RegExp(/^[\u0E00-\u0E7F0-9\s.,\n\r]+$/);
 
       // Check if the value contains only Thai characters
       if (thaiRegex.test(value)) {
@@ -548,7 +574,9 @@ export default {
 
         email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
 
-
+        Idline: {
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
 
 
         Oldname: {
