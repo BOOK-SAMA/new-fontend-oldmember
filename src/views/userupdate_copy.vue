@@ -189,8 +189,8 @@
                       <span v-if="v$.cityvalue.$error" class="fw-bold text-danger">
                         {{ v$.cityvalue.$errors[0].$message }}
                       </span>
-                      <select class="form-control form-control-lg"
-                        id="inlineFormCustomSelectPref" v-model="state.cityvalue">
+                      <select class="form-control form-control-lg" id="inlineFormCustomSelectPref"
+                        v-model="state.cityvalue">
                         <option v-for="item in city" :key="item.name_th" :value="item.name_th"
                           placeholder="เลือก 1 อย่าง">
                           {{ item.name_th }}
@@ -443,6 +443,7 @@ import { ref, reactive, computed } from "vue";
 import axios from "axios";
 import useValidate from '@vuelidate/core'
 import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+import { id } from "date-fns/locale";
 
 
 
@@ -678,14 +679,20 @@ export default {
       return `คุณเกิดวันที่ ${day}/${month}/${year}`;
     },
     submitUpdate() {
-      this.v$.$validate()
-      alert("กด submit")
-      this.v$.$validate() // checks all inputs
-      if (this.v$.$error) {
-        console.log(this.v$)
-        alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
+      const id = this.$route.params.id;
+      this.v$.$validate();
+      if (this.v$.phonenumber.$error ||
+        this.v$.thainame.$error ||
+        this.v$.engname.$error ||
+        this.v$.address.$error ||
+        this.v$.cityvalue.$error ||
+        this.v$.pincode.$error ||
+        this.v$.email.$error
+      ) {
+        alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
+        return;
       } else {
-        const URL = `${import.meta.env.VITE_API}users/update/` + this.$route.params.id;
+        const URL = `${import.meta.env.VITE_API}users/update/` + id;
         let data = new FormData();
         data.append("thainame", this.state.thainame);
         data.append("engname", this.state.engname);
@@ -697,7 +704,7 @@ export default {
         data.append("file", this.file);
         data.append("oldname", this.state.Oldname);
         data.append("nickname", this.state.nickname);
-        data.append("dateofbirth", formattedDate);
+        data.append("dateofbirth", this.formattedDate);
         data.append("academicstatus", this.state.academicstatus);
         data.append("academicnumber", this.state.academicnumber);
         data.append("masterdegree", this.state.masterdegree);
@@ -711,20 +718,19 @@ export default {
         data.append("jobaddress", this.Jobaddress);
         data.append("file", this.file);
         let config = {
-          header: {
+          headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
             "Content-Type": "multipart/form-data",
           },
         };
-        axios.post(URL, data, config).then((response) => {
-          // console.log("this is res => ", this.date);
-          this.responseStatus = response.status
-          console.log("this is res => ", response);
-          alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว")
-          router.push({ path: "/profile/" + this.$route.params.id });
-        }).catch((error) => {
-          alert(error.response.data.Text);
-        });
+
+        axios.post(URL, data, config)
+          .then((response) => {
+            this.responseStatus = response.status;
+            console.log("this is res => ", response);
+            alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
+            this.$router.push({ path: "/profile/" + id });
+          })
       }
     },
     async fetchCity() {
@@ -845,11 +851,11 @@ export default {
       }
     },
     handlelogout() {
-			localStorage.removeItem("userid");
-			localStorage.removeItem("tokenstring");
-			localStorage.removeItem("uuid");
-			router.push({ path: "/login" });
-		},
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      router.push({ path: "/login" });
+    },
   },
 };
 </script>
