@@ -189,7 +189,7 @@
                       <span v-if="v$.cityvalue.$error" class="fw-bold text-danger">
                         {{ v$.cityvalue.$errors[0].$message }}
                       </span>
-                      <select class="custom-select my-2 mr-sm-2 form-control form-control-lg"
+                      <select class="form-control form-control-lg"
                         id="inlineFormCustomSelectPref" v-model="state.cityvalue">
                         <option v-for="item in city" :key="item.name_th" :value="item.name_th"
                           placeholder="เลือก 1 อย่าง">
@@ -652,6 +652,10 @@ export default {
       district: [],
       canton: [],
       city: [],
+      newpassword: "",
+      comfirepassword: "",
+      passwordsMatch: null,
+
     };
   },
 
@@ -717,7 +721,7 @@ export default {
           this.responseStatus = response.status
           console.log("this is res => ", response);
           alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว")
-          router.push({ path: "/profile/"+ this.$route.params.id });
+          router.push({ path: "/profile/" + this.$route.params.id });
         }).catch((error) => {
           alert(error.response.data.Text);
         });
@@ -796,11 +800,11 @@ export default {
           },
         })
         .then((res) => {
-          const idnew = localStorage.getItem("userid");
-          this.router.push({ path: '/profile/' + idnew });
+          alert("เปลี่ยนรหัสเรียบร้อยแล้ว กรุณาเข้าสู่ระบบใหม่ด้วย");
+          this.handlelogout();
         })
         .catch((error) => {
-          console.error("Error updating:", error);
+          alert("ไม่สามารถเปลี่ยนรหัสผ่านได้");
         });
     },
     comparePasswords() {
@@ -840,6 +844,12 @@ export default {
 
       }
     },
+    handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			router.push({ path: "/login" });
+		},
   },
 };
 </script>
