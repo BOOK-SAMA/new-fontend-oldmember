@@ -48,7 +48,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/profile/:id',
-      component: () => import('../views/profile_copy.vue'),
+      component: () => import('../for_users/profile_copy.vue'),
       //meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
