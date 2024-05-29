@@ -89,7 +89,7 @@ const router = createRouter({
     },
     {
       path: '/orderdetail/:id/:ordernumber',
-      component: () => import('../shopping/userorder-detail.vue'),
+      component: () => import('../for_users/userorder-detail.vue'),
       name: 'checkorderdetail',
       meta: { requiresAuth: true }
     },
