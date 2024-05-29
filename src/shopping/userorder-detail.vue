@@ -25,7 +25,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-                    LOGOUT
+                    ออกจากระบบ
                 </button>
             </form>
         </div>
@@ -42,9 +42,8 @@
                 <div class="container table-responsive py-5"> 
                 <table class="table table-bordered table-hover">
                  <thead class="thead-dark">
-
                             <tr>
-                                <th scope="col">itemID</th>
+                                
                                 <th scope="col ">ชื่อสินค้า</th>
                                 <th scope="col">ราคา</th>
                                 <th scope="col">จำนวน</th>
@@ -54,7 +53,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(order, index) in Ordersdetail" :key="index">
-                                <td v-text="order.itemID"></td>
+                                
                                 <td v-text="order.itemname"></td>
                                 <td v-text="order.price"></td>
                                 <td v-text="order.quantity"></td>

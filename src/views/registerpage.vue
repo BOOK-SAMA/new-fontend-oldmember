@@ -1,6 +1,8 @@
 <template>
     <nav class="navbar navbar-expand  fixed-top " style="background-color: #F9CC02; ">
-        <ul class="navbar-nav mr-auto p-2" style="position: relative; left: 6cm;">
+        <ul class="navbar-nav mr-auto p-2" style="position: relative; left: 6cm; align-items: center;">
+            <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+                class="rounded-circle p-1" width="55"/>
             <li class="nav-item active">
                 <a class="nav-link text-dark" href="https://mytestsilpakorn.azurewebsites.net/"
                     style="font-size: medium;">หน้าแรก</a>
@@ -61,17 +63,15 @@
             </li>
         </ul>
     </nav>
-    <section class="vh-200" style="
-        background-image: url(https://v3i.rweb-images.com/www.scsualumni.net/images/background/main/crop-1702428316.jpg?1702428316);
-        background-repeat: no-repeat;
-      ">
-        <div class="container h-100">
+
+    <section class="vh-200 ">
+        <div class="container h-100 ">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xxl " style="margin-top: 2cm; ">
-                    <h1 class="text-dark mb-4 mt-2" style="background-color:  #e7f2fe ">
+                <div class="col-xxl " style="margin-top: 3cm; ">
+                    <h1 class="text-dark mb-4 mt-2" style="width: max-content; height: max-content;">
                         สมัครสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร (ศวศ.)
                     </h1>
-                    <div class="card" style="border-radius: 15px; background-color: #e7f2fe">
+                    <div class="card" style="border-radius: 15px; left: 1cm;">
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
@@ -425,36 +425,36 @@ export default {
                 return state.pnstatus || !!value;
             });
             return {
-                username: { 
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required) ,
+                username: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required),
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
-                password: { 
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required) ,
+                password: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required),
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
-                confirmpassword: { 
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required), 
-                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)) ,
+                confirmpassword: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
+                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
 
-                thainame: { 
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required), 
-                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) 
+                thainame: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
                 },
-                engname: { 
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required), 
+                engname: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
                     isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
-                 },
+                },
 
-                address: { 
+                address: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
-                     isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai) 
-                    },
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+                },
                 cityvalue: {
-                     required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
-                    },
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
+                },
 
 
                 pincode: {
@@ -596,6 +596,7 @@ export default {
 </script>
 
 <!-- <script>
+    style="background-color:  #e7f2fe "
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, helpers, sameAs } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'

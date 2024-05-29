@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top p-4">
+    <nav class="navbar navbar-expand  fixed-top p-4" style="background-color: #F9CC02;">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -9,63 +9,63 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-					<a class="nav-link"  :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
-				</li>
+                    <a class="nav-link" :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" :class="{ 'disabled': state }"
+                    <a class="nav-link" 
                         :href="state ? '#' : `/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
+                    <a class="nav-link" :class="{ 'disabled': state }"
+                        :href="state ? '#' : `/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-                    LOGOUT
+                <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()"
+                    style="background-color: #F9CC02;">
+                    ออกจากระบบ
                 </button>
             </form>
         </div>
     </nav>
 
     <div style="margin-top: 100px;"> <!-- Add this to create space below navbar -->
-<div class="container table-responsive py-5"> 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Ordernumber</th>
-                    <th scope="col">Orderdate</th>
-                    <th scope="col">เลขที่คำสั่งซื้อ</th>
-                    <th scope="col">Thainame</th>
-                    <th scope="col">State</th>
-                     <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(order, index) in Orders" :key="index">
-                    <td v-text="order.ID"></td>
-                    <td v-text="order.Ordernumber"></td>
-                    <td v-text="order.Orderdate"></td>
-                    <td v-text="order.uniqueorder"></td>
-                    <td v-text="order.thainame"></td>
-                    <td v-text="order.state"></td>
-                     <td class="p-1">
-                        <router-link :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
-                            class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
-                        <div class="b-example-divider p-1">
-                           
-
-
-                        </div>
-                    </td>
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="container table-responsive py-5">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">วันที่</th>
+                        <th scope="col">เลขที่คำสั่งซื้อ</th>
+                        <th scope="col">ชื่อภาษาไทย</th>
+                        <th scope="col">สถานะของคำสั่งซื้อ</th>
+                        <th scope="col">เพิ่มเติม</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(order, index) in Orders" :key="index">
+                        <td v-text="order.Orderdate"></td>
+                        <td v-text="order.uniqueorder"></td>
+                        <td v-text="order.thainame"></td>
+                        <td v-text="order.state"></td>
+                        <td class="p-1">
+                            <router-link
+                                :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
+                                class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
+                            <div class="b-example-divider p-1">
+                                <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+                                    ยกเลิกคำสั่งซื้อ
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 

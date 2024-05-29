@@ -14,10 +14,10 @@
 					<a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก </a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
+					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : getHref()"
+					<a class="nav-link" :href="state ? '#' : getHref()"
 						@click="checkAccountStatus">
 						แก้ไขข้อมูลส่วนตัว
 					</a>

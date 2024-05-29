@@ -716,7 +716,7 @@ export default {
         data.append("job", this.job);
         data.append("jobposition", this.Jobposition);
         data.append("jobaddress", this.Jobaddress);
-        data.append("file", this.file);
+        
         let config = {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
