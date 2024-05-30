@@ -1,596 +1,473 @@
-<template >
-  <section class="vh" style="background-color: #2779e2">
+<template>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+        alt="Admin" class="rounded-circle p-1" width="40" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="state ? '#' : `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <section class="vh" style="margin-top: 2.5cm;">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-9">
-          <h1 class="text-white mb-4">
+        <div class="col-xl-11">
+          <h1 class="text-dark mb-4" style="width: max-content; position: relative; margin-top: 2cm;">
             แก้ไขข้อมูลสมาชิกสมาคมศิษย์เก่า มหาลัยศิลปากร
           </h1>
-
           <div class="card" style="border-radius: 15px">
-            <div class="card-body">
-                <a :href="state ? '#' : `/admintoo/${this.$route.params.id}`" >
-                     <button
-                          type="button"
-                          class="btn btn-secondary text-white"
-                        >
-                          กลับไปหน้าหลัก
-                        </button>
-                        </a>
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">Username หรือ ID</h6>
+            <div class="card-body" style="width: fit-content;">
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#userinfo"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">รายละเอียดของผู้ใช้</button>
+                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#userinfo-more"
+                    type="button" role="tab" aria-controls="nav-profile"
+                    aria-selected="false">รายละเอียดของผู้ใช้เพิ่มเติม</button>
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#userinfo-study"
+                    type="button" role="tab" aria-controls="nav-contact"
+                    aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับการศึกษา</button>
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#userinfo-job"
+                    type="button" role="tab" aria-controls="nav-contact"
+                    aria-selected="false">รายละเอียดของผู้ใช้เกี่ยวกับอาชีพ</button>
                 </div>
-                <div class="col-md-9 pe-5">
-                  <p>{{ Username }}</p>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รหัสผ่าน</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <p>*********</p>
-                </div>
-              </div>
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0"></h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm text-white"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                    
-                  >
-                    แก้ไขรหัสผ่าน
-                  </button>
-                </div>
-                <div
-                  class="modal fade"
-                  id="exampleModal"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                          แก้ไขรหัสผ่าน
-                        </h5>
-                        <button
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="userinfo" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row align-items-center pt-4 pb-3">
+                    <hr class="mx-n3" />
+                    <div class="row align-items-center py-3">
+                      <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
                       </div>
-                      <div class="modal-body">
-                       <p v-if="passwordsMatch" class="text-success fw-bold">Passwords match!</p>
-                        <p v-else class="text-danger fw-bold">Passwords do not match!</p>
-                        <label for="newpassword" class="mr-2"
-                          >New Password:</label
-                        >
-                        <input
-                          type="password"
-                          class="form-control"
-                          v-model="newpassword"
-                          @input="comparePasswords"
-                          
-                        />
-                        <hr class="mx-n3" />
-                        <label for="comfirepassword" class="mr-2"
-                          >Confirm Password:</label
-                        >
-                        <input
-                          type="password"
-                          class="form-control"
-                          v-model="comfirepassword"
-                          @input="comparePasswords"
-                        />
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-primary text-white"
-                          :disabled="!passwordsMatch"
-                          @click="Changepassword"
-                        >
-                          บันทึกรหัสผ่าน
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-secondary text-white"
-                          data-dismiss="modal"
-                        >
-                          ปิด
-                        </button>
+                      <div class="col-md-9 pe-5">
+                        <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database</h6>
+                        <h6 class="mb-0">
+                          หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
+                        </h6>
+                        <img v-if="profileimage" :src="profileimage" alt="Preview" class="p-1" width="200" />
+                        <!-- Display a default image if previewFile is not available -->
+                        <p v-else>
+                          <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
+                            class="p-1" width="200" />
+                        </p>
+                        <input ref="fileInput" class="form-control form-control-lg" id="formFileLg" type="file"
+                          @change="handleprofile" />
+                        <div class="small text-muted mt-2">
+                          (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <hr class="mx-n3" />
+                  <hr class="mx-n3" />
 
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ชื่อภาษาไทย</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    v-model="THAIname"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    v-model="ENGname"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ชื่อเล่น</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="nickname"
-                    class="form-control"
-                    rows="3"
-                    placeholder=""
-                  ></textarea>
-                </div>
-              </div>
-
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h5 class="mb-0">วันเดือนปีเกิด</h5>
-                </div>
-                <div class="col-md-3 pe-2">
-                  <h6 class="mb-0">วัน</h6>
-                  <select v-model="day" class="form-control">
-                    <option v-for="d in days" :key="d">{{ d }}</option>
-                  </select>
-                </div>
-                <div class="col-md-3 pe-2">
-                  <h6 class="mb-0">เดือน</h6>
-                  <select v-model="month" class="form-control">
-                    <option v-for="m in months" :key="m">{{ m }}</option>
-                  </select>
-                </div>
-                <div class="col-md-3 pe-5">
-                  <h6 class="mb-0">ปีที่เกิด</h6>
-                  <select v-model="year" class="form-control">
-                    <option v-for="y in years" :key="y">{{ y }}</option>
-                  </select>
-                </div>
-
-                <!-- ช่องวันเกิด ใช้ date แทน @-->
-                <hr class="mx-n3" />
-              </div>
-              <hr class="mx-n3" />
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">สถานะของผู้สมัคร</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <select
-                    v-model="status"
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                  >
-                    <option selected disabled>
-                      เคยเป็นนักศึกษา/เป็นผู้สำเร็จการศึกษา/เป็นนักศึกษา...
-                    </option>
-                    <option value="เคยเป็นนักศีกษา">เคยเป็นนักศีกษา</option>
-                    <option value="เป็นผู้สำเร็จการศึกษา">
-                      เป็นผู้สำเร็จการศึกษา
-                    </option>
-                    <option value="เป็นนักศึกษาปัจจุบัน">
-                      เป็นนักศึกษาปัจจุบัน
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="academicstatus"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="academicnumber"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ปริญญาโท สาขาวิชาเอก</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="masterdegree"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รหัสประจำตัวระดับปริญญาโท</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="masterdegreenumber"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="doctordegree"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <textarea
-                    v-model="doctordegreenumber"
-                    class="form-control"
-                    rows="1"
-                  ></textarea>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="address"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">เบอร์โทรศัพท์</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonenumber"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">เบอร์โทรสาร</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=" (เพื่อการจัดส่งของที่ระลึก)"
-                    v-model="phonemail"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    ID Line หรือ ช่องทางการติดต่อโซเชียลแอพพลิเคชั่นอื่นๆ
-                  </h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="Idline"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">Email</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="Email"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">อาชีพ</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="job"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ตำแหน่ง</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    placeholder=""
-                    v-model="Jobposition"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ชื่อและที่อยู่ของสถานที่ทำงาน</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    v-model="Jobaddress"
-                  />
-                </div>
-              </div>
-              <hr class="mx-n3" />
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ระดับสมาชิก</h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="Levelmember"
-                  >
-                    <option selected disabled>เลือก 1 อย่าง</option>
-                    <option value="สมาชิกสามัญ ">
-                      สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
-                      500 บาท)
-                    </option>
-                    <option value="สมาชิกวิสามัญ">
-                      สมาชิกวิสามัญ (ผู้สนใจทั่วไปชำระค่าบำรุงสมาคมตลอดชีพ 500
-                      บาท)
-                    </option>
-                    <option value="ยุวสมาชิก">
-                      ยุวสมาชิก (นักศึกษา SCSU ปัจจุบันไม่ต้องชำระค่าบำรุงสมาคม)
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-6 ps-5">
-                  <h6 class="mb-0">
-                    กรณีสมัครสมาชิกสามัญและ วิสามัญกรุณาเลือกของชำร่วย (1 อย่าง)
-                  </h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="Levelmemberthing"
-                  >
-                    <option selected disabled>เลือก 1 อย่าง</option>
-                    <option value="กระเป๋าผ้าและแมส SCSU ">
-                      กระเป๋าผ้าและแมส SCSU
-                    </option>
-                    <option value="เหรียญ อ.ศิลป ทอง">เหรียญ อ.ศิลป ทอง</option>
-                    <option value="เหรียญ อ.ศิลป เงิน">
-                      เหรียญ อ.ศิลป เงิน
-                    </option>
-                    <option value="เหรียญ อ.ศิลป ทองแดง">
-                      เหรียญ อ.ศิลป ทองแดง
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                  <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database</h6>
-                  <h6 class="mb-0">
-                    หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
-                  </h6>
-                  <img
-                    v-if="profileimage"
-                    :src="profileimage"
-                    alt="Preview"
-                    class="p-1"
-                    width="200"
-                  />
-                  <!-- Display a default image if previewFile is not available -->
-                  <p v-else>
-                    <img
-                      src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
-                      alt="Admin"
-                      class="p-1"
-                      width="200"
-                    />
-                  </p>
-                  <input
-                    ref="fileInput"
-                    class="form-control form-control-lg"
-                    id="formFileLg"
-                    type="file"
-                    @change="handleprofile"
-                  />
-                  <div class="small text-muted mt-2">
-                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                  <div class="row align-items-center pt-4 pb-3">
+                    <hr class="mx-n3" />
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อผู้ใช้งานในระบบ</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input v-model="state.username" class="form-control form-control-lg" placeholder="" disabled />
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr class="mx-n3" />
+                  <hr class="mx-n3" />
 
-            
-
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center py-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">สถานะการชำระเงิน</h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <select
-                    class="custom-select my-1 mr-sm-2"
-                    id="inlineFormCustomSelectPref"
-                    v-model="paystatus"
-                  >
-                    <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
-                    <!-- Display Selected Option Text Conditionally -->
-                    <option value="already">ตรวจสอบการชำระเงินแล้ว</option>
-                    <option value="none">ยังไม่ได้ตรวจสอบการชำระเงิน</option>
-                  </select>
-                </div>
-              </div>
-
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">สถานะการเข้าถึงของผู้ใช้</h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <div>
-                    <select
-                      class="custom-select my-1 mr-sm-2"
-                      id="inlineFormCustomSelectPref"
-                      v-model="role"
-                    >
-                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
-                      <!-- Display Selected Option Text Conditionally -->
-                      <option value="user">ระดับ user</option>
-                      <option value="admin">ระดับ admin</option>
-                    </select>
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสผ่าน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <button type="button" class="btn btn-success btn-sm  text-white" data-toggle="modal"
+                        data-target="#exampleModal">
+                        แก้ไขรหัสผ่าน
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr class="mx-n3" />
-
-              <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">
-                    ให้ user สามารถแก้ไขข้อมูลของตนเองได้หรือไม่
-                  </h6>
-                </div>
-                <div class="col-md-5 pe-5">
-                  <div>
-                    <select
-                      class="custom-select my-1 mr-sm-2"
-                      id="inlineFormCustomSelectPref"
-                      v-model="Accessstatus"
-                    >
-                      <!-- <option selected disabled>เลือก 1 อย่าง</option> -->
-                      <!-- Display Selected Option Text Conditionally -->
-                      <option value="enable">อนุญาต</option>
-                      <option value="disenable">ไม่อนุญาต</option>
-                    </select>
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                              แก้ไขรหัสผ่าน
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p v-if="passwordsMatch" class="text-success fw-bold">รหัสผ่านเหมือนกัน</p>
+                            <p v-else class="text-danger fw-bold">รหัสผ่านไม่เหมือนกัน</p>
+                            <label for="newpassword" class="mr-2">รหัสผ่านใหม่:</label>
+                            <input type="password" v-model="newpassword" class="form-control"
+                              @input="comparePasswords" />
+                            <hr class="mx-n3" />
+                            <label for="comfirepassword" class="mr-2">ยืนยัน รหัสผ่านใหม่:</label>
+                            <input type="password" v-model="comfirepassword" class="form-control"
+                              @input="comparePasswords" />
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary text-white" :disabled="!passwordsMatch"
+                              @click="Changepassword">
+                              บันทึกรหัสผ่าน
+                            </button>
+                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">
+                              ปิด
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr class="mx-n3" />
+                  <hr class="mx-n3" />
 
-              <div class="px-5 py-4">
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-lg text-white"
-                  @click="submitUpdate"
-                  
-                >
-                  Submit
-                </button>
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อภาษาไทย</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.thainame.$error" class="text-danger fw-bold">
+                        {{ v$.thainame.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.thainame" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อภาษาอังกฤษ</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.engname.$error" class="text-danger fw-bold">
+                        {{ v$.engname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.engname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">ที่อยู่</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span v-if="v$.address.$error" class="text-danger fw-bold">
+                        {{ v$.address.$errors[0].$message }}
+                      </span>
+                      <textarea v-model="state.address" class="form-control form-control-lg" placeholder=""></textarea>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">จังหวัด</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span v-if="v$.cityvalue.$error" class="fw-bold text-danger">
+                        {{ v$.cityvalue.$errors[0].$message }}
+                      </span>
+                      <select class="form-control form-control-lg" id="inlineFormCustomSelectPref"
+                        v-model="state.cityvalue">
+                        <option v-for="item in city" :key="item.name_th" :value="item.name_th"
+                          placeholder="เลือก 1 อย่าง">
+                          {{ item.name_th }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">รหัสไปษณีย์</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span v-if="v$.pincode.$error" class="text-danger fw-bold">
+                        {{ v$.pincode.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.pincode" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">อีเมล</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span v-if="v$.email.$error" class="text-danger fw-bold">
+                        {{ v$.email.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.email" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row mb-3">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
+                        {{ v$.phonenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.phonenumber" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="tab-pane fade" id="userinfo-more" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อเดิมก่อนเปลี่ยนชื่อ</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Oldname.$error" class="text-danger fw-bold">
+                        {{ v$.Oldname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Oldname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ชื่อเล่น</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.nickname.$error" class="text-danger fw-bold">
+                        {{ v$.nickname.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.nickname" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">วันเกิด</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <VDatePicker locale="th-TH" v-model="date" mode="date" :title="formattedTitle" mark />
+                      <p>วันเกิดของผู้ใช้ : {{ formattedDate }}</p>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">โทรสาร</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Phonemail.$error" class="text-danger fw-bold">
+                        {{ v$.Phonemail.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Phonemail" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ไอดีไลน์</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Idline.$error" class="text-danger fw-bold">
+                        {{ v$.Idline.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Idline" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="tab-pane fade" id="userinfo-study" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.academicstatus.$error" class="text-danger fw-bold">
+                        {{ v$.academicstatus.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.academicstatus" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.academicnumber.$error" class="text-danger fw-bold">
+                        {{ v$.academicnumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.academicnumber" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาโท สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.masterdegree.$error" class="text-danger fw-bold">
+                        {{ v$.masterdegree.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.masterdegree" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสระดับปริญญาโท</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.masterdegreenumber.$error" class="text-danger fw-bold">
+                        {{ v$.masterdegreenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.masterdegreenumber" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับปริญญาเอก สาขาวิชาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.doctordegree.$error" class="text-danger fw-bold">
+                        {{ v$.doctordegree.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.doctordegree" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">รหัสระดับปริญญาเอก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.doctordegreenumber.$error" class="text-danger fw-bold">
+                        {{ v$.doctordegreenumber.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.doctordegreenumber" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="tab-pane fade" id="userinfo-job" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.job.$error" class="text-danger fw-bold">
+                        {{ v$.job.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.job" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Jobposition.$error" class="text-danger fw-bold">
+                        {{ v$.Jobposition.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Jobposition" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <span v-if="v$.Jobaddress.$error" class="text-danger fw-bold">
+                        {{ v$.Jobaddress.$errors[0].$message }}
+                      </span>
+                      <input v-model="state.Jobaddress" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับสมาชิก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <p class="form-control form-control-lg" style="height: max-content;">
+                        {{ state.Levelmember }}</p>
+                    </div>
+                  </div>
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ระดับของผู้ใช้</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <p class="form-control form-control-lg" style="height: max-content;">
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="state.role">
+                          <option selected disabled>เลือก 1 อย่าง</option>
+                          <option value="user">
+                            ระดับ ผู้ใช้งาน
+                          </option>
+                          <option value="admin">
+                            ระดับ พนักงาน
+                          </option>
+                        </select>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">ให้ผู้ใช้แก้ไขข้อมูลของตัวเองหรือไม่</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <p class="form-control form-control-lg" style="height: max-content;">
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="state.accressstatus">
+                          <option selected disabled>เลือก 1 อย่าง</option>
+                          <option value="enable">
+                            อนุญาต
+                          </option>
+                          <option value="disenable">
+                            ไม่อนุญาต
+                          </option>
+                        </select>
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                </div>
+                <div class="px-5 py-4">
+                  <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate">
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -601,257 +478,364 @@
 </template>
 
 
+
 <script>
-import { ref } from "vue";
+import router from "@/router";
+import { ref, reactive, computed } from "vue";
 import axios from "axios";
-import { useRouter } from "vue-router";
+import useValidate from '@vuelidate/core'
+import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+
+
+
 
 export default {
-  name: "Updateuser",
+
+  setup() {
+
+
+    const date = ref(new Date());
+
+
+    const formattedDate = computed(() => {
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      return date.value ? date.value.toLocaleDateString('th-TH', options) : '';
+    });
+
+    const setDateFromFormattedDate = (dateString) => {
+      // Regex สำหรับตรวจสอบรูปแบบ dd/mm/yyyy
+      const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+      if (!regex.test(dateString)) {
+        dateString = '';
+      } else {
+        const [day, month, year] = dateString.split('/').map(Number);
+        date.value = new Date(year, month - 1, day);
+      }
+    };
+
+
+    const isEnglishOrThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+
+      // Check if the value contains any Thai characters
+      if (thaiRegex.test(value)) {
+        return false; // Return false if Thai characters are found
+      }
+
+      return true; // Return true if the value is in English
+    };
+
+    const isThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/^[\u0E00-\u0E7F0-9\s.,\n\r]+$/);
+
+      // Check if the value contains only Thai characters
+      if (thaiRegex.test(value)) {
+        return true; // Return true if the value is in Thai
+      }
+
+      return false; // Return false if the value is not in Thai
+    };
+
+    const state = reactive({
+      username: '',
+      email: '',
+      password: '',
+      confirmpassword: '',
+      thainame: '',
+      engname: '',
+      address: '',
+      phonenumber: '',
+      levelmember: '',
+      levelmemberthing: '',
+      statusinfo: false,
+      pnstatus: false,
+      cityvalue: '',
+      pincode: '',
+
+      Oldname: '',
+      nickname: '',
+      Phonemail: '',
+      Idline: '',
+
+
+      academicstatus: '',
+      academicnumber: '',
+      masterdegree: '',
+      masterdegreenumber: '',
+      doctordegree: '',
+      doctordegreenumber: '',
+
+      job: '',
+      Jobposition: '',
+      Jobaddress: '',
+      Levelmember: '',
+      Levelmemberthing: '',
+
+      role:'',
+      accressstatus: '' ,
+    })
+    const rules = computed(() => {
+
+
+
+      return {
+
+
+
+        thainame: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+        },
+        engname: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
+          isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
+        },
+
+        address: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+        },
+        cityvalue: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
+        },
+
+
+        pincode: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required),
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 5 ตัวด้วยครับ', minLength(5))
+        },
+
+        phonenumber: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required),
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 10 ตัวเท่านั่นนะครับ ', maxLength(10)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 10 ตัวด้วยครับ', minLength(10))
+        },
+
+        email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
+
+        Idline: {
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+
+
+        Oldname: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        nickname: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Phonemail: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 9 ตัวเท่านั่นนะครับ ', maxLength(9)),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 9 ตัวด้วยครับ', minLength(9))
+        },
+
+        academicstatus: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        academicnumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        masterdegree: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        masterdegreenumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        doctordegree: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        doctordegreenumber: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1)),
+        },
+
+        job: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Jobposition: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+        Jobaddress: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
+        },
+      }
+    });
+
+    const v$ = useValidate(rules, state)
+    return {
+      rules,
+      state,
+      v$,
+      date,
+      formattedDate,
+      setDateFromFormattedDate,
+    }
+  },
 
   data() {
     return {
+      profileimage: null,
+      inputType: "password",
+      file: null,
+      district: [],
+      canton: [],
+      city: [],
       newpassword: "",
       comfirepassword: "",
-      passwordsMatch: false,
-      data: ref(new FormData()),
-      dateText: "",
-      Username: "",
-      Password: "",
+      passwordsMatch: null,
 
-      THAIname: "",
-      ENGname: "",
-      Oldname: "",
-      nickname: "",
-
-      status: "",
-      academicstatus: "",
-      academicnumber: "",
-      masterdegree: "",
-      masterdegreenumber: "",
-      doctordegree: "",
-      doctordegreenumber: "",
-
-      address: "",
-      Phonenumber: "",
-      Phonemail: "",
-      Idline: "",
-      Email: "",
-      job: "",
-      Jobposition: "",
-      Jobaddress: "",
-      Levelmember: "",
-      Levelmemberthing: "",
-
-      paystatus: "",
-      paystatustext: "",
-      role: "",
-      paystatus: "",
-      day: "",
-      month: "",
-      year: "",
-      dateString: "",
-
-      Accessstatus: "",
-      days: Array.from({ length: 31 }, (_, i) => i + 1),
-      months: Array.from({ length: 12 }, (_, i) => i + 1),
-      years: Array.from(
-        { length: 100 },
-        (_, i) => new Date().getFullYear() - i
-      ),
-      router: useRouter(),
-      file: null,
-      profileimage: null,
-      payimage: null,
     };
   },
-  async mounted() {
-    console.log(this.$route.params.id);
-    await this.getuserdata(this.$route.params.id);
-    await this.downloadImageAndDisplay(localStorage.getItem("uuidprofile"));
-    await this.downloadpayImageAndDisplay(localStorage.getItem("uuidpayimage"));
+
+  mounted() {
+    this.fetchCity();
+    this.getuserdata(this.$route.params.id);
   },
   methods: {
-    async getuserdata(id) {
-      axios
-        .get(`${import.meta.env.VITE_API2}admin/showperson/${id}`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          this.Username = res.data.thing.Username;
-          this.Password = res.data.thing.Enpassword;
-
-          this.THAIname = res.data.thing.Thainame;
-          this.ENGname = res.data.thing.Engname;
-          this.Oldname = res.data.thing.Oldname;
-          this.nickname = res.data.thing.Nickname;
-          const dateString = res.data.thing.Dateofbirth;
-          [this.day, this.month, this.year] = dateString.split("/");
-
-          this.status = res.data.thing.Status;
-          this.academicstatus = res.data.thing.Academicstatus;
-          this.academicnumber = res.data.thing.Academicnumber;
-          this.masterdegree = res.data.thing.Masterdegree;
-          this.masterdegreenumber = res.data.thing.Masterdegreenumber;
-          this.doctordegree = res.data.thing.Doctoraldegree;
-          this.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
-
-          this.address = res.data.thing.Address;
-          this.phonenumber = res.data.thing.Phonenumber;
-          this.phonemail = res.data.thing.Phonemail;
-          this.Idline = res.data.thing.Idline;
-          this.Email = res.data.thing.Email;
-          this.job = res.data.thing.Job;
-          this.Jobposition = res.data.thing.Jobposition;
-          this.Jobaddress = res.data.thing.Jobaddress;
-          this.Levelmember = res.data.thing.Levelmember;
-          this.Levelmemberthing = res.data.thing.Levelmemberthing;
-
-          this.paystatus = res.data.thing.Paystatus;
-          this.role = res.data.thing.Role;
-          this.Accessstatus = res.data.thing.Accessstatus;
-          localStorage.setItem("uuidprofile", res.data.thing.Image);
-          localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
-        })
-        .catch();
-    },
-    async downloadImageAndDisplay(uuid) {
-      try {
-        // Fetch the image content from the server
-        const response = await axios.get(
-          `${import.meta.env.VITE_API2}admin/preview/${uuid}`,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "application/json",
-            },
-            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
-          }
-        );
-
-        // Convert the binary data to a data URL
-        const imageSrc = `data:${
-          response.headers["content-type"]
-        };base64,${btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        )}`;
-
-        // Display the image using the data URL
-        const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
-        if (imgElement) {
-          imgElement.src = imageSrc;
-        }
-        this.profileimage = imageSrc;
-        console.log("Image downloaded and displayed.");
-      } catch (error) {
-        // console.error("Error downloading image:", error);
-        // localStorage.removeItem("userid");
-        // localStorage.removeItem("tokenstring");
-        // localStorage.removeItem("uuid");
-        // this.router.push({ path: "/login" });
-      }
-    },
-    async downloadpayImageAndDisplay(uuid) {
-      try {
-        // Fetch the image content from the server
-        const response = await axios.get(
-          `${import.meta.env.VITE_API2}admin/previewpayimage/${uuid}`,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "application/json",
-            },
-            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
-          }
-        );
-
-        // Convert the binary data to a data URL
-        const imageSrc = `data:${
-          response.headers["content-type"]
-        };base64,${btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        )}`;
-
-        // Display the image using the data URL
-        const imgElement = document.getElementById("your-image-id"); // Replace 'your-image-id' with the actual ID of your image element
-        if (imgElement) {
-          imgElement.src = imageSrc;
-        }
-        this.payimage = imageSrc;
-        console.log("Image downloaded and displayed.");
-      } catch (error) {
-        // console.error("Error downloading image:", error);
-        // localStorage.removeItem("userid");
-        // localStorage.removeItem("tokenstring");
-        // localStorage.removeItem("uuid");
-        // this.router.push({ path: "/login" });
-      }
+    togglePassword() {
+      this.inputType = this.inputType === "password" ? "text" : "password";
     },
     handleprofile(event) {
       this.file = event.target.files[0];
-      console.log(this.file);
+    },
+    formatdate(dateofbirth) {
+      const day = dateofbirth.getDate();
+      const month = dateofbirth.getMonth() + 1;
+      const year = dateofbirth.getFullYear();
+      this.date = `${day}/${month}/${year}`;
+      return `คุณเกิดวันที่ ${day}/${month}/${year}`;
     },
     submitUpdate() {
-      // Assuming you want to use $route.params.id
       const id = this.$route.params.id;
+      this.v$.$validate();
+      if (this.v$.phonenumber.$error ||
+        this.v$.thainame.$error ||
+        this.v$.engname.$error ||
+        this.v$.address.$error ||
+        this.v$.cityvalue.$error ||
+        this.v$.pincode.$error ||
+        this.v$.email.$error
+      ) {
+        alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
+        return;
+      } else {
+        const URL = `${import.meta.env.VITE_API}users/update/` + id;
+        let data = new FormData();
+        data.append("thainame", this.state.thainame);
+        data.append("engname", this.state.engname);
+        data.append("address", this.state.address);
+        data.append("city", this.state.cityvalue);
+        data.append("pincode", this.state.pincode);
+        data.append("phonenumber", this.state.phonenumber);
+        data.append("email", this.state.email);
+        data.append("file", this.file);
+        data.append("oldname", this.state.Oldname);
+        data.append("nickname", this.state.nickname);
+        data.append("dateofbirth", this.formattedDate);
+        data.append("academicstatus", this.state.academicstatus);
+        data.append("academicnumber", this.state.academicnumber);
+        data.append("masterdegree", this.state.masterdegree);
+        data.append("masterdegreenumber", this.state.masterdegreenumber);
+        data.append("doctordegree", this.state.doctordegree);
+        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+        data.append("phonemail", this.state.Phonemail);
+        data.append("idline", this.state.Idline);
+        data.append("job", this.job);
+        data.append("jobposition", this.Jobposition);
+        data.append("jobaddress", this.Jobaddress);
 
-      let data = new FormData();
-      data.append("thainame", this.THAIname);
-      data.append("engname", this.ENGname);
-      data.append("oldname", this.Oldname);
-      data.append("nickname", this.nickname);
-      data.append("dateofbirth", `${this.day}/${this.month}/${this.year}`);
-
-      data.append("status", this.status);
-      data.append("academicstatus", this.academicstatus);
-      data.append("academicnumber", this.academicnumber);
-      data.append("masterdegree", this.masterdegree);
-      data.append("masterdegreenumber", this.masterdegreenumber);
-      data.append("doctordegree", this.doctordegree);
-      data.append("Doctoraldegreenumber", this.doctordegreenumber);
-
-      data.append("address", this.address);
-      data.append("phonenumber", this.Phonenumber);
-      data.append("phonemail", this.Phonemail);
-      data.append("idline", this.Idline);
-      data.append("email", this.Email);
-      data.append("job", this.job);
-      data.append("jobposition", this.Jobposition);
-      data.append("jobaddress", this.Jobaddress);
-      data.append("levelmember", this.Levelmember);
-      data.append("levelmemberthing", this.Levelmemberthing);
-
-      data.append("role", this.role);
-      data.append("paystatus", this.paystatus);
-      data.append("accessstatus", this.Accessstatus);
-
-      data.append("file", this.file);
-
-      axios
-        .post(`${import.meta.env.VITE_API2}admin/update/${id}`, data, {
+        let config = {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
             "Content-Type": "multipart/form-data",
           },
-        })
-        .then((res) => {
-          const idnew = localStorage.getItem("userid");
-          alert("ทำการแก้ไขข้อมูลเรียบร้อยแล้ว");
-          this.router.push({ path: '/admintoo/' + idnew });
-        })
-        .catch((error) => {
-          alert("มีข้อผิดพลาดในการทำงาน :", error);
-        });
+        };
+
+        axios.post(URL, data, config)
+          .then((response) => {
+            this.responseStatus = response.status;
+            console.log("this is res => ", response);
+            alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
+            this.$router.push({ path: "/profile/" + id });
+          })
+      }
+    },
+    async fetchCity() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json');
+        const data = await response.json();
+        // Assuming the API response is an array of objects with `value` and `text` properties
+        this.city = data;
+        console.log(this.district)
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    },
+    async getuserdata(id) {
+      await axios.post(
+        `${import.meta.env.VITE_API2}users/profile/` + id,
+        null,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((res) => {
+        console.log(res);
+
+        this.state.username = res.data.thing.Username;
+        this.state.thainame = res.data.thing.Thainame;
+        this.state.engname = res.data.thing.Engname;
+        this.state.email = res.data.thing.Email;
+        this.state.address = res.data.thing.Address;
+        this.state.cityvalue = res.data.thing.City;
+        this.state.pincode = res.data.thing.Pincode;
+        this.state.phonenumber = res.data.thing.Phonenumber;
+
+        this.state.Oldname = res.data.thing.Oldname;
+        this.state.nickname = res.data.thing.Nickname;
+        this.state.Phonemail = res.data.thing.Phonemail;
+        this.state.Idline = res.data.thing.Idline;
+        const dateString = res.data.thing.Dateofbirth;
+        this.setDateFromFormattedDate(dateString);
+
+
+        this.state.academicstatus = res.data.thing.Academicstatus;
+        this.state.academicnumber = res.data.thing.Academicnumber;
+        this.state.masterdegree = res.data.thing.Masterdegree;
+        this.state.masterdegreenumber = res.data.thing.Masterdegreenumber;
+        this.state.doctordegree = res.data.thing.Doctoraldegree;
+        this.state.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
+
+
+        this.state.job = res.data.thing.Job;
+        this.state.Jobposition = res.data.thing.Jobposition;
+        this.state.Jobaddress = res.data.thing.Jobaddress;
+        this.state.Levelmember = res.data.thing.Levelmember;
+        this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
+        this.downloadImageAndDisplay(res.data.thing.Image)
+
+        this.state.role = res.data.thing.Role;
+        this.state.accressstatus = res.data.thing.Accessstatus;
+      })
+        .catch();
     },
     Changepassword() {
       // Assuming you want to use $route.params.id
@@ -861,26 +845,61 @@ export default {
       data.append("password", this.newpassword);
       data.append("confirmpassword", this.comfirepassword);
       axios
-        .post(`${import.meta.env.VITE_API2}admin/resetpassword/${id}`, data, {
+        .post(`${import.meta.env.VITE_API2}users/resetpassword/${id}`, data, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
             "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
-          const idnew = localStorage.getItem("userid");
-          alert("ทำการแก้ไขรหัสผ่านเรียบร้อยแล้ว");
-          this.router.push({ path: `/admintoo/${idnew}` });
+          alert("เปลี่ยนรหัสเรียบร้อยแล้ว กรุณาเข้าสู่ระบบใหม่ด้วย");
+          this.handlelogout();
         })
         .catch((error) => {
-          alert("มีข้อผิดพลาดในการทำงาน :", error);
+          alert("ไม่สามารถเปลี่ยนรหัสผ่านได้");
         });
     },
     comparePasswords() {
-             if(this.newpassword == "" && this.comfirepassword == ""){
+      if (this.newpassword == "" && this.comfirepassword == "") {
         this.passwordsMatch = false;
-       }
+      }
       this.passwordsMatch = this.newpassword === this.comfirepassword;
+    },
+    async downloadImageAndDisplay(uuid) {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API2}users/preview/${uuid}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "application/json",
+            },
+            responseType: "arraybuffer", // Set the responseType to 'arraybuffer' to handle binary data
+          }
+        );
+        const base64String = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        )
+
+        console.log(base64String);
+        if (base64String === "IiI=") {
+          this.profileimage = null;
+        } else {
+          const imageSrc = `data:${response.headers['content-type']};base64,${base64String}`;
+          this.profileimage = imageSrc;
+        }
+
+      } catch (error) {
+
+      }
+    },
+    handlelogout() {
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      router.push({ path: "/login" });
     },
   },
 };
