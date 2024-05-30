@@ -1,304 +1,212 @@
 <template>
-    <section class="vh-200" style="
-      background-image: url(https://v3i.rweb-images.com/www.scsualumni.net/images/background/main/crop-1702428316.jpg?1702428316);
-      background-repeat: no-repeat;
-    ">
-        <div class="container h-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+          alt="Admin" class="rounded-circle p-1" width="40" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" :href="state ? '#' : `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+            ออกจากระบบ
+          </button>
+        </form>
+      </div>
+    </nav>
+  
+    <section class="vh-200 ">
+        <div class="container h-100 ">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xxl">
-                    <banner />
-                    <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
+                <div class="col-xxl " style="margin-top: 3cm; ">
+                    <h1 class="text-dark mb-4 mt-2" style="width: max-content; height: max-content;">
                         สมัครสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร (ศวศ.)
                     </h1>
-
-                    <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
+                    <div class="card" style="border-radius: 15px; left: 1cm;">
                         <div class="card-body">
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">Username</h6>
+                                    <h6 class="mb-0">ชื่อผุ้ใช้งานในระบบ<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="username" />
+                                    <span v-if="v$.username.$error" class="text-danger fw-bold">
+                                        {{ v$.username.$errors[0].$message }}
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.username" />
                                 </div>
                             </div>
-
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">รหัสผ่าน</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input :type="inputType" id="myInput" v-model="password"
-                                        class="form-control form-control-lg" />
-                                    <button @click="togglePassword" class="mt-2">
-                                        Toggle Password
+                                    <h6 class="mb-0">รหัสผ่าน<span class="text-danger fw-bold">*</span>
+                                    </h6>
+                                    <button @click="togglePassword" class="mt-2 btn btn-success  text-dark ">
+                                        ดูรหัสผ่าน
                                     </button>
                                 </div>
-                            </div>
-
-                            <hr class="mx-n3" />
-
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ยืนยันรหัสผ่าน</h6>
-                                </div>
+  
                                 <div class="col-md-9 pe-5">
-                                    <input :type="inputType" id="myInput" v-model="confirmpassword"
+                                    <span v-if="v$.password.$error" class="text-danger fw-bold">
+                                        {{ v$.password.$errors[0].$message }}
+                                    </span>
+                                    <input :type="inputType" id="myInput" v-model="state.password"
                                         class="form-control form-control-lg" />
                                 </div>
                             </div>
-
-                            <hr class="mx-n3" />
-
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md ps-5">
-                                    <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg"
-                                        placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาไทย" v-model="thainame" />
-                                </div>
-                            </div>
-                            <!-- คำนำหน้าชื่อ - ชื่อ - นามสกุล ไทย @-->
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md ps-5">
-                                    <h6 class="mb-0">คำนำหน้าชื่อ - ชื่อ - นามสกุล</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg"
-                                        placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล) ภาษาอังกฤษ" v-model="engname" />
-                                </div>
-                            </div>
-                            <!-- คำนำหน้าชื่อ - ชื่อ - นามสกุล อังกฤษ  @-->
-                            <hr class="mx-n3" />
-
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md ps-5">
-                                    <h6 class="mb-0">ชื่อ - นามสกุลเดิม (ถ้ามี)</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg"
-                                        placeholder="(เว้นวรรคระหว่างชื่อนามกับนามสกุล)" v-model="oldname" />
-                                </div>
-                            </div>
-                            <!-- ช่องชื่อนามสกุลเดิม @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md ps-5">
-                                    <h6 class="mb-0">ชื่อเล่น</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="nickname" />
-                                </div>
-                            </div>
-                            <!-- ช่องชื่อเล่น @-->
-                            <hr class="mx-n3" />
-
-                            <div class="row align-items-center py-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">วันเกิด</h6>
+                                    <h6 class="mb-0">ยืนยันรหัสผ่าน<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <VueDatePicker v-model="dateofbirth" :enable-time-picker="false"
-                                        :format="formatdate(dateofbirth)"></VueDatePicker>
+                                    <span v-if="v$.confirmpassword.$error" class="text-danger fw-bold">
+                                        {{ v$.confirmpassword.$errors[0].$message }}
+                                    </span>
+                                    <input :type="inputType" id="myInput" v-model="state.confirmpassword"
+                                        class="form-control form-control-lg" />
                                 </div>
                             </div>
-                            <!-- ช่องวันเกิด ใช้ date แทน @-->
                             <hr class="mx-n3" />
-
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">สถานะของผู้สมัคร</h6>
+  
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">ชื่อภาษาไทย<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <select v-model="status" class="custom-select my-1 mr-sm-2"
-                                        id="inlineFormCustomSelectPref">
-                                        <option selected disabled>
-                                            เคยเป็นนักศึกษา/เป็นผู้สำเร็จการศึกษา/เป็นนักศึกษา...
-                                        </option>
-                                        <option value="เคยเป็นนักศีกษา">เคยเป็นนักศีกษา</option>
-                                        <option value="เป็นผู้สำเร็จการศึกษา">
-                                            เป็นผู้สำเร็จการศึกษา
-                                        </option>
-                                        <option value="เป็นนักศึกษาปัจจุบัน">
-                                            เป็นนักศึกษาปัจจุบัน
+                                    <span v-if="v$.thainame.$error" class="text-danger fw-bold">
+                                        {{ v$.thainame.$errors[0].$message }}
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.thainame" />
+                                </div>
+                            </div>
+                            <hr class="mx-n3" />
+  
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">ชื่อภาษาอังกฤษ<span class="text-danger fw-bold">*</span></h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <span v-if="v$.engname.$error" class="text-danger fw-bold">
+                                        {{ v$.engname.$errors[0].$message }}
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg" v-model="state.engname" />
+                                </div>
+                            </div>
+  
+                            <hr class="mx-n3" />
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน (เพื่อการจัดส่งของที่ระลึก)<span
+                                            class="text-danger fw-bold">*</span></h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <span v-if="v$.address.$error" class="text-danger fw-bold">
+                                        {{ v$.address.$errors[0].$message }}
+                                    </span>
+                                    <textarea type="text" class="form-control form-control-lg" placeholder=""
+                                        v-model="state.address"></textarea>
+                                </div>
+                            </div>
+                            <hr class="mx-n3" />
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">จังหวัด<span class="text-danger fw-bold">*</span></h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <span v-if="v$.cityvalue.$error" class="fw-bold text-danger">
+                                        {{ v$.cityvalue.$errors[0].$message }}
+                                    </span>
+                                    <select class="custom-select my-2 mr-sm-2 form-control form-control-lg"
+                                        id="inlineFormCustomSelectPref" v-model="state.cityvalue">
+                                        <option v-for="item in city" :key="item.name_th" :value="item.name_th"
+                                            placeholder="เลือก 1 อย่าง">
+                                            {{ item.name_th }}
                                         </option>
                                     </select>
                                 </div>
                             </div>
-                            <!-- ช่องสถานะของผู้สมัคร เช่น จบยังไม่จบ @-->
                             <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ระดับปริญญาตรี สาขาวิชาเอก</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="academicstatus" class="form-control" rows="1"></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีตรี @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">รหัสประจำตัวระดับปริญญาตรี</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="academicnumber" class="form-control" rows="1"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีตรี รหัส @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ปริญญาโท สาขาวิชาเอก</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="masterdegree" class="form-control" rows="1"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีโท @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">รหัสประจำตัวระดับปริญญาโท</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="masterdegreenumber" class="form-control" rows="1"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีโท รหัส @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ระดับปริญญาเอก</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="doctordegree" class="form-control" rows="ๅ"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีเอก @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">รหัสประจำตัวระดับปริญญาเอก</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="doctordegreenumber" class="form-control" rows="1"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องสาขาปีเอก รหัส @-->
-                            <hr class="mx-n3" />
+  
+  
                             <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ข้อมูลที่อยู่ปัจจุบัน</h6>
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">รหัสไปษณีย์<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg"
-                                        placeholder=" (เพื่อการจัดส่งของที่ระลึก)" v-model="address" />
-                                </div>
-                            </div>
-                            <!-- ช่องที่อยู่ @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">หมายเลขโทรศัพท์</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
+                                    <span v-if="v$.pincode.$error" class="fw-bold text-danger">
+                                        {{ v$.pincode.$errors[0].$message }}
+                                    </span>
                                     <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="phonenumber" />
+                                        v-model="state.pincode" />
                                 </div>
                             </div>
-                            <!-- ช่องหมายเลขโทรศัพท์ @-->
                             <hr class="mx-n3" />
+  
                             <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">โทรสาร</h6>
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">อีเมล<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
+                                    <span v-if="v$.email.$error" class="fw-bold text-danger">
+                                        {{ v$.email.$errors[0].$message }}
+                                    </span>
                                     <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="phonemail" />
+                                        v-model="state.email" />
                                 </div>
                             </div>
-                            <!-- ช่องโทรสาร @-->
                             <hr class="mx-n3" />
+  
                             <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">
-                                        ID Line หรือ ช่องทางการติดต่อโซเชียลแอพพลิเคชั่นอื่นๆ
-                                    </h6>
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">หมายเลขโทรศัพท์<span class="text-danger fw-bold">*</span></h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
+                                    <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
+                                        {{ v$.phonenumber.$errors[0].$message }}
+                                    </span>
                                     <input type="text" class="form-control form-control-lg" placeholder=""
-                                        v-model="Idline" />
+                                        v-model="state.phonenumber" />
                                 </div>
                             </div>
-                            <!-- ช่องIDline @ -->
                             <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">Email address</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="email" class="form-control form-control-lg"
-                                        placeholder="example@example.com" v-model="email" />
-                                </div>
-                            </div>
-                            <!-- ช่องEmail @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">อาชีพ</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <input type="email" class="form-control form-control-lg" placeholder=""
-                                        v-model="job" />
-                                </div>
-                            </div>
-                            <!-- ช่องอาชีพ @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ตำแหน่ง</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="jobposition" class="form-control" rows="1"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <!-- ช่องตำแหน่ง @-->
-                            <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ชื่อและที่อยู่ของสถานที่ทำงาน</h6>
-                                </div>
-                                <div class="col-md-9 pe-5">
-                                    <textarea v-model="jobadress" class="form-control" rows="2"
-                                        placeholder=""></textarea>
-                                </div>
-
-                                <!-- ช่องชื่อและที่อยู่ของสถานที่ทำงาน-->
-                                <hr class="mx-n3" />
-                            </div>
-                            <!-- ช่องที่อยู่สถานที่ทำงาน @-->
-                            <hr class="mx-n3" />
+  
                             <div class="row align-items-center py-3">
                                 <div class="col-md-6 ps-5">
                                     <h6 class="mb-0">
                                         ขอสมัครเป็นสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์
                                         มหาวิทยาลัยศิลปากร
                                         โดยยินดีปฏิบัติตามระเบียบข้อบังคับของสมาคมฯ ทุกประการ
+                                        <span class="text-danger fw-bold">*</span>
                                     </h6>
+  
                                 </div>
                                 <div class="col-md-5 pe-5">
+                                    <span v-if="v$.levelmember.$error" class="text-danger fw-bold">
+                                        {{ v$.levelmember.$errors[0].$message }}
+                                    </span>
                                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="levelmember">
+                                        v-model="state.levelmember">
                                         <option selected disabled>เลือก 1 อย่าง</option>
                                         <option value="สมาชิกสามัญ ">
                                             สมาชิกสามัญ (ผู้จบการศึกษา SCSU ชำระค่าบำรุงสมาคมตลอดชีพ
@@ -314,19 +222,24 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- ช่องที่ระดับสมาชิก @-->
                             <hr class="mx-n3" />
-
                             <div class="row align-items-center py-3">
                                 <div class="col-md-6 ps-5">
                                     <h6 class="mb-0">
                                         กรณีสมัครสมาชิกสามัญและ วิสามัญกรุณาเลือกของชำร่วย (1 อย่าง)
+                                        <span class="text-danger fw-bold">*</span>
                                     </h6>
                                 </div>
                                 <div class="col-md-5 pe-5">
+                                    <span v-if="v$.levelmemberthing.$error" class="text-danger fw-bold">
+                                        {{ v$.levelmemberthing.$errors[0].$message }}
+                                    </span>
                                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="levelmemberthing">
+                                        v-model="state.levelmemberthing">
                                         <option selected disabled>เลือก 1 อย่าง</option>
+                                        <option value="ไม่รับของชำร่วย">
+                                            ไม่รับของชำร่วย(เป็นยุวสมาชิก)
+                                        </option>
                                         <option value="กระเป๋าผ้าและแมส SCSU ">
                                             กระเป๋าผ้าและแมส SCSU
                                         </option>
@@ -340,30 +253,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- ช่องเลือกของ @-->
                             <hr class="mx-n3" />
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-5 ps-5">
-                                    <h6 class="mb-0">
-                                        การส่งใบสมัครเป็นสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์
-                                        มหาวิทยาลัยศิลปากร ให้ทำการเลือก "ยืนยัน"
-                                        ว่าข้อมูลดังกล่าวถูกต้อง/ครบถ้วน
-                                        และพิมพ์ใบสมัครเพื่อส่งมาทาง scsualumni@hotmail.com
-                                    </h6>
-                                </div>
-                                <div class="col-md-5 pe-5">
-                                    <div class="form-check form-check-inline">
-                                        <input v-model="statusinfo" class="form-check-input" type="checkbox"
-                                            id="inlineCheckbox1" value="ยืนยัน" />
-                                        <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
-                                    </div>
-                                </div>
-
-                                <hr class="mx-n3" />
-                            </div>
-                            <!-- ช่องยืนยัน ๑-->
-                            <hr class="mx-n3" />
-
                             <div class="row align-items-center py-3">
                                 <div class="col-md-3 ps-5">
                                     <h6 class="mb-0">รูปถ่าย</h6>
@@ -376,10 +266,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- ช่องรูปถ่าย-->
                             <hr class="mx-n3" />
-
-
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-5 ps-5">
+                                    <h6 class="mb-0">
+                                        การส่งใบสมัครเป็นสมาชิกสมาคมศิษย์เก่าคณะวิทยาศาสตร์
+                                        มหาวิทยาลัยศิลปากร ให้ทำการเลือก "ยืนยัน"
+                                        ว่าข้อมูลดังกล่าวถูกต้อง/ครบถ้วน
+                                        และพิมพ์ใบสมัครเพื่อส่งมาทาง scsualumni@hotmail.com
+                                        <span class="text-danger fw-bold">*</span>
+                                    </h6>
+                                </div>
+                                <div class="col-md-5 pe-5">
+                                    <div class="form-check form-check-inline">
+                                        <span v-if="v$.conditionalField1.$error" class="text-danger fw-bold">
+                                            {{ v$.conditionalField1.$errors[0].$message }}
+                                        </span>
+                                        <input v-model="state.statusinfo" class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox1" value="ยืนยัน" />
+                                        <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mx-n3" />
                             <div class="row align-items-center py-3">
                                 <div class="col-md-5 ps-5">
                                     <h6 class="mb-0">
@@ -387,6 +296,7 @@
                                         มีนโยบายคุ้มครองข้อมูลส่วนบุคคลของสมาคม
                                         ซึ่งมีข้อกำหนดการปฏิบัติ ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล
                                         ซึ่งมีรายละเอียดในเวปไซด์ของสมาคมตามลิ้งค์ดังนี้
+                                        <span class="text-danger fw-bold">*</span>
                                         <a href="http://www.scsualumni.net/attachments/view/?attach_id=268068"
                                             class="badge badge-primary">นโยบายคุ้มครองข้อมูลส่วนบุคคล
                                             สำหรับสมาชิกสมาคม</a>
@@ -394,123 +304,183 @@
                                 </div>
                                 <div class="col-md-5 pe-5">
                                     <div class="form-check form-check-inline">
+                                        <span v-if="v$.conditionalField2.$error" class="text-danger fw-bold">
+                                            {{ v$.conditionalField2.$errors[0].$message }}
+                                        </span>
                                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                            value="ยืนยัน" v-model="pnstatus" />
+                                            value="ยืนยัน" v-model="state.pnstatus" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
+  
                                     </div>
+                                    <!-- <h6 class="mb-0"># ถ้าไม่กด ยืนยัน จะกดปุ่น Submit ไม่ได้นะครับ #</h6> -->
                                 </div>
                             </div>
-                            <!-- ช่องยืนยันกดหมาย-->
-                            <hr class="mx-n3" />
-
-
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-6 ps-5">
-                                    <h6 class="mb-0">ระดับของ User หรือ Role</h6>
-                                </div>
-                                <div class="col-md-5 pe-5">
-                                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="role">
-                                        <option selected disabled>เลือก 1 อย่าง</option>
-                                        <option value="user ">User</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <hr class="mx-n3" />
-
-                            <div class="row align-items-center py-3">
-                                <div class="col-md-6 ps-5">
-                                    <h6 class="mb-0">ให้ user แก้ไขข้อมูลได้หรือไม่</h6>
-                                </div>
-                                <div class="col-md-5 pe-5">
-                                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                        v-model="accessstatus">
-                                        <option selected disabled>เลือก 1 อย่าง</option>
-                                        <option value="enable ">ได้</option>
-                                        <option value="disenable">ไม่ได้</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <hr class="mx-n3" />
-                        </div>
-                        <div class="px-5 py-4">
                             <h6 class="mb-0">
                                 ส่งใบสมัคร สอบถามข้อมูลเพิ่มเติมติดต่อ scsualumni@hotmail.com
                             </h6>
-                            <hr class="mx-n2" />
-                            <button type="submit" class="btn btn-primary btn-lg" @click="submit()" >
-                                Submit
-                            </button>
+                            <div class="col-md-8 pe-5">
+                                <button type="submit" class="btn btn-primary btn-lg text-white mt-2 " @click="submit()">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</template>
-
-<script setup>
-import banner from "/src/components/Banner.vue";
-import { ref } from "vue";
-import axios from "axios";
-// In case of a range picker, you'll receive [Date, Date]
-</script>
-
-<script>
-import axios from "axios";
-export default {
+  </template>
+  
+  
+  <script>
+  import router from "@/router";
+  import { ref, reactive, computed } from "vue";
+  import axios from "axios";
+  import useValidate from '@vuelidate/core'
+  import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+  
+  
+  export default {
+  
+    setup() {
+        const isEnglishOrThai = (value) => {
+            // Regular expression to match Thai characters
+            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+  
+            // Check if the value contains any Thai characters
+            if (thaiRegex.test(value)) {
+                return false; // Return false if Thai characters are found
+            }
+  
+            return true; // Return true if the value is in English
+        };
+  
+        const isThai = (value) => {
+            // Regular expression to match Thai characters
+            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+  
+            // Check if the value contains any Thai characters
+            if (thaiRegex.test(value)) {
+                return true; // Return false if Thai characters are found
+            }
+  
+            return false; // Return true if the value is in English
+        };
+  
+  
+        const state = reactive({
+            username: '',
+            email: '',
+            password: '',
+            confirmpassword: '',
+            thainame: '',
+            engname: '',
+            address: '',
+            phonenumber: '',
+            levelmember: '',
+            levelmemberthing: '',
+            statusinfo: false,
+            pnstatus: false,
+  
+            cityvalue: '',
+            pincode: '',
+  
+  
+  
+        })
+        const rules = computed(() => {
+  
+            const statusinfoRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
+                return state.statusinfo || !!value;
+            });
+            const pnstatusRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
+                return state.pnstatus || !!value;
+            });
+            return {
+                username: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required),
+                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+                },
+                password: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required),
+                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+                },
+                confirmpassword: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
+                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
+                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+                },
+  
+                thainame: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+                },
+                engname: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
+                    isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
+                },
+  
+                address: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+                },
+                cityvalue: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
+                },
+  
+  
+                pincode: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required),
+                    numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+                    maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)),
+                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 5 ตัวด้วยครับ', minLength(5))
+                },
+  
+                phonenumber: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required),
+                    numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+                    maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 10 ตัวเท่านั่นนะครับ ', maxLength(10)),
+                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 10 ตัวด้วยครับ', minLength(10))
+                },
+  
+                email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
+  
+                levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
+                levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
+  
+                conditionalField1: { required: statusinfoRequired },
+                conditionalField2: { required: pnstatusRequired },
+            }
+        })
+  
+        const v$ = useValidate(rules, state)
+        return {
+            rules,
+            state,
+            v$
+        }
+    },
+  
     data() {
         return {
-            username: "",
-            password: "",
-            confirmpassword: "",
-
-            thainame: "",
-            engname: "",
-            oldname: "",
-            nickname: "",
-            dateofbirth: ref(new Date()),
-
-            status: "",
-            academicstatus: "",
-            academicnumber: "",
-            masterdegree: "",
-            masterdegreenumber: "",
-            doctordegree: "",
-            doctordegreenumber: "",
-
-            address: "",
-            phonenumber: "",
-            phonemail: "",
-            idline: "",
-            email: "",
-            job: "",
-            jobposition: "",
-            jobaddress: "",
-            levelmember: "",
-            levelmemberthing: "",
-
-            statusinfo: "",
-            pnstatus: "",
-            file: null,
-            payimage: null,
             inputType: "password",
-            role: "",
-            accessstatus: "",
-            date: "",
+            file: null,
+            district: [],
+            canton: [],
+            city: [],
         };
     },
-
+    mounted() {
+        this.fetchDistrict();
+        this.fetchCanton();
+        this.fetchCity();
+    },
     methods: {
-        handleprofile(event) {
-            this.file = event.target.files[0];
-        },
-        handlepaycheck(event) {
-            this.payimage = event.target.files[0];
-        },
         togglePassword() {
             this.inputType = this.inputType === "password" ? "text" : "password";
+        },
+        handleprofile(event) {
+            this.file = event.target.files[0];
         },
         formatdate(dateofbirth) {
             const day = dateofbirth.getDate();
@@ -520,216 +490,81 @@ export default {
             return `คุณเกิดวันที่ ${day}/${month}/${year}`;
         },
         submit() {
-            if (this.username === '') {
-                alert("กรุณาใส่ชื่อด้วยนะครับ");
-                return;
+            this.v$.$validate() // checks all inputs
+            if (this.v$.$error) {
+                console.log(this.v$)
+                alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
+            } else {
+                const URL = `${import.meta.env.VITE_API}register2`;
+                let data = new FormData();
+                data.append("username", this.state.username);
+                data.append("password", this.state.password);
+                data.append("confirmpassword", this.state.confirmpassword);
+                data.append("thainame", this.state.thainame);
+                data.append("engname", this.state.engname);
+                data.append("address", this.state.address);
+                data.append("city", this.state.cityvalue);
+                data.append("pincode", this.state.pincode);
+                data.append("phonenumber", this.state.phonenumber);
+                data.append("email", this.state.email);
+                data.append("levelmember", this.state.levelmember);
+                data.append("levelmemberthing", this.state.levelmemberthing);
+                data.append("statusinfo", this.state.statusinfo);
+                data.append("file", this.file);
+                data.append("PNstatus", this.state.pnstatus);
+                let config = {
+                    header: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                };
+  
+                axios.post(URL, data, config).then((response) => {
+                    // console.log("this is res => ", this.date);
+                    this.responseStatus = response.status
+                    console.log("this is res => ", response);
+                    alert("การสมัครสมาชิกสำเร็จแล้ว")
+                    window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+  
+                }).catch((error) => {
+                    alert(error.response.data.Text);
+                });
             }
-            if (this.thainame === '') {
-                alert("กรุณาใส่ชื่อด้วยนะครับ");
-                return;
-            }
-            if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(this.email) || this.email == '') {
-                alert("กรุณากรอกอีเมลให้ถูกต้อง");
-                return;
-            }
-            if (!/^\d+$/.test(this.phonenumber) || this.phonenumber == '' ) {
-                alert("กรุณากรอกเบอร์โทรศัพท์เป็นตัวเลขเท่านั้น");
-                return;
-            }
-            if(this.statusinfo =='' || this.pnstatus ==''){
-                alert("กรุณากดยืนยันด้วยนะครับ");
-                return;
-            }
-          
-            
-
-            const URL = `${import.meta.env.VITE_API2}admin/create`;
-            let data = new FormData();
-
-            data.append("username", this.username);
-            data.append("password", this.password);
-            data.append("confirmpassword", this.confirmpassword);
-
-            data.append("thainame", this.thainame);
-            data.append("engname", this.engname);
-            data.append("oldname", this.oldname);
-            data.append("nickname", this.nickname);
-            data.append("dateofbirth", this.date);
-
-            data.append("status", this.status);
-            data.append("academicstatus", this.academicstatus);
-            data.append("academicnumber", this.academicnumber);
-            data.append("masterdegree", this.masterdegree);
-            data.append("masterdegreenumber", this.masterdegreenumber);
-            data.append("doctordegree", this.doctordegree);
-            data.append("doctordegreenumber", this.doctordegreenumber);
-
-            data.append("address", this.address);
-            data.append("phonenumber", this.phonenumber);
-            data.append("phonemail", this.phonemail);
-            data.append("idline", this.Idline);
-            data.append("email", this.email);
-            data.append("job", this.job);
-            data.append("jobposition", this.jobposition);
-            data.append("jobaddress", this.jobadress);
-            data.append("levelmember", this.levelmember);
-            data.append("levelmemberthing", this.levelmemberthing);
-            data.append("statusinfo", this.statusinfo);
-            data.append("file", this.file);
-            data.append("payimage", this.payimage);
-            data.append("PNstatus", this.pnstatus);
-            data.append("role", this.role);
-            data.append("accessstatus", this.accessstatus);
-
-            let config = {
-                headers: {
-                    // ตัวอย่าง Header (แก้ตามความเหมาะสม)
-                    Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-                    "Content-Type": "application/json",
-                },
-            };
-
-            axios.post(URL, data, config).then((response) => {
-                // console.log("this is res => ", this.date);
-                alert("ทำการสร้างผู้ใช้สำเร็จแล้ว")
-
-                router.push({ path: '/admintoo/' + this.$route.params.id });
-            });
         },
+        async fetchDistrict() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json');
+                const data = await response.json();
+                // Assuming the API response is an array of objects with `value` and `text` properties
+                this.district = data;
+                console.log(this.district)
+            } catch (error) {
+                console.error('Error fetching options:', error);
+            }
+        },
+        async fetchCanton() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json');
+                const data = await response.json();
+                // Assuming the API response is an array of objects with `value` and `text` properties
+                this.canton = data;
+                console.log(this.district)
+            } catch (error) {
+                console.error('Error fetching options:', error);
+            }
+        },
+        async fetchCity() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json');
+                const data = await response.json();
+                // Assuming the API response is an array of objects with `value` and `text` properties
+                this.city = data;
+                console.log(this.district)
+            } catch (error) {
+                console.error('Error fetching options:', error);
+            }
+        }
     },
-};
-</script>
-
-
-
-
-
-
-
-
-<!--
-     axios({
-  //         method: "post",
-  //         url: "http://localhost:4444/register",
-  //         data: {
-  //           username: this.Username,
-  //           password: this.Password,
-  //           confirmpassword: this.CPassword,
-  //           file: this.$refs.fileInput.files[0]
-  //           // thainame: this.THAIname,
-  //           // engname: this.ENGname,
-  //           // oldname: this.oldname,
-  //           // nickname: this.nickname,
-  //           // dateofbirth: this.date,
-  
-  //           // status: this.status,
-  //           // academicstatus: this.academicstatus,
-  //           // academicnumber: this.academicnumber,
-  //           // masterdegree: this.masterdegree,
-  //           // masterdegreenumber: this.masterdegreenumber,
-  //           // doctordegree: this.doctordegree,
-  //           // doctordegreenumber: this.doctordegreenumber,
-  
-  //           // address: this.address,
-  //           // phonenumber: this.phonenumber,
-  //           // phonemail: this.phonemail,
-  //           // idline: this.idline,
-  //           // email: this.email,
-  //           // job: this.job,
-  //           // jobposition: this.jobposition,
-  //           // jobaddress: this.jobadress,
-  
-  //           // levelmember: this.levelmember,
-  //           // levelmemberthing: this.levelmemberthing,
-  //           // statusinfo: this.statusinfo,
-  
-  //           // pnstatus: this.pnstatus,
-  //         },
-  //       })
-  //         .then((res) => {
-  //           console.log(this.submit);
-  //           console.log(res);
-  //         })
-  //         .catch();
-  //     },
-  //  <div class="row align-items-center py-3">
-  //                 <div class="col-md-3 ps-5">
-  //                   <h6 class="mb-0">สลิปการโอนเงิน</h6>
-  //                 </div>
-  //                 <div class="col-md-9 pe-5">
-  //                   <input
-  //                     class="form-control form-control-lg"
-  //                     id="formFileLg"
-  //                     type="file"
-  //                   />
-  //                   <div class="small text-muted mt-2">
-  //                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-  //                   </div>
-  //                 </div>
-  //               </div>
-  
-  
-  
-  // <div class="row align-items-center py-3">
-  //                 <div class="col-md-3 ps-5">
-  //                   <h6 class="mb-0">รูปถ่าย</h6>
-  //                 </div>
-  //                 <div class="col-md-9 pe-5">
-  //                   <input
-  //                     @change="handleFileChange"
-  //                     class="form-control form-control-lg"
-  //                     id="formFileLg"
-  //                     type="file"
-  //                   />
-  //                   <div class="small text-muted mt-2">
-  //                     (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
-  //                   </div>
-  //                   <p>
-  //                     ไฟล์ที่เลือก:
-  //                     {{
-  //                       selectedFile ? selectedFile.name : "ยังไม่ได้เลือกไฟล์"
-  //                     }}
-  //                   </p>
-  //                 </div>
-  //               </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // <script>
-  // export default {
-  //   data() {
-  //     return {
-  //       selectedFile: null,
-  //     };
-  //   },
-  //   methods: {
-  //     handleFileChange(event) {
-  //       this.selectedFile = event.target.files[0];
-  //     },
-  //   },
-  // };
-  //
+  };
   </script>
   
-  // ในตัวอย่างนี้:
   
-  // เพิ่ม @change event handler ใน input element โดยให้มีการเรียกฟังก์ชัน handleFileChange เมื่อมีการเปลี่ยนแปลง (ไฟล์ถูกเลือก).
-  
-  // สร้างตัวแปร selectedFile ใน data ของ Vue instance เพื่อเก็บข้อมูลไฟล์ที่ถูกเลือก.
-  
-  // สร้าง method ที่ชื่อ handleFileChange ซึ่งจะถูกเรียกเมื่อไฟล์ถูกเลือก และจะเก็บข้อมูลไฟล์ที่ถูกเลือกในตัวแปร selectedFile.
-  
-  // แสดงผลข้อมูลไฟล์ที่ถูกเลือกด้วย {{ selectedFile ? selectedFile.name : 'ยังไม่ได้เลือกไฟล์' }}.
-  
-  // คำทำนาย: หากโค้ดด้านบนยังไม่ทำงานได้หรือมีปัญหาเฉพาะกับเว็บบราวเซอร์บางประการ, คุณอาจต้องปรับปรุงโค้ดบางส่วนเพื่อให้ทำงานได้ถูกต้อง.
-  -->

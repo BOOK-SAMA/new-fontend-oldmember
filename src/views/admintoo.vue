@@ -12,7 +12,7 @@
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admincreate">สร้าง User</a>
+          <a class="nav-link" href="/admincreate">สร้างผู้ใช้</a>
         </li>
         <li class="nav-item">
           <a class="nav-link"
@@ -30,7 +30,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-          LOGOUT
+          ออกจากระบบ
         </button>
       </form>
     </div>
