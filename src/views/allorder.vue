@@ -61,7 +61,7 @@
                     <td>{{ order.thainame }}</td>
                     <td>{{ order.address }}</td>
                     <td>{{ order.phonenumber }}</td>
-                    <td>{{ order.Orderdate }}</td>
+                    <td>{{ dateformat(order.Orderdate) }}</td>
                     <td>{{ order.state }}</td>
                     <td>{{ order.totalCartPrice }}</td>
                     <td class="p-1">
@@ -91,6 +91,7 @@ export default {
     data() {
         return {
             orders: [],
+            orderdate: [],
         };
     },
 
@@ -119,7 +120,7 @@ export default {
                     }
                 );
                 this.orders = response.data;
-                console.log(response.data);
+                                
             } catch (error) {
                 localStorage.removeItem("userid");
                 localStorage.removeItem("tokenstring");
@@ -144,6 +145,10 @@ export default {
             } catch (error) {
                 alert("ไม่สามารถลบคำสั่งซื้อได้")
             }
+        },
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
         }
     },
 };

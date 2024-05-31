@@ -49,13 +49,13 @@ const router = createRouter({
       // ต้องทำการแก้ไข
       path: '/profile/:id',
       component: () => import('../for_users/profile_copy.vue'),
-      //meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
+      meta: { requiresAuth: true }, // เพิ่ม meta field เพื่อบอกว่าหน้านี้ต้องการ authentication
     },
     {
       //ต้องทำการแก้ไข
       path: `/updateuser/:id/edit`,
-      component: () => import('/src/views/userupdate_copy.vue'),
-      // meta: { requiresAuth: true }
+      component: () => import('/src/for_users/userupdate_copy.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/catalog',
@@ -96,7 +96,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/orderhistory/:id',
-      component: () => import('/src/shopping/user-order.vue'),
+      component: () => import('/src/for_users/user-order.vue'),
       name: 'checkorder',
       meta: { requiresAuth: true }
     },

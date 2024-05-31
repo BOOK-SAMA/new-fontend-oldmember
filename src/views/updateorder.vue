@@ -1,4 +1,44 @@
 <template>
+
+<nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
+        <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+                alt="Admin" class="rounded-circle p-1" width="40" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="state ? '#' : `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+                    ออกจากระบบ
+                </button>
+            </form>
+        </div>
+    </nav>
+
+
+
     <div id="pagecontent" style="margin-top: 150px;">
         <div class="clearcontainer">
 
@@ -39,12 +79,12 @@
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
-                            <p><strong>Order details</strong></p><br>
-                            <p>Order number : <span class="texthighlight">
+                            <p><strong>รายละเอียดคำสั่งซื้อ</strong></p><br>
+                            <p>หมายเลขคำสั่งซื้อ: <span class="texthighlight">
                                     <td v-text="orders.uniqueorder"></td>
                                 </span></p>
-                            <p>Order date : <span class="texthighlight">
-                                    <td v-text="orders.Orderdate"></td>
+                            <p>วันที่ของคำสั่งซื้อ : <span class="texthighlight">
+                                    <td v-text="dateformat(orders.Orderdate)"></td>
                                 </span></p>
                         </div>
                     </div>
@@ -163,6 +203,10 @@ export default {
                 alert(error.response.data.Text)
             }
         },
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        }
     },
 };
 </script>
