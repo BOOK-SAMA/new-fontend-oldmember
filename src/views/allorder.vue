@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -13,7 +13,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admincreate">สร้าง User</a>
+                    <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
@@ -30,7 +30,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-                    LOGOUT
+                    ออกจากระบบ
                 </button>
             </form>
         </div>
@@ -77,6 +77,7 @@
             </tbody>
         </table>
     </div>
+
 </template>
 
 
