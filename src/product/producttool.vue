@@ -9,12 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+              class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/addproduct">เพิ่ม products</a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>
@@ -28,42 +29,41 @@
   </nav>
 
 
-<div class="container table-responsive py-5"> 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-      <tr>
-        <th scope="col ">#</th>
-        <th scope="col ">ItemID</th>
-        <th scope="col ">ItemName</th>
-        <th scope="col ">ItemQuantity</th>
-        <th scope="col ">ItemPrice</th>
-            <th scope="col ">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(product, index) in products" :key="index">
-        <td v-text="index"></td>
-        <td v-text="product.ID"></td>
-        <td v-text="product.name"></td>
-        <td v-text="product.quantity"></td>
-        <td v-text="product.price"></td>
+  <div class="container table-responsive py-5">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col ">#</th>
+          <th scope="col ">ItemID</th>
+          <th scope="col ">ItemName</th>
+          <th scope="col ">ItemQuantity</th>
+          <th scope="col ">ItemPrice</th>
+          <th scope="col ">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(product, index) in products" :key="index">
+          <td v-text="index"></td>
+          <td v-text="product.ID"></td>
+          <td v-text="product.name"></td>
+          <td v-text="product.quantity"></td>
+          <td v-text="product.price"></td>
 
-        <td class="p-1">
-          <router-link :to="{ path: '/' + this.$route.params.id +'/updateproduct/' + product.ID + '/edit' }"
-            class="btn btn-success btn-sm">แก้ไข</router-link>
-          <div class="b-example-divider p-1"></div>
+          <td class="p-1">
+            <router-link :to="{ path: '/' + this.$route.params.id + '/updateproduct/' + product.ID + '/edit' }"
+              class="btn btn-success btn-sm">แก้ไข</router-link>
+            <div class="b-example-divider p-1"></div>
 
-          <div class="btn btn-success btn-sm"
-            @click="dodelete(product.ID)">ลบ
-          </div>
-          <div class="b-example-divider p-1"></div>
-
+            <div class="btn btn-success btn-sm" @click="dodelete(product.ID)">ลบ
+            </div>
+            <div class="b-example-divider p-1"></div>
 
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </template>
@@ -106,10 +106,11 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             console.log(res);
-            alert("ทำการลบ สินค้า เรียบร้อยแล้ว")
+            alert("ทำการลบสินค้าเรียบร้อยแล้ว");
+          } else {
+            alert("ไม่สามารถทำการลบสินค้าได้");
           }
         })
-        .catch();
     },
     async Getproduct(id) {
       const userId = localStorage.getItem("userid");

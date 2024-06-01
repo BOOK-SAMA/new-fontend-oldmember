@@ -142,6 +142,7 @@ export default {
                     }
                 );
                 console.log(response.data);
+                alert("ลบคำสั่งซื้อสำเร็จแล้ว")
             } catch (error) {
                 alert("ไม่สามารถลบคำสั่งซื้อได้")
             }
