@@ -13,14 +13,14 @@
                     <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-					<a class="nav-link"  :href="state ? '#' : `/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
+					<a class="nav-link"  :href="`/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
 				</li>
                 <li class="nav-item">
                     <a class="nav-link" :class="{ 'disabled': state }"
-                        :href="state ? '#' : `/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
+                        :href="`/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
+                    <a class="nav-link" :href="`/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

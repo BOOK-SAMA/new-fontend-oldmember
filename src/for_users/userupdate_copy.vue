@@ -12,14 +12,14 @@
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
+          <a class="nav-link" :href="`/profile/${id}`">หน้าโปรไฟล์</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :class="{ 'disabled': state }"
             :href="state ? '#' : `/updateuser/${id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
+          <a class="nav-link" :href="`/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -394,7 +394,7 @@
                       <span v-if="v$.Jobposition.$error" class="text-danger fw-bold">
                         {{ v$.Jobposition.$errors[0].$message }}
                       </span>
-                      <input v-model="state.Jobposition" class="form-control form-control-lg" placeholder="" />
+                      <input v-model="state.jobposition" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -406,7 +406,7 @@
                       <span v-if="v$.Jobaddress.$error" class="text-danger fw-bold">
                         {{ v$.Jobaddress.$errors[0].$message }}
                       </span>
-                      <input v-model="state.Jobaddress" class="form-control form-control-lg" placeholder="" />
+                      <input v-model="state.jobaddress" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -526,8 +526,8 @@ export default {
       doctordegreenumber: '',
 
       job: '',
-      Jobposition: '',
-      Jobaddress: '',
+      jobposition: '',
+      jobaddress: '',
       Levelmember: '',
       Levelmemberthing: '',
 
@@ -713,9 +713,9 @@ export default {
         data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
         data.append("phonemail", this.state.Phonemail);
         data.append("idline", this.state.Idline);
-        data.append("job", this.job);
-        data.append("jobposition", this.Jobposition);
-        data.append("jobaddress", this.Jobaddress);
+        data.append("job", this.state.job);
+        data.append("jobposition", this.state.jobposition);
+        data.append("jobaddress", this.state.jobaddress);
         
         let config = {
           headers: {
@@ -783,8 +783,8 @@ export default {
 
 
         this.state.job = res.data.thing.Job;
-        this.state.Jobposition = res.data.thing.Jobposition;
-        this.state.Jobaddress = res.data.thing.Jobaddress;
+        this.state.jobposition = res.data.thing.Jobposition;
+        this.state.jobaddress = res.data.thing.Jobaddress;
         this.state.Levelmember = res.data.thing.Levelmember;
         this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
         this.downloadImageAndDisplay(res.data.thing.Image)

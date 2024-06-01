@@ -17,13 +17,13 @@
 					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :href="state ? '#' : getHref()"
+					<a class="nav-link" :href="getHref()"
 						@click="checkAccountStatus">
 						แก้ไขข้อมูลส่วนตัว
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :href="state ? '#' : `/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
+					<a class="nav-link" :href="`/orderhistory/${id}`">ดูประวัติการสั่งซื้อ</a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

@@ -19,13 +19,13 @@
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+          <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+          <a class="nav-link" :href=" `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+          <a class="nav-link" :href=" `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

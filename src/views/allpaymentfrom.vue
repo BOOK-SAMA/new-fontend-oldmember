@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -19,13 +19,13 @@
                     <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+                    <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+                    <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="state ? '#' : `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+                    <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -60,9 +60,12 @@
                     <td>{{ from.pricevalue }}</td>
                     <td>{{ from.status }}</td>
                     <td class="p-1">
-                        <router-link :to="{ path: '/editpaymentfrom/' + from.ID  }"
+                        <router-link :to="{ path: '/editpaymentfrom/' + from.ID }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
+                        <router-link :to="{ path: '/admintoo/' + this.$route.params.id }" class="btn btn-success btn-sm"
+                            @click="dodelete(index)">ลบ
+                        </router-link>
                     </td>
                 </tr>
             </tbody>
@@ -105,11 +108,14 @@ export default {
                 console.log(res.data)
                 this.paymentfroms = res.data.Frompayment
                 console.log(this.paymentfroms)
-                
+
             }).catch((error) => {
                 alert("this is error => ", error);
             });
         },
+        dodelete(index) {
+
+        }
     },
 };
 </script>
