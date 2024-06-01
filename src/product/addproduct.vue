@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-9 pe-5">
 
-                                    <input type="text" class="form-control form-control-lg" v-model="this.name" />
+                                    <input type="text" class="form-control form-control-lg" v-model="this.state.name" />
 
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <h6 class="mb-0">ปริมาณสินค้าที่มีใน stock</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="this.quantity" />
+                                    <input type="text" class="form-control form-control-lg" v-model="this.state.quantity" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -69,7 +69,7 @@
                                     <h6 class="mb-0">ราคาของสินค้า</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="this.price" />
+                                    <input type="text" class="form-control form-control-lg" v-model="this.state.price" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-9 pe-5">
 
-                                    <textarea class="form-control form-control-lg" v-model="producttext"
+                                    <textarea class="form-control form-control-lg" v-model="this.state.producttext"
                                         rows="3"></textarea>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                             alt="Admin" class="p-1" width="200" />
                                     </p>
                                     <input ref="fileInput" class="form-control form-control-lg" id="formFileLg"
-                                        type="file" @change="handleprofile" />
+                                        type="file" @change="handleproductimage" />
                                     <div class="small text-muted mt-2">
                                         (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
                                     </div>
@@ -169,58 +169,26 @@ export default {
         })
         const rules = computed(() => {
             return {
-                username: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อผุ้ใช้งานในระบบ', required),
-                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
-                },
-                password: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสผ่าน', required),
-                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
-                },
-                confirmpassword: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
-                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
-                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+                name: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูลชื่อของสินค้าที่จะเพิ้มในระบบด้วย', required),
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลชื่อของสินค้าอย่างน้อย  4 ตัวอักษรด้วยครับ', minLength(4))
                 },
 
-                thainame: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
-                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
-                },
-                engname: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
-                    isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
-                },
-
-                address: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
-                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
-                },
-                cityvalue: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
-                },
-
-
-                pincode: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required),
+                quantity: {
                     numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
-                    maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)),
-                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 5 ตัวด้วยครับ', minLength(5))
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล จำนวนสินค้าที่ต้องการจะเพิ่มด้วยครับ', required),
+                    minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
 
-                phonenumber: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required),
+                price: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ราคาของสินค้าที่จะเพิ่มด้วยครับ', required),
                     numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
-                    maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 10 ตัวเท่านั่นนะครับ ', maxLength(10)),
-                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 10 ตัวด้วยครับ', minLength(10))
                 },
 
-                email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
-
-                levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
-                levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
-
-
+                producttext: {
+                    isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+                }
             }
         })
 
@@ -237,9 +205,6 @@ export default {
             router: useRouter(),
         };
     },
-    async mounted() {
-        console.log(this.$route.params.id);
-    },
     methods: {
         handleproductimage(event) {
             this.file = event.target.files[0];
@@ -250,12 +215,11 @@ export default {
             const id = this.$route.params.id;
 
             let data = new FormData();
-            data.append("name", this.name);
-            data.append("quantity", this.quantity);
-            data.append("price", this.price);
-            data.append("producttext", this.producttext);
+            data.append("name", this.state.name);
+            data.append("quantity", this.state.quantity);
+            data.append("price", this.state.price);
+            data.append("producttext", this.state.producttext);
             data.append("file", this.file);
-
             axios
                 .post(`${import.meta.env.VITE_API2}admin/addproduct`, data, {
                     headers: {
