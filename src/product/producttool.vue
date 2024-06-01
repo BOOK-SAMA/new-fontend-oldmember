@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
     <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
         alt="Admin" class="rounded-circle p-1" width="40" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -20,8 +20,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-          LOGOUT
+        <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
         </button>
       </form>
     </div>

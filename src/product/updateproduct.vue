@@ -1,9 +1,38 @@
 <template>
-  <section class="vh" style="background-color: #2779e2">
+  <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
+    <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+        alt="Admin" class="rounded-circle p-1" width="40" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/addproduct">เพิ่ม products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <section class="vh">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-9">
-          <h1 class="text-white mb-4">
+          <h1 class="text-dark mb-4">
             แก้ไขข้อมูลสินค้า
           </h1>
 
@@ -57,7 +86,7 @@
                   <h6 class="mb-0">คำอธิบายสินค้า</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  
+
                   <textarea class="form-control form-control-lg" v-model="producttext" rows="3"></textarea>
                 </div>
               </div>
