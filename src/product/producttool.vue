@@ -13,7 +13,7 @@
               class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/addproduct">เพิ่ม products</a>
+          <a class="nav-link" href="/addproduct">เพิ่ม สินค้า</a>
         </li>
 
         <li class="nav-item">

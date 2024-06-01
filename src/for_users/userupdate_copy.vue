@@ -63,10 +63,6 @@
                         <h6 class="mb-0">รุปถ่ายของผู้ใช้</h6>
                       </div>
                       <div class="col-md-9 pe-5">
-                        <h6 class="mb-0">รูปที่แสดงอยู่นี้เป็นไฟล์รูปใน database</h6>
-                        <h6 class="mb-0">
-                          หากต้องการเปลี่ยนแปลงสามารถ upload ไฟล์ได้ด้านล่าง
-                        </h6>
                         <img v-if="profileimage" :src="profileimage" alt="Preview" class="p-1" width="200" />
                         <!-- Display a default image if previewFile is not available -->
                         <p v-else>
