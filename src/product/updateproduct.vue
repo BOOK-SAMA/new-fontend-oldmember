@@ -54,8 +54,10 @@
                   <h6 class="mb-0">ชื่อของสินค้า</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-
-                  <input type="text" class="form-control form-control-lg" v-model="this.name" />
+                  <span v-if="v$.name.$error" class="text-danger fw-bold">
+                    {{ v$.name.$errors[0].$message }}
+                  </span>
+                  <input type="text" class="form-control form-control-lg" v-model="this.state.name" />
 
                 </div>
               </div>
@@ -63,10 +65,13 @@
 
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
-                  <h6 class="mb-0">ปริมาณสินค้าที่มีใน stock</h6>
+                  <h6 class="mb-0">ปริมาณสินค้าที่มีในคลัง</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" v-model="this.quantity" />
+                  <span v-if="v$.quantity.$error" class="text-danger fw-bold">
+                    {{ v$.quantity.$errors[0].$message }}
+                  </span>
+                  <input type="text" class="form-control form-control-lg" v-model="this.state.quantity" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -76,7 +81,10 @@
                   <h6 class="mb-0">ราคาของสินค้า</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-                  <input type="text" class="form-control form-control-lg" v-model="this.price" />
+                  <span v-if="v$.price.$error" class="text-danger fw-bold">
+                    {{ v$.price.$errors[0].$message }}
+                  </span>
+                  <input type="text" class="form-control form-control-lg" v-model="this.state.price" />
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -86,8 +94,10 @@
                   <h6 class="mb-0">คำอธิบายสินค้า</h6>
                 </div>
                 <div class="col-md-9 pe-5">
-
-                  <textarea class="form-control form-control-lg" v-model="producttext" rows="3"></textarea>
+                  <span v-if="v$.producttext.$error" class="text-danger fw-bold">
+                    {{ v$.producttext.$errors[0].$message }}
+                  </span>
+                  <textarea class="form-control form-control-lg" v-model="this.state.producttext" rows="3"></textarea>
                 </div>
               </div>
               <hr class="mx-n3" />
@@ -118,10 +128,6 @@
                 </div>
               </div>
               <hr class="mx-n3" />
-
-
-
-
               <div class="px-5 py-4">
                 <button type="submit" class="btn btn-primary btn-lg" @click="submitUpdate">
                   Submit
@@ -143,16 +149,73 @@ import { useRouter } from "vue-router";
 
 export default {
   name: "Updateproduct",
+  setup() {
+    const isEnglishOrThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
 
-  data() {
-    return {
-      products: [],
-      file: null,
+      // Check if the value contains any Thai characters
+      if (thaiRegex.test(value)) {
+        return false; // Return false if Thai characters are found
+      }
+
+      return true; // Return true if the value is in English
+    };
+
+    const isThai = (value) => {
+      // Regular expression to match Thai characters
+      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+
+      // Check if the value contains any Thai characters
+      if (thaiRegex.test(value)) {
+        return true; // Return false if Thai characters are found
+      }
+
+      return false; // Return true if the value is in English
+    };
+
+
+    const state = reactive({
       name: "",
       quantity: "",
       price: "",
       producttext: "",
+    })
+    const rules = computed(() => {
+      return {
+        name: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูลชื่อของสินค้าที่จะเพิ้มในระบบด้วย', required),
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลชื่อของสินค้าอย่างน้อย  4 ตัวอักษรด้วยครับ', minLength(4))
+        },
 
+        quantity: {
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+          required: helpers.withMessage('กรุณาใส่ข้อมูล จำนวนสินค้าที่ต้องการจะเพิ่มด้วยครับ', required),
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+        },
+
+        price: {
+          required: helpers.withMessage('กรุณาใส่ข้อมูล ราคาของสินค้าที่จะเพิ่มด้วยครับ', required),
+          numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+        },
+
+        producttext: {
+          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
+        }
+      }
+    })
+    const v$ = useValidate(rules, state)
+    return {
+      rules,
+      state,
+      v$
+    }
+  },
+  data() {
+    return {
+      products: [],
+      file: null,
     };
   },
   async mounted() {
@@ -179,10 +242,10 @@ export default {
 
         console.log(response.data);
         this.products = response.data;
-        this.name = this.products.name;
-        this.quantity = this.products.quantity;
-        this.price = this.products.price;
-        this.producttext = this.products.producttext;
+        this.state.name = this.products.name;
+        this.state.quantity = this.products.quantity;
+        this.state.price = this.products.price;
+        this.state.producttext = this.products.producttext;
 
       } catch (error) {
         localStorage.removeItem("userid");
@@ -232,34 +295,34 @@ export default {
     },
 
     submitUpdate() {
-      // Assuming you want to use $route.params.id
-      const id = this.$route.params.id;
-
-      let data = new FormData();
-      data.append("name", this.name);
-      data.append("quantity", this.quantity);
-      data.append("price", this.price);
-      data.append("producttext", this.producttext);
-      data.append("file", this.file);
-
-      axios
-        .put(`${import.meta.env.VITE_API2}admin/updateproduct/${this.$route.params.itemid}`, data, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(data)
-          console.log(res)
-          alert("ทำการ update ข้อมูลสินค้าสำเร็จแล้ว")
-        })
-        .catch((error) => {
-          console.error("Error updating:", error);
-        });
+      this.v$.$validate() // checks all inputs
+      if (this.v$.$error) {
+        console.log(this.v$)
+      } else {
+        const id = this.$route.params.id;
+        let data = new FormData();
+        data.append("name", this.state.name);
+        data.append("quantity", this.state.quantity);
+        data.append("price", this.state.price);
+        data.append("producttext", this.state.producttext);
+        data.append("file", this.file);
+        axios
+          .put(`${import.meta.env.VITE_API2}admin/updateproduct/${this.$route.params.itemid}`, data, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => {
+            console.log(data)
+            console.log(res)
+            alert("ทำการ update ข้อมูลสินค้าสำเร็จแล้ว")
+          })
+          .catch((error) => {
+            console.error("Error updating:", error);
+          });
+      }
     },
-
-
   },
 };
 </script>

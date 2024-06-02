@@ -47,7 +47,9 @@
                                     <h6 class="mb-0">ชื่อของสินค้า</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-
+                                    <span v-if="v$.name.$error" class="text-danger fw-bold">
+                                        {{ v$.name.$errors[0].$message }}
+                                    </span>
                                     <input type="text" class="form-control form-control-lg" v-model="this.state.name" />
 
                                 </div>
@@ -56,10 +58,14 @@
 
                             <div class="row align-items-center py-3">
                                 <div class="col-md-3 ps-5">
-                                    <h6 class="mb-0">ปริมาณสินค้าที่มีใน stock</h6>
+                                    <h6 class="mb-0">ปริมาณสินค้าที่มีในคลัง</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="this.state.quantity" />
+                                    <span v-if="v$.quantity.$error" class="text-danger fw-bold">
+                                        {{ v$.quantity.$errors[0].$message }}
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg"
+                                        v-model="this.state.quantity" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -69,7 +75,11 @@
                                     <h6 class="mb-0">ราคาของสินค้า</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input type="text" class="form-control form-control-lg" v-model="this.state.price" />
+                                    <span v-if="v$.price.$error" class="text-danger fw-bold">
+                                        {{ v$.price.$errors[0].$message }}
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg"
+                                        v-model="this.state.price" />
                                 </div>
                             </div>
                             <hr class="mx-n3" />
@@ -79,7 +89,9 @@
                                     <h6 class="mb-0">คำอธิบายสินค้า</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-
+                                    <span v-if="v$.producttext.$error" class="text-danger fw-bold">
+                                        {{ v$.producttext.$errors[0].$message }}
+                                    </span>
                                     <textarea class="form-control form-control-lg" v-model="this.state.producttext"
                                         rows="3"></textarea>
                                 </div>
@@ -106,10 +118,6 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-
-
-
-
                             <div class="px-5 py-4">
                                 <button type="submit" class="btn btn-primary btn-lg" @click="submitUpdate">
                                     Submit
@@ -211,32 +219,38 @@ export default {
             console.log(this.file);
         },
         submitUpdate() {
-            // Assuming you want to use $route.params.id
-            const id = this.$route.params.id;
+            this.v$.$validate() // checks all inputs
+            if (this.v$.$error) {
+                console.log(this.v$)
+            } else {
+                // Assuming you want to use $route.params.id
+                const id = this.$route.params.id;
 
-            let data = new FormData();
-            data.append("name", this.state.name);
-            data.append("quantity", this.state.quantity);
-            data.append("price", this.state.price);
-            data.append("producttext", this.state.producttext);
-            data.append("file", this.file);
-            axios
-                .post(`${import.meta.env.VITE_API2}admin/addproduct`, data, {
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((res) => {
-                    console.log(data)
-                    console.log(res)
-                    alert("ทำการเพิ่มสินค้าสำเร็จแล้ว")
-                    this.router.push({ path: 'https://mytestsilpakorn.azurewebsites.net/' });
-                })
-                .catch((error) => {
-                    console.error("Error updating:", error);
-                });
-        },
+                let data = new FormData();
+                data.append("name", this.state.name);
+                data.append("quantity", this.state.quantity);
+                data.append("price", this.state.price);
+                data.append("producttext", this.state.producttext);
+                data.append("file", this.file);
+                axios
+                    .post(`${import.meta.env.VITE_API2}admin/addproduct`, data, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((res) => {
+                        console.log(data)
+                        console.log(res)
+                        alert("ทำการเพิ่มสินค้าสำเร็จแล้ว")
+                        this.router.push({ path: 'https://mytestsilpakorn.azurewebsites.net/' });
+                    })
+                    .catch((error) => {
+                        console.error("Error updating:", error);
+                    });
+            }
+        }
+
     },
 };
 </script>
