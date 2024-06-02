@@ -113,8 +113,27 @@ export default {
                 alert("this is error => ", error);
             });
         },
-        dodelete(index) {
-
+        async dodelete(index) {
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API2}deletepaymentfrom/${index}`,
+                    {
+                        headers: {
+                            // ตัวอย่าง Header (แก้ตามความเหมาะสม)
+                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                console.log(response.data);
+                alert("ลบคำสั่งซื้อสำเร็จแล้ว")
+            } catch (error) {
+                alert("ไม่สามารถลบคำสั่งซื้อได้")
+            }
+        },
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
         }
     },
 };
