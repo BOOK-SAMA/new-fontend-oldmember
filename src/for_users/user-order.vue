@@ -47,7 +47,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(order, index) in Orders" :key="index">
-                        <td v-text="order.Orderdate"></td>
+                        <td v-text="this.dateformat(order.Orderdate)"></td>
                         <td v-text="order.uniqueorder"></td>
                         <td v-text="order.thainame"></td>
                         <td v-text="order.state"></td>
@@ -111,6 +111,10 @@ export default {
                 alert("ไม่สามารถดูคำสั่งซื้อได้")
             }
         },
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        }
     }
 }
 </script>

@@ -68,9 +68,9 @@
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
-                            <p><strong>Order details</strong></p><br>
+                            <p><strong>ข้อมูลการสั่งซื้อ</strong></p><br>
                             <p>เลขที่คำสั่งซื้อ : <span class="texthighlight"><td v-text="ordernumber"></td></span></p>
-                            <p>Order date : <span class="texthighlight"><td v-text="orderdate"></td></span></p>
+                            <p>วันที่สั่งซื้อ : <span class="texthighlight"><td v-text="this.dateformat(orderdate)"></td></span></p>
                         </div>
                     </div>
                     <div class="myaccounthalfcolumn">
@@ -177,7 +177,10 @@ export default {
                 alert("ไม่สามารถดูรายละเอียดดคำสั่งซื้อได้")
             }
         },
-
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        }
     }
 }
 </script>
