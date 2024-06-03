@@ -228,11 +228,11 @@ import { computed } from 'vue'
 import { currencyTHB } from '../../shared/not-use/currency'
 
 //useProductStore
-import { useProductStore } from '../../store/not-use/product'
+import { useProductStore } from '../../for_users/store/not-use/product'
 const product_store = useProductStore()
 
 //useCartStore
-import { useCartStore } from '../../store/not-use/cart';
+import { useCartStore } from '../../for_users/store/not-use/cart';
 const cart_store = useCartStore()
 
 const carts = computed(() => cart_store.cart_previews)

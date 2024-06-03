@@ -33,7 +33,7 @@
 
 
 <script setup>
-import { useProductStore } from '../../store/not-use/product';
+import { useProductStore } from '../../for_users/store/not-use/product';
 
 const product_store = useProductStore()
 

@@ -59,14 +59,14 @@ const router = createRouter({
     },
     {
       path: '/catalog',
-      component: () => import('../shopping/mainshopping.vue'),
+      component: () => import('../for_users/shopping/mainshopping.vue'),
       name: 'catalog',
       meta: { requiresAuth: true }
       
     },
     {
       path: '/productdetail/:id',
-      component: () => import('../shopping/productdetail.vue'),
+      component: () => import('../for_users/shopping/productdetail.vue'),
       name: 'productdetail',
       meta: { requiresAuth: true }
      
@@ -74,7 +74,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/cart',
-      component: () => import('../shopping/cart.vue'),
+      component: () => import('../for_users/shopping/cart.vue'),
       name: 'cart',
       meta: { requiresAuth: true }
      
@@ -82,7 +82,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/checkout',
-      component: () => import('../shopping/checkout.vue'),
+      component: () => import('../for_users/shopping/checkout.vue'),
       name: 'checkout',
       meta: { requiresAuth: true }
 

@@ -39,7 +39,7 @@ import axios from 'axios'
 import { currencyTHB } from '../../shared/not-use/currency'
 
 //useCartStore
-import { useCartStore } from '../../store/not-use/cart'
+import { useCartStore } from '../../for_users/store/not-use/cart'
 const cart_store = useCartStore()
 
 const product = ref({})
