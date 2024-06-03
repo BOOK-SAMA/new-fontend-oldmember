@@ -4,9 +4,9 @@ import register from '/src/views/registerpage.vue'
 import loginUser from '/src/views/loginpage.vue'
 import test from '/src/views/test.vue'
 import NotFound from '/src/views/notfound.vue'
-import admintoo from '/src/views/admintoo.vue'
-import admincreatefrom from '/src/views/admincreatefrom.vue'
-import updateadminfrom from '/src/views/adminupdate.vue'
+import admintoo from '/src/for_admin/admintoo.vue'
+import admincreatefrom from '/src/for_admin/admincreatefrom.vue'
+import updateadminfrom from '/src/for_admin/adminupdate.vue'
 import emailform    from '/src/views/sentemail.vue'
 const router = createRouter({
   history: createWebHistory(),
@@ -144,21 +144,21 @@ const router = createRouter({
     ///////////////////////////////////
     {
       path: `/seeallorder`,
-      component: () => import('/src/views/allorder.vue'),
+      component: () => import('/src/for_admin/allorder.vue'),
       name: 'seeallorder',
       meta: { requiresAuth: true }
     },
     {
       // ต้องทำการแก้ไข
       path: `/seeoneorder/:uniqueorder/`,
-      component: () => import('/src/views/vieworder.vue'),
+      component: () => import('/src/for_admin/vieworder.vue'),
       name: 'seeoneorder',
       meta: { requiresAuth: true }
     },
     { 
       // ต้องทำการแก้ไข
       path: `/editorder/:uniqueorder/`,
-      component: () => import('/src/views/updateorder.vue'),
+      component: () => import('/src/for_admin/updateorder.vue'),
       name: 'editorder',
       meta: { requiresAuth: true }
     },
