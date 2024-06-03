@@ -165,13 +165,13 @@ const router = createRouter({
     ///////////////////////////////////
     {
       path: '/seeallfrom',
-      component: () => import('../views/allpaymentfrom.vue'),
+      component: () => import('../for_admin/allpaymentfrom.vue'),
       meta: { requiresAuth: true }, 
     },
     {
       // ต้องทำการแก้ไข
       path: '/editpaymentfrom/:id',
-      component: () => import('../views/editpaymentfrom.vue'),
+      component: () => import('../for_admin/editpaymentfrom.vue'),
       meta: { requiresAuth: true }, 
     },
   ]
