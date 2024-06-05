@@ -190,7 +190,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
                                 <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
-                                    Submit
+                                    ยืนยัน
                                 </button>
                             </div>
                         </div>
@@ -292,7 +292,7 @@ export default {
             console.log(this.file)
         },
         submit() {
-            // check uniqueorder before required 
+            
             this.v$.$validate()
             if (this.v$.$error) {
                 alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
