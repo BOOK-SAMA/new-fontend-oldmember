@@ -74,7 +74,6 @@
                     <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
                         แบบฟอร์มแจ้งชำระเงิน สำหรับค่าสมาชิก
                     </h1>
-
                     <form class="was-validated">
                         <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
                             <div class="card-body">

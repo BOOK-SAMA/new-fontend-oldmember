@@ -1,17 +1,17 @@
 <template>
     <div class="root vh-200">
         <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
-            แบบฟอร์มการแจ้งชำระเงิน
+            แบบฟอร์มการแจ้งชำระเงินสำหรับซื้อสินค้าที่ระลึก
         </h1>
         <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
             <div class="card-body">
                 <div class="row align-items-center pt-4 pb-3">
                     <div class="row align-items-center pt-4 pb-3">
                         <div class="col-md-3 ps-5">
-                            <h6 class="mb-0">หมวดหมู่การแจ้งชำระเงิน</h6>
+                            <h6 class="mb-0">วันที่</h6>
                         </div>
                         <div class="col-md-9 pe-5">
-                            {{ type }}
+                            {{ dateformat(this.fromdate) }}
                         </div>
                     </div>
                     <div class="row align-items-center pt-4 pb-3">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="row align-items-center pt-4 pb-3">
                         <div class="col-md-3 ps-5">
-                            <h6 class="mb-0">Email</h6>
+                            <h6 class="mb-0">อีเมล</h6>
                         </div>
                         <div class="col-md-9 pe-5">
                             {{ email }}
@@ -70,14 +70,12 @@
                                     ตรวจสอบแล้ว
                                 </label>
                             </div>
-
-                            <div :style="{ display: status === 'ตรวจสอบแล้ว' ? 'block' : 'none' }">
-                                <label>ชื่อผู้ตรวจสอบ:</label>
-                                <input type="text" class="form-control form-control-lg" v-model="staffname">
-                            </div>
                         </div>
                     </div>
                     <div>
+                        <div class="col-md-3 ps-5">
+                            <h6 class="mb-0">รูปสลิปเงิน</h6>
+                        </div>
                         <img :src="file" alt="Payment Image" class="payment-image" width="500" />
                     </div>
                 </div>
@@ -110,6 +108,7 @@ export default {
             text: "",
             staffname: "",
             status: "",
+            fromdate:"",
         };
     },
     methods: {
@@ -121,6 +120,7 @@ export default {
                         "Content-Type": "application/json",
                     },
                 });
+                this.fromdate = response.data.Fromdate ; 
                 this.uuid = response.data.file;
                 this.getpaymentimage(response.data.file);
                 this.thainame = response.data.thainame;
@@ -169,7 +169,7 @@ export default {
                 const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
                 let data = new FormData();
                 data.append("status", this.status);
-                data.append("staffname", this.staffname);
+                data.append("staffname", this.localStorage.getItem("userid"));
                 let config = {
                     header: {
                         "Content-Type": "multipart/form-data",
@@ -184,6 +184,10 @@ export default {
                 });
             }
         },
+        dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        }
     },
     mounted() {
         // Add event listener for radio button change
@@ -199,7 +203,6 @@ export default {
             });
         });
         this.getPaymentInfo(this.$route.params.id);
-
     }
 };
 </script>

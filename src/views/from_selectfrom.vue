@@ -76,12 +76,11 @@
                         <option value="แจ้งชำระเงินค่าสินค้าที่ระลึก">แจ้งชำระเงินค่าสินค้าที่ระลึก</option>
                         <option value="เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง">
                             เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง</option>
-                        <option value="ลืมรหัส">เรื่องลืมรหัส</option>
                         <option value="เรื่องอื่นๆ">เรื่องอื่นๆ</option>
                     </select>
                 </div>
                 <div class="col-md-9 pe-5">
-                    <button type="submit" class="btn btn-primary btn-lg" @click="#">
+                    <button type="submit" class="btn btn-primary btn-lg" >
                         ยืนยัน
                     </button>
                 </div>
