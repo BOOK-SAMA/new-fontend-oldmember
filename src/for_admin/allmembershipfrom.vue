@@ -40,8 +40,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">รูปแบบฟอร์ม</th>
-                    <th scope="col">รหัสคำสั่งซื้อ</th>
+                    <th scope="col">วันที่</th>
                     <th scope="col">ชื่อภาษาไทย</th>
                     <th scope="col">อีเมล</th>
                     <th scope="col">เบอร์โทรศัพท์</th>
@@ -50,10 +49,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(from, index) in paymentfroms" :key="index">
+                <tr v-for="(from, index) in membershipfroms" :key="index">
                     <th scope="row">{{ index + 1 }}</th>
-                    <td>{{ from.type }}</td>
-                    <td>{{ from.uniqueorder }}</td>
+                    <td>{{ dateformat(from.fromdate) }}</td>
                     <td>{{ from.thainame }}</td>
                     <td>{{ from.email }}</td>
                     <td>{{ from.phonenumber }}</td>
@@ -83,21 +81,21 @@ export default {
     name: "allpaymentfrom",
     data() {
         return {
-            paymentfroms: [],
+            membershipfroms: [],
         };
     },
     async mounted() {
-        await this.Getpaymentfrom();
+        await this.Getmembershipfrom();
     },
     methods: {
         async handlelogout() {
             localStorage.removeItem("userid");
             localStorage.removeItem("tokenstring");
             localStorage.removeItem("uuid");
-            router.push({ path: "/loginadmin" });
+            router.push({ path: "/login" });
         },
-        async Getpaymentfrom() {
-            const URL = `${import.meta.env.VITE_API2}viewpaymentfrom`;
+        async Getmembershipfrom() {
+            const URL = `${import.meta.env.VITE_API2}viewmembershipfrom`;
             let config = {
                 header: {
                     Authorization: "Bearer " + localStorage.getItem("tokenstring"),
@@ -106,8 +104,8 @@ export default {
             };
             axios.post(URL, config).then((res) => {
                 console.log(res.data)
-                this.paymentfroms = res.data.Frompayment
-                console.log(this.paymentfroms)
+                this.membershipfroms = res.data.Frommembership
+                console.log(this.membershipfroms)
 
             }).catch((error) => {
                 alert("this is error => ", error);
@@ -116,7 +114,7 @@ export default {
         async dodelete(index) {
             try {
                 const response = await axios.post(
-                    `${import.meta.env.VITE_API2}deletepaymentfrom/${index}`,
+                    `${import.meta.env.VITE_API2}deletemembershipfrom/${index}`,
                     {
                         headers: {
                             // ตัวอย่าง Header (แก้ตามความเหมาะสม)
