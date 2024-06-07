@@ -150,7 +150,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3 was-validated">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">ยอดเงินที่โอน</h6>
+                                        <h6 class="mb-0">จำนวนเงินที่โอนด้วย</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.pricevalue.$error" class="text-danger fw-bold">
@@ -253,6 +253,11 @@ export default {
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
 
+                pricevalue: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล จำนวนเงินที่โอนด้วย ด้วยนะครับ', required),
+                    numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขมากกว่า 1 ตัวด้วยครับ', minLength(1))
+                },
 
                 thainame: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),

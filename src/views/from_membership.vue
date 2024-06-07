@@ -79,7 +79,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center pt-4 pb-3 ">
                                     <div class="col-md-3 ps-5">
-                                        <h6 class="mb-0">ชื่อ</h6>
+                                        <h6 class="mb-0">ชื่อภาษาไทย</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.thainame.$error" class="text-danger fw-bold">
@@ -92,7 +92,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">Email ของผู้แจ้งชำระเงิน </h6>
+                                        <h6 class="mb-0">อีเมลที่ได้ลงทะเบียนไว้ </h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.email.$error" class="text-danger fw-bold">
@@ -106,7 +106,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                                        <h6 class="mb-0">เบอร์โทรศัพท์ที่ได้ลงทะเบียนไว้</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
@@ -117,10 +117,6 @@
 
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="row align-items-center py-3">
                                     <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Qr code สำหรับการจ่ายเงิน</h6>
@@ -135,7 +131,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3 was-validated">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">ยอดเงินที่โอน</h6>
+                                        <h6 class="mb-0">จำนวนเงินที่โอนด้วย</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.pricevalue.$error" class="text-danger fw-bold">
@@ -143,7 +139,6 @@
                                         </span>
                                         <input type="text" class="form-control form-control-lg"
                                             v-model="state.pricevalue" />
-
                                     </div>
                                 </div>
 
@@ -221,7 +216,6 @@ export default {
 
 
         const state = reactive({
-
             thainame: "",
             email: "",
             phonenumber: "",
@@ -233,9 +227,6 @@ export default {
 
 
             return {
-
-
-
                 thainame: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
                     isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
@@ -253,7 +244,13 @@ export default {
                     email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email)
                 },
 
-                file: { required }
+                file: { required },
+
+                pricevalue: {
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล จำนวนเงินที่โอนด้วย ด้วยนะครับ', required),
+                    numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
+                    minLength: helpers.withMessage(' กรุณาใส่ตัวเลขมากกว่า 1 ตัวด้วยครับ', minLength(1))
+                },
             }
         })
 
@@ -274,50 +271,59 @@ export default {
             console.log(this.file)
         },
         submit() {
-            // check uniqueorder before required 
             this.v$.$validate()
             if (this.v$.$error) {
                 alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
             } else {
-                const URL = `${import.meta.env.VITE_API2}frommembership`;
+                const URL = `${import.meta.env.VITE_API2}checkmembership`;
                 let data = new FormData();
-
-                data.append("thainame", this.state.thainame);
                 data.append("email", this.state.email);
-                data.append("text", this.state.text);
                 data.append("phonenumber", this.state.phonenumber);
-                data.append("pricevalue", this.state.pricevalue);
-                data.append("file", this.state.file);
                 let config = {
                     header: {
                         "Content-Type": "multipart/form-data",
                     },
                 };
                 axios.post(URL, data, config).then((response) => {
-                    this.responseStatus = response.status
-                    alert("กรอกแบบฟอร์มสำเร็จแล้ว")
-                }).catch(() => {
-                    alert("ไม่สามารถบันทึก แบบฟอร์มแจ้งชำระเงิน ได้");
+                    if (response.status == 200) {
+                        const URL = `${import.meta.env.VITE_API2}fromformembership`;
+                        let data = new FormData();
+                        data.append("thainame", this.state.thainame);
+                        data.append("email", this.state.email);
+                        data.append("text", this.state.text);
+                        data.append("phonenumber", this.state.phonenumber);
+                        data.append("pricevalue", this.state.pricevalue);
+                        data.append("file", this.state.file);
+                        let config = {
+                            header: {
+                                "Content-Type": "multipart/form-data",
+                            },
+                        };
+                        axios.post(URL, data, config).then((response) => {
+                            this.responseStatus = response.status
+                            alert("กรอกแบบฟอร์มสำเร็จแล้ว")
+                        }).catch(() => {
+                            alert("ไม่สามารถบันทึก แบบฟอร์มแจ้งชำระเงิน ได้");
+                        });
+                    }
+                }).catch((error) => {
+                    alert(error.response.data.message);
                 });
             }
+        },
+        mounted() {
+            document.querySelectorAll('input[name="exampleRadios"]').forEach((elem) => {
 
-        }
-    },
+                elem.addEventListener('change', () => {
 
-    mounted() {
-
-        document.querySelectorAll('input[name="exampleRadios"]').forEach((elem) => {
-
-            elem.addEventListener('change', () => {
-
-                if (elem.value === 'option1') {
-                    document.getElementById('orderNumberInput').style.display = 'none'; // ซ่อน input เลขที่คำสั่งซื้อ
-                } else {
-                    document.getElementById('orderNumberInput').style.display = 'block'; // แสดง input เลขที่คำสั่งซื้อ
-                }
+                    if (elem.value === 'option1') {
+                        document.getElementById('orderNumberInput').style.display = 'none'; // ซ่อน input เลขที่คำสั่งซื้อ
+                    } else {
+                        document.getElementById('orderNumberInput').style.display = 'block'; // แสดง input เลขที่คำสั่งซื้อ
+                    }
+                });
             });
-        });
+        }
     }
 }
-
 </script>
