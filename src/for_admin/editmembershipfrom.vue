@@ -153,8 +153,8 @@ export default {
         submit() {
             console.log(this.status)
             console.log(this.staffname)
-            if (this.staffname == "") {
-                alert("กรุณาใส่ชื่อของผู้ตรวจสอบด้วย")
+            if (this.status == "ยังไม่ได้ตรวจสอบ") {
+                alert("กรุณาตรวจสอบแบบฟอร์มด้วยครับ")
             } else {
                 const URL = `${import.meta.env.VITE_API2}updatestatusmemberfrom/${this.$route.params.id}`;
                 let data = new FormData();
