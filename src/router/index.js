@@ -174,6 +174,12 @@ const router = createRouter({
       component: () => import('../for_admin/editpaymentfrom.vue'),
       meta: { requiresAuth: true }, 
     },
+    {
+      // ต้องทำการแก้ไข
+      path: '/editmemberfrom/:id',
+      component: () => import('../for_admin/editmemberfromfrom.vue'),
+      meta: { requiresAuth: true }, 
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
