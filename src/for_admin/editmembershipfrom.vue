@@ -16,22 +16,12 @@
                     </div>
                     <div class="row align-items-center pt-4 pb-3">
                         <div class="col-md-3 ps-5">
-                            <h6 class="mb-0">รหัสคำสั่งซื้อ</h6>
-                        </div>
-                        <div class="col-md-9 pe-5">
-                            {{ uniqueorder }}
-                        </div>
-                    </div>
-                    <div class="row align-items-center pt-4 pb-3">
-                        <div class="col-md-3 ps-5">
                             <h6 class="mb-0">เบอร์โทรศัพท์</h6>
                         </div>
                         <div class="col-md-9 pe-5">
                             {{ phonenumber }}
                         </div>
                     </div>
-
-
                     <div class="row align-items-center pt-4 pb-3">
                         <div class="col-md-3 ps-5">
                             <h6 class="mb-0">ชื่อ</h6>
@@ -83,7 +73,7 @@
         </div>
     </div>
     <div class="col-md-9 pe-5">
-        <button type="submit" class="btn btn-primary btn-lg" @click="submit">
+        <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
             Submit
         </button>
     </div>
@@ -113,8 +103,8 @@ export default {
     },
     methods: {
         async getPaymentInfo(id) {
-            try {
-                const response = await axios.post(`${import.meta.env.VITE_API2}getonepaymentfrom/${id}`, {
+            try {                       
+                const response = await axios.post(`${import.meta.env.VITE_API2}getonememberfrom/${id}`, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("tokenstring"),
                         "Content-Type": "application/json",
@@ -166,7 +156,7 @@ export default {
             if (this.staffname == "") {
                 alert("กรุณาใส่ชื่อของผู้ตรวจสอบด้วย")
             } else {
-                const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
+                const URL = `${import.meta.env.VITE_API2}updatestatusmemberfrom/${this.$route.params.id}`;
                 let data = new FormData();
                 data.append("status", this.status);
                 data.append("staffname", this.localStorage.getItem("userid"));
