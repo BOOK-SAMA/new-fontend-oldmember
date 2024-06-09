@@ -7,7 +7,7 @@ import NotFound from '/src/views/notfound.vue'
 import admintoo from '/src/for_admin/admintoo.vue'
 import admincreatefrom from '/src/for_admin/admincreatefrom.vue'
 import updateadminfrom from '/src/for_admin/adminupdate.vue'
-import emailform    from '/src/views/sentemail.vue'
+import emailform    from '/src/views/from_selectfrom.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -35,7 +35,7 @@ const router = createRouter({
       // ต้องทำการแก้ไข
     },
     {
-      path: '/emailform',
+      path: '/from',
       name: 'emailform',
       component: emailform
       // ต้องทำการแก้ไข
@@ -177,7 +177,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/editmemberfrom/:id',
-      component: () => import('../for_admin/editmemberfromfrom.vue'),
+      component: () => import('../for_admin/editmembershipfrom.vue'),
       meta: { requiresAuth: true }, 
     },
   ]

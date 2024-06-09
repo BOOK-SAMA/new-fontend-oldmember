@@ -62,55 +62,25 @@
             </li>
         </ul>
     </nav>
+    <!-- 
+        บนสุด วันที่ 
+        เลือกชนิดคำขอแจ้งชำระเงิน 
+        
 
-    <section class="vh-200" style="
-        background-image: url(https://v3i.rweb-images.com/www.scsualumni.net/images/background/main/crop-1702428316.jpg?1702428316);
-        background-repeat: no-repeat;
-      ">
-        <div id="app" class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xxl">
-                    <select v-model="selectedOption" class="form-select form-select-lg mb-3"
-                        aria-label=".form-select-lg example">
-                        <option disabled value="">เลือกเรื่องที่ต้องการแจ้ง</option>
-                        <option value="แจ้งชำระเงินค่าสมาชิก">แจ้งชำระเงินค่าสมาชิก</option>
-                        <option value="แจ้งชำระเงินค่าสินค้าที่ระลึก">แจ้งชำระเงินค่าสินค้าที่ระลึก</option>
-                        <option value="เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง">
-                            เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง
-                        </option>
-                        <option value="เรื่องอื่นๆ">เรื่องอื่นๆ</option>
-                    </select>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <button type="button" class="btn btn-primary btn-lg" @click="redirectToPage">
-                        ยืนยัน
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    
+    -->
+    <div class="contrainer" style="width: max-content; height: max-content; position: absolute; margin-top: 6cm; margin-left: 6cm;">
+        <buyfrom />
+    </div>
+
 </template>
 
-
 <script>
+
+import buyfrom from "/src/components/from_buything.vue"
 export default {
-    data() {
-        return {
-            selectedOption: '',
-        };
-    },
-    methods: {
-        redirectToPage() {
-            if (this.selectedOption === 'แจ้งชำระเงินค่าสมาชิก') {
-                window.location.href = 'แจ้งชำระเงินค่าสมาชิก.html';
-            } else if (this.selectedOption === 'แจ้งชำระเงินค่าสินค้าที่ระลึก') {
-                window.location.href = 'แจ้งชำระเงินค่าสินค้าที่ระลึก.html';
-            } else if (this.selectedOption === 'เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง') {
-                window.location.href = 'เรื่องต้องการแก้ไขข้อมูลส่วนตัวด้วยตนเอง.html';
-            } else if (this.selectedOption === 'เรื่องอื่นๆ') {
-                window.location.href = 'เรื่องอื่นๆ.html';
-            }
-        }
+    components: {
+        buyfrom
     }
 }
 </script>
