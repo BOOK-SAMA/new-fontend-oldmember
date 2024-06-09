@@ -94,7 +94,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3 ">
                                     <div class="col-md-3 ps-5">
-                                        <h6 class="mb-0">ชื่อ</h6>
+                                        <h6 class="mb-0">ชื่อภาษาไทยที่ได้ลงทะเบียนไว้</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.thainame.$error" class="text-danger fw-bold">
@@ -107,7 +107,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">Email ของผู้แจ้งชำระเงิน </h6>
+                                        <h6 class="mb-0">อีเมลที่ได้ลงทะเบียนไว้ </h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.email.$error" class="text-danger fw-bold">
@@ -121,7 +121,7 @@
 
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md ps-5">
-                                        <h6 class="mb-0">เบอร์โทรศัพท์</h6>
+                                        <h6 class="mb-0">เบอร์โทรศัพท์ที่ได้ลงทะเบียนไว้</h6>
                                     </div>
                                     <div class="col-md-9 pe-5">
                                         <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
