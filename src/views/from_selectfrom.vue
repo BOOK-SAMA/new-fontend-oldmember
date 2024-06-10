@@ -1,10 +1,10 @@
 <template>
     <div>
+
         <select id="selectMenu" class="form-select" aria-label="Default select example" @change="toggleDiv">
-            <option selected value="default">Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option selected value="default">เลือก ชนิดแบบฟอร์ม</option>
+            <option value="1">แบบฟอร์มสำหรับแจ้งชำระเงินค่าสินค้าที่ระลึก</option>
+            <option value="2">แบบฟอร์มสำหรับแจ้งชำระเงินค่าสมาชิก</option>
         </select>
 
         <div v-if="showBuyFrom" id="buyFromContainer" class="container"
