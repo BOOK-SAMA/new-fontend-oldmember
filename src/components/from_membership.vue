@@ -2,9 +2,6 @@
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xxl">
-                <h1 class="text-white mb-4 mt-2">
-                    แบบฟอร์มแจ้งชำระเงิน สำหรับค่าสมาชิก
-                </h1>
                 <div class="card" style="border-radius: 15px; ">
                     <div class="card-body">
                         <!-- Thai Name -->
@@ -102,7 +99,7 @@
 
                     <!-- Submit Button -->
                     <div class="col-md-9 pe-5">
-                        <button type="submit" class="btn btn-primary btn-lg text-white">
+                        <button type="submit" class="btn btn-primary btn-lg text-white" @click="submit()">
                             ยืนยัน
                         </button>
                     </div>
