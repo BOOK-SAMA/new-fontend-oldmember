@@ -44,7 +44,7 @@ import catalog from "/src/shopping/catalog.vue";
 import { computed, onMounted, ref } from "vue";
 import { productsStore } from "/src/store/productnew.js";
 import { useRoute, useRouter } from "vue-router";
-const thainame = ref(""); // You can provide an initial value if needed
+const thainame = ref(""); 
 const address = ref("");
 const phonenumber = ref("");
 const productstore = productsStore()
@@ -55,12 +55,9 @@ const userId = localStorage.getItem("userid");
 const showrequest = async () => {
   try {
     
-    // Assuming you have a cart object that represents the items in the cart
+    
     const cart = productstore.cart;
 
-    // Assuming you have an API endpoint for submitting the cart
-    // "${import.meta.env.VITE_API2}/Createdata"
-    // http://localhost:4444/echo
     const apiEndpoint = `${import.meta.env.VITE_API2}Createdata` ;
 
     // Log the details of the request before making the API call
