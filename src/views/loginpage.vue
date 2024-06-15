@@ -4,14 +4,15 @@
       <banner />
       <!-- Usernaeminput -->
       <div class="form-outline mb-4 mt-2">
-        <input type="email" class="form-control" v-model="username" />
         <label class="form-label" for="form2Example1">ชื่อผุ้ใช้งานในระบบ</label>
+        <input type="email" class="form-control" v-model="username" />
+        
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" class="form-control" v-model="password" />
         <label class="form-label" for="form2Example2">รหัสผ่าน</label>
+        <input type="password" class="form-control" v-model="password" />
       </div>
 
       <!-- 2 column grid layout for inline styling -->
