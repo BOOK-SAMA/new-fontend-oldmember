@@ -7,7 +7,7 @@ import NotFound from '/src/views/notfound.vue'
 import admintoo from '/src/for_admin/admintoo.vue'
 import admincreatefrom from '/src/for_admin/admincreatefrom.vue'
 import updateadminfrom from '/src/for_admin/adminupdate.vue'
-import emailform    from '/src/views/from_selectfrom.vue'
+import emailform from '/src/views/from_selectfrom.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -39,10 +39,15 @@ const router = createRouter({
       name: 'emailform',
       component: emailform
       // ต้องทำการแก้ไข
-    }, 
+    },
     {
       path: "/:notFound",
       component: NotFound,
+    },
+    {
+      path: `/resetpassword`,
+      component: () => import('/src/views/resetpassword_page.vue'),
+      meta: { requiresAuth: true }
     },
     // ========== สำหรับใช้ได้ก็ต่อเมื่อ user login เท่านั่น 
     {
@@ -62,14 +67,14 @@ const router = createRouter({
       component: () => import('../shopping/mainshopping.vue'),
       name: 'catalog',
       meta: { requiresAuth: true }
-      
+
     },
     {
       path: '/productdetail/:id',
       component: () => import('../shopping/productdetail.vue'),
       name: 'productdetail',
       meta: { requiresAuth: true }
-     
+
     },
     {
       // ต้องทำการแก้ไข
@@ -77,7 +82,7 @@ const router = createRouter({
       component: () => import('../shopping/cart.vue'),
       name: 'cart',
       meta: { requiresAuth: true }
-     
+
     },
     {
       // ต้องทำการแก้ไข
@@ -155,7 +160,7 @@ const router = createRouter({
       name: 'seeoneorder',
       meta: { requiresAuth: true }
     },
-    { 
+    {
       // ต้องทำการแก้ไข
       path: `/editorder/:uniqueorder/`,
       component: () => import('/src/for_admin/updateorder.vue'),
@@ -166,19 +171,19 @@ const router = createRouter({
     {
       path: '/seeallfrom',
       component: () => import('../for_admin/allpaymentfrom.vue'),
-      meta: { requiresAuth: true }, 
+      meta: { requiresAuth: true },
     },
     {
       // ต้องทำการแก้ไข
       path: '/editpaymentfrom/:id',
       component: () => import('../for_admin/editpaymentfrom.vue'),
-      meta: { requiresAuth: true }, 
+      meta: { requiresAuth: true },
     },
     {
       // ต้องทำการแก้ไข
       path: '/editmemberfrom/:id',
       component: () => import('../for_admin/editmembershipfrom.vue'),
-      meta: { requiresAuth: true }, 
+      meta: { requiresAuth: true },
     },
   ]
 })

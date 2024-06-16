@@ -20,7 +20,7 @@
         <div class="col">
           <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก</a>
           <router-link to="/register" class="nav-link"> สมัครสมาชิก </router-link>
-          <router-link to="#" class="nav-link"> ลืมรหัสผ่าน </router-link>
+          <router-link to="/resetpassword" class="nav-link"> ลืมรหัสผ่าน </router-link>
         </div>
 
       </div>
