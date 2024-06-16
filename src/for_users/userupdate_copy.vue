@@ -469,27 +469,19 @@ export default {
 
 
     const isEnglishOrThai = (value) => {
-      // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+      // Regular expression to match English alphabetic characters, digits, and spaces
+      const regex = /^[A-Za-z0-9\s/.]+$/;
 
-      // Check if the value contains any Thai characters
-      if (thaiRegex.test(value)) {
-        return false; // Return false if Thai characters are found
-      }
-
-      return true; // Return true if the value is in English
+      // Check if the value consists entirely of English alphabetic characters, digits, and spaces
+      return regex.test(value);
     };
 
     const isThai = (value) => {
-      // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/^[\u0E00-\u0E7F0-9\s.,\n\r]+$/);
+      // Regular expression to match Thai characters, digits, and spaces
+      const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.]+$/;
 
-      // Check if the value contains only Thai characters
-      if (thaiRegex.test(value)) {
-        return true; // Return true if the value is in Thai
-      }
-
-      return false; // Return false if the value is not in Thai
+      // Check if the value consists entirely of Thai characters, digits, and spaces
+      return thaiRegex.test(value);
     };
 
     const state = reactive({
@@ -712,7 +704,7 @@ export default {
         data.append("job", this.state.job);
         data.append("jobposition", this.state.jobposition);
         data.append("jobaddress", this.state.jobaddress);
-        
+
         let config = {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),

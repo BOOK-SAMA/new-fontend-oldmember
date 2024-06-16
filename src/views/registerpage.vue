@@ -2,10 +2,9 @@
     <nav class="navbar navbar-expand  fixed-top " style="background-color: #F9CC02; ">
         <ul class="navbar-nav mr-auto p-2" style="position: relative; left: 6cm; align-items: center;">
             <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
-                class="rounded-circle p-1" width="55"/>
+                class="rounded-circle p-1" width="55" />
             <li class="nav-item active">
-                <a class="nav-link text-dark" href="#"
-                    style="font-size: medium;">หน้าแรก</a>
+                <a class="nav-link text-dark" href="#" style="font-size: medium;">หน้าแรก</a>
             </li>
             <li class="nav-item dropdown" style="font-size: medium;">
                 <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true">
@@ -372,27 +371,19 @@ export default {
 
     setup() {
         const isEnglishOrThai = (value) => {
-            // Regular expression to match Thai characters
-            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+            // Regular expression to match English alphabetic characters, digits, and spaces
+            const regex = /^[A-Za-z0-9\s/.]+$/;
 
-            // Check if the value contains any Thai characters
-            if (thaiRegex.test(value)) {
-                return false; // Return false if Thai characters are found
-            }
-
-            return true; // Return true if the value is in English
+            // Check if the value consists entirely of English alphabetic characters, digits, and spaces
+            return regex.test(value);
         };
 
         const isThai = (value) => {
-            // Regular expression to match Thai characters
-            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+            // Regular expression to match Thai characters, digits, and spaces
+            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.]+$/;
 
-            // Check if the value contains any Thai characters
-            if (thaiRegex.test(value)) {
-                return true; // Return false if Thai characters are found
-            }
-
-            return false; // Return true if the value is in English
+            // Check if the value consists entirely of Thai characters, digits, and spaces
+            return thaiRegex.test(value);
         };
 
 
@@ -434,8 +425,8 @@ export default {
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
                 confirmpassword: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
-                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ยืนยันรหัสผ่าน', required),
+                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล ยืนยันรหัสผ่าน ให้ตรงกับ ช่องรหัสผ่าน ด้วยนะครับ', sameAs(state.password)),
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
 
@@ -551,10 +542,15 @@ export default {
                     this.responseStatus = response.status
                     console.log("this is res => ", response);
                     alert("การสมัครสมาชิกสำเร็จแล้ว")
-                    window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+
 
                 }).catch((error) => {
-                    alert(error.response.data.Text);
+                    console.log(error.response)
+                    if (error.response && error.response.data && error.response.data.Text) {
+                        alert(error.response.data.Text);
+                    } else {
+                        alert("เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองใหม่อีกครั้ง");
+                    }
                 });
             }
         },

@@ -15,7 +15,7 @@
 import banner from "/src/components/Banner.vue";
 import enteremail from "/src/components/enteremail.vue";
 import enterotp from "/src/components/enterotp.vue";
-import resetpassword from "/src/components/resetpassword.vue";
+import resetpassword from "/src/components/enternewpassword.vue";
 
 export default {
   components: {
