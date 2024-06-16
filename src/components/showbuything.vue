@@ -16,7 +16,6 @@
             <tbody>
                 <tr v-for="(from, index) in paymentfroms" :key="index">
                     <th scope="row">{{ index + 1 }}</th>
-                    <td>{{ from.type }}</td>
                     <td>{{ from.uniqueorder }}</td>
                     <td>{{ from.thainame }}</td>
                     <td>{{ from.email }}</td>
@@ -27,7 +26,7 @@
                         <router-link :to="{ path: '/editpaymentfrom/' + from.ID }"
                             class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
                         <div class="b-example-divider p-1"></div>
-                        <button @click="dodelete(index)" class="btn btn-danger btn-sm">ลบ</button>
+                        <button @click="dodelete(from.ID)" class="btn btn-danger btn-sm">ลบ</button>
                     </td>
                 </tr>
             </tbody>
@@ -35,10 +34,9 @@
     </div>
 </template>
 
-
 <script>
-import router from "@/router";
 import axios from "axios";
+
 export default {
     name: "allpaymentfrom",
     data() {
@@ -53,42 +51,47 @@ export default {
         async Getpaymentfrom() {
             const URL = `${import.meta.env.VITE_API2}viewpaymentfrom`;
             let config = {
-                header: {
+                headers: {
                     Authorization: "Bearer " + localStorage.getItem("tokenstring"),
                     "Content-Type": "application/json",
                 },
             };
-            axios.post(URL, config).then((res) => {
-                console.log(res.data)
-                this.paymentfroms = res.data.Frompayment
-                console.log(this.paymentfroms)
-
-            }).catch((error) => {
-                alert("this is error => ", error);
-            });
-        },
-        async dodelete(index) {
             try {
+                const res = await axios.post(URL, {}, config);
+                console.log(res.data);
+                this.paymentfroms = res.data.Frompayment;
+                console.log(this.paymentfroms);
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        },
+        async dodelete(id) {
+            try {
+                const URL = `${import.meta.env.VITE_API2}deletepaymentfrom/${id}`;
                 const response = await axios.post(
-                    `${import.meta.env.VITE_API2}deletepaymentfrom/${index}`,
+                    URL,
+                    {},
                     {
                         headers: {
-                            // ตัวอย่าง Header (แก้ตามความเหมาะสม)
                             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
                             "Content-Type": "application/json",
                         },
                     }
                 );
                 console.log(response.data);
-                alert("ลบคำสั่งซื้อสำเร็จแล้ว")
+                alert("ลบคำสั่งซื้อสำเร็จแล้ว");
+                // Refresh the list after deletion
+                this.Getpaymentfrom();
             } catch (error) {
-                alert("ไม่สามารถลบคำสั่งซื้อได้")
+                alert("ไม่สามารถลบคำสั่งซื้อได้: " + error.message);
             }
         },
         dateformat(dates) {
             const date = new Date(dates);
-            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-        }
+            return `${String(date.getDate()).padStart(2, "0")}/${String(
+                date.getMonth() + 1
+            ).padStart(2, "0")}/${date.getFullYear()}`;
+        },
     },
 };
 </script>
