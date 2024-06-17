@@ -87,7 +87,7 @@ const router = createRouter({
     {
       // ต้องทำการแก้ไข
       path: '/checkout',
-      component: () => import('../shopping/checkout.vue'),
+      component: () => import('../shopping/checkout_copy.vue'),
       name: 'checkout',
       meta: { requiresAuth: true }
 

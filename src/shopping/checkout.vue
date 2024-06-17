@@ -72,7 +72,6 @@ const showrequest = async () => {
       thainame,
       address,
       phonenumber,
-      
       cart: cart.map(item => ({     itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
       totalCartPrice: String(totalCartPrice) 
     }
