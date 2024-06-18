@@ -78,20 +78,27 @@
                             </div>
                         </div>
 
-                        <div class="row align-items-center py-3 ">
-                            <div class="col-md-3 ps-5">
-                                <h6 class="mb-0">สำเนาใบโอนเงิน<span class="text-danger fw-bold">*</span></h6>
-                            </div>
-                            <div class="col-md-9 pe-5">
-                                <input type="file" @change="onFileChange">
-                                <span v-if="!v$.file.required" class="text-danger fw-bold">
-                                    รบกวนใส่รูปสลิปด้วยนะครับ
-                                </span>
-                                <div class="small text-muted mt-2">
-                                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                        <form class="was-validated">
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+                                    <h6 class="mb-0">
+                                        สำเนาใบโอนเงิน
+                                        <span class="text-danger fw-bold">*</span>
+                                    </h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <div class="invalid-feedback">
+                                        <span  class="text-danger fw-bold">
+                                            กรุณาใส่สำเนาการโอนเงินด้วยด้วย
+                                        </span>
+                                    </div>
+                                    <input type="file" class="form-control" aria-label="file example" required @change="filehandler">
+                                    <div class="small text-muted mt-2">
+                                        (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
 
                         <div class="row align-items-center pt-4 pb-3">
                             <div class="col-md ps-5">
@@ -118,21 +125,14 @@ import router from "@/router";
 import { ref, reactive, computed } from "vue";
 import axios from "axios";
 import useValidate from '@vuelidate/core'
-import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+import { required, email, maxLength, helpers, sameAs, numeric, minLength, requiredIf } from '@vuelidate/validators'
 
 export default {
     setup() {
-        const isEnglishOrThai = (value) => {
-            // Regular expression to match Thai characters
-            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
 
-            // Check if the value contains any Thai characters
-            if (thaiRegex.test(value)) {
-                return false; // Return false if Thai characters are found
-            }
 
-            return true; // Return true if the value is in English
-        };
+
+
 
         const isThai = (value) => {
             // Regular expression to match Thai characters
@@ -154,7 +154,7 @@ export default {
             phonenumber: "",
             pricevalue: "",
             text: "",
-            file: null,
+            file:null,
         })
         const rules = computed(() => {
 
@@ -189,7 +189,7 @@ export default {
                     email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email)
                 },
 
-                file: { required }
+
             }
         })
 
@@ -200,19 +200,14 @@ export default {
             v$
         }
     },
+
     methods: {
-        onFileChange(event) {
-            this.file = event.target.files[0] || null;
-            this.$v.file.$touch();
-        },
-        handleprofile(event) {
-            this.file = event.target.files[0];
-            console.log(this.file)
+        filehandler(event){
+            this.state.file = event.target.files[0];
         },
         submit() {
-
             this.v$.$validate()
-            if (this.v$.$error) {
+            if (this.v$.$error || this.state.file == null) {
                 alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
             } else {
                 const URL = `${import.meta.env.VITE_API}checkuniqueorderid/${this.state.uniqueorder}`;

@@ -47,6 +47,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(order, index) in Orders" :key="index">
+                        <td v-text="index+1"></td>
                         <td v-text="this.dateformat(order.Orderdate)"></td>
                         <td v-text="order.uniqueorder"></td>
                         <td v-text="order.thainame"></td>

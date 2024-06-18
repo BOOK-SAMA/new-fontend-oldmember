@@ -70,21 +70,28 @@
                             </div>
                         </div>
 
-                        <!-- File Upload -->
-                        <div class="row align-items-center py-3">
-                            <div class="col-md-3 ps-5">
-                                <h6 class="mb-0">สำเนาใบโอนเงิน<span class="text-danger fw-bold">*</span></h6>
-                            </div>
-                            <div class="col-md-9 pe-5">
-                                <input type="file" @change="onFileChange">
-                                <span v-if="!v$.file.required" class="text-danger fw-bold">
-                                    รบกวนใส่รูปสลิปด้วยนะครับ
-                                </span>
-                                <div class="small text-muted mt-2">
-                                    (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                        <form class="was-validated">
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+                                    <h6 class="mb-0">
+                                        สำเนาใบโอนเงิน
+                                        <span class="text-danger fw-bold">*</span>
+                                    </h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger fw-bold">
+                                            กรุณาใส่สำเนาการโอนเงินด้วยด้วย
+                                        </span>
+                                    </div>
+                                    <input type="file" class="form-control" aria-label="file example" required
+                                        @change="filehandler">
+                                    <div class="small text-muted mt-2">
+                                        (นามสกุลไฟล์ .jpg ไม่เกิน 10 MB)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
 
                         <!-- Additional Information -->
                         <div class="row align-items-center pt-4 pb-3">
@@ -191,17 +198,12 @@ export default {
         }
     },
     methods: {
-        onFileChange(event) {
-            this.file = event.target.files[0] || null;
-            this.$v.file.$touch();
-        },
-        handleprofile(event) {
-            this.file = event.target.files[0];
-            console.log(this.file)
+        filehandler(event){
+            this.state.file = event.target.files[0];
         },
         submit() {
             this.v$.$validate()
-            if (this.v$.$error) {
+            if (this.v$.$error || this.state.file == null) {
                 alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง')
             } else {
                 const URL = `${import.meta.env.VITE_API2}checkmembership`;
