@@ -70,7 +70,6 @@
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-xxl">
-
                         <div style="margin-top: 3.5cm; margin-left: 3cm;">
                             <banner />
                             <h3 style="margin-top: 15px; margin-bottom: 15px;">
@@ -84,11 +83,11 @@
                             <option value="2">แบบฟอร์มสำหรับแจ้งชำระเงินค่าสมาชิก</option>
                         </select>
                         <div v-if="showBuyFrom" id="buyFromContainer" class="container"
-                            style="width: 30cm; height: 30cm; position: absolute; margin-top: 15px; margin-left: 3cm;">
+                            style="width: 30cm; height: fit-content; position: absolute; margin-top: 5px; margin-left: 3cm;">
                             <buyfrom />
                         </div>
                         <div v-if="showmemberfrom" id="buyFromContainer" class="container"
-                            style="width: 30cm; height: 30cm; position: absolute; margin-top: 15px; margin-left: 3cm;">
+                            style="width: 30cm; height: fit-content; position: absolute; margin-top: 5px; margin-left: 3cm;">
                             <memberfrom />
                         </div>
                     </div>
