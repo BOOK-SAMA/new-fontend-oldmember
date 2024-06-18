@@ -43,41 +43,45 @@
   <form @submit.prevent="showrequest" style="margin-left: 6cm; height: fit-content; width: fit-content;">
     <h1>กรุณาตรวจสอบข้อมูลต่อไปนี้</h1>
     <div class="form-group">
+
+      <label for="exampleInputEmail1">ชื่อภาษาไทย</label>
+      <input type="text" class="form-control" v-model="state.thainame">
       <span v-if="v$.thainame.$error" class="text-danger fw-bold">
         {{ v$.thainame.$errors[0].$message }}
       </span>
-      <label for="exampleInputEmail1">ชื่อภาษาไทย</label>
-      <input type="text" class="form-control" v-model="state.thainame">
     </div>
     <div class="form-group">
-      <span v-if="v$.address.$error" class="text-danger fw-bold">
-        {{ v$.address.$errors[0].$message }}
-      </span>
+
       <label for="exampleInputPassword1">ข้อมูลที่อยู่ปัจจุบัน</label>
       <textarea type="text" class="form-control" id="address" v-model="state.address">
       </textarea>
+      <span v-if="v$.address.$error" class="text-danger fw-bold">
+        {{ v$.address.$errors[0].$message }}
+      </span>
     </div>
     <div class="form-group">
+
+      <label for="exampleInputPassword1">จังหวัด</label>
+      <input type="text" class="form-control" v-model="state.cityvalue">
       <span v-if="v$.cityvalue.$error" class="text-danger fw-bold">
         {{ v$.cityvalue.$errors[0].$message }}
       </span>
-      <label for="exampleInputPassword1">จังหวัด</label>
-      <input type="text" class="form-control" v-model="state.cityvalue">
     </div>
     <div class="form-group">
+
+      <label for="exampleInputPassword1">รหัสไปษณีย์</label>
+      <input type="text" class="form-control" v-model="state.pincode">
       <span v-if="v$.pincode.$error" class="text-danger fw-bold">
         {{ v$.pincode.$errors[0].$message }}
       </span>
-      <label for="exampleInputPassword1">รหัสไปษณีย์</label>
-      <input type="text" class="form-control" v-model="state.pincode">
     </div>
     <div class="form-group">
-      <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
-        {{ v$.phonenumber.$errors[0].$message }}
-      </span>
       <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
       <input type="tel" id="phone" name="phone" class="form-control" placeholder="กรอกเบอร์โทรศัพท์"
         v-model="state.phonenumber">
+      <span v-if="v$.phonenumber.$error" class="text-danger fw-bold">
+        {{ v$.phonenumber.$errors[0].$message }}
+      </span>
     </div>
   </form>
   <button type="submit" class="btn btn-success" @click="showrequest()"
@@ -197,24 +201,27 @@ export default {
       }
     },
     async showrequest() {
-
       this.v$.$validate();
       if (this.v$.phonenumber.$error ||
         this.v$.thainame.$error ||
         this.v$.address.$error ||
         this.v$.cityvalue.$error ||
-        this.v$.pincode.$error 
+        this.v$.pincode.$error
       ) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
         return;
       } else {
         try {
+          const userId = localStorage.getItem("userid");
+          const thainame = this.state.thainame ;
+          const phonenumber = this.state.phonenumber;
+          const address = this.state.address ;
+          const cityvalue = this.state.cityvalue;
+          const pincode = this.state.pincode;
           const cart = this.productstore.cart;
           const apiEndpoint = `${import.meta.env.VITE_API2}Createdata`;
           // Log the details of the request before making the API call
-          const totalCartPrice = cart.reduce((total, item) => {
-            return total + item.price * item.quantity;
-          }, 0);
+          const totalCartPrice = this.totalCartPrice
           console.log("Totalprice:", JSON.stringify(totalCartPrice));
 
 
@@ -223,6 +230,8 @@ export default {
             thainame,
             address,
             phonenumber,
+            pincode ,
+            cityvalue ,
             cart: cart.map(item => ({ itemID: item.ID, itemname: item.name, price: item.price, quantity: item.quantity })),
             totalCartPrice: String(totalCartPrice)
           }
@@ -242,7 +251,7 @@ export default {
             // API call was successful
             alert("ทำการสั่งซื้อสินค้าเรียบร้อยแล้ว อย่าลืมเค้าไปตรวจสอบในประวัติการสั่งซื้อนะครับ");
             // You can handle the response data here if needed
-            router.push({ path: "https://mytestsilpakorn.azurewebsites.net/" });
+            
           } else {
             // Handle errors
             console.error("Error submitting cart:", response);
