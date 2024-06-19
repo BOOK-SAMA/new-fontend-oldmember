@@ -47,7 +47,6 @@ const router = createRouter({
     {
       path: `/resetpassword`,
       component: () => import('/src/views/resetpassword_page.vue'),
-      meta: { requiresAuth: true }
     },
     // ========== สำหรับใช้ได้ก็ต่อเมื่อ user login เท่านั่น 
     {
