@@ -217,7 +217,7 @@ export default {
                 };
                 axios.post(URL, data, config).then((response) => {
                     if (response.status == 200) {
-                        const URL = `${import.meta.env.VITE_API2}fromformembership`;
+                        const URL = `${import.meta.env.VITE_API2}createmembershipfrom`;
                         let data = new FormData();
                         data.append("thainame", this.state.thainame);
                         data.append("email", this.state.email);

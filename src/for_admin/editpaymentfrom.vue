@@ -166,10 +166,11 @@ export default {
             if (this.status == "ยังไม่ได้ตรวจสอบ") {
                 alert("กรุณาตรวจสอบแบบฟอร์มด้วยครับ")
             } else {
+                const userid = localStorage.getItem("userid")
                 const URL = `${import.meta.env.VITE_API2}updatestatuspaymentfrom/${this.$route.params.id}`;
                 let data = new FormData();
                 data.append("status", this.status);
-                data.append("staffname", this.localStorage.getItem("userid"));
+                data.append("staffname",userid );
                 let config = {
                     header: {
                         "Content-Type": "multipart/form-data",

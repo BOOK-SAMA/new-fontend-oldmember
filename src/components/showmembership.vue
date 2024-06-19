@@ -21,7 +21,7 @@
             <td>{{ from.pricevalue }}</td>
             <td>{{ from.status }}</td>
             <td class="p-1">
-              <router-link :to="{ path: '/editpaymentfrom/' + from.ID }" class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
+              <router-link :to="{ path: '/editmemberfrom/' + from.ID }" class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
               <div class="b-example-divider p-1"></div>
               <button @click="dodelete(from.ID)" class="btn btn-danger btn-sm">ลบ</button>
             </td>

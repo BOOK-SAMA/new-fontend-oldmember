@@ -1,7 +1,7 @@
 <template>
     <div class="root vh-200">
         <h1 class="text-white mb-4 mt-2" style="background-color: rgb(171, 171, 171)">
-            แบบฟอร์มการแจ้งชำระเงินสำหรับซื้อสินค้าที่ระลึก
+            แบบฟอร์มการแจ้งชำระเงินสำหรับค่าสมาชิก
         </h1>
         <div class="card" style="border-radius: 15px; background-color: rgb(171, 171, 171)">
             <div class="card-body">
@@ -102,7 +102,7 @@ export default {
         };
     },
     methods: {
-        async getPaymentInfo(id) {
+        async getMembershipInfo(id) {
             try {                       
                 const response = await axios.post(`${import.meta.env.VITE_API2}getonememberfrom/${id}`, {
                     headers: {
@@ -156,10 +156,11 @@ export default {
             if (this.status == "ยังไม่ได้ตรวจสอบ") {
                 alert("กรุณาตรวจสอบแบบฟอร์มด้วยครับ")
             } else {
+                const userid =  localStorage.getItem("userid")
                 const URL = `${import.meta.env.VITE_API2}updatestatusmemberfrom/${this.$route.params.id}`;
                 let data = new FormData();
                 data.append("status", this.status);
-                data.append("staffname", this.localStorage.getItem("userid"));
+                data.append("staffname", userid);
                 let config = {
                     header: {
                         "Content-Type": "multipart/form-data",
@@ -192,7 +193,7 @@ export default {
                 }
             });
         });
-        this.getPaymentInfo(this.$route.params.id);
+        this.getMembershipInfo(this.$route.params.id);
     }
 };
 </script>
