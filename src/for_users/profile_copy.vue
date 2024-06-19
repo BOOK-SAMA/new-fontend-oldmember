@@ -294,8 +294,8 @@
 											<h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ Job
-												}}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{ 
+											Job}}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -465,7 +465,7 @@ export default {
 				this.Phonemail = secondApiResponse.data.thing.Phonemail;
 				this.Idline = secondApiResponse.data.thing.Idline;
 				this.Email = secondApiResponse.data.thing.Email;
-				this.Job = secondApiResponse.data.thing.Jobposition;
+				this.Job = secondApiResponse.data.thing.Job;
 				this.Jobaddress = secondApiResponse.data.thing.Jobaddress;
 				this.Levelmember = secondApiResponse.data.thing.Levelmember;
 				this.Levelmemberthing = secondApiResponse.data.thing.Levelmemberthing;
