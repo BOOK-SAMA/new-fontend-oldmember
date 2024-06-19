@@ -13,8 +13,8 @@
 
 <script>
 import banner from "/src/components/Banner.vue";
-import enteremail from "/src/components/enteremail.vue";
-import enterotp from "/src/components/enterotp.vue";
+import enteremail from "/src/components/enteremail_edit.vue";
+import enterotp from "/src/components/enterotp_edit.vue";
 import resetpassword from "/src/components/enternewpassword.vue";
 
 export default {

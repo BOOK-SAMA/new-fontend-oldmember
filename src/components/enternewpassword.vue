@@ -1,18 +1,18 @@
 <template>
     <div class="container-sm mt-5">
+        <label class="form-label" for="form2Example1">กรุณาใส่รหัสผ่านใหม่</label>
         <div class="form-outline mb-4 mt-2">
             <span v-if="v$.password.$error" class="text-danger fw-bold">
                 {{ v$.password.$errors[0].$message }}
             </span>
             <input type="password" class="form-control" v-model="state.password" />
-            <label class="form-label" for="form2Example1">กรุณาใส่รหัสผ่านใหม่</label>
         </div>
+        <label class="form-label" for="form2Example1">กรุณายืนยันรหัสผ่านใหม่</label>
         <div class="form-outline mb-4 mt-2">
             <span v-if="v$.confirmPassword.$error" class="text-danger fw-bold">
                 {{ v$.confirmPassword.$errors[0].$message }}
             </span>
             <input type="password" class="form-control" v-model="state.confirmPassword" />
-            <label class="form-label" for="form2Example1">กรุณายืนยันรหัสผ่านใหม่</label>
         </div>
         <button type="button" class="btn btn-primary btn-block mb-4" @click="submit">
             ยืนยัน
@@ -47,8 +47,8 @@ export default {
         const v$ = useValidate(rules, state);
 
         const submit = () => {
-            v$.$validate();
-            if (v$.$error) {
+            v$.value.$validate();
+            if (v$.value.$error) {
                 alert('แบบฟอร์มไม่ถูกต้อง กรุณาตรวจสอบข้อมูลอีกครั้ง');
             } else {
                 const URL = `${import.meta.env.VITE_API}ResetPassword`;
