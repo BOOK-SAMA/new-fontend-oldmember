@@ -8,9 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
-                            class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
@@ -19,13 +18,13 @@
                     <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href=" `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+                    <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href=" `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+                    <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href=" `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+                    <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -120,7 +119,7 @@ export default {
                     }
                 );
                 this.orders = response.data;
-                                
+
             } catch (error) {
                 localStorage.removeItem("userid");
                 localStorage.removeItem("tokenstring");
@@ -143,10 +142,10 @@ export default {
                 );
                 console.log(response.data);
                 alert("ลบคำสั่งซื้อสำเร็จแล้ว")
-                window.location.reload(); 
+                window.location.reload();
             } catch (error) {
                 alert("ไม่สามารถลบคำสั่งซื้อได้")
-                window.location.reload(); 
+                window.location.reload();
             }
         },
         dateformat(dates) {

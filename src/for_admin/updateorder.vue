@@ -1,6 +1,6 @@
 <template>
 
-<nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
+    <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
         <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
                 alt="Admin" class="rounded-circle p-1" width="40" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -9,9 +9,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
-                            class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
@@ -26,7 +25,7 @@
                     <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href=" `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+                    <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

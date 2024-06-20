@@ -8,9 +8,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
-              class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admincreate">สร้างผู้ใช้</a>

@@ -8,16 +8,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
-              class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/addproduct">เพิ่ม สินค้า</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
