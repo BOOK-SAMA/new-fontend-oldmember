@@ -55,12 +55,8 @@
                         <td class="p-1">
                             <router-link
                                 :to="{ path: '/orderdetail/' + this.$route.params.id + '/' + order.uniqueorder }"
-                                class="btn btn-success btn-sm">ดูรายละเอียด</router-link>
-                            <div class="b-example-divider p-1">
-                                <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit" @click="handlelogout()">
-                                    ยกเลิกคำสั่งซื้อ
-                                </button>
-                            </div>
+                                class="btn btn-success btn-sm">ดูรายละเอียด
+                            </router-link>
                         </td>
                     </tr>
                 </tbody>

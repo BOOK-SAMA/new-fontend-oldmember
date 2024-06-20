@@ -64,6 +64,7 @@ export default {
                     .then((response) => {
                         if (response.status === 200) {
                             alert("รหัสผ่านเปลี่ยนเรียบร้อย");
+                            router.push({ path: "/login" });
                         }
                     })
                     .catch((error) => {

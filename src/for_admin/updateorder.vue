@@ -198,7 +198,7 @@ export default {
 
 
                 alert("ทำการเปลี่ยนสถานะคำสั่งซื้อสำเร็จ")
-
+                this.$router.push({ path: "/admintoo/" + id });
             } catch (error) {
                 alert(error.response.data.Text)
             }

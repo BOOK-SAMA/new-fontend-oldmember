@@ -22,10 +22,10 @@
           <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href=" `/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+          <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href=" `/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+          <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -449,7 +449,8 @@
                     </div>
                     <div class="col-md-9 pe-5">
                       <p class="form-control form-control-lg" style="height: max-content;">
-                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="state.accressstatus">
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
+                          v-model="state.accressstatus">
                           <option selected disabled>เลือก 1 อย่าง</option>
                           <option value="enable">
                             อนุญาต
@@ -457,6 +458,22 @@
                           <option value="disenable">
                             ไม่อนุญาต
                           </option>
+                        </select>
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="mx-n3" />
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">สถานะการชำระเงินค่าสมาชิก</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <p class="form-control form-control-lg" style="height: max-content;">
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
+                          v-model="paystatusDisplay">
+                          <option selected disabled>เลือก 1 อย่าง</option>
+                          <option value="enable">ชำระเงินแล้ว</option>
+                          <option value="disenable">ยังไม่ชำระเงิน</option>
                         </select>
                       </p>
                     </div>
@@ -539,6 +556,7 @@ export default {
     };
 
     const state = reactive({
+      paystatus: '',
       username: '',
       email: '',
       password: '',
@@ -573,8 +591,8 @@ export default {
       Levelmember: '',
       Levelmemberthing: '',
 
-      role:'',
-      accressstatus: '' ,
+      role: '',
+      accressstatus: '',
     })
     const rules = computed(() => {
 
@@ -735,7 +753,7 @@ export default {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
         return;
       } else {
-        const URL = `${import.meta.env.VITE_API}users/update/` + id;
+        const URL = `${import.meta.env.VITE_API}admin/update/` + id;
         let data = new FormData();
         data.append("thainame", this.state.thainame);
         data.append("engname", this.state.engname);
@@ -759,7 +777,7 @@ export default {
         data.append("job", this.job);
         data.append("jobposition", this.Jobposition);
         data.append("jobaddress", this.Jobaddress);
-
+        data.append("paystatus", this.paystatus);
         let config = {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("tokenstring"),
@@ -772,7 +790,7 @@ export default {
             this.responseStatus = response.status;
             console.log("this is res => ", response);
             alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-            this.$router.push({ path: "/profile/" + id });
+            this.$router.push({ path: "/admintoo/" + id });
           })
       }
     },
@@ -831,7 +849,7 @@ export default {
         this.state.Levelmember = res.data.thing.Levelmember;
         this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
         this.downloadImageAndDisplay(res.data.thing.Image)
-
+        this.state.paystatus = res.data.thing.Paystatus;
         this.state.role = res.data.thing.Role;
         this.state.accressstatus = res.data.thing.Accessstatus;
       })
@@ -901,6 +919,16 @@ export default {
       localStorage.removeItem("tokenstring");
       router.push({ path: "/login" });
     },
+  },
+  computed: {
+    paystatusDisplay: {
+      get() {
+        return this.state.paystatus === 'already' ? 'enable' : 'disenable';
+      },
+      set(value) {
+        this.state.paystatus = value === 'enable' ? 'already' : 'none';
+      }
+    }
   },
 };
 </script>

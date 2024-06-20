@@ -372,7 +372,7 @@ export default {
     setup() {
         const isEnglishOrThai = (value) => {
             // Regular expression to match English alphabetic characters, digits, and spaces
-            const regex = /^[A-Za-z0-9\s/.]+$/;
+            const regex = /^[A-Za-z0-9\s/.-]+$/;
 
             // Check if the value consists entirely of English alphabetic characters, digits, and spaces
             return regex.test(value);
@@ -380,7 +380,7 @@ export default {
 
         const isThai = (value) => {
             // Regular expression to match Thai characters, digits, and spaces
-            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.]+$/;
+            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.-]+$/;
 
             // Check if the value consists entirely of Thai characters, digits, and spaces
             return thaiRegex.test(value);
@@ -542,7 +542,7 @@ export default {
                     this.responseStatus = response.status
                     console.log("this is res => ", response);
                     alert("การสมัครสมาชิกสำเร็จแล้ว")
-
+                    router.push({ path: "/login" });
 
                 }).catch((error) => {
                     console.log(error.response)
