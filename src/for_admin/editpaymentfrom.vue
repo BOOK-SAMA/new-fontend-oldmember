@@ -179,6 +179,7 @@ export default {
                 axios.post(URL, data, config).then((res) => {
                     console.log(res)
                     alert("ปรับแบบฟอร์มสำเร็จแล้ว")
+                    window.location.reload(); 
                     this.$router.push({ path: "/admintoo/" + id });
                 }).catch((error) => {
                     alert("this is error => ", error);

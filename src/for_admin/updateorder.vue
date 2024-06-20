@@ -165,7 +165,7 @@ export default {
             localStorage.removeItem("userid");
             localStorage.removeItem("tokenstring");
             localStorage.removeItem("uuid");
-            router.push({ path: "/loginadmin" });
+            router.push({ path: "/login" });
         },
         async Getorder(uniqueorder) {
             try {
@@ -198,7 +198,7 @@ export default {
 
 
                 alert("ทำการเปลี่ยนสถานะคำสั่งซื้อสำเร็จ")
-                this.$router.push({ path: "/admintoo/" + id });
+                this.$router.push({ path: "/admintoo/" + localStorage.getItem("userid") });
             } catch (error) {
                 alert(error.response.data.Text)
             }
