@@ -355,7 +355,7 @@ export default {
 	name: "Updateuser",
 	data() {
 		return {
-			id: "",
+			id: localStorage.getItem("userid"),
 			Text: "",
 			Accessstatus: false,
 			Username: "",
