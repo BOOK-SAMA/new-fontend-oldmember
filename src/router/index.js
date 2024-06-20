@@ -192,7 +192,7 @@ router.beforeEach((to, from, next) => {
     const tokenString = localStorage.getItem('tokenstring');
     if (userId == null || tokenString == null) {
       alert("คุณยังไม่ได้เข้าสู่ระบบ รบกวนเข้าสู่ระบบก่อนนะครับ")
-      window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+      router.push({ path: "/login" });
     } else {
       next();
     }
