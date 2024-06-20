@@ -74,7 +74,7 @@ export default {
         };
     },
     async mounted() {
-        const id = this.$route.params.id;
+        const id = localStorage.getItem("userid");
         await this.Getorder(id);
     },
     methods: {
