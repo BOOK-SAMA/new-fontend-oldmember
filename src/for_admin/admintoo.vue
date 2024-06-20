@@ -137,7 +137,7 @@ export default {
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      router.push({ path: "/loginadmin" });
+      router.push({ path: "/login" });
     },
     dodelete(id) {
       axios
@@ -163,7 +163,7 @@ export default {
         localStorage.removeItem("userid");
         localStorage.removeItem("tokenstring");
         localStorage.removeItem("uuid");
-        router.push({ path: "/loginadmin" });
+        router.push({ path: "/login" });
       }
       try {
         const response = await axios.get(
@@ -183,7 +183,7 @@ export default {
         localStorage.removeItem("userid");
         localStorage.removeItem("tokenstring");
         localStorage.removeItem("uuid");
-        router.push({ path: "/loginadmin" });
+        router.push({ path: "/login" });
       }
     },
     comparePasswords() {

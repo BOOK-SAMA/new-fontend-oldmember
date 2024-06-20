@@ -1,41 +1,41 @@
 <template>
     <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
-      <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
-          alt="Admin" class="rounded-circle p-1" width="40" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-              href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-            ออกจากระบบ
-          </button>
-        </form>
-      </div>
+        <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+                alt="Admin" class="rounded-circle p-1" width="40" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" :href="`/seeallfrom`">ดูรายการแจ้งชำระเงินต่างๆ</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+                    ออกจากระบบ
+                </button>
+            </form>
+        </div>
     </nav>
-  
+
     <section class="vh-200 ">
         <div class="container h-100 ">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -65,7 +65,7 @@
                                         ดูรหัสผ่าน
                                     </button>
                                 </div>
-  
+
                                 <div class="col-md-9 pe-5">
                                     <span v-if="v$.password.$error" class="text-danger fw-bold">
                                         {{ v$.password.$errors[0].$message }}
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
+
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
                                     <h6 class="mb-0">ชื่อภาษาไทย<span class="text-danger fw-bold">*</span></h6>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
+
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
                                     <h6 class="mb-0">ชื่อภาษาอังกฤษ<span class="text-danger fw-bold">*</span></h6>
@@ -113,7 +113,7 @@
                                     <input type="text" class="form-control form-control-lg" v-model="state.engname" />
                                 </div>
                             </div>
-  
+
                             <hr class="mx-n3" />
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
@@ -147,8 +147,8 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
-  
+
+
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
                                     <h6 class="mb-0">รหัสไปษณีย์<span class="text-danger fw-bold">*</span></h6>
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
+
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
                                     <h6 class="mb-0">อีเมล<span class="text-danger fw-bold">*</span></h6>
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
+
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md ps-5">
                                     <h6 class="mb-0">หมายเลขโทรศัพท์<span class="text-danger fw-bold">*</span></h6>
@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                             <hr class="mx-n3" />
-  
+
                             <div class="row align-items-center py-3">
                                 <div class="col-md-6 ps-5">
                                     <h6 class="mb-0">
@@ -199,7 +199,7 @@
                                         โดยยินดีปฏิบัติตามระเบียบข้อบังคับของสมาคมฯ ทุกประการ
                                         <span class="text-danger fw-bold">*</span>
                                     </h6>
-  
+
                                 </div>
                                 <div class="col-md-5 pe-5">
                                     <span v-if="v$.levelmember.$error" class="text-danger fw-bold">
@@ -310,7 +310,7 @@
                                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
                                             value="ยืนยัน" v-model="state.pnstatus" />
                                         <label class="form-check-label" for="inlineCheckbox1">ยืนยัน</label>
-  
+
                                     </div>
                                     <!-- <h6 class="mb-0"># ถ้าไม่กด ยืนยัน จะกดปุ่น Submit ไม่ได้นะครับ #</h6> -->
                                 </div>
@@ -329,45 +329,37 @@
             </div>
         </div>
     </section>
-  </template>
-  
-  
-  <script>
-  import router from "@/router";
-  import { ref, reactive, computed } from "vue";
-  import axios from "axios";
-  import useValidate from '@vuelidate/core'
-  import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
-  
-  
-  export default {
-  
+</template>
+
+
+<script>
+import router from "@/router";
+import { ref, reactive, computed } from "vue";
+import axios from "axios";
+import useValidate from '@vuelidate/core'
+import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
+
+
+export default {
+
     setup() {
         const isEnglishOrThai = (value) => {
-            // Regular expression to match Thai characters
-            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
-  
-            // Check if the value contains any Thai characters
-            if (thaiRegex.test(value)) {
-                return false; // Return false if Thai characters are found
-            }
-  
-            return true; // Return true if the value is in English
+            // Regular expression to match English alphabetic characters, digits, and spaces
+            const regex = /^[A-Za-z0-9\s/.-]+$/;
+
+            // Check if the value consists entirely of English alphabetic characters, digits, and spaces
+            return regex.test(value);
         };
-  
+
         const isThai = (value) => {
-            // Regular expression to match Thai characters
-            const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
-  
-            // Check if the value contains any Thai characters
-            if (thaiRegex.test(value)) {
-                return true; // Return false if Thai characters are found
-            }
-  
-            return false; // Return true if the value is in English
+            // Regular expression to match Thai characters, digits, and spaces
+            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.-]+$/;
+
+            // Check if the value consists entirely of Thai characters, digits, and spaces
+            return thaiRegex.test(value);
         };
-  
-  
+
+
         const state = reactive({
             username: '',
             email: '',
@@ -381,15 +373,15 @@
             levelmemberthing: '',
             statusinfo: false,
             pnstatus: false,
-  
+
             cityvalue: '',
             pincode: '',
-  
-  
-  
+
+
+
         })
         const rules = computed(() => {
-  
+
             const statusinfoRequired = helpers.withMessage('กรุณาใส่ข้อมูลในช่องนี้ด้วยนะครับ', (value) => {
                 return state.statusinfo || !!value;
             });
@@ -406,11 +398,11 @@
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
                 confirmpassword: {
-                    required: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword', required),
-                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล confirmpassword ให้ตรงกับ password ด้วยนะครับ', sameAs(state.password)),
+                    required: helpers.withMessage('กรุณาใส่ข้อมูล ยืนยันรหัสผ่าน', required),
+                    sameAs: helpers.withMessage('กรุณาใส่ข้อมูล ยืนยันรหัสผ่าน ให้ตรงกับ ช่องรหัสผ่าน ด้วยนะครับ', sameAs(state.password)),
                     minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
                 },
-  
+
                 thainame: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาไทย ด้วยนะครับ', required),
                     isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
@@ -419,7 +411,7 @@
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ชื่อภาษาอังกฤษ ด้วยนะครับ', required),
                     isEnglishOrThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาอังกฤษเท่านั้น', isEnglishOrThai)
                 },
-  
+
                 address: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล ที่อยู่ ด้วยนะครับ', required),
                     isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai)
@@ -427,32 +419,32 @@
                 cityvalue: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล จังหวัด ด้วยนะครับ', required)
                 },
-  
-  
+
+
                 pincode: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล รหัสไปษณีย์ ด้วยนะครับ', required),
                     numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
                     maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 5 ตัวเท่านั่นนะครับ ', maxLength(5)),
                     minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 5 ตัวด้วยครับ', minLength(5))
                 },
-  
+
                 phonenumber: {
                     required: helpers.withMessage('กรุณาใส่ข้อมูล เบอร์โทรศัพท์ ด้วยนะครับ', required),
                     numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
                     maxLength: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขจำนวน 10 ตัวเท่านั่นนะครับ ', maxLength(10)),
                     minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้ครบ 10 ตัวด้วยครับ', minLength(10))
                 },
-  
+
                 email: { required: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ด้วยนะครับ', required), email: helpers.withMessage('กรุณาใส่ข้อมูล อีเมล ให้ตรงแบบฟอร์มด้วยนะครับ ', email) },
-  
+
                 levelmember: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
                 levelmemberthing: { required: helpers.withMessage('กรุณาเลือกข้อมูลในช่องนี้ด้วยนะครับ', required) },
-  
+
                 conditionalField1: { required: statusinfoRequired },
                 conditionalField2: { required: pnstatusRequired },
             }
         })
-  
+
         const v$ = useValidate(rules, state)
         return {
             rules,
@@ -460,7 +452,7 @@
             v$
         }
     },
-  
+
     data() {
         return {
             inputType: "password",
@@ -517,16 +509,21 @@
                         "Content-Type": "multipart/form-data",
                     },
                 };
-  
+
                 axios.post(URL, data, config).then((response) => {
                     // console.log("this is res => ", this.date);
                     this.responseStatus = response.status
                     console.log("this is res => ", response);
                     alert("การสมัครสมาชิกสำเร็จแล้ว")
-                    window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
-  
+                    router.push({ path: "/login" });
+
                 }).catch((error) => {
-                    alert(error.response.data.Text);
+                    console.log(error.response)
+                    if (error.response && error.response.data && error.response.data.Text) {
+                        alert(error.response.data.Text);
+                    } else {
+                        alert("เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองใหม่อีกครั้ง");
+                    }
                 });
             }
         },
@@ -564,7 +561,5 @@
             }
         }
     },
-  };
-  </script>
-  
-  
+};
+</script>
