@@ -8,9 +8,7 @@
     </button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก </a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" :href="`/profile/${id}`">หน้าโปรไฟล์</a>
         </li>
