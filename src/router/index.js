@@ -152,13 +152,7 @@ const router = createRouter({
       name: 'seeallorder',
       meta: { requiresAuth: true }
     },
-    {
-      // ต้องทำการแก้ไข
-      path: `/seeoneorder/:uniqueorder/`,
-      component: () => import('/src/for_admin/vieworder.vue'),
-      name: 'seeoneorder',
-      meta: { requiresAuth: true }
-    },
+    
     {
       // ต้องทำการแก้ไข
       path: `/editorder/:uniqueorder/`,

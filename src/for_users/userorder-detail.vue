@@ -84,12 +84,14 @@
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
-                            <p><strong>ที่อยู่ของผู้สั่งซื้อสินค้า</strong></p><br>
-                            <p>{{username}}</p><br>
-                            <p></p><br>
-                            <p>{{useraddress}}</p>
+                            <p><strong>ข้อมูลการจัดส่ง</strong></p><br>
+                            <p>ชื่อผู้สั่ง: {{username}}</p>
                             <p></p>
-                            <p>{{userphonenumber}}</p>
+                            <p>ที่อยู่การจัดส่ง : {{useraddress}}</p>
+                            <p>จังหวัด : {{city}}</p>
+                            <p>รหัสไปษณีย์: {{pincode}}</p>
+                            <p></p>
+                            <p>เบอร์โทรศัพท์: {{userphonenumber}}</p>
                             <p>ประเทศ : ประเทศไทย</p><br>
                         </div>
                     </div>
@@ -129,6 +131,9 @@ export default {
             useraddress: "" ,
             userphonenumber: "" ,
             id: localStorage.getItem("userid"),
+            city:'',
+            pincode :'' ,
+
         };
     },
     async mounted() {
@@ -168,6 +173,8 @@ export default {
                     this.username = this.username.concat(order.thainame)
                     this.useraddress = this.useraddress.concat(order.address)
                     this.userphonenumber = this.userphonenumber.concat(order.phonenumber)
+                    this.pincode = this.pincode.concat(order.pincode)
+                    this.city = this.city.concat(order.city)
                 });
 
                 console.log(this.Orders);

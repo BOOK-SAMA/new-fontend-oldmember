@@ -61,16 +61,23 @@
                 <div class="clearcontainer">
                     <div class="myaccounthalfcolumn rightmargin">
                         <div class="container">
-                            <p><strong>ที่อยู่ของผู้สั่งซื้อสินค้า</strong></p><br>
-                            <p>{{ orders.thainame }}</p><br>
-                            <p></p><br>
-                            <p>{{ orders.address }}</p>
-                            <p></p>
-                            <p>{{ orders.phonenumber }}</p>
-                            <p>ประเทศ : ประเทศไทย</p><br>
-                            <p></p>
-                            <p></p>
-                            <p></p>
+
+                            <div class="clearcontainer">
+                                <div class="myaccounthalfcolumn rightmargin">
+                                    <div class="container">
+                                        <p><strong>ข้อมูลการจัดส่ง</strong></p><br>
+                                        <p>ชื่อผู้สั่ง: {{ orders.thainame  }}</p>
+                                        <p></p>
+                                        <p>ที่อยู่การจัดส่ง : {{  orders.address }}</p>
+                                        <p>จังหวัด : {{ orders.city }}</p>
+                                        <p>รหัสไปษณีย์: {{ orders.pincode }}</p>
+                                        <p></p>
+                                        <p>เบอร์โทรศัพท์: {{ orders.phonenumber }}</p>
+                                        <p>ประเทศ : ประเทศไทย</p><br>
+                                    </div>
+                                </div>
+                            </div>
+                          
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-3 ps-5">
                                     <h6 class="mb-0">สถานะคำสั่งซื้อ</h6>
