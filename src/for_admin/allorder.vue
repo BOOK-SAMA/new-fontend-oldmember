@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
+                    <a class="nav-link" :href="`/admintoo/${this.id}`">หน้าหลัก</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
@@ -18,7 +18,7 @@
                     <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+                    <a class="nav-link" :href="`/seeallproduct/${this.id}`">จัดการสินค้า</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
@@ -28,7 +28,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
+                <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
                     ออกจากระบบ
                 </button>
             </form>
@@ -91,6 +91,7 @@ export default {
         return {
             orders: [],
             orderdate: [],
+            id: localStorage.getItem("userid"),
         };
     },
 
