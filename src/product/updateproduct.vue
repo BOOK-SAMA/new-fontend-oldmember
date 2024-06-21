@@ -9,14 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
+          <a class="nav-link" :href="`/admintoo/${this.id}`">หน้าหลัก</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/addproduct">เพิ่ม สินค้า</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" :href="state ? '#' : `/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+          <a class="nav-link" :href="`/seeallproduct/${this.id}`">จัดการสินค้า</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -142,37 +142,30 @@
 
 
 <script>
-import { ref } from "vue";
+import { reactive , computed } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import useValidate from '@vuelidate/core'
+import { required, email, maxLength, helpers, sameAs, numeric, minLength } from '@vuelidate/validators'
 
 export default {
   name: "Updateproduct",
   setup() {
     const isEnglishOrThai = (value) => {
-      // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
+            // Regular expression to match English alphabetic characters, digits, and spaces
+            const regex = /^[A-Za-z0-9\s/():.-]+$/;
 
-      // Check if the value contains any Thai characters
-      if (thaiRegex.test(value)) {
-        return false; // Return false if Thai characters are found
-      }
+            // Check if the value consists entirely of English alphabetic characters, digits, and spaces
+            return regex.test(value);
+        };
 
-      return true; // Return true if the value is in English
-    };
+        const isThai = (value) => {
+            // Regular expression to match Thai characters, digits, and spaces
+            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/():.-]+$/;
 
-    const isThai = (value) => {
-      // Regular expression to match Thai characters
-      const thaiRegex = new RegExp(/[\u0E00-\u0E7F]/);
-
-      // Check if the value contains any Thai characters
-      if (thaiRegex.test(value)) {
-        return true; // Return false if Thai characters are found
-      }
-
-      return false; // Return true if the value is in English
-    };
-
+            // Check if the value consists entirely of Thai characters, digits, and spaces
+            return thaiRegex.test(value);
+        };
 
     const state = reactive({
       name: "",
@@ -185,13 +178,13 @@ export default {
         name: {
           required: helpers.withMessage('กรุณาใส่ข้อมูลชื่อของสินค้าที่จะเพิ้มในระบบด้วย', required),
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
-          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลชื่อของสินค้าอย่างน้อย  4 ตัวอักษรด้วยครับ', minLength(4))
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลชื่อของสินค้าอย่างน้อย  1 ตัวอักษรด้วยครับ', minLength(1))
         },
 
         quantity: {
           numeric: helpers.withMessage('กรุณาใส่เฉพาะตัวเลขเท่านั่นนะครับ ', numeric),
           required: helpers.withMessage('กรุณาใส่ข้อมูล จำนวนสินค้าที่ต้องการจะเพิ่มด้วยครับ', required),
-          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  4 ตัวด้วยครับ', minLength(4))
+          minLength: helpers.withMessage(' กรุณาใส่ข้อมูลอย่างน้อย  1 ตัวด้วยครับ', minLength(1))
         },
 
         price: {
@@ -215,6 +208,8 @@ export default {
     return {
       products: [],
       file: null,
+      id: localStorage.getItem("userid"),
+
     };
   },
   async mounted() {
@@ -225,7 +220,6 @@ export default {
   },
   methods: {
     async Getproduct(id) {
-      const userId = localStorage.getItem("userid");
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API2}getproduct/${id}`,

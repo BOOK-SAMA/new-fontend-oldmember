@@ -82,13 +82,14 @@ export default {
   data() {
     return {
       products: [],
+      id: localStorage.getItem("userid"),
 
     };
   },
 
   async mounted() {
     // Ensure user is authenticated and authorized
-    const id = this.$route.params.id;
+    const id = localStorage.getItem("userid");    ;
     await this.Getproduct(id);
   },
   methods: {
