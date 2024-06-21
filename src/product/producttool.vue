@@ -112,6 +112,7 @@ export default {
           if (res.status == 200) {
             console.log(res);
             alert("ทำการลบสินค้าเรียบร้อยแล้ว");
+            window.location.reload(); 
           } else {
             alert("ไม่สามารถทำการลบสินค้าได้");
           }
