@@ -47,11 +47,11 @@
       <div class="rowTable" v-for="item in productstore.cart" :key="item.ID">
         <div class="divTableCol">
           <div class="media">
-            <a class="thumbnail pull-left mr-2" href="#">
-              <img class="media-object" :src="item.image" style="width: 72px; height: 72px;" />
+            <a class="thumbnail pull-left mr-2">
+              <img class="media-object" :src="item.image" style="width: fit-content; height: 2cm;" />
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="#">{{ item.name }}</a></h4>
+              <h4 class="media-heading"><a>{{ item.name }}</a></h4>
             </div>
           </div>
         </div>
