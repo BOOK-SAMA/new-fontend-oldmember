@@ -2,7 +2,7 @@
     <header>
         <div class="cart-items" @click="router.push({ name: 'cart' })">
             <p>
-                Item in Cart: {{ productstore.cart.length }}
+                สินค้าในตะกร้า: {{ productstore.cart.length }}
             </p>
         </div>
     </header>

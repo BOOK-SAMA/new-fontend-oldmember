@@ -1,10 +1,10 @@
 <template>
-  <button @click="router.push({ name: 'catalog' })" class="btn btn-secondary">
-    back to catalog
+  <button @click="router.push({ name: 'catalog' })" class="btn  my-2 my-sm-0">
+    กลับไปหน้าเลือกสินค้า
   </button>
   <div class="cart-items" @click="router.push({ name: 'catalog' })">
     <p>
-      Item in Cart: {{ productstore.cart.length }}
+      จำนวนสินค้าในตะกร้า: {{ productstore.cart.length }}
     </p>
   </div>
   <div class="container">

@@ -2,7 +2,7 @@
 
 <template>
     <button @click="router.push({name:'catalog' })" class="btn btn-secondary">
-        back to catalog
+        กลับไปหน้าเลือกสินค้า
     </button>
     
     
@@ -32,7 +32,7 @@
 
                     <div class="buttons d-flex my-5">
                         <div class="block">
-                            <button class="shadow btn custom-btn"  @click="addtocart()">Add to cart</button>
+                            <button class="shadow btn custom-btn"  @click="addtocart()">เพิ่มสินค้าไปยังตะกร้า</button>
                         </div>
                     </div>
 
@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="product-details my-4">
-                    <p class="details-title text-color mb-1">Product Details</p>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat excepturi odio recusandae aliquid ad impedit autem commodi earum voluptatem laboriosam? </p>
+                    <p class="details-title text-color mb-1">ข้อมูลของสินค้า</p>
+                    <p class="description">{{ selectedproduct.producttext }}</p>
                 </div>
             </div>
         </div>

@@ -20,8 +20,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-          LOGOUT
+        <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
         </button>
       </form>
     </div>
