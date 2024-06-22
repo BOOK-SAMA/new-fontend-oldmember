@@ -1,15 +1,7 @@
 <template>
-    <header>
-        <div class="cart-items" @click="router.push({ name: 'cart' })">
-            <p>
-                สินค้าในตะกร้า: {{ productstore.cart.length }}
-            </p>
-        </div>
-    </header>
     <main>
         <catalog />
     </main>
-    
 </template>
 
 

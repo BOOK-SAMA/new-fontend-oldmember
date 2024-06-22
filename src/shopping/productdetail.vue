@@ -165,8 +165,8 @@ const addtocart = () => {
             text-transform: capitalize;
             background-color: #0093c4;
             color: white;
-            width: 150px;
-            height: 40px;
+            width: fit-content;
+            height: fit-content;
             border-radius: 0;
         }
 

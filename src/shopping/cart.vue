@@ -1,5 +1,5 @@
 <template>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
     <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
         alt="Admin" class="rounded-circle p-1" width="40" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -17,19 +17,20 @@
             ดูหน้ารายการสินค้า
           </a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link">
+            จำนวนสินค้าในตะกร้า: {{ productstore.cart.length }}
+          </a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="handlelogout()">
-          LOGOUT
+        <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
         </button>
       </form>
     </div>
   </nav>
-  <div class="cart-items" @click="router.push({ name: 'catalog' })">
-    <p>
-      Item in Cart: {{ productstore.cart.length }}
-    </p>
-  </div>
+
   <div class="container">
     <div class="divTable div-hover">
 

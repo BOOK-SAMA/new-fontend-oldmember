@@ -1,6 +1,6 @@
 <template>
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
     <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
         alt="Admin" class="rounded-circle p-1" width="40" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -31,14 +31,11 @@
     <div class="row">
       <div class="card border-0 rounded-0 shadow" style="width: 18rem; margin: 40px;"
         v-for="product in productstore.products" :key="product.ID" @click="gotoproductdetail(product.ID)">
-        <img :src="product.image" class="card-img-top rounded-0" alt="...">
+        <img :src="product.image" class="card-img-top rounded-0">
         <div class="card-body mt-3 mb-3">
           <div class="row">
             <div class="col">
               <h4 class="card-title">{{ product.name }}</h4>
-              <p class="card-text">
-                {{ product.producttext }}
-              </p>
             </div>
           </div>
         </div>
@@ -47,8 +44,7 @@
             <h5>{{ product.price }} บาท</h5>
           </div>
           <div class="col-7">
-            <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" @click="gotoproductdetail(product.ID)">ADD
-              TO CART</a>
+            <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" @click="gotoproductdetail(product.ID)">ดูรายละเอียดสินค้า</a>
           </div>
         </div>
       </div>

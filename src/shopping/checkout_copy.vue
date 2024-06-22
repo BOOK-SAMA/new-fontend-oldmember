@@ -1,13 +1,38 @@
 <template>
-  <button @click="router.push({ name: 'catalog' })" class="btn  my-2 my-sm-0">
-    กลับไปหน้าเลือกสินค้า
-  </button>
-  <div class="cart-items" @click="router.push({ name: 'catalog' })">
-    <p>
-      จำนวนสินค้าในตะกร้า: {{ productstore.cart.length }}
-    </p>
-  </div>
-  <div class="container">
+  <nav class="navbar navbar-expand-lg " style="background-color: #F9CC02; ">
+    <a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
+        alt="Admin" class="rounded-circle p-1" width="40" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a @click="router.push({ name: 'catalog' })" class="nav-link">
+            ดูหน้ารายการสินค้า
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link">
+            จำนวนสินค้าในตะกร้า: {{ productstore.cart.length }}
+          </a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn  my-2 my-sm-0" type="submit" @click="handlelogout()">
+          ออกจากระบบ
+        </button>
+      </form>
+    </div>
+  </nav>
+  
+ 
+  <div class="container" style="margin-top: 0.5cm;">
     <div class="divTable div-hover">
 
       <div class="rowTable bg-primary text-white pb-2">
@@ -86,6 +111,8 @@
   </form>
   <button type="submit" class="btn btn-success" @click="showrequest()"
     style="margin-left: 6cm; height: fit-content; width: fit-content;">ยืนยัน</button>
+
+
 </template>
 
 
@@ -99,6 +126,7 @@ import { required, email, maxLength, helpers, sameAs, numeric, minLength } from 
 import axios from "axios";
 export default {
   setup() {
+    const router = useRouter()
     const productstore = productsStore();
     const totalCartPrice = computed(() => {
       const cartTotal = productstore.cart.reduce((total, item) => {
@@ -172,6 +200,7 @@ export default {
       v$,
       totalCartPrice,
       productstore,
+      router
     };
   },
   methods: {
