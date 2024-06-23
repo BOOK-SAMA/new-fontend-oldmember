@@ -7,58 +7,37 @@
                 <a class="nav-link text-dark" href="#" style="font-size: medium;">หน้าแรก</a>
             </li>
             <li class="nav-item dropdown" style="font-size: medium;">
-                <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true">
+                <a class="nav-link dropdown-toggle text-dark" href="https://graduation-silpakorn.azurewebsites.net/%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B2%E0%B8%84%E0%B8%A1/" data-toggle="dropdown" aria-haspopup="true">
                     เกี่ยวกับสมาคม
                 </a>
-                <div class="dropdown-menu " style=" background-color: #F9CC02;">
-                    <a class="dropdown-item text-dark" href="#">สาส์นจากนายกสมาคมฯ</a>
-                    <a class="dropdown-item text-dark" href="#">ข้อมูลทั่วไป</a>
-                    <a class="dropdown-item text-dark" href="#">ตราสัญลักษณ์สมาคม</a>
-                    <a class="dropdown-item text-dark" href="#">การสมัครสมาชิก</a>
-                    <a class="dropdown-item text-dark" href="#">การสมัครสมาชิก</a>
-                    <a class="dropdown-item text-dark" href="#">คณะกรรมการสมาคมฯ</a>
-                    <a class="dropdown-item text-dark" href="#">สมาชิกสมาคมฯ</a>
-                </div>
             </li>
             <li class="nav-item dropdown" style="font-size: medium;">
-                <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true">
+                <a class="nav-link dropdown-toggle text-dark" href="https://graduation-silpakorn.azurewebsites.net/%e0%b8%82%e0%b9%89%e0%b8%ad%e0%b8%a1%e0%b8%b9%e0%b8%a5%e0%b8%a8%e0%b8%b4%e0%b8%a9%e0%b8%a2%e0%b9%8c%e0%b9%80%e0%b8%81%e0%b9%88%e0%b8%b2/" data-toggle="dropdown" aria-haspopup="true">
                     ข้อมูลศิษย์เก่า
                 </a>
-                <div class="dropdown-menu " style=" background-color: #F9CC02;">
-                    <a class="dropdown-item text-dark" href="#">ทำเนียบศิษย์เก่า</a>
-                    <a class="dropdown-item text-dark" href="#">บัณฑิตคณะวิทยาศาสตร์ มศก.</a>
-                    <a class="dropdown-item text-dark" href="#">ศิษย์เก่าดีเด่น</a>
-                    <a class="dropdown-item text-dark" href="#">เกี่ยวกับอัลบั้ม</a>
-                    <a class="dropdown-item text-dark" href="#">เกี่ยวกับรายชื่อตัวแทนรุ่น</a>
-                </div>
             </li>
             <li class="nav-item dropdown" style="font-size: medium;">
-                <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true">
+                <a class="nav-link dropdown-toggle text-dark" href="https://graduation-silpakorn.azurewebsites.net/%e0%b8%81%e0%b8%b4%e0%b8%88%e0%b8%81%e0%b8%a3%e0%b8%a3%e0%b8%a1/" data-toggle="dropdown" aria-haspopup="true">
                     กิจกรรม
                 </a>
-                <div class="dropdown-menu " style=" background-color: #F9CC02;">
-                    <a class="dropdown-item text-dark" href="#">กิจกรรม 2566</a>
-                    <a class="dropdown-item text-dark" href="#">กิจกรรม 2561</a>
-                    <a class="dropdown-item text-dark" href="#">กิจกรรม ปี 2558 - 2560</a>
-                </div>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">สินค้าที่ระลึก</a>
+                <a class="nav-link text-dark" href="/catalog">สินค้าที่ระลึก</a>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">ผู้สนับสนุนเว็บไซต์สมาคมฯ</a>
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/">ผู้สนับสนุนเว็บไซต์สมาคมฯ</a>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">เว็บบอร์ด</a>
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/bbpress-webborad/">เว็บบอร์ด</a>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">ข่าวสารทั่วไป</a>
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B9%84%E0%B8%9B/">ข่าวสารทั่วไป</a>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">แจ้งชำระเงิน</a>
+                <a class="nav-link text-dark" href="/from">แจ้งชำระเงิน</a>
             </li>
             <li class="nav-item active" style="font-size: medium;">
-                <a class="nav-link text-dark" href="#">ติดต่อเรา</a>
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2/">ติดต่อเรา</a>
             </li>
         </ul>
     </nav>
