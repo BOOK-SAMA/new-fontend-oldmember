@@ -121,8 +121,8 @@ const router = createRouter({
     {
       path: '/update/:id/edit',
       name: 'update',
-      component: updateadminfrom
-      // ต้องทำการแก้ไข
+      component: updateadminfrom,
+      meta: { requiresAuth: true },
     },
     /////////////////////////////
     {

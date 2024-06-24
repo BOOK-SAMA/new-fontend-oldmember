@@ -206,7 +206,7 @@ export default {
         submitUpdate() {
             this.v$.$validate() // checks all inputs
             if (this.v$.$error) {
-                alert("ไม่สามารถทำการเพิ่มสินค้าสำเร็จแล้ว")
+                alert("ไม่สามารถเพิ่มสินค้า")
             } else {
                 // Assuming you want to use $route.params.id
                 const id = this.$route.params.id;
@@ -228,11 +228,8 @@ export default {
                         console.log(data)
                         console.log(res)
                         alert("ทำการเพิ่มสินค้าสำเร็จแล้ว")
-                        router.push({ path: "/admintoo" + id });
+                        window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
                     })
-                    .catch((error) => {
-                       alert("ไม่สามารถทำการเพิ่มสินค้าสำเร็จแล้ว")
-                    });
             }
         }
 

@@ -10,6 +10,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
+			 <li class="nav-item active">
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/" style="font-size: medium;">หน้าแรก</a>
+            </li>
 				<li class="nav-item">
 					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
 				</li>

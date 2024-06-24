@@ -663,7 +663,7 @@ export default {
                     this.responseStatus = response.status
                     console.log("this is res => ", response);
                     alert("การสมัครสมาชิกสำเร็จแล้ว")
-                    window.location.href = "https://mytestsilpakorn.azurewebsites.net/";
+                    window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
 
                 }).catch((error) => {
                     alert(error.response.data.Text);

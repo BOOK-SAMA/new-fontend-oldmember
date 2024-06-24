@@ -18,10 +18,10 @@
       <!-- 2 column grid layout for inline styling -->
       <div class="row mb-4">
         <div class="col">
+          <a class="nav-link" href="https://graduation-silpakorn.azurewebsites.net/">หน้าแรก</a>
           <router-link to="/register" class="nav-link" > สมัครสมาชิก </router-link>
           <router-link to="/resetpassword" class="nav-link"> ลืมรหัสผ่าน </router-link>
         </div>
-
       </div>
       <!-- Submit button -->
       <button type="button" class="btn btn-primary btn-block mb-4" @click="handleSubmit">

@@ -15,7 +15,7 @@
                     <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
+                    <a class="nav-link" href="https://graduation-silpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>

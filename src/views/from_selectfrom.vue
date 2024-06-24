@@ -4,7 +4,7 @@
             <img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png" alt="Admin"
                 class="rounded-circle p-1" width="55" />
             <li class="nav-item active">
-                <a class="nav-link text-dark" href="#" style="font-size: medium;">หน้าแรก</a>
+                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/" style="font-size: medium;">หน้าแรก</a>
             </li>
             <li class="nav-item dropdown" style="font-size: medium;">
                 <a class="nav-link dropdown-toggle text-dark"
