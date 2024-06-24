@@ -559,7 +559,13 @@ export default {
             } catch (error) {
                 console.error('Error fetching options:', error);
             }
-        }
+        },
+        handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
     },
 };
 </script>

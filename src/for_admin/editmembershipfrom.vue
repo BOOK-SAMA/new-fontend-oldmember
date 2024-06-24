@@ -102,6 +102,12 @@ export default {
         };
     },
     methods: {
+        handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
         async getMembershipInfo(id) {
             try {                       
                 const response = await axios.post(`${import.meta.env.VITE_API2}getonememberfrom/${id}`, {

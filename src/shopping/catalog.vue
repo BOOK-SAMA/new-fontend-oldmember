@@ -64,7 +64,7 @@ export default defineComponent({
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      router.push({ path: "/login" });
+      window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
     },
   }
 });

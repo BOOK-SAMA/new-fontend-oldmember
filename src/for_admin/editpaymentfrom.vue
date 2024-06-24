@@ -189,7 +189,13 @@ export default {
         dateformat(dates) {
             const date = new Date(dates);
             return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-        }
+        },
+        handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
     },
     mounted() {
         // Add event listener for radio button change

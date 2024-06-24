@@ -87,12 +87,12 @@ export default {
         await this.Getmembershipfrom();
     },
     methods: {
-        async handlelogout() {
-            localStorage.removeItem("userid");
-            localStorage.removeItem("tokenstring");
-            localStorage.removeItem("uuid");
-            router.push({ path: "/login" });
-        },
+        handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
         async Getmembershipfrom() {
             const URL = `${import.meta.env.VITE_API2}viewmembershipfrom`;
             let config = {

@@ -9,9 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="https://mytestsilpakorn.azurewebsites.net/">หน้าแรก <span
+          <a class="nav-link" href="https://graduation-silpakorn.azurewebsites.net/">หน้าแรก <span
               class="sr-only">(current)</span></a>
         </li>
+         
         <li class="nav-item active">
           <a @click="router.push({ name: 'catalog' })" class="nav-link">
             ดูหน้ารายการสินค้า
@@ -85,7 +86,7 @@ export default defineComponent({
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-      router.push({ path: "/login" });
+      window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
     },
   }
 });

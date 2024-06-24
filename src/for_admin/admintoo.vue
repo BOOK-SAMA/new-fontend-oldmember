@@ -103,11 +103,11 @@ export default {
   },
   methods: {
     handlelogout() {
-      localStorage.removeItem("userid");
-      localStorage.removeItem("tokenstring");
-      localStorage.removeItem("uuid");
-      router.push({ path: "/login" });
-    },
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
     dodelete(id) {
       axios
         .post(`${import.meta.env.VITE_API2}admin/delete/${id}`, null, {

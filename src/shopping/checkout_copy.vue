@@ -279,7 +279,7 @@ export default {
           if (response.ok) {
             // API call was successful
             alert("ทำการสั่งซื้อสินค้าเรียบร้อยแล้ว อย่าลืมเค้าไปตรวจสอบในประวัติการสั่งซื้อนะครับ");
-            // You can handle the response data here if needed
+            window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
             
           } else {
             // Handle errors

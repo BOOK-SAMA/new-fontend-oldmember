@@ -117,12 +117,12 @@ export default {
         await this.Getorder(uniqueorder);
     },
     methods: {
-        async handlelogout() {
-            localStorage.removeItem("userid");
-            localStorage.removeItem("tokenstring");
-            localStorage.removeItem("uuid");
-            router.push({ path: "/loginadmin" });
-        },
+        handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
         async Getorder(uniqueorder) {
             try {
                 const response = await axios.get(

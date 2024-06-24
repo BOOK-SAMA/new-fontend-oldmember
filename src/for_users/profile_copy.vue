@@ -405,7 +405,7 @@ export default {
 			localStorage.removeItem("userid");
 			localStorage.removeItem("tokenstring");
 			localStorage.removeItem("uuid");
-			router.push({ path: "/login" });
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
 		},
 		async checkuser(id) {
 			const userId = localStorage.getItem("userid");

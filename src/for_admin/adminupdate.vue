@@ -907,10 +907,11 @@ export default {
       }
     },
     handlelogout() {
-      localStorage.removeItem("userid");
-      localStorage.removeItem("tokenstring");
-      router.push({ path: "/login" });
-    },
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
   },
   computed: {
     paystatusDisplay: {
