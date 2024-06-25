@@ -204,6 +204,12 @@ export default {
     };
   },
   methods: {
+    handlelogout() {
+			localStorage.removeItem("userid");
+			localStorage.removeItem("tokenstring");
+			localStorage.removeItem("uuid");
+			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+		},
     async profile(id) {
       try {
         // Make a second API call or perform additional actions here
