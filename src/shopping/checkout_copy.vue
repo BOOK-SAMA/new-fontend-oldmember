@@ -231,13 +231,18 @@ export default {
     },
     async showrequest() {
       this.v$.$validate();
+      if(this.productstore.cart.length <= 0){
+        alert("ตะกร้าว่างเปล่า กรุณาตรวจสอบข้อมูลด้วยครับ");
+        return;
+      }
+
       if (this.v$.phonenumber.$error ||
         this.v$.thainame.$error ||
         this.v$.address.$error ||
         this.v$.cityvalue.$error ||
         this.v$.pincode.$error
       ) {
-        alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
+        alert("ข้อมูลไม่ครบครับ");
         return;
       } else {
         try {
