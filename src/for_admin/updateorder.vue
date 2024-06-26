@@ -90,7 +90,6 @@
                     <div class="myaccounthalfcolumn">
                         <div class="container">
                             <p align="right"><strong>ราคาทั้งหมด</strong></p><br>
-                           
                             <p align="right">ราคาค่าส่ง : 100 บาท</p>
                             <p align="right">ราคารวม : <span>{{ parseInt(orders.totalCartPrice) }}</span></p>
                         </div>
