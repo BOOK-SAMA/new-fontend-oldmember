@@ -45,7 +45,7 @@
                                 <th scope="col ">ชื่อสินค้า</th>
                                 <th scope="col">ราคา</th>
                                 <th scope="col">จำนวน</th>
-                                <th scope="col">ราคารวมแต่ละชิ้น</th>
+                                
                                 <th scope="col">สถานะการจัดส่ง</th>
                             </tr>
                         </thead>
@@ -55,7 +55,7 @@
                                 <td v-text="order.itemname"></td>
                                 <td v-text="order.price"></td>
                                 <td v-text="order.quantity"></td>
-                                <td v-text="order.price * order.quantity"></td>
+                                
                                 <td v-text="statue"></td>
                             </tr>
                         </tbody>

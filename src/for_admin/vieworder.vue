@@ -19,7 +19,7 @@
                                     <th scope="col ">ชื่อสินค้า</th>
                                     <th scope="col">ราคา</th>
                                     <th scope="col">จำนวน</th>
-                                    <th scope="col">ราคารวมแต่ละชิ้น</th>
+                                    
 
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                     <th scope="row">{{ order.itemname }}</th>
                                     <th scope="row">{{ order.price }}</th>
                                     <th scope="row">{{ order.quantity }}</th>
-                                    <th scope="row">{{ order.price * order.quantity }}</th>
+                                    
                                 </tr>
                             </tbody>
                         </table>
