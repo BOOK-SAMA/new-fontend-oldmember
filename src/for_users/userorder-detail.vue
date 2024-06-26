@@ -74,9 +74,8 @@
                     <div class="myaccounthalfcolumn">
                         <div class="container">
                             <p align="right"><strong>ราคาทั้งหมด</strong></p><br>
-                            <div align="right">ราคาสินค้า : {{totalcost}} </div>
                             <p align="right">ราคาค่าส่ง : 100 บาท</p>
-                            <p align="right">ราคารวม : <span>{{ parseInt(totalcost) + sentcost }}</span></p>
+                            <p align="right">ราคารวม : <span>{{ parseInt(totalcost)}}</span></p>
                         </div>
                     </div>
                 </div>
