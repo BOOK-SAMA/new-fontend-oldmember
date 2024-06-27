@@ -667,14 +667,7 @@ export default {
     submitUpdate() {
       const id = this.$route.params.id;
       this.v$.$validate();
-      if (this.v$.phonenumber.$error ||
-        this.v$.thainame.$error ||
-        this.v$.engname.$error ||
-        this.v$.address.$error ||
-        this.v$.cityvalue.$error ||
-        this.v$.pincode.$error ||
-        this.v$.email.$error
-      ) {
+      if (this.v$.$error) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
         return;
       } else {
