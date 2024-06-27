@@ -64,20 +64,21 @@
 							</div>
 							<hr class="my-4" />
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+								
 									<h6 class="mb-0">
 										เบอร์โทรศัพท์
 										<p class="text-muted font-size-sm">
 											{{ Phonenumber }}
 										</p>
 									</h6>
-									<h6 class="mb-0">
+									
+								
+								<h6 class="mb-0">
 										อีเมล
 										<p class="text-muted font-size-sm">
 											{{ Email }}
 										</p>
-									</h6>
-								</li>
+								</h6>
 							</ul>
 						</div>
 					</div>
