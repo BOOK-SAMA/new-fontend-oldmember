@@ -8,7 +8,7 @@
     </button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-       
+
         <li class="nav-item">
           <a class="nav-link" :href="`/profile/${id}`">หน้าโปรไฟล์</a>
         </li>
@@ -386,7 +386,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
                       <span v-if="v$.jobposition.$error" class="text-danger fw-bold">
-                        {{ v$.Jobposition.$errors[0].$message }}
+                        {{ v$.jobposition.$errors[0].$message }}
                       </span>
                       <input v-model="state.jobposition" class="form-control form-control-lg" placeholder="" />
                     </div>
@@ -398,7 +398,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
                       <span v-if="v$.jobaddress.$error" class="text-danger fw-bold">
-                        {{ v$.Jobaddress.$errors[0].$message }}
+                        {{ v$.jobaddress.$errors[0].$message }}
                       </span>
                       <input v-model="state.jobaddress" class="form-control form-control-lg" placeholder="" />
                     </div>
@@ -667,7 +667,13 @@ export default {
     submitUpdate() {
       const id = this.$route.params.id;
       this.v$.$validate();
-      if (this.v$.$error) {
+      if (this.v$.phonenumber.$error ||
+        this.v$.thainame.$error ||
+        this.v$.engname.$error ||
+        this.v$.address.$error ||
+        this.v$.cityvalue.$error ||
+        this.v$.pincode.$error ||
+        this.v$.email.$error) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
       } else {
         const URL = `${import.meta.env.VITE_API}users/update/` + id;
@@ -707,7 +713,7 @@ export default {
             this.responseStatus = response.status;
             console.log("this is res => ", response);
             alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-            this.$router.push({ path: "/profile/" + id });
+            
           })
       }
     },
@@ -832,7 +838,7 @@ export default {
       localStorage.removeItem("userid");
       localStorage.removeItem("tokenstring");
       localStorage.removeItem("uuid");
-       window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+      window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
     },
   },
 };
