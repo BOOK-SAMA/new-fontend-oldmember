@@ -674,7 +674,7 @@ export default {
         this.v$.cityvalue.$error ||
         this.v$.pincode.$error ||
         this.v$.email.$error) {
-        alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
+        alert("มีบางอย่างไม่ถูกต้องตามที่เรากำหนดไว้");
       } else {
         if (this.v$.$error) {
           alert("มีบางอย่างไม่ถูกต้องตามที่เรากำหนดไว้");
