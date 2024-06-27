@@ -44,13 +44,13 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Uniqueorder</th>
-                    <th scope="col">Thainame</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phonenumber</th>
-                    <th scope="col">Orderdate</th>
-                    <th scope="col">State</th>
-                    <th scope="col">TotalCartPrice</th>
+                    <th scope="col">หมายเลขคำสั่งซื้อ</th>
+                    <th scope="col">ชื่อภาษาไทย</th>
+                    <th scope="col">ที่อยู่</th>
+                    <th scope="col">เบอร์โทรศัพท์</th>
+                    <th scope="col">วันที่</th>
+                    <th scope="col">สถานะ</th>
+                    <th scope="col">ราคา</th>
                 </tr>
             </thead>
             <tbody>
