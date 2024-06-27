@@ -42,22 +42,16 @@
                 <table class="table table-bordered table-hover">
                  <thead class="thead-dark">
                             <tr>
-                                
                                 <th scope="col ">ชื่อสินค้า</th>
                                 <th scope="col">ราคา</th>
                                 <th scope="col">จำนวน</th>
-                                
-                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(order, index) in Ordersdetail" :key="index">
-                                
                                 <td v-text="order.itemname"></td>
                                 <td v-text="order.price"></td>
                                 <td v-text="order.quantity"></td>
-                                
-                                
                             </tr>
                         </tbody>
                     </table>
