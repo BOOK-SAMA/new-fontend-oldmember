@@ -9,14 +9,14 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" :href="`/profile/${this.$route.params.id}`">หน้าโปรไฟล์</a>
+                    <a class="nav-link" :href="`/profile/${this.id}`">หน้าโปรไฟล์</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :href="`/updateuser/${this.$route.params.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
+                    <a class="nav-link" :href="`/updateuser/${this.id}/edit`">แก้ไขข้อมูลส่วนตัว</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" :class="{ 'disabled': state }"
-                        :href="`/orderhistory/${this.$route.params.id}/`">ดูประวัติการสั่งซื้อ</a>
+                        :href="`/orderhistory/${this.id}/`">ดูประวัติการสั่งซื้อ</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

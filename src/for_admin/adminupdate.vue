@@ -480,7 +480,7 @@
                   <hr class="mx-n3" />
                 </div>
                 <div class="px-5 py-4">
-                  <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate">
+                  <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate()">
                     ยืนยัน
                   </button>
                 </div>
@@ -709,7 +709,7 @@ export default {
       newpassword: "",
       comfirepassword: "",
       passwordsMatch: null,
-      userid : localStorage.getItem("ีuserid") ,
+      userid : localStorage.getItem("userid") ,
       token: localStorage.getItem("tokenstring")
     };
   },
@@ -745,31 +745,39 @@ export default {
       ) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
       } else {
-        const URL = `${import.meta.env.VITE_API}update/` + id;
+        const URL = `${import.meta.env.VITE_API}admin/update/` + id;
         let data = new FormData();
         data.append("thainame", this.state.thainame);
         data.append("engname", this.state.engname);
-        data.append("address", this.state.address);
-        data.append("city", this.state.cityvalue);
-        data.append("pincode", this.state.pincode);
-        data.append("phonenumber", this.state.phonenumber);
-        data.append("email", this.state.email);
-        data.append("file", this.file);
         data.append("oldname", this.state.Oldname);
         data.append("nickname", this.state.nickname);
         data.append("dateofbirth", this.formattedDate);
+
         data.append("academicstatus", this.state.academicstatus);
         data.append("academicnumber", this.state.academicnumber);
         data.append("masterdegree", this.state.masterdegree);
         data.append("masterdegreenumber", this.state.masterdegreenumber);
         data.append("doctordegree", this.state.doctordegree);
         data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+
+        
+       
         data.append("phonemail", this.state.Phonemail);
-        data.append("idline", this.state.Idline);
-        data.append("job", this.job);
-        data.append("jobposition", this.jobposition);
-        data.append("jobaddress", this.jobaddress);
-        data.append("paystatus", this.paystatus);
+        
+        data.append("job", this.state.job);
+        data.append("jobposition", this.state.jobposition);
+        data.append("jobaddress", this.state.jobaddress);
+
+        data.append("address", this.state.address);
+        data.append("city", this.state.cityvalue);
+        data.append("pincode", this.state.pincode);
+        data.append("phonenumber", this.state.phonenumber);
+        data.append("email", this.state.email);
+
+        data.append("file", this.file);     
+        data.append("role" , this.state.role);
+        data.append("paystatus", this.state.paystatus);
+        data.append("accesstatus", this.state.accressstatus);
         let config = {
           headers: {
             Authorization: "Bearer " + this.token,
@@ -782,9 +790,7 @@ export default {
             this.responseStatus = response.status;
             console.log("this is res => ", response);
             alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-
           })
-
       }
     },
     async fetchCity() {
@@ -837,11 +843,12 @@ export default {
 
 
         this.state.job = res.data.thing.Job;
-        this.state.Jobposition = res.data.thing.Jobposition;
-        this.state.Jobaddress = res.data.thing.Jobaddress;
+        this.state.jobposition = res.data.thing.Jobposition;
+        this.state.jobaddress = res.data.thing.Jobaddress;
         this.state.Levelmember = res.data.thing.Levelmember;
         this.state.Levelmemberthing = res.data.thing.Levelmemberthing;
         this.downloadImageAndDisplay(res.data.thing.Image)
+
         this.state.paystatus = res.data.thing.Paystatus;
         this.state.role = res.data.thing.Role;
         this.state.accressstatus = res.data.thing.Accessstatus;

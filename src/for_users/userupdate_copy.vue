@@ -581,7 +581,7 @@ export default {
         },
 
         academicstatus: {
-          
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         academicnumber: {
@@ -589,7 +589,7 @@ export default {
           minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         masterdegree: {
-         
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         masterdegreenumber: {
@@ -597,7 +597,7 @@ export default {
           minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         doctordegree: {
-          
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         doctordegreenumber: {
@@ -606,15 +606,15 @@ export default {
         },
 
         job: {
-          
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         jobposition: {
-          
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         jobaddress: {
-         
+
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
       }
@@ -683,27 +683,33 @@ export default {
           let data = new FormData();
           data.append("thainame", this.state.thainame);
           data.append("engname", this.state.engname);
-          data.append("address", this.state.address);
-          data.append("city", this.state.cityvalue);
-          data.append("pincode", this.state.pincode);
-          data.append("phonenumber", this.state.phonenumber);
-          data.append("email", this.state.email);
-          data.append("file", this.file);
           data.append("oldname", this.state.Oldname);
           data.append("nickname", this.state.nickname);
           data.append("dateofbirth", this.formattedDate);
+
           data.append("academicstatus", this.state.academicstatus);
           data.append("academicnumber", this.state.academicnumber);
           data.append("masterdegree", this.state.masterdegree);
           data.append("masterdegreenumber", this.state.masterdegreenumber);
           data.append("doctordegree", this.state.doctordegree);
-          data.append("doctoraldegreenumber", this.state.doctordegreenumber);
+          data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+
+
+
           data.append("phonemail", this.state.Phonemail);
-          data.append("idline", this.state.Idline);
+
           data.append("job", this.state.job);
           data.append("jobposition", this.state.jobposition);
           data.append("jobaddress", this.state.jobaddress);
 
+          data.append("address", this.state.address);
+          data.append("city", this.state.cityvalue);
+          data.append("pincode", this.state.pincode);
+          data.append("phonenumber", this.state.phonenumber);
+          data.append("email", this.state.email);
+
+          data.append("file", this.file);
+         
           let config = {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("tokenstring"),
@@ -716,7 +722,6 @@ export default {
               this.responseStatus = response.status;
               console.log("this is res => ", response);
               alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-
             })
         }
       }
@@ -847,175 +852,3 @@ export default {
   },
 };
 </script>
-
-
-
-
-
-
-
-
-
-<!-- <script>
-import { ref } from "vue";
-import axios from "axios";
-import { useRouter } from "vue-router";
-
-export default {
-  name: "Updateuser",
-  data() {
-    return {
-      iduser: "",
-      newpassword: "",
-      comfirepassword: "",
-      passwordsMatch: false,
-      data: ref(new FormData()),
-      dateText: "",
-      Username: "",
-      Password: "",
-
-      THAIname: "",
-      ENGname: "",
-     
-
-      address: "",
-      Phonenumber: "",
-      
-     
-      Email: "",
-     
-     
-
-      paystatus: "",
-      paystatustext: "",
-      role: "",
-      paystatus: "",
-      day: "",
-      month: "",
-      year: "",
-      dateString: "",
-
-      Accessstatus: "",
-      router: useRouter(),
-      file: null,
-      profileimage: null,
-      payimage: null,
-    };
-  },
-  async mounted() {
-    console.log(this.$route.params.id);
-    this.iduser = this.$route.params.id;
-     console.log(this.iduser);
-    await this.getuserdata(this.$route.params.id);
-    await this.downloadImageAndDisplay(localStorage.getItem("uuidprofile"));
-    await this.downloadpayImageAndDisplay(localStorage.getItem("uuidpayimage"));
-  },
-  methods: {
-    async getuserdata(id) {
-        await axios.post(
-					`${import.meta.env.VITE_API2}users/profile/` + id,
-					null,
-					{
-						headers: {
-							Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-							"Content-Type": "application/json",
-						},
-					}
-				)
-        .then((res) => {
-          console.log(res);
-          this.Username = res.data.thing.Username;
-          this.Password = res.data.thing.Enpassword;
-
-          this.THAIname = res.data.thing.Thainame;
-          this.ENGname = res.data.thing.Engname;
-          this.Oldname = res.data.thing.Oldname;
-          this.nickname = res.data.thing.Nickname;
-          const dateString = res.data.thing.Dateofbirth;
-          [this.day, this.month, this.year] = dateString.split("/");
-
-          this.status = res.data.thing.Status;
-          this.academicstatus = res.data.thing.Academicstatus;
-          this.academicnumber = res.data.thing.Academicnumber;
-          this.masterdegree = res.data.thing.Masterdegree;
-          this.masterdegreenumber = res.data.thing.Masterdegreenumber;
-          this.doctordegree = res.data.thing.Doctoraldegree;
-          this.doctordegreenumber = res.data.thing.Doctoraldegreenumber;
-
-          this.address = res.data.thing.Address;
-          this.phonenumber = res.data.thing.Phonenumber;
-          this.phonemail = res.data.thing.Phonemail;
-          this.Idline = res.data.thing.Idline;
-          this.Email = res.data.thing.Email;
-          this.job = res.data.thing.Job;
-          this.Jobposition = res.data.thing.Jobposition;
-          this.Jobaddress = res.data.thing.Jobaddress;
-          this.Levelmember = res.data.thing.Levelmember;
-          this.Levelmemberthing = res.data.thing.Levelmemberthing;
-
-          this.paystatus = res.data.thing.Paystatus;
-          this.role = res.data.thing.Role;
-          this.Accessstatus = res.data.thing.Accessstatus;
-          localStorage.setItem("uuidprofile", res.data.thing.Image);
-          localStorage.setItem("uuidpayimage", res.data.thing.Payimage);
-        })
-        .catch();
-    },
-    
-   
-    handleprofile(event) {
-      this.file = event.target.files[0];
-      console.log(this.file);
-    },
-    submitUpdate() {
-      // Assuming you want to use $route.params.id
-      const id = this.$route.params.id;
-
-      
-
-      axios
-        .post(`${import.meta.env.VITE_API2}users/update/${id}`, data, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          const idnew = localStorage.getItem("userid");
-          this.router.push({ path: '/profile/' + idnew });
-        })
-        .catch((error) => {
-          console.error("Error updating:", error);
-        });
-    },
-    Changepassword() {
-      // Assuming you want to use $route.params.id
-      const id = this.$route.params.id;
-
-      let data = new FormData();
-      data.append("password", this.newpassword);
-      data.append("confirmpassword", this.comfirepassword);
-      axios
-        .post(`${import.meta.env.VITE_API2}users/resetpassword/${id}`, data, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          const idnew = localStorage.getItem("userid");
-          this.router.push({ path: '/profile/' + idnew });
-        })
-        .catch((error) => {
-          console.error("Error updating:", error);
-        });
-    },
-    comparePasswords() {
-       if(this.newpassword == "" && this.comfirepassword == ""){
-        this.passwordsMatch = false;
-       }
-      this.passwordsMatch = this.newpassword === this.comfirepassword;
-    },
-  },
-};
-</script> -->
