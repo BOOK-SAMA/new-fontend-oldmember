@@ -452,7 +452,7 @@
                       class="btn btn-primary btn-lg"
                       @click="submitt"
                     >
-                      Submit
+                      ยืนยัน
                     </button>
                   </div>
                 </div>

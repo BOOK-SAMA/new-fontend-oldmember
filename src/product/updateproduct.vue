@@ -129,7 +129,7 @@
               <hr class="mx-n3" />
               <div class="px-5 py-4">
                 <button type="submit" class="btn btn-primary btn-lg" @click="submitUpdate">
-                  Submit
+                  ยืนยัน
                 </button>
               </div>
             </div>

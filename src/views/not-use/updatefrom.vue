@@ -421,7 +421,7 @@
                       class="btn btn-primary btn-lg"
                       @click="updateSubmit(this.$route.params.id)"
                     >
-                      Submit
+                      ยืนยัน
                     </button>
                   </div>
                 </div>

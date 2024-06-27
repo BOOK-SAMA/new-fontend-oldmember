@@ -21,7 +21,7 @@
     <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
     <input type="tel" id="phone" name="phone"  class="form-control" placeholder="กรอกเบอร์โทรศัพท์" v-model="phonenumber">
   </div>
-  <button type="submit" class="btn btn-success"  @click="showrequest()">Submit</button>
+  <button type="submit" class="btn btn-success"  @click="showrequest()">ยืนยัน</button>
 </form>
 </div>
 <div class="col-sm-12 col-md-4"></div>

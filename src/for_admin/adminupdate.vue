@@ -481,7 +481,7 @@
                 </div>
                 <div class="px-5 py-4">
                   <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitUpdate">
-                    Submit
+                    ยืนยัน
                   </button>
                 </div>
               </div>

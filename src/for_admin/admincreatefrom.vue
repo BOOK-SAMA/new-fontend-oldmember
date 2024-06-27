@@ -319,7 +319,7 @@
                             </h6>
                             <div class="col-md-8 pe-5">
                                 <button type="submit" class="btn btn-primary btn-lg text-white mt-2 " @click="submit()">
-                                    Submit
+                                    ยืนยัน
                                 </button>
                             </div>
                         </div>

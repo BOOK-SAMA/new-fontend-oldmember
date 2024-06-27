@@ -74,7 +74,7 @@
     </div>
     <div class="col-md-9 pe-5">
         <button type="submit" class="btn btn-primary btn-lg" @click="submit()">
-            Submit
+           ยืนยัน
         </button>
     </div>
 </template>

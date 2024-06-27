@@ -591,7 +591,7 @@
                   @click="submitUpdate"
                   
                 >
-                  Submit
+                  ยืนยัน
                 </button>
               </div>
             </div>
