@@ -466,21 +466,21 @@ export default {
     };
 
 
-    const isEnglishOrThai = (value) => {
-      // Regular expression to match English alphabetic characters, digits, and spaces
-      const regex = /^[A-Za-z0-9\s/.]+$/;
+     const isEnglishOrThai = (value) => {
+            // Regular expression to match English alphabetic characters, digits, and spaces
+            const regex = /^[A-Za-z0-9\s/.-]+$/;
 
-      // Check if the value consists entirely of English alphabetic characters, digits, and spaces
-      return regex.test(value);
-    };
+            // Check if the value consists entirely of English alphabetic characters, digits, and spaces
+            return regex.test(value);
+        };
 
-    const isThai = (value) => {
-      // Regular expression to match Thai characters, digits, and spaces
-      const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.]+$/;
+        const isThai = (value) => {
+            // Regular expression to match Thai characters, digits, and spaces
+            const thaiRegex = /^[\u0E00-\u0E7F0-9\s/.-]+$/;
 
-      // Check if the value consists entirely of Thai characters, digits, and spaces
-      return thaiRegex.test(value);
-    };
+            // Check if the value consists entirely of Thai characters, digits, and spaces
+            return thaiRegex.test(value);
+        };
 
     const state = reactive({
       username: '',
