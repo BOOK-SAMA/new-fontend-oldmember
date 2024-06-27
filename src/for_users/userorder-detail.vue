@@ -97,6 +97,7 @@
 
         </div>
         <div class="clearcontainer"></div>
+        <h1> <p>รหัสไปษณีย์ : <span class="texthighlight"><td v-text="this.postcode"></td></span></p></h1>
     </div>
 
 
@@ -127,7 +128,7 @@ export default {
             id: localStorage.getItem("userid"),
             city:'',
             pincode :'' ,
-
+            postcode:'',
         };
     },
     async mounted() {
@@ -169,6 +170,7 @@ export default {
                     this.userphonenumber = this.userphonenumber.concat(order.phonenumber)
                     this.pincode = this.pincode.concat(order.pincode)
                     this.city = this.city.concat(order.city)
+                    this.postcode = this.postcode.concat(order.postcode)
                 });
 
                 console.log(this.Orders);

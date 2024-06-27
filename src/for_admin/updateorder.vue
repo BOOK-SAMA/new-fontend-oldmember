@@ -133,6 +133,15 @@
                                 </select>
                             </div>
 
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md ps-5">
+                                    <h6 class="mb-0">รหัสไปษณีย์<span class="text-danger fw-bold">*</span></h6>
+                                </div>
+                                <div class="col-md-9 pe-5">
+                                    <input type="text" class="form-control form-control-lg" v-model="postcode" />
+                                </div>
+                            </div>
+
                             <div class="px-5 py-4">
                                 <button type="submit" class="btn btn-primary btn-lg text-white" @click="submitorder">
                                    ยินยัน
@@ -202,7 +211,7 @@ export default {
                 console.log(this.status)
                 let data = new FormData();
                 data.append("status", this.status);
-
+                data.append("postcode", this.postcode);
                 const response = await axios.post(
                     `${import.meta.env.VITE_API2}updatestatusorder/${this.$route.params.uniqueorder}`, data);
                 console.log(data)
