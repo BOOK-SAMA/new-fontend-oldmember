@@ -581,7 +581,7 @@ export default {
         },
 
         academicstatus: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         academicnumber: {
@@ -589,7 +589,7 @@ export default {
           minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         masterdegree: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+         
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         masterdegreenumber: {
@@ -597,7 +597,7 @@ export default {
           minLength: helpers.withMessage(' กรุณาใส่ตัวเลขให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         doctordegree: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         doctordegreenumber: {
@@ -606,15 +606,15 @@ export default {
         },
 
         job: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         jobposition: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+          
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
         jobaddress: {
-          isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
+         
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
       }
