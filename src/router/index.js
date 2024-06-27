@@ -124,6 +124,12 @@ const router = createRouter({
       component: updateadminfrom,
       meta: { requiresAuth: true },
     },
+    {
+      path: '/warning/:id',
+      component: () => import('/src/for_admin/warningfrom.vue'),
+      name: 'warning',
+      meta: { requiresAuth: true },
+    },
     /////////////////////////////
     {
       path: `/seeallproduct/:id/`,
@@ -186,7 +192,7 @@ router.beforeEach((to, from, next) => {
     const tokenString = localStorage.getItem('tokenstring');
     if (userId == null || tokenString == null) {
       alert("คุณยังไม่ได้เข้าสู่ระบบ รบกวนเข้าสู่ระบบก่อนนะครับ")
-      router.push({ path: "/login" });
+      window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
     } else {
       next();
     }

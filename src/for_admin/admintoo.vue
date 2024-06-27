@@ -65,12 +65,14 @@
               class="btn btn-success btn-sm">แก้ไข</router-link>
             <div class="b-example-divider p-1"></div>
 
-            <router-link :to="{ path: '/admintoo/' + this.$route.params.id }" class="btn btn-success btn-sm"
-              @click="dodelete(users.ID)">ลบ
+
+            <router-link :to="{ path: '/warning/' + users.ID }" class="btn btn-success btn-sm">
+              ติดต่อผู้ใช้งาน
             </router-link>
             <div class="b-example-divider p-1"></div>
-
-            
+            <router-link :to="{ path: '/admintoo/' + users.ID }" class="btn btn-success btn-sm"
+              @click="dodelete(users.ID)">ลบ
+            </router-link>
 
           </td>
         </tr>

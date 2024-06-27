@@ -1,5 +1,9 @@
 <template>
 
+	<!-- Popup Modal -->
+	
+
+
 
 	<nav class="navbar navbar-expand fixed-top" style="background-color: #F9CC02;">
 		<a class="navbar-brand" href="#"><img src="http://www.scsualumni.net/images/logo/resize-1482551623803.png"
@@ -10,15 +14,16 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
-			 <li class="nav-item active">
-                <a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/" style="font-size: medium;">หน้าแรก</a>
-            </li>
-				<li class="nav-item">
-					<a class="nav-link" :class="{ 'disabled': state }" :href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
+				<li class="nav-item active">
+					<a class="nav-link text-dark" href="https://graduation-silpakorn.azurewebsites.net/"
+						style="font-size: medium;">หน้าแรก</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" :href="getHref()"
-						@click="checkAccountStatus">
+					<a class="nav-link" :class="{ 'disabled': state }"
+						:href="state ? '#' : `/profile/${id}`">หน้าโปรไฟล์</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" :href="getHref()" @click="checkAccountStatus">
 						แก้ไขข้อมูลส่วนตัว
 					</a>
 				</li>
@@ -294,8 +299,8 @@
 											<h6 class="mb-0">อาชีพที่ทำปัจจุบัน</h6>
 										</div>
 										<div class="col-sm-9 text-secondary">
-											<p class="form-control form-control-lg" style="height: max-content;">{{ 
-											Job}}</p>
+											<p class="form-control form-control-lg" style="height: max-content;">{{
+												Job }}</p>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -389,9 +394,9 @@ export default {
 			city: "",
 			pincode: "",
 			previewFile: null,
-			accestatus: 'enabled', 
-			state: false, 
-			
+			accestatus: 'enabled',
+			state: false,
+			warnings: [],
 		};
 	},
 
@@ -399,13 +404,32 @@ export default {
 		this.id = this.$route.params.id;
 		// Ensure user is authenticated and authorized
 		await this.checkuser(this.id);
+		await this.getwarning();
 	},
 	methods: {
+		async getwarning() {
+			const userId = localStorage.getItem("userid");
+			try {
+				const response = await axios.post(
+					`${import.meta.env.VITE_API2}getwarning/` + userId,
+					null,
+					{
+						headers: {
+							Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+							"Content-Type": "application/json",
+						},
+					}
+				);
+				console.log(response)
+			} catch (error) {
+
+			}
+		},
 		handlelogout() {
 			localStorage.removeItem("userid");
 			localStorage.removeItem("tokenstring");
 			localStorage.removeItem("uuid");
-			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+			window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
 		},
 		async checkuser(id) {
 			const userId = localStorage.getItem("userid");
@@ -440,7 +464,7 @@ export default {
 						},
 					}
 				);
-				console.log(secondApiResponse);
+				
 				// Process the response from the second API as needed
 				this.Username = secondApiResponse.data.thing.Username;
 
@@ -474,6 +498,7 @@ export default {
 				this.pincode = secondApiResponse.data.thing.Pincode;
 
 				this.accestatus = secondApiResponse.data.thing.Accessstatus
+
 			} catch (error) {
 
 			}
@@ -497,7 +522,7 @@ export default {
 					)
 				)
 
-				console.log(base64String);
+			
 				if (base64String === "IiI=") {
 					this.previewFile = null;
 				} else {
