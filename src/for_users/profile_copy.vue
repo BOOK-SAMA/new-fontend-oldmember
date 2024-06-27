@@ -1,7 +1,7 @@
 <template>
 
 	<!-- Popup Modal -->
-	
+
 
 
 
@@ -88,12 +88,17 @@
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item" role="presentation">
 								<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-									data-bs-target="#userinfo" type="button" role="tab" aria-controls="home"
-									aria-selected="true">รายละเอียดของผู้ใช้</button>
+									data-bs-target="#warning" type="button" role="tab" aria-controls="#home"
+									aria-selected="true">รายละเอียดของการแจ้งเตือน</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#userinfo"
+									type="button" role="tab" aria-controls="#home"
+									aria-selected="false">รายละเอียดของผู้ใช้</button>
 							</li>
 							<li class="nav-item" role="presentation">
 								<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-									data-bs-target="#userinfo-more" type="button" role="tab" aria-controls="profile"
+									data-bs-target="#userinfo-more" type="button" role="tab" aria-controls="#profile"
 									aria-selected="false">รายละเอียดของผู้ใช้เพิ่มเติม</button>
 							</li>
 							<li class="nav-item" role="presentation">
@@ -108,8 +113,7 @@
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="userinfo" role="tabpanel"
-								aria-labelledby="home-tab">
+							<div class="tab-pane fade " id="userinfo" role="tabpanel" aria-labelledby="home-tab">
 								<div class="card-body mt-6">
 									<div class="row mb-3">
 										<div class="col-sm-3">
@@ -323,6 +327,34 @@
 									</div>
 								</div>
 							</div>
+							<div class="tab-pane fade show active" id="warning" role="tabpanel"
+								aria-labelledby="contact-tab">
+								<div class="container table-responsive py-5">
+									<table class="table table-bordered table-hover">
+										<thead class="thead-dark">
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">วันที่</th>
+												<th scope="col">เรื่อง</th>
+												<th scope="col">เพิ่มเติม</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="(warning, index) in warnings" :key="index">
+												<td v-text="index + 1"></td>
+												<td v-text="this.dateformat(warning.Date)"></td>
+												<td v-text="warning.Header"></td>
+												<td class="p-1">
+													<router-link
+														:to="{ path: '/warndetail/' + index }"
+														class="btn btn-success btn-sm">ดูรายละเอียด
+													</router-link>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -407,6 +439,10 @@ export default {
 		await this.getwarning();
 	},
 	methods: {
+		dateformat(dates) {
+            const date = new Date(dates);
+            return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+        },
 		async getwarning() {
 			const userId = localStorage.getItem("userid");
 			try {
@@ -420,7 +456,8 @@ export default {
 						},
 					}
 				);
-				console.log(response)
+				console.log(response.data)
+				this.warnings = response.data.warning
 			} catch (error) {
 
 			}
@@ -464,7 +501,7 @@ export default {
 						},
 					}
 				);
-				
+
 				// Process the response from the second API as needed
 				this.Username = secondApiResponse.data.thing.Username;
 
@@ -522,7 +559,7 @@ export default {
 					)
 				)
 
-			
+
 				if (base64String === "IiI=") {
 					this.previewFile = null;
 				} else {

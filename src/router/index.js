@@ -99,6 +99,13 @@ const router = createRouter({
     },
     {
       // ต้องทำการแก้ไข
+      path: '/warndetail/:warnid',
+      component: () => import('/src/for_users/warningdetail.vue'),
+      name: 'warndetail',
+      meta: { requiresAuth: true }
+    },
+    {
+      // ต้องทำการแก้ไข
       path: '/orderhistory/:id',
       component: () => import('/src/for_users/user-order.vue'),
       name: 'checkorder',
