@@ -385,7 +385,7 @@
                       <h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <span v-if="v$.Jobposition.$error" class="text-danger fw-bold">
+                      <span v-if="v$.jobposition.$error" class="text-danger fw-bold">
                         {{ v$.Jobposition.$errors[0].$message }}
                       </span>
                       <input v-model="state.jobposition" class="form-control form-control-lg" placeholder="" />
@@ -397,7 +397,7 @@
                       <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <span v-if="v$.Jobaddress.$error" class="text-danger fw-bold">
+                      <span v-if="v$.jobaddress.$error" class="text-danger fw-bold">
                         {{ v$.Jobaddress.$errors[0].$message }}
                       </span>
                       <input v-model="state.jobaddress" class="form-control form-control-lg" placeholder="" />
