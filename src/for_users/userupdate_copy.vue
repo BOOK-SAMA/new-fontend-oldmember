@@ -696,7 +696,7 @@ export default {
         data.append("masterdegree", this.state.masterdegree);
         data.append("masterdegreenumber", this.state.masterdegreenumber);
         data.append("doctordegree", this.state.doctordegree);
-        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+        data.append("doctoraldegreenumber", this.state.doctordegreenumber);
         data.append("phonemail", this.state.Phonemail);
         data.append("idline", this.state.Idline);
         data.append("job", this.state.job);
