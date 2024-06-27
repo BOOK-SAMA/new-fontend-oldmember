@@ -609,11 +609,11 @@ export default {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
-        Jobposition: {
+        jobposition: {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
-        Jobaddress: {
+        jobaddress: {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
