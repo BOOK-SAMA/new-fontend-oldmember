@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" :href="`/admintoo/${this.$route.params.id}`">หน้าหลัก</a>
+          <a class="nav-link" :href="`/admintoo/${this.userid}`">หน้าหลัก</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admincreate">สร้าง ผู้ใช้</a>
@@ -18,7 +18,7 @@
           <a class="nav-link" href="https://graduation-silpakorn.azurewebsites.net/wp-admin/">แก้ไขหน้าเว็บ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :href="`/seeallproduct/${this.$route.params.id}`">จัดการสินค้า</a>
+          <a class="nav-link" :href="`/seeallproduct/${this.userid}`">จัดการสินค้า</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" :href="`/seeallorder`">ดูรายการสั่งซื้อต่างๆ</a>
@@ -709,7 +709,7 @@ export default {
       newpassword: "",
       comfirepassword: "",
       passwordsMatch: null,
-
+      userid : localStorage.getItem("ีuserid") ,
     };
   },
 
@@ -744,49 +744,46 @@ export default {
       ) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
       } else {
-        if (this.v$.$error) {
-          alert("มีบางอย่างไม่ถูกต้องตามที่เรากำหนดไว้");
-        } else {
-          const URL = `${import.meta.env.VITE_API}admin/update/` + id;
-          let data = new FormData();
-          data.append("thainame", this.state.thainame);
-          data.append("engname", this.state.engname);
-          data.append("address", this.state.address);
-          data.append("city", this.state.cityvalue);
-          data.append("pincode", this.state.pincode);
-          data.append("phonenumber", this.state.phonenumber);
-          data.append("email", this.state.email);
-          data.append("file", this.file);
-          data.append("oldname", this.state.Oldname);
-          data.append("nickname", this.state.nickname);
-          data.append("dateofbirth", this.formattedDate);
-          data.append("academicstatus", this.state.academicstatus);
-          data.append("academicnumber", this.state.academicnumber);
-          data.append("masterdegree", this.state.masterdegree);
-          data.append("masterdegreenumber", this.state.masterdegreenumber);
-          data.append("doctordegree", this.state.doctordegree);
-          data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
-          data.append("phonemail", this.state.Phonemail);
-          data.append("idline", this.state.Idline);
-          data.append("job", this.job);
-          data.append("jobposition", this.jobposition);
-          data.append("jobaddress", this.jobaddress);
-          data.append("paystatus", this.paystatus);
-          let config = {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-              "Content-Type": "multipart/form-data",
-            },
-          };
+        const URL = `${import.meta.env.VITE_API}update/` + id;
+        let data = new FormData();
+        data.append("thainame", this.state.thainame);
+        data.append("engname", this.state.engname);
+        data.append("address", this.state.address);
+        data.append("city", this.state.cityvalue);
+        data.append("pincode", this.state.pincode);
+        data.append("phonenumber", this.state.phonenumber);
+        data.append("email", this.state.email);
+        data.append("file", this.file);
+        data.append("oldname", this.state.Oldname);
+        data.append("nickname", this.state.nickname);
+        data.append("dateofbirth", this.formattedDate);
+        data.append("academicstatus", this.state.academicstatus);
+        data.append("academicnumber", this.state.academicnumber);
+        data.append("masterdegree", this.state.masterdegree);
+        data.append("masterdegreenumber", this.state.masterdegreenumber);
+        data.append("doctordegree", this.state.doctordegree);
+        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+        data.append("phonemail", this.state.Phonemail);
+        data.append("idline", this.state.Idline);
+        data.append("job", this.job);
+        data.append("jobposition", this.jobposition);
+        data.append("jobaddress", this.jobaddress);
+        data.append("paystatus", this.paystatus);
+        let config = {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            "Content-Type": "multipart/form-data",
+          },
+        };
 
-          axios.post(URL, data, config)
-            .then((response) => {
-              this.responseStatus = response.status;
-              console.log("this is res => ", response);
-              alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-              
-            })
-        }
+        axios.post(URL, data, config)
+          .then((response) => {
+            this.responseStatus = response.status;
+            console.log("this is res => ", response);
+            alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
+
+          })
+
       }
     },
     async fetchCity() {
@@ -802,7 +799,7 @@ export default {
     },
     async getuserdata(id) {
       await axios.post(
-        `${import.meta.env.VITE_API2}users/profile/` + id,
+        `${import.meta.env.VITE_API2}admin/showperson/` + id,
         null,
         {
           headers: {
