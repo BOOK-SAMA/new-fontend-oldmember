@@ -188,9 +188,6 @@ export default {
                     this.city = this.city.concat(order.city)
                     this.postcode = this.postcode.concat(order.postcode)
                 });
-
-                console.log(this.Orders);
-                console.log(this.Ordersdetail);
             } catch (error) {
                 alert("ไม่สามารถดูรายละเอียดดคำสั่งซื้อได้")
             }
