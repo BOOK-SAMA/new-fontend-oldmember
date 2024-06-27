@@ -27,7 +27,7 @@
                 </button>
             </form>
         </div>
-    </nav>
+</nav>
 
     <div id="pagecontent" style="margin-top: 150px;">
         <div class="clearcontainer">
@@ -35,6 +35,7 @@
             <div id="myaccount" class="floatleft">
                 <div class="container">
                     <h1> <p>เลขที่คำสั่งซื้อ : <span class="texthighlight"><td v-text="ordernumber"></td></span></p></h1>
+                    <h1> <p>สถานะคำสั่ง : <span class="texthighlight"><td v-text="this.statue"></td></span></p></h1>
                 </div>
                 <div class="container">
                 <div class="container table-responsive py-5"> 
