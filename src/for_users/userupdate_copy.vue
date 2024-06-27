@@ -669,7 +669,6 @@ export default {
       this.v$.$validate();
       if (this.v$.$error) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
-        return;
       } else {
         const URL = `${import.meta.env.VITE_API}users/update/` + id;
         let data = new FormData();
