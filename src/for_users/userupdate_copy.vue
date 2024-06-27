@@ -676,45 +676,49 @@ export default {
         this.v$.email.$error) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
       } else {
-        const URL = `${import.meta.env.VITE_API}users/update/` + id;
-        let data = new FormData();
-        data.append("thainame", this.state.thainame);
-        data.append("engname", this.state.engname);
-        data.append("address", this.state.address);
-        data.append("city", this.state.cityvalue);
-        data.append("pincode", this.state.pincode);
-        data.append("phonenumber", this.state.phonenumber);
-        data.append("email", this.state.email);
-        data.append("file", this.file);
-        data.append("oldname", this.state.Oldname);
-        data.append("nickname", this.state.nickname);
-        data.append("dateofbirth", this.formattedDate);
-        data.append("academicstatus", this.state.academicstatus);
-        data.append("academicnumber", this.state.academicnumber);
-        data.append("masterdegree", this.state.masterdegree);
-        data.append("masterdegreenumber", this.state.masterdegreenumber);
-        data.append("doctordegree", this.state.doctordegree);
-        data.append("doctoraldegreenumber", this.state.doctordegreenumber);
-        data.append("phonemail", this.state.Phonemail);
-        data.append("idline", this.state.Idline);
-        data.append("job", this.state.job);
-        data.append("jobposition", this.state.jobposition);
-        data.append("jobaddress", this.state.jobaddress);
+        if (this.v$.$error) {
+          alert("มีบางอย่างไม่ถูกต้องตามที่เรากำหนดไว้");
+        } else {
+          const URL = `${import.meta.env.VITE_API}users/update/` + id;
+          let data = new FormData();
+          data.append("thainame", this.state.thainame);
+          data.append("engname", this.state.engname);
+          data.append("address", this.state.address);
+          data.append("city", this.state.cityvalue);
+          data.append("pincode", this.state.pincode);
+          data.append("phonenumber", this.state.phonenumber);
+          data.append("email", this.state.email);
+          data.append("file", this.file);
+          data.append("oldname", this.state.Oldname);
+          data.append("nickname", this.state.nickname);
+          data.append("dateofbirth", this.formattedDate);
+          data.append("academicstatus", this.state.academicstatus);
+          data.append("academicnumber", this.state.academicnumber);
+          data.append("masterdegree", this.state.masterdegree);
+          data.append("masterdegreenumber", this.state.masterdegreenumber);
+          data.append("doctordegree", this.state.doctordegree);
+          data.append("doctoraldegreenumber", this.state.doctordegreenumber);
+          data.append("phonemail", this.state.Phonemail);
+          data.append("idline", this.state.Idline);
+          data.append("job", this.state.job);
+          data.append("jobposition", this.state.jobposition);
+          data.append("jobaddress", this.state.jobaddress);
 
-        let config = {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "multipart/form-data",
-          },
-        };
+          let config = {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "multipart/form-data",
+            },
+          };
 
-        axios.post(URL, data, config)
-          .then((response) => {
-            this.responseStatus = response.status;
-            console.log("this is res => ", response);
-            alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-            
-          })
+          axios.post(URL, data, config)
+            .then((response) => {
+              this.responseStatus = response.status;
+              console.log("this is res => ", response);
+              alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
+
+            })
+        }
       }
     },
     async fetchCity() {
