@@ -758,7 +758,7 @@ export default {
         data.append("masterdegree", this.state.masterdegree);
         data.append("masterdegreenumber", this.state.masterdegreenumber);
         data.append("doctordegree", this.state.doctordegree);
-        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+        data.append("doctordegreenumber", this.state.doctordegreenumber);
 
         
        
@@ -789,6 +789,7 @@ export default {
           .then((response) => {
             this.responseStatus = response.status;
             console.log("this is res => ", response);
+            console.log("this is res => ", data);
             alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
           })
       }
