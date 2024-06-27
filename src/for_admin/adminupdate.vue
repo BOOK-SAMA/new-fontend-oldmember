@@ -35,7 +35,7 @@
     </div>
   </nav>
 
-  <section class="vh" style="margin-top: 2.5cm;">
+  <section class="vh" style="margin-top: 0.5cm;">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-11">
@@ -396,10 +396,10 @@
                       <h6 class="mb-0">ตำแหน่งอาชีพที่ทำปัจจุบัน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <span v-if="v$.Jobposition.$error" class="text-danger fw-bold">
-                        {{ v$.Jobposition.$errors[0].$message }}
+                      <span v-if="v$.jobposition.$error" class="text-danger fw-bold">
+                        {{ v$.jobposition.$errors[0].$message }}
                       </span>
-                      <input v-model="state.Jobposition" class="form-control form-control-lg" placeholder="" />
+                      <input v-model="state.jobposition" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -408,10 +408,10 @@
                       <h6 class="mb-0">ที่อยู่ที่ทำงาน</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <span v-if="v$.Jobaddress.$error" class="text-danger fw-bold">
-                        {{ v$.Jobaddress.$errors[0].$message }}
+                      <span v-if="v$.jobaddress.$error" class="text-danger fw-bold">
+                        {{ v$.jobaddress.$errors[0].$message }}
                       </span>
-                      <input v-model="state.Jobaddress" class="form-control form-control-lg" placeholder="" />
+                      <input v-model="state.jobaddress" class="form-control form-control-lg" placeholder="" />
                     </div>
                   </div>
                   <hr class="mx-n3" />
@@ -578,8 +578,8 @@ export default {
       doctordegreenumber: '',
 
       job: '',
-      Jobposition: '',
-      Jobaddress: '',
+      jobposition: '',
+      jobaddress: '',
       Levelmember: '',
       Levelmemberthing: '',
 
@@ -676,11 +676,11 @@ export default {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
-        Jobposition: {
+        jobposition: {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
-        Jobaddress: {
+        jobaddress: {
           isThai: helpers.withMessage('กรุณาใส่ข้อมูลเป็นภาษาไทยเท่านั้น', isThai),
           minLength: helpers.withMessage(' กรุณาใส่ตัวอักษรให้มากกว่า 1 ตัวด้วยครับ', minLength(1))
         },
@@ -743,47 +743,50 @@ export default {
         this.v$.email.$error
       ) {
         alert("การปรับข้อมูลผู้ใช้ไม่สำเร็จแล้ว");
-        return;
       } else {
-        const URL = `${import.meta.env.VITE_API}admin/update/` + id;
-        let data = new FormData();
-        data.append("thainame", this.state.thainame);
-        data.append("engname", this.state.engname);
-        data.append("address", this.state.address);
-        data.append("city", this.state.cityvalue);
-        data.append("pincode", this.state.pincode);
-        data.append("phonenumber", this.state.phonenumber);
-        data.append("email", this.state.email);
-        data.append("file", this.file);
-        data.append("oldname", this.state.Oldname);
-        data.append("nickname", this.state.nickname);
-        data.append("dateofbirth", this.formattedDate);
-        data.append("academicstatus", this.state.academicstatus);
-        data.append("academicnumber", this.state.academicnumber);
-        data.append("masterdegree", this.state.masterdegree);
-        data.append("masterdegreenumber", this.state.masterdegreenumber);
-        data.append("doctordegree", this.state.doctordegree);
-        data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
-        data.append("phonemail", this.state.Phonemail);
-        data.append("idline", this.state.Idline);
-        data.append("job", this.job);
-        data.append("jobposition", this.Jobposition);
-        data.append("jobaddress", this.Jobaddress);
-        data.append("paystatus", this.paystatus);
-        let config = {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-            "Content-Type": "multipart/form-data",
-          },
-        };
+        if (this.v$.$error) {
+          alert("มีบางอย่างไม่ถูกต้องตามที่เรากำหนดไว้");
+        } else {
+          const URL = `${import.meta.env.VITE_API}admin/update/` + id;
+          let data = new FormData();
+          data.append("thainame", this.state.thainame);
+          data.append("engname", this.state.engname);
+          data.append("address", this.state.address);
+          data.append("city", this.state.cityvalue);
+          data.append("pincode", this.state.pincode);
+          data.append("phonenumber", this.state.phonenumber);
+          data.append("email", this.state.email);
+          data.append("file", this.file);
+          data.append("oldname", this.state.Oldname);
+          data.append("nickname", this.state.nickname);
+          data.append("dateofbirth", this.formattedDate);
+          data.append("academicstatus", this.state.academicstatus);
+          data.append("academicnumber", this.state.academicnumber);
+          data.append("masterdegree", this.state.masterdegree);
+          data.append("masterdegreenumber", this.state.masterdegreenumber);
+          data.append("doctordegree", this.state.doctordegree);
+          data.append("Doctoraldegreenumber", this.state.doctordegreenumber);
+          data.append("phonemail", this.state.Phonemail);
+          data.append("idline", this.state.Idline);
+          data.append("job", this.job);
+          data.append("jobposition", this.jobposition);
+          data.append("jobaddress", this.jobaddress);
+          data.append("paystatus", this.paystatus);
+          let config = {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+              "Content-Type": "multipart/form-data",
+            },
+          };
 
-        axios.post(URL, data, config)
-          .then((response) => {
-            this.responseStatus = response.status;
-            console.log("this is res => ", response);
-            alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
-            this.$router.push({ path: "/admintoo/" + localStorage.getItem("userid") });
-          })
+          axios.post(URL, data, config)
+            .then((response) => {
+              this.responseStatus = response.status;
+              console.log("this is res => ", response);
+              alert("การปรับข้อมูลผู้ใช้สำเร็จแล้ว");
+              
+            })
+        }
       }
     },
     async fetchCity() {
@@ -907,11 +910,11 @@ export default {
       }
     },
     handlelogout() {
-			localStorage.removeItem("userid");
-			localStorage.removeItem("tokenstring");
-			localStorage.removeItem("uuid");
-			 window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
-		},
+      localStorage.removeItem("userid");
+      localStorage.removeItem("tokenstring");
+      localStorage.removeItem("uuid");
+      window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
+    },
   },
   computed: {
     paystatusDisplay: {
