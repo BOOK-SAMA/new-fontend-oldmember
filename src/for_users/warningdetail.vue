@@ -28,39 +28,32 @@
             </form>
         </div>
     </nav>
-
-    <div class="card" style="border-radius: 15px; margin-top: 2cm;">
-        <div class="card-body " style="margin-left: 5cm;">
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">วันที่</h6>
-                    </div>
-                    <div class="col-md-9 pe-5">
-                        {{ dateformat(this.warnings.Date) }}
-                    </div>
+    <div id="pagecontent" style="margin-top: 150px;">
+        <div class="clearcontainer">
+            <div id="myaccount" class="floatleft">
+                <div class="container">
+                    <h1>
+                        <p style="font-size: 1.5em;">เรื่องการแจ้งเตือน : <span class="texthighlight">{{
+                                this.warnings.Header }}</span></p>
+                    </h1>
+                    <h1>
+                        <p style="font-size: 1.5em;">เนื้อหาการแจ้งเตือน</p>
+                    </h1>
                 </div>
-                <div class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">เรื่องการแจ้งเตือน</h6>
+                <div class="container">
+                    <div class="container table-responsive py-5">
+                        <div class="col-md-9 pe-5" v-html="this.warnings.Body"
+                            style="font-size: 1.5em; margin-left: 5cm;">
+                        </div>
                     </div>
-                    <div class="col-md-9 pe-5">
-                        {{ this.warnings.Header }}
+                    <div class="container">
+                        <h1>
+                            <p style="font-size: 1.5em; margin-left: 5cm;">รูปที่แนบ</p>
+                        </h1>
+                        <img :src="file" alt="Payment Image" class="payment-image" width="500"
+                        style="margin-top: 1cm; margin-left: 10cm;" />
                     </div>
-                </div>
-                <div class="col align-items-center pt-4 pb-3">
-                    <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">เนื้อหาการแจ้งเตือน</h6>
-                    </div>
-                    <div class="col-md-9 pe-5">
-                        {{ this.warnings.Body }}
-                    </div>
-                </div>
-                <div>
-                    <div class="col-md-3 ps-5">
-                        <h6 class="mb-0">รูปที่แนบมา</h6>
-                    </div>
-                    <img :src="file" alt="Payment Image" class="payment-image" width="500" />
+                    
                 </div>
             </div>
         </div>
@@ -77,9 +70,9 @@ export default {
     name: "Userorder",
     data() {
         return {
-            warning:  [],
+            warning: [],
             warnings: [],
-            file:null
+            file: null
         };
     },
     async mounted() {
@@ -93,25 +86,25 @@ export default {
             window.location.href = "https://graduation-silpakorn.azurewebsites.net/";
         },
         async getwarning(index) {
-			const userId = localStorage.getItem("userid");
-			try {
-				const response = await axios.post(
-					`${import.meta.env.VITE_API2}getwarning/` + userId,
-					null,
-					{
-						headers: {
-							Authorization: "Bearer " + localStorage.getItem("tokenstring"),
-							"Content-Type": "application/json",
-						},
-					}
-				);
-				this.warnings = response.data.warning[index]
+            const userId = localStorage.getItem("userid");
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API2}getwarning/` + userId,
+                    null,
+                    {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                this.warnings = response.data.warning[index]
                 await this.getpaymentimage(this.warnings.File)
                 console.log(this.warnings)
-			} catch (error) {
+            } catch (error) {
                 alert("ไม่สามารถเอาข้อมูลมาแสดงได้")
-			}
-		},
+            }
+        },
         dateformat(dates) {
             const date = new Date(dates);
             return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
