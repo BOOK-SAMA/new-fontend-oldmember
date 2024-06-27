@@ -710,6 +710,7 @@ export default {
       comfirepassword: "",
       passwordsMatch: null,
       userid : localStorage.getItem("ีuserid") ,
+      token: localStorage.getItem("tokenstring")
     };
   },
 
@@ -771,7 +772,7 @@ export default {
         data.append("paystatus", this.paystatus);
         let config = {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            Authorization: "Bearer " + this.token,
             "Content-Type": "multipart/form-data",
           },
         };
@@ -803,7 +804,7 @@ export default {
         null,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("tokenstring"),
+            Authorization: "Bearer " + this.token,
             "Content-Type": "application/json",
           },
         }
